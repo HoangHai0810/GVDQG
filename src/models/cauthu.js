@@ -20,8 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     NgaySinh: DataTypes.DATE,
     ChieuCao: DataTypes.FLOAT,
     CanNang: DataTypes.FLOAT,
-    QuocTich: DataTypes.STRING,
-    test: DataTypes.STRING
+    QuocTich: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Cauthu',
