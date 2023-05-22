@@ -14,12 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Cauthu.init({
-    TenCT: DataTypes.STRING,
+    TenCauThu: DataTypes.STRING,
     ViTri: DataTypes.STRING,
     SoAo: DataTypes.INTEGER,
+    NgaySinh: DataTypes.DATE,
     ChieuCao: DataTypes.FLOAT,
     CanNang: DataTypes.FLOAT,
-    SoBT: DataTypes.INTEGER
+    QuocTich: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Cauthu',
