@@ -36482,6 +36482,59 @@ body.webViewBody {
         padding-top: 6rem
     }
 }
+.ism header
+{
+    padding: -50px;
+}
+
+.ism-form---group
+{
+    display: flex;
+}
+
+.ism-PassList
+{
+    width: 50%;
+    height: 100px;
+}
+
+.ism-form__group .PassList__StyledPassItem
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.ism-form__group .PassList__StyledPassItem .PassList__Lable
+{
+    flex-grow: 1;
+    align-self: flex-start;
+}
+
+.ism-form__group .PassList__StyledPassItem .PassList__box
+{
+    flex-shrink: 3;
+    width: 15px;
+    height: 15px;
+    background-color: #e53535;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+}
+
+#ismr-content2 .ism-form__group:first-child,
+#ismr-content2 .ism-form__group:nth-child(2)
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#ismr-content2 .ism-form__group:nth-child(5)
+{
+    margin: -5px;
+}
+
+
 
 .ismHeader .fantasy>a:after {
     content: "";
@@ -36986,7 +37039,7 @@ body.webViewBody {
 .list--more,
 .list--premier-league {
     -moz-column-count: 2;
-    column-count: 2
+    column-count: 1
 }
 
 .webViewBody .pageHero.stats+.hasSideNav .sideNav {
@@ -37523,12 +37576,12 @@ body.webViewBody {
     }
 }
 
-.article-promo--history .article-promo__btn:focus[type=submit],
-.article-promo--history .article-promo__btn:hover[type=submit],
-.btn:focus[type=submit],
-.btn:hover[type=submit],
-[class*=btn-]:focus[type=submit],
-[class*=btn-]:hover[type=submit] {
+.article-promo--history .article-promo__btn:focus,
+.article-promo--history .article-promo__btn:hover,
+.btn:focus,
+.btn:hover,
+[class*=btn-]:focus,
+[class*=btn-]:hover {
     background-image: linear-gradient(270deg, #ff2882, #963cff)
 }
 
@@ -49540,7 +49593,7 @@ div.fixture.live:hover .arrow-right {
     background-repeat: no-repeat;
     background-size: auto 100%;
     margin-bottom: 4rem;
-    padding: 7rem 0 5.2rem;
+    padding: 4rem 0 2rem;
     position: relative
 }
 
@@ -129680,6 +129733,11 @@ section.tab-content {
     content: "Warning: It looks like you are styling an element to be disabled here. Make sure it is disabled properly.";
 }
 
+#dangky h1
+{
+    margin: 0 -58rem 2.5rem -3rem;
+}
+
 /*=====  End of _test.scss  ======*/
 /*===================================
   =            _icons.scss            =
@@ -131703,9 +131761,15 @@ dialog {
     width: 100%;
 }
 
-.ism .ism-form__login-box [type="submit"] {
+.ism .ism-form__login-box [type="submit"],
+.ism .ism-form__login-box [type="button"]:last-child {
     float: right;
     width: 50%;
+}
+
+#userNameInfo
+{
+    color: #e53535;
 }
 
 .ism .ism-form__policy {
@@ -131863,7 +131927,7 @@ dialog {
     margin: 20px;
 }
 
-.ism .user-admin button[type="submit"].admin-action {
+.ism .user-admin button.admin-action {
     width: 90%;
 }
 

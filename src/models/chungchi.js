@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   chungChi.init({
     ngayCap: DataTypes.DATE,
-    noiCap: DataTypesTEXT.
+    noiCap: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'chungChi',

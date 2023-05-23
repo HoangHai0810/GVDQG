@@ -22,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: 'Lichthidau',
     });
-    return Loaibanthang;
+    return Lichthidau;
 };
