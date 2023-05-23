@@ -14,11 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Doibong.init({
-    TenDoi: DataTypes.STRING,
-    doctorId: DataTypes.INTEGER,
-    patientId: DataTypes.INTEGER,
-    date: DataTypes.DATE,
-    timeType: DataTypes.STRING
+    tenDoiBong: DataTypes.STRING,
+    sanNha: DataTypes.TEXT,
+    mauAoSanNha: DataTypes.TEXT,
+    mauAoSanKhach: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Doibong',

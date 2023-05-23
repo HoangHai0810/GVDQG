@@ -14,10 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Loaibanthang.init({
-    address: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    image: DataTypes.STRING,
-    name: DataTypes.STRING
+    tenLoaiBanThang: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Loaibanthang',

@@ -14,10 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Loaicauthu.init({
-    patientId: DataTypes.INTEGER,
-    doctorId: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    file: DataTypes.TEXT
+    tenLoaiCauThu: DataTypes.TEXT,
+    moTa: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Loaicauthu',
