@@ -4,10 +4,12 @@ import CRUDSevice from "../sevices/CRUDSevice";
 
 let getHomePage = async(req, res) => {
     try{
-        let data = await db.User.findAll();
-        return res.render("homepage.ejs", {
-            data: JSON.stringify(data)
-        })
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('homepage.ejs', {
+            data: data
+        });
     } catch (e) {
         console.log(e);
     }
@@ -26,7 +28,12 @@ let getCRUDPage = (req, res) => {
 let postCRUD = async (req,res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
     console.log(mes);
-    return res.render('homepage.ejs');
+    let data = await CRUDSevice.getAllUser({
+        raw :   true,
+    });
+    return res.render('homepage.ejs', {
+        data: data
+    });
 }
 
 let displayGetCRUD = async(req,res) => {
@@ -76,7 +83,7 @@ let delCRUD = async(req,res) => {
 }
 
 let loginCRUD = (req, res) => {
-    return res.render("./loginCRUD.ejs");
+    
 }
 
 

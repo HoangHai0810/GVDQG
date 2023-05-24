@@ -2931,17 +2931,15 @@
         <div class="ism-container">
             <div class="wrapper">
                 <div id="ismr-content">
-                    <form class="ism-form__login-box" method="post" action="/accounts/login/">
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                            value="y8sewwykk97bI1cdkF2r5sT3kpIPooO1NkH9walxgjR7bsUstS8HMUSYHrnaGqYx">
-
+                    <form class="ism-form__login-box">
                         <div class="wrapper">
                             <div class="col-6">
                                 <h1>Đăng nhập</h1>
                                 <div class="ism-form__group">
                                     <label for="ism-email">Tên đăng nhập</label>
                                     <div class="ism-input-holder">
-                                        <input type="email" name="login" id="ism-email" placeholder="Email Address">
+                                        <input type="text" name="login" id="ism-email" placeholder="Tên đăng nhập">
+                                        <div id="error-userName"></div>
                                     </div>
                                 </div>
                                 <div class="ism-form__group">
@@ -2966,16 +2964,69 @@
                                             }
                                         </script>
                                     </div>
+                                    <div id="error-Password"></div>
                                 </div>
                                 <div class="ism-form__group">
                                     <a href="/accounts/password-reset/"
                                         class="ism-arrow-link ism-arrow-link__login">Quên mật khẩu?</a>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" onclick="checkLogin()">
                                         Đăng nhập
                                     </button>
                                 </div>
-                                <input type="hidden" name="app" value="pl-web">
-                                <input type="hidden" name="redirect_uri" value="https://www.premierleague.com/">
+                                <script>
+                                    var ismEmail = document.getElementById('ism-email');
+                                    var ismPassword = document.getElementById('ism-password');
+                                    var errorPassword = document.getElementById('error-Password');
+                                    var errorUserName = document.getElementById('error-userName');
+                                    ismEmail.addEventListener('keyup', () => {
+                                        errorUserName.innerHTML = '';
+                                        ismEmail.classList.remove('error-border');
+                                    });
+                                    ismPassword.addEventListener('keyup', () => {
+                                        errorPassword.innerHTML = '';
+                                        ismPassword.classList.remove('error-border');
+                                    })
+                                    function checkLogin()
+                                    {
+                                        var data = '<%= JSON.stringify(data) %>';
+                                        var checkUserName = false;
+                                        var ismEmailValue = ismEmail.value;
+                                        for (let i=0; i< data.length;i++)
+                                        {
+                                            console.log(data[i].userName);
+                                            if (ismEmailValue === data[i].userName)
+                                            {
+                                                checkUserName = true;
+                                            }
+                                        }
+                                        if (checkUserName) 
+                                        {
+                                            var checkPassword = false;
+                                            var ismPasswordValue = ismPassword.value;
+                                            for (let i=0; i< data.length;i++)
+                                            {
+                                                if (ismPasswordValue === data[i].password)
+                                                {
+                                                    checkPassword = true;
+                                                }
+                                            }
+                                            if (checkPassword)
+                                            {
+                                                render('loginCRUD');
+                                            } else {
+                                                errorPassword.innerHTML = 'Mật khẩu sai!';
+                                                errorPassword.style.color = '#e53535';
+                                                ismPassword.classList.add('error-border');
+                                            }
+                                        }
+                                        else
+                                        {
+                                            errorUserName.innerHTML = 'Tên đăng nhập sai!';
+                                            errorUserName.style.color = '#e53535';
+                                            ismEmail.classList.add('error-border');
+                                        }
+                                    }
+                                </script>
                             </div>
 
                             <div class="col-6">
@@ -3474,23 +3525,6 @@
                 </div>
             </div>
         </header>
-
-        <script>
-            !function (e, t, n, c, i, a, s) { i = i || 'EcalWidget', e.EcalWidgetObject = i, e[i] = e[i] || function () { (e[i].q = e[i].q || []).push(arguments) }, a = t.createElement(n), s = t.getElementsByTagName(n)[0], e[i].u = c, a.async = 1, a.src = c, s.parentNode.insertBefore(a, s) }(window, document, 'script', '//sync.ecal.com/button/v1/main.js' + '?t=' + Date.now());
-            (function () {
-                function l() { var w = window.ECAL_SYNC_WIDGET = EcalWidget.init({ apiKey: '6ea0955297341b6b22f516a42177979d55821c6d7217b' }); }
-                ; (window.attachEvent ? window.attachEvent('onload', l) : window.addEventListener('load', l, false));
-            }());
-            window.onload = function () {
-                setTimeout(function () {
-                    var ecalElement = document.getElementById("ecal-sync-widget-button");
-                    if (ecalElement) {
-                        ecalElement.click();
-                    }
-                }, 1000);
-            };
-
-        </script>
         <div class="loader js-tab-loader u-hide">
             <div class="loader-small">
                 <div class="line"></div>
@@ -4024,6 +4058,734 @@
             </div>
         </div>
     </section>
+    <!--Tab câu lạc bộ-->
+    <section id="caulacbo" tabindex="0" class="tab-content" style="display: none;">
+        <!-- /131332370/GeneralTakeover_0 -->
+        <div class="ad-takeover js-ad-takeover">
+            <nav class="navBar">
+                <a href="#!" class="plLogo" id="logoClose">
+                    <img src="/resources/prod/v6.122.2-5844/i/elements/premier-league-logo-header-full.png" alt="Premier League Logo">
+                </a>
+                <a href="#!" id="advertClose" class="closeBtn">Close Advert</a>
+            </nav>
+        
+            <div id="div-gpt-ad-1503491171981-0" class="DFP-takeover" style="display: none;"><div id="google_ads_iframe_/131332370/GeneralTakeover_0__container__" style="border: 0pt none; width: 1600px; height: 90px;"></div></div>
+        
+            <script type="text/javascript">
+                // GOOGLE ADS SCRIPT
+                var adWrap = document.querySelector('.js-ad-takeover');
+                var slotId = '/131332370/GeneralTakeover_0';
+        
+                googletag.cmd.push(function() { 
+        
+                    var mapping = googletag.sizeMapping(). 
+                    addSize([0, 0], []). 
+                    addSize([200, 300], [[320, 50], [320, 480]]).
+                    addSize([450, 300], [[320, 50], [1600, 900]]).      
+                    addSize([750, 300], [[728, 90], [1600, 900]]). 
+                    addSize([990, 300], [[1600, 900], [970, 250], [728, 90]]).build();
+        
+                    googletag.defineSlot('/131332370/GeneralTakeover', [
+                        [1600, 900], 
+                        [320, 480]
+                    ], 'div-gpt-ad-1503491171981-0').
+                        defineSizeMapping(mapping).
+                        addService(googletag.pubads());
+                    googletag.pubads().enableSingleRequest();
+                    googletag.enableServices();
+        
+                    googletag.pubads().addEventListener('slotRenderEnded', function (event) {
+                    
+                        if ( slotId === event.slot.getSlotId().toString() ) {
+                            if (event.isEmpty) {
+                                adWrap.style.display = 'none';
+                            } else {
+                                adWrap.style.display = 'block';
+                            }
+                        }
+                    });
+        
+                    googletag.display('div-gpt-ad-1503491171981-0');
+        
+                });
+        
+                // PULSELIVE SCRIPT
+                var closeBtn = document.getElementById('advertClose');
+                var closeLogo = document.getElementById('logoClose');
+        
+                closeBtn.addEventListener('click', function( e ){
+                    e.preventDefault();
+                    adWrap.innerHTML = "";
+                    adWrap.style.width = 0;
+                    adWrap.style.height = 0;
+                });
+        
+                closeLogo.addEventListener('click', function( e ){
+                    e.preventDefault();
+                    adWrap.innerHTML = "";
+                    adWrap.style.width = 0; 
+                    adWrap.style.height = 0;
+                });
+            </script>
+        </div>
+        
+            
+          <div data-widget="list-data-client-side-search" data-type="team" data-page-size="100" data-script="pl_filtered-list" class="clubIndex" data-team-type="FIRST" data-comp-seasons="489">
+            <header class="pageHero">
+              <div class="wrapper col-12">
+                     <h1 class="pageTitle">Clubs</h1>
+                  <div class="searchDataContainer" data-placeholder="Search" for="" a="" club=""><div class="searchInputContainer" role="search"> <label for="search-input" class="visuallyHidden">Search</label> <input id="search-input" type="text" value="" placeholder="Search" class="searchTextContainer searchInput"> <button class="search-input__button js-empty-input-btn"> <svg class="search-input__icon"> <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/resources/prod/v6.122.2-5844/i/svg-output/icons.svg#icn-close"></use> </svg> </button> <div class="searchIconContainer searchCommit" role="button" tabindex="0"> <div alt="" class="icn search-sm-g"><span class="visuallyHidden">Submit search</span></div> </div> </div></div>
+                  <div class="right" data-script="pl_social-share" data-widget="social-page-share" data-render="pagehover" data-body="Premier League - Clubs"><div class="socialShareHover"> <div class="socialShareBtn" role="button" tabindex="0" aria-haspopup="true"><div class="icn share-black"></div>Share</div> <ul class="socialOptions" role="listbox"> <li><div class="option whatsapp" role="option" tabindex="0" data-social-service="whatsapp"><span class="icn whatsapp-w"></span><span class="visuallyHidden">action.share.whatsApp</span></div></li> <li><div class="option twitter" role="option" tabindex="0" data-social-service="twitter"><span class="icn twitter-lg-w"></span><span class="visuallyHidden">Share on Twitter</span></div></li> <li><div class="option facebook" role="option" tabindex="0" data-social-service="facebook"><span class="icn facebook-lg-w"></span><span class="visuallyHidden">Share on Facebook</span></div></li> <li><div class="option copy" role="option" tabindex="0" data-social-service="copy"><span class="icn copy-link-w"></span><span class="visuallyHidden">action.share.copy</span></div></li> <li><div class="option email" role="option" tabindex="0" data-social-service="email"><span class="icn mail-w"></span><span class="visuallyHidden">Email</span></div></li> </ul> </div> </div>
+              </div>
+            </header>
+            <div class="wrapper">
+              <section class="pageFilter col-12 singleFilter" data-use-history="true" data-filter-config="teamIndex" data-widget="tables-filter" data-reset-available="true"><header class="mobileHeader"> <h4>Adjust Filters</h4> <div class="close" role="button">Cancel<span class="icn menu-close"></span></div> </header><div class="dropDown mobile active" data-dropdown-block="compSeasons" data-dropdown-default=""> <div class="label" id="dd-compSeasons">Filter by Season</div>   <div class="current" data-dropdown-current="compSeasons" role="button" tabindex="0" aria-expanded="false" aria-labelledby="dd-compSeasons" data-listen-keypress="true" data-listen-click="true">2022/23</div>  <ul class="dropdownList" data-dropdown-list="compSeasons" role="listbox" aria-labelledby="dd-compSeasons" data-listen-keypress="true" data-listen-click="true">  <li role="option" tabindex="0" data-option-name="2022/23" data-option-id="489" data-option-index="0" class="">2022/23</li>  <li role="option" tabindex="0" data-option-name="2021/22" data-option-id="418" data-option-index="1" class="">2021/22</li>  <li role="option" tabindex="0" data-option-name="2020/21" data-option-id="363" data-option-index="2" class="">2020/21</li>  <li role="option" tabindex="0" data-option-name="2019/20" data-option-id="274" data-option-index="3" class="">2019/20</li>  <li role="option" tabindex="0" data-option-name="2018/19" data-option-id="210" data-option-index="4" class="">2018/19</li>  <li role="option" tabindex="0" data-option-name="2017/18" data-option-id="79" data-option-index="5" class="">2017/18</li>  <li role="option" tabindex="0" data-option-name="2016/17" data-option-id="54" data-option-index="6" class="">2016/17</li>  <li role="option" tabindex="0" data-option-name="2015/16" data-option-id="42" data-option-index="7" class="">2015/16</li>  <li role="option" tabindex="0" data-option-name="2014/15" data-option-id="27" data-option-index="8" class="">2014/15</li>  <li role="option" tabindex="0" data-option-name="2013/14" data-option-id="22" data-option-index="9" class="">2013/14</li>  <li role="option" tabindex="0" data-option-name="2012/13" data-option-id="21" data-option-index="10" class="">2012/13</li>  <li role="option" tabindex="0" data-option-name="2011/12" data-option-id="20" data-option-index="11" class="">2011/12</li>  <li role="option" tabindex="0" data-option-name="2010/11" data-option-id="19" data-option-index="12" class="">2010/11</li>  <li role="option" tabindex="0" data-option-name="2009/10" data-option-id="18" data-option-index="13" class="">2009/10</li>  <li role="option" tabindex="0" data-option-name="2008/09" data-option-id="17" data-option-index="14" class="">2008/09</li>  <li role="option" tabindex="0" data-option-name="2007/08" data-option-id="16" data-option-index="15" class="">2007/08</li>  <li role="option" tabindex="0" data-option-name="2006/07" data-option-id="15" data-option-index="16" class="">2006/07</li>  <li role="option" tabindex="0" data-option-name="2005/06" data-option-id="14" data-option-index="17" class="">2005/06</li>  <li role="option" tabindex="0" data-option-name="2004/05" data-option-id="13" data-option-index="18" class="">2004/05</li>  <li role="option" tabindex="0" data-option-name="2003/04" data-option-id="12" data-option-index="19" class="">2003/04</li>  <li role="option" tabindex="0" data-option-name="2002/03" data-option-id="11" data-option-index="20" class="">2002/03</li>  <li role="option" tabindex="0" data-option-name="2001/02" data-option-id="10" data-option-index="21" class="">2001/02</li>  <li role="option" tabindex="0" data-option-name="2000/01" data-option-id="9" data-option-index="22" class="">2000/01</li>  <li role="option" tabindex="0" data-option-name="1999/00" data-option-id="8" data-option-index="23" class="">1999/00</li>  <li role="option" tabindex="0" data-option-name="1998/99" data-option-id="7" data-option-index="24" class="">1998/99</li>  <li role="option" tabindex="0" data-option-name="1997/98" data-option-id="6" data-option-index="25" class="">1997/98</li>  <li role="option" tabindex="0" data-option-name="1996/97" data-option-id="5" data-option-index="26" class="">1996/97</li>  <li role="option" tabindex="0" data-option-name="1995/96" data-option-id="4" data-option-index="27" class="">1995/96</li>  <li role="option" tabindex="0" data-option-name="1994/95" data-option-id="3" data-option-index="28" class="">1994/95</li>  <li role="option" tabindex="0" data-option-name="1993/94" data-option-id="2" data-option-index="29" class="">1993/94</li>  <li role="option" tabindex="0" data-option-name="1992/93" data-option-id="1" data-option-index="30" class="">1992/93</li> </ul> </div><div class="pageFilter__filter-btn" role="button">Filter<span class="icn dropdown"></span></div><div class="btn-highlight apply" role="button"><div class="icn tick-w"></div>Apply Filters</div><div class="filter-button filter-button--reset" role="button" tabindex="0"> <i class="filter-button__icon icn reset-b"></i> <i class="filter-button__icon filter-button__icon--hover icn reset-p"></i> <span class="filter-button__text">Reset Filters</span> </div></section>
+              <div class="clubIndex col-12">
+                <div class="indexSection">
+                  <div class="">
+                    <ul class="block-list-5 block-list-3-m block-list-1-s block-list-1-xs block-list-padding dataContainer">
+        <li>
+          <a href="/clubs/127/Bournemouth/overview" class="indexItem t91">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t91.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t91@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t91.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t91@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Bournemouth</h4>
+                      <div class="stadiumName">Vitality Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/1/Arsenal/overview" class="indexItem t3">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t3.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t3@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t3.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t3@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Arsenal</h4>
+                      <div class="stadiumName">Emirates Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/2/Aston-Villa/overview" class="indexItem t7">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t7.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t7@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t7.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t7@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Aston Villa</h4>
+                      <div class="stadiumName">Villa Park</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/130/Brentford/overview" class="indexItem t94">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t94.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t94@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t94.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Brentford</h4>
+                      <div class="stadiumName">Gtech Community Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/131/Brighton-and-Hove-Albion/overview" class="indexItem t36">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t36.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t36@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t36.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t36@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Brighton &amp; Hove Albion</h4>
+                      <div class="stadiumName">Amex Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/4/Chelsea/overview" class="indexItem t8">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t8.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t8@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t8.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Chelsea</h4>
+                      <div class="stadiumName">Stamford Bridge</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/6/Crystal-Palace/overview" class="indexItem t31">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t31.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t31@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t31.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t31@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Crystal Palace</h4>
+                      <div class="stadiumName">Selhurst Park</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/7/Everton/overview" class="indexItem t11">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t11.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t11@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t11.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t11@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Everton</h4>
+                      <div class="stadiumName">Goodison Park</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/34/Fulham/overview" class="indexItem t54">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t54.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t54@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t54.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t54@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Fulham</h4>
+                      <div class="stadiumName">Craven Cottage</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/9/Leeds-United/overview" class="indexItem t2">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t2.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t2@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t2.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t2@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Leeds United</h4>
+                      <div class="stadiumName">Elland Road</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/26/Leicester-City/overview" class="indexItem t13">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t13.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t13@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t13.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t13@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Leicester City</h4>
+                      <div class="stadiumName">King Power Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/10/Liverpool/overview" class="indexItem t14">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t14.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t14@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t14.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t14@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Liverpool</h4>
+                      <div class="stadiumName">Anfield</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/11/Manchester-City/overview" class="indexItem t43">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t43.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t43@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t43.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Manchester City</h4>
+                      <div class="stadiumName">Etihad Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/12/Manchester-United/overview" class="indexItem t1">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t1.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t1@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t1.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t1@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Manchester United</h4>
+                      <div class="stadiumName">Old Trafford</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/23/Newcastle-United/overview" class="indexItem t4">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t4.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t4@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t4.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t4@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Newcastle United</h4>
+                      <div class="stadiumName">St. James' Park</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/15/Nottingham-Forest/overview" class="indexItem t17">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t17.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t17@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t17.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t17@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Nottingham Forest</h4>
+                      <div class="stadiumName">The City Ground</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/20/Southampton/overview" class="indexItem t20">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t20.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t20@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t20.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t20@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Southampton</h4>
+                      <div class="stadiumName">St. Mary's Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/21/Tottenham-Hotspur/overview" class="indexItem t6">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t6.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t6@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t6.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Tottenham Hotspur</h4>
+                      <div class="stadiumName">Tottenham Hotspur Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/25/West-Ham-United/overview" class="indexItem t21">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t21.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t21@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t21.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t21@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">West Ham United</h4>
+                      <div class="stadiumName">London Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+        <li>
+          <a href="/clubs/38/Wolverhampton-Wanderers/overview" class="indexItem t39">
+                <div class="indexImg">
+                    <span class="indexImg__img"></span>
+                </div>
+                <div class="indexBadge">
+                    <span class="badge badge-image-container" data-widget="club-badge-image" data-size="70">
+                        <img class="badge-image badge-image--70 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/70/t39.png" srcset="https://resources.premierleague.com/premierleague/badges/70/t39@x2.png 2x">
+                    </span>
+                </div>
+                <div class="indexInfo clubColourBg">
+                    <div class="indexBadge-mob">
+                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25">
+                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t39.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t39@x2.png 2x">
+                        </span>
+                    </div>
+        
+                    <div class="nameContainer">
+                      <h4 class="clubName">Wolverhampton Wanderers</h4>
+                      <div class="stadiumName">Molineux Stadium</div>
+                    </div>
+                    <div class="clubIndex__button">
+                      <span class="u-hide-mob">Club Profile</span>
+                      <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
+                        <path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path>
+                      </svg>
+                    </div>
+                </div>
+          </a>
+        </li>
+                  </ul>
+                  </div>
+                </div>
+        
+                <div class="searchIndexSection indexAllTime" style="display: none;">
+                            <div class="table">
+                                <summary class="visuallyHidden">label.tableSummaryTeamIndex</summary>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="team">Club</th>
+                                            <th class="venue">Stadium</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="searchResultDataContainer">
+        
+                                    </tbody>
+                                </table>
+                            </div>
+                </div>
+        
+                <div class="indexAllTime">
+                    <h2 class="sectionTitle">All-time Premier League Clubs</h2>
+                            <div class="table">
+                                <summary class="visuallyHidden">label.tableSummaryTeamIndex</summary>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="team">Club</th>
+                                            <th class="venue">Stadium</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="allTimeDataContainer"><tr> <td class="team"> <a href="//www.premierleague.com/clubs/127/Bournemouth/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t91.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t91.png, https://resources.premierleague.com/premierleague/badges/50/t91@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t91.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t91.png, https://resources.premierleague.com/premierleague/badges/25/t91@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Bournemouth</h4> <div class="stadiumName u-show-mob">Vitality Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/127/Bournemouth/stadium"><span class="icn stadium-b"></span>Vitality Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/1/Arsenal/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t3.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t3.png, https://resources.premierleague.com/premierleague/badges/50/t3@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t3.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t3.png, https://resources.premierleague.com/premierleague/badges/25/t3@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Arsenal</h4> <div class="stadiumName u-show-mob">Emirates Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/1/Arsenal/stadium"><span class="icn stadium-b"></span>Emirates Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/2/Aston-Villa/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t7.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t7.png, https://resources.premierleague.com/premierleague/badges/50/t7@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t7.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t7.png, https://resources.premierleague.com/premierleague/badges/25/t7@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Aston Villa</h4> <div class="stadiumName u-show-mob">Villa Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/2/Aston-Villa/stadium"><span class="icn stadium-b"></span>Villa Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/30/Barnsley/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t37.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t37.png, https://resources.premierleague.com/premierleague/badges/50/t37@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t37.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t37.png, https://resources.premierleague.com/premierleague/badges/25/t37@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Barnsley</h4> <div class="stadiumName u-show-mob">Oakwell</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/30/Barnsley/stadium"><span class="icn stadium-b"></span>Oakwell<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/35/Birmingham-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t41.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t41.png, https://resources.premierleague.com/premierleague/badges/50/t41@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t41.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t41.png, https://resources.premierleague.com/premierleague/badges/25/t41@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Birmingham City</h4> <div class="stadiumName u-show-mob">St. Andrew's Trillion Trophy Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/35/Birmingham-City/stadium"><span class="icn stadium-b"></span>St. Andrew's Trillion Trophy Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/3/Blackburn-Rovers/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t5.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t5.png, https://resources.premierleague.com/premierleague/badges/50/t5@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t5.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t5.png, https://resources.premierleague.com/premierleague/badges/25/t5@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Blackburn Rovers</h4> <div class="stadiumName u-show-mob">Ewood Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/3/Blackburn-Rovers/stadium"><span class="icn stadium-b"></span>Ewood Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/44/Blackpool/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t92.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t92.png, https://resources.premierleague.com/premierleague/badges/50/t92@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t92.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t92.png, https://resources.premierleague.com/premierleague/badges/25/t92@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Blackpool</h4> <div class="stadiumName u-show-mob">Bloomfield Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/44/Blackpool/stadium"><span class="icn stadium-b"></span>Bloomfield Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/27/Bolton-Wanderers/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t30.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t30.png, https://resources.premierleague.com/premierleague/badges/50/t30@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t30.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t30.png, https://resources.premierleague.com/premierleague/badges/25/t30@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Bolton Wanderers</h4> <div class="stadiumName u-show-mob">University of Bolton Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/27/Bolton-Wanderers/stadium"><span class="icn stadium-b"></span>University of Bolton Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/32/Bradford-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t55.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t55.png, https://resources.premierleague.com/premierleague/badges/50/t55@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t55.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t55.png, https://resources.premierleague.com/premierleague/badges/25/t55@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Bradford City</h4> <div class="stadiumName u-show-mob">Valley Parade</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/32/Bradford-City/stadium"><span class="icn stadium-b"></span>Valley Parade<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/130/Brentford/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t94.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t94.png, https://resources.premierleague.com/premierleague/badges/50/t94@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t94.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Brentford</h4> <div class="stadiumName u-show-mob">Gtech Community Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/130/Brentford/stadium"><span class="icn stadium-b"></span>Gtech Community Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/131/Brighton-and-Hove-Albion/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t36.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t36.png, https://resources.premierleague.com/premierleague/badges/50/t36@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t36.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t36.png, https://resources.premierleague.com/premierleague/badges/25/t36@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Brighton &amp; Hove Albion</h4> <div class="stadiumName u-show-mob">Amex Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/131/Brighton-and-Hove-Albion/stadium"><span class="icn stadium-b"></span>Amex Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/43/Burnley/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t90.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t90.png, https://resources.premierleague.com/premierleague/badges/50/t90@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t90.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t90.png, https://resources.premierleague.com/premierleague/badges/25/t90@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Burnley</h4> <div class="stadiumName u-show-mob">Turf Moor</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/43/Burnley/stadium"><span class="icn stadium-b"></span>Turf Moor<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/46/Cardiff-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t97.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t97.png, https://resources.premierleague.com/premierleague/badges/50/t97@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t97.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t97.png, https://resources.premierleague.com/premierleague/badges/25/t97@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Cardiff City</h4> <div class="stadiumName u-show-mob">Cardiff City Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/46/Cardiff-City/stadium"><span class="icn stadium-b"></span>Cardiff City Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/31/Charlton-Athletic/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t33.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t33.png, https://resources.premierleague.com/premierleague/badges/50/t33@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t33.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t33.png, https://resources.premierleague.com/premierleague/badges/25/t33@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Charlton Athletic</h4> <div class="stadiumName u-show-mob">The Valley</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/31/Charlton-Athletic/stadium"><span class="icn stadium-b"></span>The Valley<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/4/Chelsea/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t8.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t8.png, https://resources.premierleague.com/premierleague/badges/50/t8@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t8.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Chelsea</h4> <div class="stadiumName u-show-mob">Stamford Bridge</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/4/Chelsea/stadium"><span class="icn stadium-b"></span>Stamford Bridge<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/5/Coventry-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t9.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t9.png, https://resources.premierleague.com/premierleague/badges/50/t9@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t9.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t9.png, https://resources.premierleague.com/premierleague/badges/25/t9@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Coventry City</h4> <div class="stadiumName u-show-mob">Highfield Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/5/Coventry-City/stadium"><span class="icn stadium-b"></span>Highfield Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/6/Crystal-Palace/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t31.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t31.png, https://resources.premierleague.com/premierleague/badges/50/t31@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t31.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t31.png, https://resources.premierleague.com/premierleague/badges/25/t31@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Crystal Palace</h4> <div class="stadiumName u-show-mob">Selhurst Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/6/Crystal-Palace/stadium"><span class="icn stadium-b"></span>Selhurst Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/28/Derby-County/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t24.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t24.png, https://resources.premierleague.com/premierleague/badges/50/t24@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t24.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t24.png, https://resources.premierleague.com/premierleague/badges/25/t24@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Derby County</h4> <div class="stadiumName u-show-mob">Pride Park Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/28/Derby-County/stadium"><span class="icn stadium-b"></span>Pride Park Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/7/Everton/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t11.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t11.png, https://resources.premierleague.com/premierleague/badges/50/t11@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t11.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t11.png, https://resources.premierleague.com/premierleague/badges/25/t11@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Everton</h4> <div class="stadiumName u-show-mob">Goodison Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/7/Everton/stadium"><span class="icn stadium-b"></span>Goodison Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/34/Fulham/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t54.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t54.png, https://resources.premierleague.com/premierleague/badges/50/t54@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t54.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t54.png, https://resources.premierleague.com/premierleague/badges/25/t54@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Fulham</h4> <div class="stadiumName u-show-mob">Craven Cottage</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/34/Fulham/stadium"><span class="icn stadium-b"></span>Craven Cottage<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/159/Huddersfield-Town/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t38.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t38.png, https://resources.premierleague.com/premierleague/badges/50/t38@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t38.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t38.png, https://resources.premierleague.com/premierleague/badges/25/t38@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Huddersfield Town</h4> <div class="stadiumName u-show-mob">John Smith's Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/159/Huddersfield-Town/stadium"><span class="icn stadium-b"></span>John Smith's Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/41/Hull-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t88.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t88.png, https://resources.premierleague.com/premierleague/badges/50/t88@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t88.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t88.png, https://resources.premierleague.com/premierleague/badges/25/t88@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Hull City</h4> <div class="stadiumName u-show-mob">MKM Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/41/Hull-City/stadium"><span class="icn stadium-b"></span>MKM Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/8/Ipswich-Town/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t40.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t40.png, https://resources.premierleague.com/premierleague/badges/50/t40@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t40.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t40.png, https://resources.premierleague.com/premierleague/badges/25/t40@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Ipswich Town</h4> <div class="stadiumName u-show-mob">Portman Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/8/Ipswich-Town/stadium"><span class="icn stadium-b"></span>Portman Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/9/Leeds-United/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t2.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t2.png, https://resources.premierleague.com/premierleague/badges/50/t2@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t2.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t2.png, https://resources.premierleague.com/premierleague/badges/25/t2@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Leeds United</h4> <div class="stadiumName u-show-mob">Elland Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/9/Leeds-United/stadium"><span class="icn stadium-b"></span>Elland Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/26/Leicester-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t13.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t13.png, https://resources.premierleague.com/premierleague/badges/50/t13@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t13.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t13.png, https://resources.premierleague.com/premierleague/badges/25/t13@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Leicester City</h4> <div class="stadiumName u-show-mob">King Power Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/26/Leicester-City/stadium"><span class="icn stadium-b"></span>King Power Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/10/Liverpool/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t14.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t14.png, https://resources.premierleague.com/premierleague/badges/50/t14@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t14.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t14.png, https://resources.premierleague.com/premierleague/badges/25/t14@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Liverpool</h4> <div class="stadiumName u-show-mob">Anfield</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/10/Liverpool/stadium"><span class="icn stadium-b"></span>Anfield<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/11/Manchester-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t43.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t43.png, https://resources.premierleague.com/premierleague/badges/50/t43@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t43.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Manchester City</h4> <div class="stadiumName u-show-mob">Etihad Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/11/Manchester-City/stadium"><span class="icn stadium-b"></span>Etihad Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/12/Manchester-United/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t1.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t1.png, https://resources.premierleague.com/premierleague/badges/50/t1@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t1.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t1.png, https://resources.premierleague.com/premierleague/badges/25/t1@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Manchester United</h4> <div class="stadiumName u-show-mob">Old Trafford</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/12/Manchester-United/stadium"><span class="icn stadium-b"></span>Old Trafford<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/13/Middlesbrough/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t25.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t25.png, https://resources.premierleague.com/premierleague/badges/50/t25@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t25.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t25.png, https://resources.premierleague.com/premierleague/badges/25/t25@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Middlesbrough</h4> <div class="stadiumName u-show-mob">Riverside Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/13/Middlesbrough/stadium"><span class="icn stadium-b"></span>Riverside Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/23/Newcastle-United/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t4.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t4.png, https://resources.premierleague.com/premierleague/badges/50/t4@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t4.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t4.png, https://resources.premierleague.com/premierleague/badges/25/t4@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Newcastle United</h4> <div class="stadiumName u-show-mob">St. James' Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/23/Newcastle-United/stadium"><span class="icn stadium-b"></span>St. James' Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/14/Norwich-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t45.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t45.png, https://resources.premierleague.com/premierleague/badges/50/t45@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t45.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t45.png, https://resources.premierleague.com/premierleague/badges/25/t45@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Norwich City</h4> <div class="stadiumName u-show-mob">Carrow Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/14/Norwich-City/stadium"><span class="icn stadium-b"></span>Carrow Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/15/Nottingham-Forest/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t17.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t17.png, https://resources.premierleague.com/premierleague/badges/50/t17@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t17.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t17.png, https://resources.premierleague.com/premierleague/badges/25/t17@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Nottingham Forest</h4> <div class="stadiumName u-show-mob">The City Ground</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/15/Nottingham-Forest/stadium"><span class="icn stadium-b"></span>The City Ground<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/16/Oldham-Athletic/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t105.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t105.png, https://resources.premierleague.com/premierleague/badges/50/t105@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t105.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t105.png, https://resources.premierleague.com/premierleague/badges/25/t105@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Oldham Athletic</h4> <div class="stadiumName u-show-mob">Boundary Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/16/Oldham-Athletic/stadium"><span class="icn stadium-b"></span>Boundary Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/37/Portsmouth/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t47.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t47.png, https://resources.premierleague.com/premierleague/badges/50/t47@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t47.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t47.png, https://resources.premierleague.com/premierleague/badges/25/t47@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Portsmouth</h4> <div class="stadiumName u-show-mob">Fratton Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/37/Portsmouth/stadium"><span class="icn stadium-b"></span>Fratton Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/17/Queens-Park-Rangers/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t52.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t52.png, https://resources.premierleague.com/premierleague/badges/50/t52@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t52.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t52.png, https://resources.premierleague.com/premierleague/badges/25/t52@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Queens Park Rangers</h4> <div class="stadiumName u-show-mob">Loftus Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/17/Queens-Park-Rangers/stadium"><span class="icn stadium-b"></span>Loftus Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/40/Reading/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t108.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t108.png, https://resources.premierleague.com/premierleague/badges/50/t108@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t108.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t108.png, https://resources.premierleague.com/premierleague/badges/25/t108@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Reading</h4> <div class="stadiumName u-show-mob">Madejski Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/40/Reading/stadium"><span class="icn stadium-b"></span>Madejski Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/18/Sheffield-United/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t49.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t49.png, https://resources.premierleague.com/premierleague/badges/50/t49@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t49.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t49.png, https://resources.premierleague.com/premierleague/badges/25/t49@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Sheffield United</h4> <div class="stadiumName u-show-mob">Bramall Lane</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/18/Sheffield-United/stadium"><span class="icn stadium-b"></span>Bramall Lane<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/19/Sheffield-Wednesday/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t19.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t19.png, https://resources.premierleague.com/premierleague/badges/50/t19@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t19.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t19.png, https://resources.premierleague.com/premierleague/badges/25/t19@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Sheffield Wednesday</h4> <div class="stadiumName u-show-mob">Hillsborough</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/19/Sheffield-Wednesday/stadium"><span class="icn stadium-b"></span>Hillsborough<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/20/Southampton/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t20.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t20.png, https://resources.premierleague.com/premierleague/badges/50/t20@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t20.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t20.png, https://resources.premierleague.com/premierleague/badges/25/t20@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Southampton</h4> <div class="stadiumName u-show-mob">St. Mary's Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/20/Southampton/stadium"><span class="icn stadium-b"></span>St. Mary's Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/42/Stoke-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t110.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t110.png, https://resources.premierleague.com/premierleague/badges/50/t110@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t110.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t110.png, https://resources.premierleague.com/premierleague/badges/25/t110@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Stoke City</h4> <div class="stadiumName u-show-mob">bet365 Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/42/Stoke-City/stadium"><span class="icn stadium-b"></span>bet365 Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/29/Sunderland/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t56.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t56.png, https://resources.premierleague.com/premierleague/badges/50/t56@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t56.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t56.png, https://resources.premierleague.com/premierleague/badges/25/t56@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Sunderland</h4> <div class="stadiumName u-show-mob">Stadium of Light</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/29/Sunderland/stadium"><span class="icn stadium-b"></span>Stadium of Light<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/45/Swansea-City/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t80.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t80.png, https://resources.premierleague.com/premierleague/badges/50/t80@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t80.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t80.png, https://resources.premierleague.com/premierleague/badges/25/t80@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Swansea City</h4> <div class="stadiumName u-show-mob">Liberty Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/45/Swansea-City/stadium"><span class="icn stadium-b"></span>Liberty Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/24/Swindon-Town/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t46.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t46.png, https://resources.premierleague.com/premierleague/badges/50/t46@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t46.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t46.png, https://resources.premierleague.com/premierleague/badges/25/t46@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Swindon Town</h4> <div class="stadiumName u-show-mob">County Ground</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/24/Swindon-Town/stadium"><span class="icn stadium-b"></span>County Ground<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/21/Tottenham-Hotspur/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t6.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t6.png, https://resources.premierleague.com/premierleague/badges/50/t6@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t6.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Tottenham Hotspur</h4> <div class="stadiumName u-show-mob">Tottenham Hotspur Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/21/Tottenham-Hotspur/stadium"><span class="icn stadium-b"></span>Tottenham Hotspur Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/33/Watford/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t57.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t57.png, https://resources.premierleague.com/premierleague/badges/50/t57@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t57.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t57.png, https://resources.premierleague.com/premierleague/badges/25/t57@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Watford</h4> <div class="stadiumName u-show-mob">Vicarage Road</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/33/Watford/stadium"><span class="icn stadium-b"></span>Vicarage Road<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/36/West-Bromwich-Albion/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t35.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t35.png, https://resources.premierleague.com/premierleague/badges/50/t35@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t35.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t35.png, https://resources.premierleague.com/premierleague/badges/25/t35@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">West Bromwich Albion</h4> <div class="stadiumName u-show-mob">The Hawthorns</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/36/West-Bromwich-Albion/stadium"><span class="icn stadium-b"></span>The Hawthorns<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/25/West-Ham-United/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t21.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t21.png, https://resources.premierleague.com/premierleague/badges/50/t21@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t21.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t21.png, https://resources.premierleague.com/premierleague/badges/25/t21@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">West Ham United</h4> <div class="stadiumName u-show-mob">London Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/25/West-Ham-United/stadium"><span class="icn stadium-b"></span>London Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/39/Wigan-Athletic/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t111.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t111.png, https://resources.premierleague.com/premierleague/badges/50/t111@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t111.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t111.png, https://resources.premierleague.com/premierleague/badges/25/t111@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Wigan Athletic</h4> <div class="stadiumName u-show-mob">DW Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/39/Wigan-Athletic/stadium"><span class="icn stadium-b"></span>DW Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/22/Wimbledon/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t1736.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t1736.png, https://resources.premierleague.com/premierleague/badges/50/t1736@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t1736.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t1736.png, https://resources.premierleague.com/premierleague/badges/25/t1736@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Wimbledon</h4> <div class="stadiumName u-show-mob">Selhurst Park</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/22/Wimbledon/stadium"><span class="icn stadium-b"></span>Selhurst Park<span class="icn arrow-rightgreylg"></span></a> </td> </tr> <tr> <td class="team"> <a href="//www.premierleague.com/clubs/38/Wolverhampton-Wanderers/overview"> <span class="badge badge-image-container u-hide-mob" data-widget="club-badge-image" data-size="50"> <img class="badge-image badge-image--50 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/50/t39.png" srcset="https://resources.premierleague.com/premierleague/badges/50/t39.png, https://resources.premierleague.com/premierleague/badges/50/t39@x2.png 2x"> </span> <span class="badge badge-image-container u-show-mob" data-widget="club-badge-image" data-size="25"> <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t39.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t39.png, https://resources.premierleague.com/premierleague/badges/25/t39@x2.png 2x"> </span> <div class="nameContainer"> <h4 class="clubName">Wolverhampton Wanderers</h4> <div class="stadiumName u-show-mob">Molineux Stadium</div> </div> <div class="clubIndex__button u-show-mob"> <svg class="clubIndex__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20"><path d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832"></path></svg> </div> </a> </td> <td class="venue"> <a href="//www.premierleague.com/clubs/38/Wolverhampton-Wanderers/stadium"><span class="icn stadium-b"></span>Molineux Stadium<span class="icn arrow-rightgreylg"></span></a> </td> </tr> </tbody>
+                                </table>
+                            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+    </section>
+
 
     <!--Footer chính-->
     <footer class="mainFooter">
