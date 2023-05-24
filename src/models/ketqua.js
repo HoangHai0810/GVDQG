@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     Ketqua.init({
-        soBanThangDoi1: DataTypes.INTERGER,
-        soBanThangDoi2: DataTypes.INTERGER,
-        soTheVang: DataTypes.INTERGER,
-        soTheDo: DataTypes.INTERGER
+        soBanThangDoi1: DataTypes.INTEGER,
+        soBanThangDoi2: DataTypes.INTEGER,
+        soTheVang: DataTypes.INTEGER,
+        soTheDo: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Ketqua',

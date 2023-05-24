@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     Dienbien.init({
         tenDoiBong: DataTypes.TEXT,
-        thoiDiem: DataTypes.INTERGER
+        thoiDiem: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'Dienbien',

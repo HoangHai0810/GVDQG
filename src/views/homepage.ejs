@@ -28,6 +28,7 @@
     <!--<![endif]-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
@@ -3090,119 +3091,172 @@
                                                 <i class="fa-solid fa-xmark"></i>
                                             </div>
                                         </li>
-                                        <script>
-                                            function checkPassword1(password) {
-                                                // Kiểm tra độ dài tối thiểu 8 kí tự
-                                                if (password.length < 8) {
-                                                  return false;
-                                                }
-                                                return true;
-                                            }
-                                            function checkPassword2(password) {
-                                                // Kiểm tra kí tự đặc biệt
-                                                var specialChars = /[/!@#$%^&*(),.?":{}|<>`~;']/;
-                                                if (!specialChars.test(password)) {
-                                                  return false;
-                                                }
-                                                return true;
-                                            }
-                                            function checkPassword3(password) {
-                                                // Kiểm tra kí tự in hoa
-                                                var uppercaseChars = /[A-Z]/;
-                                                if (!uppercaseChars.test(password)) {
-                                                  return false;
-                                                }
-                                                return true;
-                                            }
-                                            function checkPassword4(password) {
-                                                var numberChars = /[0-9]/;
-                                                if (!numberChars.test(password)) {
-                                                  return false;
-                                                }
-                                                return true;
-                                            }
-                                            var userNameCheck = false;
-                                            var checkUserNameInput = document.getElementById("ism-userName");
-                                            checkUserNameInput.addEventListener('keyup',() => {
-                                                var userNameInput = document.getElementById("ism-userName").value;
-                                                var userNameInfo = document.getElementById('userNameInfo');
-                                                if (checkPassword2(userNameInput))
-                                                {
-                                                    userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
-                                                    userNameInfo.style.color = '#e53535';
-                                                    userNameCheck = false;
-                                                } else{
-                                                    if (userNameInput.length < 6)
-                                                    {
-                                                        userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
-                                                        userNameInfo.style.color = '#e53535';
-                                                        userNameCheck = false;
-                                                    } else {
-                                                    userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ'
-                                                    userNameInfo.style.color = '#08e104';
-                                                    userNameCheck = true;
-                                                    }
-                                                }
-                                            })
-                                            // Sử dụng hàm checkPassword để kiểm tra mật khẩu nhập vào
-                                            var checkPasswordInput = document.getElementById("ism-password2");
-                                            checkPasswordInput.addEventListener('keyup', () => {
-                                            var passwordInput = document.getElementById("ism-password2").value; // Lấy giá trị từ thẻ input
-                                            var isValidPassword1 = checkPassword1(passwordInput);
-                                            var Box1 = document.getElementById('box1');
-                                            if (isValidPassword1) {
-                                                Box1.style.backgroundColor = '#08e104';
-                                                Box1.innerHTML = '<i class="fa-solid fa-check"></i>'
-                                              } else {
-                                                Box1.style.backgroundColor = '#e53535';
-                                                Box1.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-                                              }
-
-                                            var isValidPassword2 = checkPassword2(passwordInput);
-                                            var Box2 = document.getElementById('box2');
-                                            if (isValidPassword2) {
-                                                Box2.style.backgroundColor = '#08e104';
-                                                Box2.innerHTML = '<i class="fa-solid fa-check"></i>'
-                                              } else {
-                                                Box2.style.backgroundColor = '#e53535';
-                                                Box2.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-                                              }
-                                            var isValidPassword3 = checkPassword3(passwordInput);
-                                            var Box3 = document.getElementById('box3');
-                                            if (isValidPassword3) {
-                                                Box3.style.backgroundColor = '#08e104';
-                                                Box3.innerHTML = '<i class="fa-solid fa-check"></i>'
-                                            } else {
-                                                Box3.style.backgroundColor = '#e53535';
-                                                Box3.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-                                            }
-                                            var isValidPassword4 = checkPassword4(passwordInput);
-                                            var Box4 = document.getElementById('box4');
-                                            if (isValidPassword4) {
-                                                  Box4.style.backgroundColor = '#08e104';
-                                                  Box4.innerHTML = '<i class="fa-solid fa-check"></i>'
-                                                } else {
-                                                  Box4.style.backgroundColor = '#e53535';
-                                                  Box4.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-                                                }
-                                            var signUpBtn = document.getElementById('signUpBtn');
-                                            if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4 && userNameCheck)
-                                            {
-                                                signUpBtn.type = 'submit';
-                                            }
-                                            else
-                                            {
-                                                signUpBtn.type = 'menu'
-                                            }
-                                        });
-                                        </script>
                                     </ul>
                                 </div>
                                 <div class="ism-form__group">
-                                    <button type="menu" class="btn btn-primary" id="signUpBtn">
+                                    <button type="button" class="btn btn-primary" id="signUpBtn">
                                         Đăng ký
                                     </button>
                                 </div>
+                                <script>
+                                    function checkPassword1(password) {
+                                        // Kiểm tra độ dài tối thiểu 8 kí tự
+                                        if (password.length < 8) {
+                                          return false;
+                                        }
+                                        return true;
+                                    }
+                                      
+                                    function checkPassword2(password) {
+                                        // Kiểm tra kí tự đặc biệt
+                                        var specialChars = /[!@#$%^&*(),.?":{}|<>`~;']/;
+                                        if (!specialChars.test(password)) {
+                                          return false;
+                                        }
+                                        return true;
+                                    }
+                                      
+                                    function checkPassword3(password) {
+                                        // Kiểm tra kí tự in hoa
+                                        var uppercaseChars = /[A-Z]/;
+                                        if (!uppercaseChars.test(password)) {
+                                          return false;
+                                        }
+                                        return true;
+                                    }
+                                      
+                                    function checkPassword4(password) {
+                                        var numberChars = /[0-9]/;
+                                        if (!numberChars.test(password)) {
+                                          return false;
+                                        }
+                                        return true;
+                                    }
+                                      
+                                    var userNameCheck = false;
+                                    var checkUserNameInput = document.getElementById("ism-userName");
+                                    checkUserNameInput.addEventListener('input', () => {
+                                        var userNameInput = document.getElementById("ism-userName").value;
+                                        var userNameInfo = document.getElementById('userNameInfo');
+                                        if (checkPassword2(userNameInput)) {
+                                          userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
+                                          userNameInfo.style.color = '#e53535';
+                                          userNameCheck = false;
+                                        } else {
+                                          if (userNameInput.length < 6) {
+                                            userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
+                                            userNameInfo.style.color = '#e53535';
+                                            userNameCheck = false;
+                                          } else {
+                                            userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
+                                            userNameInfo.style.color = '#08e104';
+                                            userNameCheck = true;
+                                          }
+                                        }
+                                        if (userNameCheck)
+                                          {
+                                            checkUserNameInput.classList.remove('error-border');
+                                          }
+                                        var signUpBtn = document.getElementById('signUpBtn');
+                                        if (!userNameCheck) {
+                                            signUpBtn.onclick = scrollUserName;
+                                        } else
+                                        {
+                                            signUpBtn.onclick = scrollPasswordName;
+                                        }
+                                    });
+                                      
+                                    var checkPasswordInput = document.getElementById("ism-password2");
+                                    checkPasswordInput.addEventListener('input', () => {
+                                        var passwordInput = document.getElementById("ism-password2").value;
+                                        var isValidPassword1 = checkPassword1(passwordInput);
+                                        var Box1 = document.getElementById('box1');
+                                        if (isValidPassword1) {
+                                          Box1.style.backgroundColor = '#08e104';
+                                          Box1.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                        } else {
+                                          Box1.style.backgroundColor = '#e53535';
+                                          Box1.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                        }
+                                      
+                                        var isValidPassword2 = checkPassword2(passwordInput);
+                                        var Box2 = document.getElementById('box2');
+                                        if (isValidPassword2) {
+                                          Box2.style.backgroundColor = '#08e104';
+                                          Box2.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                        } else {
+                                          Box2.style.backgroundColor = '#e53535';
+                                          Box2.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                        }
+                                      
+                                        var isValidPassword3 = checkPassword3(passwordInput);
+                                        var Box3 = document.getElementById('box3');
+                                        if (isValidPassword3) {
+                                          Box3.style.backgroundColor = '#08e104';
+                                          Box3.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                        } else {
+                                          Box3.style.backgroundColor = '#e53535';
+                                          Box3.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                        }
+                                      
+                                        var isValidPassword4 = checkPassword4(passwordInput);
+                                        var Box4 = document.getElementById('box4');
+                                        if (isValidPassword4) {
+                                          Box4.style.backgroundColor = '#08e104';
+                                          Box4.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                        } else {
+                                          Box4.style.backgroundColor = '#e53535';
+                                          Box4.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                        }
+                                        
+                                        if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4)
+                                          {
+                                            checkPasswordInput.classList.remove('error-border');
+                                          }
+
+                                        var signUpBtn = document.getElementById('signUpBtn');
+                                        if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4 && userNameCheck) {
+                                          signUpBtn.type = 'submit';
+                                          signUpBtn.onclick = replaceTab;
+                                        } else {
+                                          signUpBtn.type = 'button';
+                                          if (!userNameCheck) {
+                                            signUpBtn.onclick = scrollUserName;
+                                          } else {
+                                            signUpBtn.onclick = scrollPasswordName;
+                                          }
+                                        }
+                                    });
+                                    var passwordInput = document.getElementById("ism-password2").value;
+                                    var signUpBtn = document.getElementById('signUpBtn');
+                                        if (checkPassword1(passwordInput) && checkPassword2(passwordInput) && checkPassword3(passwordInput) && checkPassword4(passwordInput) && userNameCheck) {
+                                          signUpBtn.type = 'submit';
+                                          signUpBtn.onclick = replaceTab;
+                                        } else {
+                                          signUpBtn.type = 'button';
+                                          if (!userNameCheck) {
+                                            signUpBtn.onclick = scrollUserName;
+                                          } else {
+                                            signUpBtn.onclick = scrollPasswordName;
+                                          }
+                                        }
+                                    function scrollPasswordName() {
+                                        checkPasswordInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                        checkPasswordInput.classList.add('error-border');
+                                    }
+                                    function scrollUserName() {
+                                        checkUserNameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                        checkUserNameInput.classList.add('error-border');
+                                    }   
+                                    function replaceTab()
+                                    {
+                                        Swal.fire(
+                                            'Thành công',
+                                            'Bạn đã đăng kí thành công tài khoản',
+                                            'success'
+                                        );
+                                    }                                           
+                                </script>
                                 <input type="hidden" name="app" value="pl-web">
                                 <input type="hidden" name="redirect_uri" value="https://www.premierleague.com/">
                             </div>
@@ -4220,6 +4274,7 @@
 
     <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
         data-page-section="Premier League"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>

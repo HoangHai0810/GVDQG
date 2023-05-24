@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         tenDoi1: DataTypes.TEXT,
         tenDoi2: DataTypes.TEXT,
         ngayGio: DataTypes.DATE,
-        vong: DataTypes.INTERGER
+        vong: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Lichthidau',

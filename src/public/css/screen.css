@@ -11144,7 +11144,7 @@ th {
 
 .logo.broadcaster-SUPERSA .broadcaster-text {
     visibility: hidden;
-    font-size: 0
+    font-size: 0,
 }
 
 @media (-webkit-min-device-pixel-ratio:2),
@@ -33927,7 +33927,7 @@ p a:hover {
 #cauthu,
 #ttcn,
 #giaithuong:focus {
-    outline: 0
+    outline: 0,
 }
 
 h1,
@@ -131771,6 +131771,10 @@ dialog {
 {
     color: #e53535;
 }
+
+.error-border {
+    border: 2px solid red !important;
+  }
 
 .ism .ism-form__policy {
     padding-top: 2em;

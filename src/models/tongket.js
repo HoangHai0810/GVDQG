@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   tongKet.init({
-    soTranDau: DataTypes.INTERGER,
-    soTranThang: DataTypes.INTERGER,
-    soTranHoa: DataTypes.INTERGER,
-    soTranThua: DataTypes.INTERGER,
-    soBanThangSanKhach: DataTypes.INTERGER,
-    soTheVang: DataTypes.INTERGER,
-    soTheDo: DataTypes.INTERGER,
-    hieuSo: DataTypes.INTERGER,
-    diemSo: DataTypes.INTERGER
+    soTranDau: DataTypes.INTEGER,
+    soTranThang: DataTypes.INTEGER,
+    soTranHoa: DataTypes.INTEGER,
+    soTranThua: DataTypes.INTEGER,
+    soBanThangSanKhach: DataTypes.INTEGER,
+    soTheVang: DataTypes.INTEGER,
+    soTheDo: DataTypes.INTEGER,
+    hieuSo: DataTypes.INTEGER,
+    diemSo: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'tongKet',
