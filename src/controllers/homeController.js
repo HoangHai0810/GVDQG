@@ -26,10 +26,7 @@ let getCRUDPage = (req, res) => {
 let postCRUD = async (req,res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
     console.log(mes);
-    let allUsers = await db.User.findAll();
-    return res.render('./displayCRUD.ejs', {
-        dataTable: allUsers
-    });
+    return res.render('homepage.ejs');
 }
 
 let displayGetCRUD = async(req,res) => {

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Ketqua.belongsto(Lichthidau);
+            /* Ketqua.belongsto(Lichthidau); */
         }
     };
     Ketqua.init({

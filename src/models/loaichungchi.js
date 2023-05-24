@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   loaiChungChi.init({
     tenLoaiChungChi: DataTypes.TEXT,
-    thoiHan: DataTypes.INTERGER
+    thoiHan: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'loaiChungChi',
