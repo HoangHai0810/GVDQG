@@ -11,11 +11,20 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            Dienbien.belongsto(Doibong);
+            Dienbien.belongsto(Cauthu);
+            Dienbien.belongsto(Lichthidau);
+            Dienbien.belongsto(Loaibanthang);
+            Dienbien.belongsto(Loaithe);
         }
     };
     Dienbien.init({
+        maCauThu: DataTypes.STRING,
         tenDoiBong: DataTypes.TEXT,
-        thoiDiem: DataTypes.INTERGER
+        maLich: DataTypes.STRING,
+        loaiBanThang: DataTypes.STRING,
+        loaiThe: DataTypes.STRING,
+        thoiDiem: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Dienbien',

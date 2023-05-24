@@ -11,9 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Cauthu.belongsto(Loaicauthu);
+      Cauthu.belongsto(Doibong);
+      Cauthu.hasMany(Dienbien, { foreignKey: 'maCauThu' });
     }
   };
   Cauthu.init({
+    loaiCauThu: DataTypes.STRING,
+    tenDoiBong: DataTypes.STRING,
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
     soAo: DataTypes.INTEGER,

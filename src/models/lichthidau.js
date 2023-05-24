@@ -11,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            Lichthidau.belongsto(Doibong);
+            Lichthidau.hasOne(Ketqua, { foreignKey: 'maLich' });
         }
     };
     Lichthidau.init({
         tenDoi1: DataTypes.TEXT,
         tenDoi2: DataTypes.TEXT,
         ngayGio: DataTypes.DATE,
-        vong: DataTypes.INTERGER
+        vong: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Lichthidau',
