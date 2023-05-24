@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      /* Cauthu.belongsto(Loaicauthu, { foreignKey: 'maLoaiCauThu' });
-      Cauthu.belongsto(Doibong, { foreignKey: 'tenDoiBong' } );
+      Cauthu.belongsTo(Loaicauthu, { foreignKey: 'LoaiCauThu' });
+      /*Cauthu.belongsto(Doibong, { foreignKey: 'tenDoiBong' } );
       Cauthu.hasMany(Dienbien, { foreignKey: 'maCauThu' }); */
     }
   };
   Cauthu.init({
-    loaiCauThu: DataTypes.STRING,
+    /* loaiCauThu: DataTypes.STRING, */
     tenDoiBong: DataTypes.STRING,
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
