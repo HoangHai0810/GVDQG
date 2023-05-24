@@ -24,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         maLich: DataTypes.STRING,
         loaiBanThang: DataTypes.STRING,
         loaiThe: DataTypes.STRING,
-        thoiDiem: DataTypes.INTERGER
+        thoiDiem: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Dienbien',
     });
-    return Loaibanthang;
+    return Dienbien;
 };
