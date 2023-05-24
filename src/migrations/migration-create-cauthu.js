@@ -2,9 +2,18 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Cauthu', {
-      tenCauThu: {
+      maCauThu: {
         allowNull: false,
         primaryKey: true,
+        type: Sequelize.STRING
+      },
+      loaiCauThu: {
+        type: Sequelize.STRING
+      },
+      tenDoiBong: {
+        type: Sequelize.STRING
+      },
+      tenCauThu: {
         type: Sequelize.STRING
       },
       viTri: {
