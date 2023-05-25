@@ -11,14 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cauthu.belongsTo(loaicauthu, { foreignKey: 'LoaiCauThu' });
-      /*Cauthu.belongsto(Doibong, { foreignKey: 'tenDoiBong' } );
-      Cauthu.hasMany(Dienbien, { foreignKey: 'maCauThu' }); */
+      Cauthu.belongsTo(models.loaicauthu, { foreignKey: 'maLoaiCauThu', as: 'FK_Cauthu_Loaicauthu' });
+      Cauthu.belongsto(models.doibong, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
+      Cauthu.hasMany(models.dienbien, { foreignKey: 'maCauThu', as: 'FK_Dienbien_Cauthu' });
     }
   };
   Cauthu.init({
-    /* loaiCauThu: DataTypes.STRING, */
-    tenDoiBong: DataTypes.STRING,
+    //loaiCauThu: DataTypes.STRING,
+    //tenDoiBong: DataTypes.STRING,
+    maCauThu: DataTypes.STRING,
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
     soAo: DataTypes.INTEGER,

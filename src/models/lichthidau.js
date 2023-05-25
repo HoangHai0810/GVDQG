@@ -11,13 +11,14 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            /* Lichthidau.belongsto(Doibong);
-            Lichthidau.hasOne(Ketqua, { foreignKey: 'maLich' }); */
+            Lichthidau.belongsto(models.doibong, { foreignKey: 'maDoiBong', as: 'FK_Lichthidau_Doibong' });
+            Lichthidau.hasOne(models.ketqua, { foreignKey: 'maLich', as: 'FK_Ketqua_Lichthidau' });
         }
     };
     Lichthidau.init({
-        tenDoi1: DataTypes.TEXT,
-        tenDoi2: DataTypes.TEXT,
+        //tenDoi1: DataTypes.TEXT,
+        //tenDoi2: DataTypes.TEXT,
+        malich: DataTypes.STRING,
         ngayGio: DataTypes.DATE,
         vong: DataTypes.INTEGER
     }, {
