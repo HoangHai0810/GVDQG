@@ -5,7 +5,7 @@ module.exports = {
       tenDoiBong: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       sanNha: {
         type: Sequelize.TEXT
