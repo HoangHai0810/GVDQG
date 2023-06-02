@@ -8,13 +8,11 @@ let getHomePage = async(req, res) => {
             raw :   true,
         });
         return res.render('homepage.ejs', {
-            data: data
+            data: JSON.stringify(data)
         });
     } catch (e) {
         console.log(e);
     }
-    
-    return res.render('homepage.ejs');
 }
 
 let getInfoPage = (req, res) => {
@@ -28,12 +26,7 @@ let getCRUDPage = (req, res) => {
 let postCRUD = async (req,res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
     console.log(mes);
-    let data = await CRUDSevice.getAllUser({
-        raw :   true,
-    });
-    return res.render('homepage.ejs', {
-        data: data
-    });
+    res.redirect('/');  
 }
 
 let displayGetCRUD = async(req,res) => {

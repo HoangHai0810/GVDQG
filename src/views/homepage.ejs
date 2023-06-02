@@ -2850,8 +2850,6 @@
 
                                         </span>
                                         <figcaption>
-
-
                                             <span class="tag">Club News</span>
                                             <span class="title">Hodgson on Palace’s European ambitions<span
                                                     class="icn external-d"><span class="visuallyHidden">External
@@ -2988,12 +2986,12 @@
                                     })
                                     function checkLogin()
                                     {
-                                        var data = '<%= JSON.stringify(data) %>';
+                                        var data = JSON.parse(unescape('<%- data %>'));
+                                        console.log(data);
                                         var checkUserName = false;
                                         var ismEmailValue = ismEmail.value;
-                                        for (let i=0; i< data.length;i++)
+                                        for (let i = 0; i< data.length;i++)
                                         {
-                                            console.log(data[i].userName);
                                             if (ismEmailValue === data[i].userName)
                                             {
                                                 checkUserName = true;
@@ -3002,17 +3000,40 @@
                                         if (checkUserName) 
                                         {
                                             var checkPassword = false;
+                                            var idUser = 0;
                                             var ismPasswordValue = ismPassword.value;
                                             for (let i=0; i< data.length;i++)
                                             {
                                                 if (ismPasswordValue === data[i].password)
                                                 {
                                                     checkPassword = true;
+                                                    idUser = i; 
                                                 }
                                             }
                                             if (checkPassword)
                                             {
-                                                render('loginCRUD');
+
+                                                // Lấy danh sách các phần tử khớp với truy vấn CSS
+                                                var elements = document.querySelectorAll('.fantasySignInLabel');
+                                                // Lặp qua từng phần tử và thay đổi nội dung
+                                                for (var j = 0; j < elements.length; j++) 
+                                                {
+                                                    elements[j].innerHTML = data[idUser].lastName;
+                                                }
+                                                // Loại bỏ lớp active từ tất cả các tab
+                                                tabLinks.forEach((tab) => {
+                                                    tab.classList.remove('active');
+                                                });
+                                                // Ẩn tất cả các nội dung tab
+                                                const tabContents = document.querySelectorAll('.tab-content');
+                                                tabContents.forEach((tabContent) => {
+                                                    tabContent.style.display = 'none';
+                                                });
+
+                                                // Hiển thị nội dung của tab trang chủ và thêm lớp active cho tab
+                                                const selectedTabContent = document.getElementById('trangchu');
+                                                selectedTabContent.style.display = 'block';
+                                                link.classList.add('active');
                                             } else {
                                                 errorPassword.innerHTML = 'Mật khẩu sai!';
                                                 errorPassword.style.color = '#e53535';
@@ -3021,7 +3042,7 @@
                                         }
                                         else
                                         {
-                                            errorUserName.innerHTML = 'Tên đăng nhập sai!';
+                                            errorUserName.innerHTML = 'Tên đăng nhập không tồn tại!';
                                             errorUserName.style.color = '#e53535';
                                             ismEmail.classList.add('error-border');
                                         }
@@ -3098,10 +3119,10 @@
                                         <input type="password" name="password" id="ism-password2" placeholder="Mật khẩu"
                                             data-password-element="input">
                                         <button type="button" class="btn ism-show-password" id="ismjs-show-password2"
-                                            onclick="togglePasswordVisibility()">Hiện</button>
+                                            onclick="togglePasswordVisibility2()">Hiện</button>
                                         <script>
                                             //Ẩn hiện mật khẩu
-                                            function togglePasswordVisibility() {
+                                            function togglePasswordVisibility2() {
                                                 var passwordInput = document.getElementById("ism-password2");
                                                 var toggleButton = document.getElementById("ismjs-show-password2");
                                                 if (passwordInput.type === "password") {
@@ -3183,7 +3204,7 @@
                                         }
                                         return true;
                                     }
-                                      
+                                    var data = JSON.parse(unescape('<%- data %>'));
                                     var userNameCheck = false;
                                     var checkUserNameInput = document.getElementById("ism-userName");
                                     checkUserNameInput.addEventListener('input', () => {
@@ -3193,16 +3214,28 @@
                                           userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
                                           userNameInfo.style.color = '#e53535';
                                           userNameCheck = false;
-                                        } else {
-                                          if (userNameInput.length < 6) {
-                                            userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
-                                            userNameInfo.style.color = '#e53535';
-                                            userNameCheck = false;
-                                          } else {
-                                            userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
-                                            userNameInfo.style.color = '#08e104';
-                                            userNameCheck = true;
-                                          }
+                                        }
+                                        else {
+                                            if (userNameInput.length < 6) {
+                                                userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
+                                                userNameInfo.style.color = '#e53535';
+                                                userNameCheck = false;
+                                            } else {
+                                                for (let i=0;i<data.length; i++)
+                                                {
+                                                    if (data[i].userName === userNameInput)
+                                                    {
+                                                        userNameInfo.style.color = '#e53535';
+                                                        userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
+                                                        userNameCheck = false;
+                                                        break;
+                                                    }
+                                                    userNameCheck = true;
+                                                }
+                                                if (userNameCheck)
+                                                userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
+                                                userNameInfo.style.color = '#08e104';
+                                            }
                                         }
                                         if (userNameCheck)
                                           {
