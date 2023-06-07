@@ -58,7 +58,7 @@ let putCRUD = async(req, res) => {
     await CRUDSevice.editUser(data);
     let allUsers = await db.User.findAll();
     return res.render('displayCRUD.ejs', {
-        dataTable: allUsers
+        dataTable: allUser
     });
 }
 
@@ -79,6 +79,34 @@ let loginCRUD = (req, res) => {
     
 }
 
+let getManager = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Manager.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+let getBanQuanLy = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -90,4 +118,6 @@ module.exports = {
     putCRUD: putCRUD,
     delCRUD: delCRUD,
     loginCRUD: loginCRUD,
+    getManager: getManager,
+    getBanQuanLy: getBanQuanLy,
 }
