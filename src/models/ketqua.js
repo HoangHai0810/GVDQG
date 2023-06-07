@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Ketqua extends Model {
+    class ketQua extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,19 +11,17 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Ketqua.belongsTo(models.Lichthidau, { foreignKey: 'maLich', as: 'FK_Ketqua_Lichthidau' });
+            ketQua.belongsTo(models.lichThiDau, { foreignKey: 'maLich' });
         }
     };
-    Ketqua.init({
-        //maLich: DataTypes.STRING,
-        maKetQua: DataTypes.STRING,
+    ketQua.init({
         soBanThangDoi1: DataTypes.INTEGER,
         soBanThangDoi2: DataTypes.INTEGER,
         soTheVang: DataTypes.INTEGER,
         soTheDo: DataTypes.INTEGER
     }, {
         sequelize,
-        modelName: 'Ketqua',
+        modelName: 'ketQua',
     });
-    return Ketqua;
+    return ketQua;
 };

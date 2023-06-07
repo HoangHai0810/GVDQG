@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Doibong extends Model {
+  class doiBong extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,20 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Doibong.hasMany(models.Cauthu, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
-      Doibong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong1', as: 'FK_Lichthidau_Doibong1' });
-      Doibong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong2', as: 'FK_Lichthidau_Doibong2' });
-      Doibong.hasMany(models.Dienbien, { foreignKey: 'tenDoibong', as: 'FK_Dienbien_Doibong' })
+      doiBong.hasMany(models.cauThu, { foreignKey: 'tenDoiBong' });
+      doiBong.hasMany(models.lichThiDau, { foreignKey: 'tenDoiBong1' });
+      doiBong.hasMany(models.lichThiDau, { foreignKey: 'tenDoiBong2' });
+      doiBong.hasMany(models.dienBien, { foreignKey: 'tenDoibong' })
+      doiBong.hasMany(models.huanLuyenVien, { foreignKey: 'tenDoiBong' });
+      doiBong.hasMany(models.tongKet, { foreignKey: 'tenDoiBong' });
     }
   };
-  Doibong.init({
-    tenDoiBong: DataTypes.TEXT,
+  doiBong.init({
     sanNha: DataTypes.TEXT,
     mauAoSanNha: DataTypes.TEXT,
     mauAoSanKhach: DataTypes.TEXT
   }, {
     sequelize,
-    modelName: 'Doibong',
+    modelName: 'doiBong',
   });
-  return Doibong;
+  return doiBong;
 };

@@ -10,16 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      huanLuyenVien.belongsTo(models.doiBong, { foreignKey: 'tenDoiBong' });
+      huanLuyenVien.belongsTo(models.chungChi, { foreignKey: 'soChungChi' });
+      huanLuyenVien.belongsTo(models.chucVu, { foreignKey: 'maChucVu' });
     }
   };
   huanLuyenVien.init({
-    tenDoiBong: DataTypes.TEXT,
-    soChungChi: DataTypes.STRING,
     tenHLV: DataTypes.TEXT,
     ngaySinh: DataTypes.DATE,
     SDT: DataTypes.STRING,
-    ghiChu: DataTypes.TEXT
+    quocTich: DataTypes.TEXT,
+    ghiChu: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'huanLuyenVien',

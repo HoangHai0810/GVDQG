@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const huanluyenvien = require('./huanluyenvien');
 module.exports = (sequelize, DataTypes) => {
   class chungChi extends Model {
     /**
@@ -10,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      chungChi.hasMany(huanLuyenVien, { foreignKey: 'soChungChi' });
+      chungChi.belongsTo(loaiChungChi, { foreignKey: 'maLoaiChungChi' });
     }
   };
   chungChi.init({

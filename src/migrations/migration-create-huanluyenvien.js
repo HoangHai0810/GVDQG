@@ -1,17 +1,26 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('loaiCauThu', {
-      maLoaiCauThu: {
+    await queryInterface.createTable('huanLuyenVien', {
+      maHLV: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      tenLoaiCauThu: {
+      tenHLV: {
         type: Sequelize.TEXT
       },
-      moTa: {
+      ngaySinh: {
+        type: Sequelize.DATE
+      },
+      SDT: {
+        type: Sequelize.STRING
+      },
+      quocTich: {
         type: Sequelize.TEXT
+      },
+      ghiChu: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('loaiCauThu');
+    await queryInterface.dropTable('huanLuyenVien');
   }
 };

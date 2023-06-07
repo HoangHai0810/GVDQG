@@ -10,14 +10,14 @@ let app = express();
 //config app
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 ViewEngine(app);
 initWebRoutes(app);
 
 connectDB();
 
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 5050;
 
 app.listen(port, () => {
     //callback
