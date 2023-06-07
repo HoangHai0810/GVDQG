@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Lichthidau.belongsto(models.doibong, { foreignKey: 'maDoiBong', as: 'FK_Lichthidau_Doibong' });
-            Lichthidau.hasOne(models.ketqua, { foreignKey: 'maLich', as: 'FK_Ketqua_Lichthidau' });
+            Lichthidau.belongsTo(models.Doibong, { foreignKey: 'maDoiBong', as: 'FK_Lichthidau_Doibong' });
+            Lichthidau.hasOne(models.Ketqua, { foreignKey: 'maLich', as: 'FK_Ketqua_Lichthidau' });
         }
     };
     Lichthidau.init({

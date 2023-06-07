@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Doibong.hasMany(models.cauthu, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
-      Doibong.hasMany(models.lichthidau, { foreignKey: 'tenDoiBong1', as: 'FK_Lichthidau_Doibong1' });
-      Doibong.hasMany(models.lichthidau, { foreignKey: 'tenDoiBong2', as: 'FK_Lichthidau_Doibong2' });
-      Doibong.hasMany(models.dienbien, { foreignKey: 'tenDoibong', as: 'FK_Dienbien_Doibong' })
+      Doibong.hasMany(models.Cauthu, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
+      Doibong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong1', as: 'FK_Lichthidau_Doibong1' });
+      Doibong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong2', as: 'FK_Lichthidau_Doibong2' });
+      Doibong.hasMany(models.Dienbien, { foreignKey: 'tenDoibong', as: 'FK_Dienbien_Doibong' })
     }
   };
   Doibong.init({
