@@ -25,8 +25,7 @@ let getCRUDPage = (req, res) => {
 
 let postCRUD = async (req,res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
-    console.log(mes);
-    res.redirect('/');  
+    console.log(mes);  
 }
 
 let displayGetCRUD = async(req,res) => {
@@ -76,7 +75,7 @@ let delCRUD = async(req,res) => {
 }
 
 let loginCRUD = (req, res) => {
-    
+    return res.send('Login')
 }
 
 
