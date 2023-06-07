@@ -3221,6 +3221,7 @@
                                                 userNameInfo.style.color = '#e53535';
                                                 userNameCheck = false;
                                             } else {
+                                                userNameCheck = true;
                                                 for (let i=0;i<data.length; i++)
                                                 {
                                                     if (data[i].userName === userNameInput)
@@ -3230,7 +3231,6 @@
                                                         userNameCheck = false;
                                                         break;
                                                     }
-                                                    userNameCheck = true;
                                                 }
                                                 if (userNameCheck)
                                                 userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';

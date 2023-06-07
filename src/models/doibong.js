@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Doibong.init({
-    tenDoiBong: DataTypes.TEXT,
+
     sanNha: DataTypes.TEXT,
     mauAoSanNha: DataTypes.TEXT,
     mauAoSanKhach: DataTypes.TEXT
