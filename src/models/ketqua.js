@@ -11,10 +11,12 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            /* Ketqua.belongsto(Lichthidau); */
+            Ketqua.belongsTo(models.Lichthidau, { foreignKey: 'maLich', as: 'FK_Ketqua_Lichthidau' });
         }
     };
     Ketqua.init({
+        //maLich: DataTypes.STRING,
+        maKetQua: DataTypes.STRING,
         soBanThangDoi1: DataTypes.INTEGER,
         soBanThangDoi2: DataTypes.INTEGER,
         soTheVang: DataTypes.INTEGER,

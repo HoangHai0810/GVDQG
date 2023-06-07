@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Loaicauthu.hasMany(Cauthu, { foreignKey: 'LoaiCauThu' });
+      Loaicauthu.hasMany(models.Cauthu, { foreignKey: 'maLoaiCauThu', as: 'FK_Cauthu_Loaicauthu' });
     }
   };
   Loaicauthu.init({
+    maLoaiCauThu: DataTypes.STRING,
     tenLoaiCauThu: DataTypes.TEXT,
     moTa: DataTypes.TEXT
   }, {

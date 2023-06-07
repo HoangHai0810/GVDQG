@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            /* Dienbien.belongsto(Doibong);
-            Dienbien.belongsto(Cauthu);
-            Dienbien.belongsto(Lichthidau);
-            Dienbien.belongsto(Loaibanthang);
-            Dienbien.belongsto(Loaithe); */
+            Dienbien.belongsTo(models.Doibong);
+            Dienbien.belongsTo(models.Cauthu);
+            Dienbien.belongsTo(models.Lichthidau);
+            Dienbien.belongsTo(models.Loaibanthang);
+            Dienbien.belongsTo(models.loaiThe);
         }
     };
     Dienbien.init({
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         tenDoiBong: DataTypes.TEXT,
         maLich: DataTypes.STRING,
         loaiBanThang: DataTypes.STRING,
-        loaiThe: DataTypes.STRING,
+        maDienBien: DataTypes.STRING,
         thoiDiem: DataTypes.INTEGER
     }, {
         sequelize,
