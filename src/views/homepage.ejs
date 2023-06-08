@@ -2995,11 +2995,15 @@
                                     ismPassword.addEventListener('keyup', () => {
                                         errorPassword.innerHTML = '';
                                         ismPassword.classList.remove('error-border');
+<<<<<<< HEAD
                                         
                                         if (event.key === 'Enter') {
                                             checkLogin();
                                         }
                                     });
+=======
+                                    })
+>>>>>>> 4150543b70a16127ef3735e39017ac33e15b20d5
                                     function checkLogin() {
                                         var data = JSON.parse(unescape('<%- data %>'));
                                         console.log(data);
@@ -3230,11 +3234,17 @@
                                                 userNameInfo.style.color = '#e53535';
                                                 userNameCheck = false;
                                             } else {
+<<<<<<< HEAD
                                                 userNameCheck = true;
                                                 userNameInfo.style.color = '#08e104';
 
                                                 for (let i = 0; i < data.length; i++) {
                                                     if (data[i].userName === userNameInput) {
+=======
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (data[i].userName === userNameInput) {
+                                                        userNameInfo.style.color = '#e53535';
+>>>>>>> 4150543b70a16127ef3735e39017ac33e15b20d5
                                                         userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
                                                         userNameInfo.style.color = '#e53535';
                                                         userNameCheck = false;
@@ -3243,7 +3253,11 @@
                                                 }
                                                 if (userNameCheck)
                                                     userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
+<<<<<<< HEAD
 
+=======
+                                                userNameInfo.style.color = '#08e104';
+>>>>>>> 4150543b70a16127ef3735e39017ac33e15b20d5
                                             }
                                         }
                                         if (userNameCheck) {
@@ -3802,6 +3816,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
+
                                         <tr class="tableDark" data-compseason="489" data-filtered-entry-size="20"
                                             data-filtered-table-row="11" data-filtered-table-row-name="Manchester City"
                                             data-filtered-table-row-opta="t43" data-position="1"
@@ -4243,8 +4258,12 @@
                                 </li>
                                 <li>
                                     <div class="option email" role="option" tabindex="0" data-social-service="email">
+<<<<<<< HEAD
                                         <span class="icn mail-w"></span><span class="visuallyHidden">Email</span>
                                     </div>
+=======
+                                        <span class="icn mail-w"></span><span class="visuallyHidden">Email</span></div>
+>>>>>>> 4150543b70a16127ef3735e39017ac33e15b20d5
                                 </li>
                             </ul>
                         </div>
