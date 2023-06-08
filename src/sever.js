@@ -17,11 +17,7 @@ initWebRoutes(app);
 
 connectDB();
 
-<<<<<<< HEAD
 let port = process.env.PORT || 8800;
-=======
-let port = process.env.PORT || 5050;
->>>>>>> 4150543b70a16127ef3735e39017ac33e15b20d5
 
 app.listen(port, () => {
     //callback

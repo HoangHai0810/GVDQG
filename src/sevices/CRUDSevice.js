@@ -27,8 +27,8 @@ let createNewUser = async(data) => {
 let createTeam = async(data) => {
     return new Promise(async (reslove,reject) => {
         try{
-            await db.Doibong.create({
-
+            await db.doiBong.create({
+                tenDoiBong: data.teamName,
                 sanNha: data.homeGround,
                 mauAoSanNha: data.homeJerseyColor,
                 mauAoSanKhach: data.awayJerseyColor,
