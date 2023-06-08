@@ -1,22 +1,43 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ketQuas', {
-      maKetqua: {
+    await queryInterface.createTable('tongKets', {
+      maTK: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      soBanThangDoi1: {
+      soTranDau: {
         type: Sequelize.INTEGER
       },
-      soBanThangDoi2: {
+      soTranThang: {
+        type: Sequelize.INTEGER
+      },
+      soTranThua: {
+        type: Sequelize.INTEGER
+      },
+      soTranHoa: {
+        type: Sequelize.INTEGER
+      },
+      soBanThang: {
+        type: Sequelize.INTEGER
+      },
+      soBanThua: {
+        type: Sequelize.INTEGER
+      },
+      soBanThangSanKhach: {
         type: Sequelize.INTEGER
       },
       soTheVang: {
         type: Sequelize.INTEGER
       },
       soTheDo: {
+        type: Sequelize.INTEGER
+      },
+      hieuSo: {
+        type: Sequelize.INTEGER
+      },
+      diemSo: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -30,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ketQuas');
+    await queryInterface.dropTable('tongKets');
   }
 };

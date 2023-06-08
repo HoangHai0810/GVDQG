@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Dienbien extends Model {
+    class dienBien extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,23 +11,18 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Dienbien.belongsTo(models.Doibong);
-            Dienbien.belongsTo(models.Cauthu);
-            Dienbien.belongsTo(models.Lichthidau);
-            Dienbien.belongsTo(models.Loaibanthang);
-            Dienbien.belongsTo(models.loaiThe);
+            dienBien.belongsTo(models.doiBong, { foreignKey: 'maDoiBong', as: 'FK_dienBien_doiBong' });
+            dienBien.belongsTo(models.cauThu, { foreignKey: 'maCauThu', as: 'FK_dienBien_cauThu' });
+            dienBien.belongsTo(models.lichThiDau, { foreignKey: 'maLich', as: 'FK_dienBien_lichThiDau' });
+            dienBien.belongsTo(models.loaiBanThang, { foreignKey: 'maLoaiBanThang', as: 'FK_dienBien_loaiBanThang' });
+            dienBien.belongsTo(models.loaiThe, { foreignKey: 'maLoaiThe', as: 'FK_dienBien_loaiThe' });
         }
     };
-    Dienbien.init({
-        maCauThu: DataTypes.STRING,
-        tenDoiBong: DataTypes.TEXT,
-        maLich: DataTypes.STRING,
-        loaiBanThang: DataTypes.STRING,
-        maDienBien: DataTypes.STRING,
+    dienBien.init({
         thoiDiem: DataTypes.INTEGER
     }, {
         sequelize,
-        modelName: 'Dienbien',
+        modelName: 'dienBien',
     });
-    return Dienbien;
+    return dienBien;
 };

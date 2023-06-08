@@ -1,25 +1,10 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Dienbien', {
+    await queryInterface.createTable('dienBiens', {
       maDienBien: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
-      },
-      maCauThu: {
-        type: Sequelize.STRING
-      },
-      tenDoiBong: {
-        type: Sequelize.TEXT
-      },
-      maLich: {
-        type: Sequelize.STRING
-      },
-      loaiBanThang: {
-        type: Sequelize.STRING
-      },
-      loaiThe: {
         type: Sequelize.STRING
       },
       thoiDiem: {
@@ -36,6 +21,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Dienbien');
+    await queryInterface.dropTable('dienBiens');
   }
 };

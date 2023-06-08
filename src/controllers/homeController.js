@@ -1,14 +1,16 @@
 import { render } from "ejs";
+import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
+import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
-let getHomePage = async(req, res) => {
-    try{
+let getHomePage = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('homepage.ejs', {
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
         });
     } catch (e) {
         console.log(e);
@@ -23,26 +25,26 @@ let getCRUDPage = (req, res) => {
     return res.render('CRUD.ejs');
 }
 
-let postCRUD = async (req,res) => {
+let postCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
-    console.log(mes);  
+    console.log(mes);
+    res.redirect('/');
 }
 
-let displayGetCRUD = async(req,res) => {
+let displayGetCRUD = async (req, res) => {
     let data = await CRUDSevice.getAllUser({
-        raw :   true,
+        raw: true,
     });
     return res.render('displayCRUD.ejs', {
         dataTable: data
     });
 }
 
-let getEditCRUD = async(req, res) => {
+let getEditCRUD = async (req, res) => {
     let userId = req.query.id;
-    if (userId){
+    if (userId) {
         let userData = await CRUDSevice.getUserInfoById(userId);
-        if (userData)
-        {
+        if (userData) {
             return res.render('edit-CRUD.ejs', {
                 user: userData
             })
@@ -52,7 +54,7 @@ let getEditCRUD = async(req, res) => {
     }
 }
 
-let putCRUD = async(req, res) => {
+let putCRUD = async (req, res) => {
     let data = req.body;
     await CRUDSevice.editUser(data);
     let allUsers = await db.User.findAll();
@@ -61,14 +63,14 @@ let putCRUD = async(req, res) => {
     });
 }
 
-let delCRUD = async(req,res) => {
+let delCRUD = async (req, res) => {
     let userId = req.query.id;
-    if (userId){
+    if (userId) {
         await CRUDSevice.deleteUserById(userId);
         let allUsers = await db.User.findAll();
-    return res.render('./displayCRUD.ejs', {
-        dataTable: allUsers
-    });
+        return res.render('./displayCRUD.ejs', {
+            dataTable: allUsers
+        });
     } else {
         return res.send('User not found!');
     }
@@ -106,8 +108,26 @@ let getBanQuanLy = async(req, res) =>
     }
 }
 
-let postTeam = (req, res) => {
-    console.log(req.body)
+
+let postTeam = async (req, res) => {
+    // console.log (req.body);
+    //     const { teamName, coach, homeGround, homeJerseyColor, awayJerseyColor } = req.body;
+    //     console.log({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     // Lưu thông tin đội bóng vào CSDL
+    //     let teaminfo = await db.Doibong.create({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     console.log (teaminfo)
+    console.log(req.body);
+    let mes = await CRUDSevice.createTeam(req.body);
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 

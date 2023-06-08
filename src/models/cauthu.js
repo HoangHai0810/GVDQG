@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Cauthu extends Model {
+  class cauThu extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cauthu.belongsTo(models.Loaicauthu, { foreignKey: 'maLoaiCauThu', as: 'FK_Cauthu_Loaicauthu' });
-      Cauthu.belongsTo(models.Doibong, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
-      Cauthu.hasMany(models.Dienbien, { foreignKey: 'maCauThu', as: 'FK_Dienbien_Cauthu' });
+      cauThu.belongsTo(models.loaiCauThu, { foreignKey: 'maLoaiCauThu', as: 'FK_Cauthu_Loaicauthu' });
+      cauThu.belongsTo(models.doiBong, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
+      cauThu.hasMany(models.dienBien, { foreignKey: 'maCauThu' });
     }
   };
-  Cauthu.init({
-    //loaiCauThu: DataTypes.STRING,
-    //tenDoiBong: DataTypes.STRING,
-    maCauThu: DataTypes.STRING,
+  cauThu.init({
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
     soAo: DataTypes.INTEGER,
@@ -29,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     quocTich: DataTypes.TEXT
   }, {
     sequelize,
-    modelName: 'Cauthu',
+    modelName: 'cauThu',
   });
-  return Cauthu;
+  return cauThu;
 };

@@ -132194,3 +132194,6 @@ dialog {
 .ism .user-admin .email-logs .email-log-table td.event-timestamp {
     white-space: nowrap;
 }
+#playerTable {
+    z-index: 0;
+}
