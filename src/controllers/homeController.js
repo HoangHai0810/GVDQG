@@ -25,8 +25,7 @@ let getCRUDPage = (req, res) => {
 
 let postCRUD = async (req,res) => {
     let mes = await CRUDSevice.createNewUser(req.body);
-    console.log(mes);
-    res.redirect('/');  
+    console.log(mes);  
 }
 
 let displayGetCRUD = async(req,res) => {
@@ -76,7 +75,39 @@ let delCRUD = async(req,res) => {
 }
 
 let loginCRUD = (req, res) => {
-    
+    return res.send('Login')
+}
+
+let getManager = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Manager.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+let getBanQuanLy = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+let postTeam = (req, res) => {
+    console.log(req.body)
 }
 
 
@@ -90,4 +121,8 @@ module.exports = {
     putCRUD: putCRUD,
     delCRUD: delCRUD,
     loginCRUD: loginCRUD,
+    getManager: getManager,
+    getBanQuanLy: getBanQuanLy,
+    postTeam: postTeam,
+    
 }
