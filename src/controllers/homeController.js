@@ -1,6 +1,8 @@
 import { render } from "ejs";
+import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
+import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
 let getHomePage = async(req, res) => {
     try{
@@ -106,8 +108,17 @@ let getBanQuanLy = async(req, res) =>
     }
 }
 
-let postTeam = (req, res) => {
-    console.log(req.body)
+
+let postTeam = async (req, res) => {
+    // console.log (req.body);
+    //     const { teamName, coach, homeGround, homeJerseyColor, awayJerseyColor } = req.body;
+    //     console.log({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     // Lưu thông tin đội bóng vào CSDL
+    //     let teaminfo = await db.Doibong.create({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     console.log (teaminfo)
+    console.log(req.body);
+    let mes = await CRUDSevice.createTeam(req.body);
+    console.log(mes);
 }
 
 

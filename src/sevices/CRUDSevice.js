@@ -24,6 +24,23 @@ let createNewUser = async(data) => {
     })
 }
 
+let createTeam = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            await db.Doibong.create({
+
+                sanNha: data.homeGround,
+                mauAoSanNha: data.homeJerseyColor,
+                mauAoSanKhach: data.awayJerseyColor,
+            })
+
+            reslove('Added Team!')
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
 let hashUserPassword = (password) => {
     return new Promise((reslove, reject) => {
     try{
@@ -120,4 +137,5 @@ module.exports = {
     getUserInfoById: getUserInfoById,
     editUser: editUser,
     deleteUserById: deleteUserById,
+    createTeam: createTeam,
 }
