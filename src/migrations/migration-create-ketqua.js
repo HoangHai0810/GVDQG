@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ketQua', {
+    await queryInterface.createTable('ketQuas', {
       maKetqua: {
         allowNull: false,
         primaryKey: true,
@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ketQua');
+    await queryInterface.dropTable('ketQuas');
   }
 };

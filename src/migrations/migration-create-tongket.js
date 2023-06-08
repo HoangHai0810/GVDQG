@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tongKet', {
+    await queryInterface.createTable('tongKets', {
       maTK: {
         allowNull: false,
         primaryKey: true,
@@ -51,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tongKet');
+    await queryInterface.dropTable('tongKets');
   }
 };

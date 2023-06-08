@@ -11,13 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      doiBong.hasMany(models.Cauthu, { foreignKey: 'tenDoiBong', as: 'FK_Cauthu_Doibong' });
-      doiBong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong1', as: 'FK_Lichthidau_Doibong1' });
-      doiBong.hasMany(models.Lichthidau, { foreignKey: 'tenDoiBong2', as: 'FK_Lichthidau_Doibong2' });
-      doiBong.hasMany(models.Dienbien, { foreignKey: 'tenDoibong', as: 'FK_Dienbien_Doibong' })
+      doiBong.hasMany(models.cauThu);
+      doiBong.hasMany(models.lichThiDau);
+      doiBong.hasMany(models.lichThiDau);
+      doiBong.hasMany(models.dienBien)
     }
   };
   doiBong.init({
+    tenDoiBong: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     sanNha: DataTypes.TEXT,
     mauAoSanNha: DataTypes.TEXT,
     mauAoSanKhach: DataTypes.TEXT
