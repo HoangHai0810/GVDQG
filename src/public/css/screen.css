@@ -130,7 +130,7 @@ h2{
 .position:nth-child(4),
 .position:nth-child(5),
 .position:nth-child(6) {
-    top: 350px;
+    top: 550px;
 }
 
 .position:nth-child(4) {
@@ -138,18 +138,18 @@ h2{
 }
 
 .position:nth-child(5) {
-    right: 30%;
+    right: 28.5%;
 }
 
 .position:nth-child(6) {
-    right: 15%;
+    right: 13.5%;
 }
 
 .position:nth-child(7),
 .position:nth-child(8),
 .position:nth-child(9),
 .position:nth-child(10) {
-    top: 550px;
+    top: 750px;
 }
 
 .position:nth-child(7) {
@@ -161,49 +161,52 @@ h2{
 }
 
 .position:nth-child(9) {
-    right: 23%;
+    right: 20%;
 }
 
 .position:nth-child(10) {
-    right: 10%;
+    right: 8%;
 }
 
 .position:nth-child(11) {
-    top: 700px;
-    right: 30%;
+    top: 820px;
+    right: 28.5%;
 }
 
 .position:nth-child(1) .player-info,
 .position:nth-child(2) .player-info, 
 .position:nth-child(3) .player-info {
     position: absolute;
-    left: 0;
+    left: -1px;
     background-color: rgba(168, 8, 8, 0.8);
     color: #fff;
-    padding: 5px;
+    padding: 3px;
     font-size: 12px;
+    border-radius: 7px;
 }
 .position:nth-child(4) .player-info,
 .position:nth-child(5) .player-info,
 .position:nth-child(6) .player-info, 
 .position:nth-child(7) .player-info {
     position: absolute;
-    left: 0;
+    left: -1px;
     background-color: rgba(0, 167, 31, 0.8);
     color: #fff;
-    padding: 5px;
+    padding: 3px;
     font-size: 12px;
+    border-radius: 7px;
 }
 
 .position:nth-child(8) .player-info,
 .position:nth-child(9) .player-info, 
 .position:nth-child(10) .player-info {
     position: absolute;
-    left: 0;
+    left: -1px;
     background-color: rgba(35, 18, 218, 0.8);
     color: #fff;
-    padding: 5px;
+    padding: 3px;
     font-size: 12px;
+    border-radius: 7px;
 }
 
 .position:nth-child(11) .player-info {
@@ -131701,6 +131704,13 @@ dialog {
         left: 0;
         font-size: 1.3em;
     }
+}
+
+#xepdoihinh {
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr;
+    grid-gap: 20px;
+    padding: 20px;
 }
 
 .ism .ism-email-matrix tbody td {
