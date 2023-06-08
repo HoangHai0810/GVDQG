@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-    <link rel="icon"
-        href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
     <meta name="twitter:title" content="Premier League Football News, Fixtures, Scores & Results" />
     <meta name="keywords" content="Premier League, Football, Soccer, Official" />
     <meta property="og:type" content="website" />
@@ -40,6 +38,63 @@
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <meta name="apple-itunes-app" content="app-id=1138895159">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    <style>
+        .container-tiep-nhan-hs {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .player-table {
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            text-align: right;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
 </head>
 
 <body>
@@ -564,6 +619,10 @@
                     <li><a href="#" data-tab="bangxephang" role="menuitem">Bảng xếp hạng</a></li>
                     <li><a href="#" data-tab="caulacbo" role="menuitem">Câu lạc bộ</a></li>
                     <li><a href="#" data-tab="cauthu" role="menuitem">Cầu thủ</a></li>
+                    <li><a href="#" data-tab="tiepnhanhoso" role="menuitem">Tiếp nhận hồ sơ</a></li>
+                    <li><a href="#" data-tab="laplichthidau" role="menuitem">Lập lịch thi đấu</a></li>
+                    <li><a href="#" data-tab="ghinhanketqua" role="menuitem">Ghi nhận kết quả</a></li>
+                    <li><a href="#" data-tab="thaydoiquydinh" role="menuitem">Thay đổi quy định</a></li>
                 </ul>
             </nav>
         </div>
@@ -2978,7 +3037,6 @@
                                     </button>
                                 </div>
                                 <script>
-                                    
                                     var ismEmail = document.getElementById('ism-email');
                                     var ismPassword = document.getElementById('ism-password');
                                     var errorPassword = document.getElementById('error-Password');
@@ -2986,20 +3044,11 @@
                                     ismEmail.addEventListener('keyup', () => {
                                         errorUserName.innerHTML = '';
                                         ismEmail.classList.remove('error-border');
-                            
-                                        if (event.key === 'Enter') {
-                                            checkLogin();
-                                        }
-                        
                                     });
                                     ismPassword.addEventListener('keyup', () => {
                                         errorPassword.innerHTML = '';
                                         ismPassword.classList.remove('error-border');
-                                        
-                                        if (event.key === 'Enter') {
-                                            checkLogin();
-                                        }
-                                    });
+                                    })
                                     function checkLogin() {
                                         var data = JSON.parse(unescape('<%- data %>'));
                                         console.log(data);
@@ -3230,20 +3279,18 @@
                                                 userNameInfo.style.color = '#e53535';
                                                 userNameCheck = false;
                                             } else {
-                                                userNameCheck = true;
-                                                userNameInfo.style.color = '#08e104';
-
                                                 for (let i = 0; i < data.length; i++) {
                                                     if (data[i].userName === userNameInput) {
-                                                        userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
                                                         userNameInfo.style.color = '#e53535';
+                                                        userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
                                                         userNameCheck = false;
                                                         break;
                                                     }
+                                                    userNameCheck = true;
                                                 }
                                                 if (userNameCheck)
                                                     userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
-                                                    userNameInfo.style.color = '#08e104';
+                                                userNameInfo.style.color = '#08e104';
                                             }
                                         }
                                         if (userNameCheck) {
@@ -3343,21 +3390,7 @@
                                             'Thành công',
                                             'Bạn đã đăng kí thành công tài khoản',
                                             'success'
-                                        ).then((result) => {
-                                            // Loại bỏ lớp active từ tất cả các tab
-                                            tabLinks.forEach((tab) => {
-                                                tab.classList.remove('active');
-                                            });
-                                            // Ẩn tất cả các nội dung tab
-                                            const tabContents = document.querySelectorAll('.tab-content');
-                                            tabContents.forEach((tabContent) => {
-                                                tabContent.style.display = 'none';
-                                            });
-                                            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-                                            const selectedTabContent = document.getElementById('dangnhap');
-                                            selectedTabContent.style.display = 'block';
-                                            link.classList.add('active');
-                                        })
+                                        );
                                     }                                           
                                 </script>
                                 <input type="hidden" name="app" value="pl-web">
@@ -3802,7 +3835,6 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
-
                                         <tr class="tableDark" data-compseason="489" data-filtered-entry-size="20"
                                             data-filtered-table-row="11" data-filtered-table-row-name="Manchester City"
                                             data-filtered-table-row-opta="t43" data-position="1"
@@ -6706,6 +6738,118 @@
         </div>
 
     </section>
+
+
+    <!--Tab tiep nhan ho so-->
+    <section id="tiepnhanhoso" tabindex="0" class="tab-content" style="display: none;">
+        <div class="container-tiep-nhan-hs">
+            <h2 style="text-align: center; font-weight: bolder; font-size: 200%; margin-bottom: 10px;">TIẾP NHẬN HỒ SƠ ĐỘI BÓNG</h2>
+
+            <form id="teamForm" action="/post-teaminf" method="post" >
+                <div class="form-group">
+                    <label for="teamName">Tên đội:</label>
+                    <input type="text" class="form-control" id="id-teamName" name="teamName" placeholder="Nhập tên đội">
+                </div>
+                <div class="form-group">
+                    <label for="coach">Huấn luyện viên:</label>
+                    <input type="text" class="form-control" id="id-coach" name="coach" placeholder="Nhập tên huấn luyện viên">
+                </div>
+                <div class="form-group">
+                    <label for="homeGround">Sân nhà:</label>
+                    <input type="text" class="form-control" id="id-homeGround" name="homeGround" placeholder="Nhập tên sân nhà">
+                </div>
+                <div class="form-group">
+                    <label for="homeJerseyColor">Màu áo sân nhà:</label>
+                    <input type="text" class="form-control" id="id-homeJerseyColor" name="homeJerseyColor" placeholder="Nhập màu áo sân nhà">
+                </div>
+                <div class="form-group">
+                    <label for="awayJerseyColor">Màu áo sân khách:</label>
+                    <input type="text" class="form-control" id="id-awayJerseyColor" name="awayJerseyColor" placeholder="Nhập màu áo sân khách">
+                </div>
+
+                <div id="playerTable"></div>
+
+                <div class="submit-btn">
+                    <button type="submit" class="btn btn-primary">Gửi</button>
+                    <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+        <script>
+            const playerTable = document.getElementById('playerTable');
+            let hot;
+
+            function initializeTable() {
+                var playerColumns =[
+                        { title: 'STT', data: 0},
+                        { title: 'Tên cầu thủ', data: 1 },
+                        { title: 'Số áo', data: 2 },
+                        { title: 'Vị trí', data: 3, type: 'dropdown', source: ['Thủ môn', 'Hậu vệ', 'Trung vệ', 'Tiền vệ', 'Tiền đạo'] },
+                        { title: 'Ngày sinh', data: 4 , type: 'date'},
+                        { title: 'Chiều cao (cm)', data: 5 },
+                        { title: 'Cân nặng (kg)', data: 6},
+                        { title: 'Quốc tịch', data: 7 },
+                        { title: 'Loại cầu thủ', data: 8, type: 'dropdown', source: ['Cầu thủ chính', 'Cầu thủ dự bị'] },
+                        { title: 'Ghi chú', data: 9 }
+                    ];
+                hot = new Handsontable(playerTable, {
+                    data: [
+                    ['', '', '', '', '', '', '', '', '', '']
+                    ],
+                    
+                    columns: playerColumns,
+                    rowHeaders: true,
+                    stretchH: 'all',
+                    columnSorting: true,
+                    contextMenu: true,
+                    manualRowResize: true,
+                    manualColumnResize: true,
+                    height: 200
+                });
+            }
+
+            function addPlayerRow() {
+                hot.alter('insert_row', hot.countRows());
+            }
+
+           initializeTable()
+
+        //    function handleSubmit(event) {
+                   
+        //         event.preventDefault();
+
+        //         // Lấy thông tin từ các trường nhập
+        //         const teamName = document.getElementById('teamName').value;
+        //         const coach = document.getElementById('coach').value;
+        //         const homeGround = document.getElementById('homeGround').value;
+        //         const homeJerseyColor = document.getElementById('homeJerseyColor').value;
+        //         const awayJerseyColor = document.getElementById('awayJerseyColor').value;
+
+        //         // Lấy dữ liệu từ bảng cầu thủ
+        //         const playerData = hot.getData();
+
+        //         // Tạo đối tượng đại diện cho đội bóng
+        //         const team = {
+        //             teamName,
+        //             coach,
+        //             homeGround,
+        //             homeJerseyColor,
+        //             awayJerseyColor,
+        //             players: playerData.slice(0) // Lấy dữ liệu từ hàng thứ 2 trở đi
+        //         };
+
+        //         // Gửi đối tượng đội bóng đi
+        //         console.log(team);
+        //     }
+           
+
+        //     const teamForm = document.getElementById('teamForm');
+        //     teamForm.addEventListener('submit', handleSubmit);
+        </script>
+    </section>
+
 
 
     <!--Footer chính-->

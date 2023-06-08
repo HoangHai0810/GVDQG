@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('huanLuyenVien', {
+    await queryInterface.createTable('huanLuyenViens', {
       maHLV: {
         allowNull: false,
         primaryKey: true,
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('huanLuyenVien');
+    await queryInterface.dropTable('huanLuyenViens');
   }
 };

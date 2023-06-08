@@ -1,6 +1,8 @@
 import { render } from "ejs";
+import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
+import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
 let getHomePage = async (req, res) => {
     try {
@@ -75,7 +77,57 @@ let delCRUD = async (req, res) => {
 }
 
 let loginCRUD = (req, res) => {
+    return res.send('Login')
+}
 
+let getManager = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Manager.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+let getBanQuanLy = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+
+let postTeam = async (req, res) => {
+    // console.log (req.body);
+    //     const { teamName, coach, homeGround, homeJerseyColor, awayJerseyColor } = req.body;
+    //     console.log({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     // Lưu thông tin đội bóng vào CSDL
+    //     let teaminfo = await db.Doibong.create({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
+    //     console.log (teaminfo)
+    console.log(req.body);
+    let mes = await CRUDSevice.createTeam(req.body);
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 
@@ -89,4 +141,8 @@ module.exports = {
     putCRUD: putCRUD,
     delCRUD: delCRUD,
     loginCRUD: loginCRUD,
+    getManager: getManager,
+    getBanQuanLy: getBanQuanLy,
+    postTeam: postTeam,
+    
 }

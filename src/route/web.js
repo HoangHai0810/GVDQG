@@ -1,5 +1,6 @@
 import express from "express";
 import homeController from "../controllers/homeController";
+import { route } from "express/lib/router";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
@@ -12,7 +13,10 @@ let initWebRoutes = (app) => {
     router.post('/put-crud', homeController.putCRUD);
     router.get('/delete-crud', homeController.delCRUD);
     router.get('/login', homeController.loginCRUD);
-    return app.use("/", router) 
+    router.get('/manager', homeController.getManager);
+    router.get('/banquanly', homeController.getBanQuanLy);
+    router.post('/post-teaminf', homeController.postTeam);
+    return app.use("/", router);
 }
 
 module.exports = initWebRoutes;
