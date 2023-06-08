@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      loaiBanThang.hasMany(models.dienBien, { foreignKey: 'maLoaiBanThang' })
+      loaiBanThang.hasMany(models.dienBien)
     }
   };
   loaiBanThang.init({
+    maLoaiBanThang: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     tenLoaiBanThang: DataTypes.TEXT
   }, {
     sequelize,

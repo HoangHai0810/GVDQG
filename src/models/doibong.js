@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       doiBong.hasMany(models.cauThu);
       doiBong.hasMany(models.lichThiDau);
       doiBong.hasMany(models.lichThiDau);
-      doiBong.hasMany(models.dienBien)
+      doiBong.hasMany(models.dienBien);
+      doiBong.hasMany(models.huanLuyenVien);
+      doiBong.hasMany(models.tongKet);
     }
   };
   doiBong.init({
