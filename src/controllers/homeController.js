@@ -57,7 +57,7 @@ let putCRUD = async(req, res) => {
     await CRUDSevice.editUser(data);
     let allUsers = await db.User.findAll();
     return res.render('displayCRUD.ejs', {
-        dataTable: allUser
+        dataTable: allUsers
     });
 }
 
@@ -106,6 +106,10 @@ let getBanQuanLy = async(req, res) =>
     }
 }
 
+let postTeam = (req, res) => {
+    console.log(req.body)
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -119,4 +123,6 @@ module.exports = {
     loginCRUD: loginCRUD,
     getManager: getManager,
     getBanQuanLy: getBanQuanLy,
+    postTeam: postTeam,
+    
 }

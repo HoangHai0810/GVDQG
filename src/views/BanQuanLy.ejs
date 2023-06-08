@@ -6745,7 +6745,7 @@
         <div class="container-tiep-nhan-hs">
             <h2 style="text-align: center; font-weight: bolder; font-size: 200%; margin-bottom: 10px;">TIẾP NHẬN HỒ SƠ ĐỘI BÓNG</h2>
 
-            <form id="teamForm">
+            <form id="teamForm" action="/post-teaminf" method="POST">
                 <div class="form-group">
                     <label for="teamName">Tên đội:</label>
                     <input type="text" class="form-control" id="teamName" placeholder="Nhập tên đội">
@@ -6814,7 +6814,9 @@
                 hot.alter('insert_row', hot.countRows());
             }
 
-            function handleSubmit(event) {
+           initializeTable()
+
+           function handleSubmit(event) {
                 event.preventDefault();
 
                 // Lấy thông tin từ các trường nhập
@@ -6841,7 +6843,6 @@
                 console.log(team);
             }
 
-            initializeTable();
 
             const teamForm = document.getElementById('teamForm');
             teamForm.addEventListener('submit', handleSubmit);
