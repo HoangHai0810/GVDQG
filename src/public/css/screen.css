@@ -33918,9 +33918,22 @@ p a:hover {
     box-sizing: border-box
 }
 
+
+.thongtin-trandau
+{
+    position: absolute;
+    width: 100%;
+}
+
+.hot-display-license-info
+{
+    display: none;
+}
+
 #trangchu,
 #trandau,
 #ketqua,
+#ghinhanketqua,
 #bangxephang,
 #thongke,
 #caulacbo,
@@ -34042,6 +34055,7 @@ body.fixedBody {
 #trangchu,
 #trandau,
 #ketqua,
+#ghinhanketqua,
 #bangxephang,
 #thongke,
 #caulacbo,
@@ -34058,6 +34072,7 @@ body.fixedBody {
     #trangchu,
     #trandau,
     #ketqua,
+    #ghinhanketqua,
     #bangxephang,
     #thongke,
     #caulacbo,
@@ -34070,6 +34085,7 @@ body.fixedBody {
     #trangchu,
     #trandau,
     #ketqua,
+    #ghinhanketqua,
     #bangxephang,
     #thongke,
     #caulacbo,
@@ -34083,6 +34099,7 @@ body.fixedBody {
     #trangchu,
     #trandau,
     #ketqua,
+    #ghinhanketqua,
     #bangxephang,
     #thongke,
     #caulacbo,
@@ -36757,6 +36774,7 @@ body.webViewBody {
 #trangchu,
 #trandau,
 #ketqua,
+#ghinhanketqua,
 #bangxephang,
 #thongke,
 #caulacbo,
@@ -48975,6 +48993,7 @@ div.fixture.live:hover .arrow-right {
     #trangchu,
     #trandau,
     #ketqua,
+    #ghinhanketqua,
     #bangxephang,
     #thongke,
     #caulacbo,
@@ -48997,6 +49016,7 @@ div.fixture.live:hover .arrow-right {
     #trangchu,
     #trandau,
     #ketqua,
+    #ghinhanketqua,
     #bangxephang,
     #thongke,
     #caulacbo,

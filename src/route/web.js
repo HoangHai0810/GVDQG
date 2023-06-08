@@ -14,6 +14,7 @@ let initWebRoutes = (app) => {
     router.get('/login', homeController.loginCRUD);
     router.get('/manager', homeController.getManager);
     router.get('/banquanly', homeController.getBanQuanLy);
+    router.get('/admin', homeController.getAdmin);
     return app.use("/", router) 
 }
 

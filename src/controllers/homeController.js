@@ -106,6 +106,19 @@ let getBanQuanLy = async(req, res) =>
         console.log(e);
     }
 }
+let getAdmin = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Admin.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 
 module.exports = {
@@ -120,4 +133,5 @@ module.exports = {
     loginCRUD: loginCRUD,
     getManager: getManager,
     getBanQuanLy: getBanQuanLy,
+    getAdmin: getAdmin,
 }
