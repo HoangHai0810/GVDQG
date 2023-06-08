@@ -33,7 +33,6 @@ let createTeam = async(data) => {
                 mauAoSanNha: data.homeJerseyColor,
                 mauAoSanKhach: data.awayJerseyColor,
             })
-
             reslove('Added Team!')
         } catch(e) {
             reject(e);
