@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   loaiBanThang.init({
+    maLoaiBanThang: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     tenLoaiBanThang: DataTypes.TEXT
   }, {
     sequelize,

@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   huanLuyenVien.init({
+    maHLV: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     tenHLV: DataTypes.TEXT,
     ngaySinh: DataTypes.DATE,
     SDT: DataTypes.STRING,

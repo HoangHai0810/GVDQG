@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     ketQua.init({
+        maKetQua: {
+            type: DataTypes.STRING,
+            primaryKey: true,
+        },
         soBanThangDoi1: DataTypes.INTEGER,
         soBanThangDoi2: DataTypes.INTEGER,
         soTheVang: DataTypes.INTEGER,

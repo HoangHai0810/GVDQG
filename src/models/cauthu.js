@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   cauThu.init({
+    maCauThu: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
     soAo: DataTypes.INTEGER,

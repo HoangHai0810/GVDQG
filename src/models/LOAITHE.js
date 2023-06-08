@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   loaiThe.init({
+    maLoaiThe: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     tenLoaiThe: DataTypes.TEXT,
   }, {
     sequelize,
