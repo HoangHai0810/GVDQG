@@ -118,16 +118,7 @@ let postTeam = async (req, res) => {
     //     console.log (teaminfo)
     console.log(req.body);
     let mes = await CRUDSevice.createTeam(req.body);
-    try{
-        let data = await CRUDSevice.getAllUser({
-            raw :   true,
-        });
-        return res.render('BanQuanLy.ejs', {
-            data: JSON.stringify(data)
-        });
-    } catch (e) {
-        console.log(e);
-    }
+    res.redirect('/banquanly');
 }
 
 
