@@ -35,6 +35,7 @@ let createTeam = async(data) => {
                 mauAoSanNha: data.homeJerseyColor,
                 mauAoSanKhach: data.awayJerseyColor,
             });
+            data.playerData = JSON.parse(data.playerData);
             for (let i=0;i<data.playerData.length; i++)
             {
                 await db.cauThu.create({

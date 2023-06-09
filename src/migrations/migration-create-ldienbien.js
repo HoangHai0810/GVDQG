@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       maCauThu: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'cauThus',
           key: 'maCauThu'

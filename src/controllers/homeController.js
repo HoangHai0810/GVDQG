@@ -2,7 +2,6 @@ import { render } from "ejs";
 import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
-import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
 let getHomePage = async (req, res) => {
     try {
@@ -120,7 +119,7 @@ let postTeam = async (req, res) => {
     //     // Lưu thông tin đội bóng vào CSDL
     //     let teaminfo = await db.Doibong.create({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
     //     console.log (teaminfo)
-    console.log(req.body);
+    console.log(req.body.playerData.length);
     let mes = await CRUDSevice.createTeam(req.body);
     res.redirect('/banquanly');
 }
