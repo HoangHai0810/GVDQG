@@ -34,8 +34,18 @@ let createTeam = async(data) => {
                 sanNha: data.homeGround,
                 mauAoSanNha: data.homeJerseyColor,
                 mauAoSanKhach: data.awayJerseyColor,
-            })
-
+            });
+            for (let i=0;i<data.playerData.length; i++)
+            {
+                await db.cauThu.create({
+                    tenCauThu: data.playerData[i][1],
+                    soAo: data.playerData[i][2],
+                    viTri: data.playerData[i][3],
+                    ngaySinh: data.playerData[i][4],
+                    chieuCao: data.playerData[i][5],
+                    canNang: data.playerData[i][6]
+                })
+            }      
             reslove('Added Team!')
         } catch(e) {
             reject(e);

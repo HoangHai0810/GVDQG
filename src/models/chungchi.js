@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
+    maLoaiChungChi: DataTypes.STRING,
     ngayCap: DataTypes.DATE,
     noiCap: DataTypes.TEXT
   }, {
