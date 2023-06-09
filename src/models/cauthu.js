@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const doibong = require('./doibong');
 module.exports = (sequelize, DataTypes) => {
   class cauThu extends Model {
     /**
@@ -20,6 +21,20 @@ module.exports = (sequelize, DataTypes) => {
     maCauThu: {
       type: DataTypes.STRING,
       primaryKey: true,
+    },
+    tenDoiBong: {
+      type: sequelize.STRING,
+      references: {
+        model: 'doiBongs',
+        key: 'tenDoiBong'
+      }
+    },
+    maLoaiCauThu: {
+      type: sequelize.STRING,
+      references: {
+        model: 'loaiCauThus',
+        key: 'maLoaiCauThu'
+      }
     },
     tenCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,

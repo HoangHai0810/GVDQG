@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            dienBien.belongsTo(models.doiBong, { foreignKey: 'maDoiBong', as: 'FK_dienBien_doiBong' });
+            dienBien.belongsTo(models.doiBong, { foreignKey: 'tenDoiBong', as: 'FK_dienBien_doiBong' });
             dienBien.belongsTo(models.cauThu, { foreignKey: 'maCauThu', as: 'FK_dienBien_cauThu' });
             dienBien.belongsTo(models.lichThiDau, { foreignKey: 'maLich', as: 'FK_dienBien_lichThiDau' });
             dienBien.belongsTo(models.loaiBanThang, { foreignKey: 'maLoaiBanThang', as: 'FK_dienBien_loaiBanThang' });
@@ -19,7 +19,42 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     dienBien.init({
-        thoiDiem: DataTypes.INTEGER
+        thoiDiem: DataTypes.INTEGER,
+        tenDoiBong: {
+            type: sequelize.STRING,
+            references: {
+                model: 'doiBongs',
+                key: 'tenDoiBong'
+            }
+        },
+        maCauThu: {
+            type: sequelize.STRING,
+            references: {
+                model: 'cauThus',
+                key: 'maCauThu'
+            }
+        },
+        maLich: {
+            type: sequelize.STRING,
+            references: {
+                model: 'lichThiDaus',
+                key: 'maLich'
+            }
+        },
+        maLoaiBanThang: {
+            type: sequelize.STRING,
+            references: {
+                model: 'loaiBanThangs',
+                key: 'maLoaiBanThang'
+            }
+        },
+        maLoaiThe: {
+            type: sequelize.STRING,
+            references: {
+                model: 'loaiThes',
+                key: 'maLoaiThe'
+            }
+        },
     }, {
         sequelize,
         modelName: 'dienBien',

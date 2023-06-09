@@ -20,6 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
+    maLoaiChungChi: {
+      type: sequelize.STRING,
+      references: {
+        model: 'loaiChungChis',
+        key: 'maLoaiChungChi'
+      }
+    },
     ngayCap: DataTypes.DATE,
     noiCap: DataTypes.TEXT
   }, {
