@@ -6,11 +6,15 @@ import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
 let getHomePage = async (req, res) => {
     try {
+        let dataTongKet = await CRUDSevice.getAllTongKet({
+            raw: true
+        });
         let data = await CRUDSevice.getAllUser({
             raw: true,
         });
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
+            dataTongKet: dataTongKet,
         });
     } catch (e) {
         console.log(e);

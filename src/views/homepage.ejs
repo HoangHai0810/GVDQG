@@ -3802,46 +3802,31 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
-
-                                        <tr class="tableDark" data-compseason="489" data-filtered-entry-size="20"
-                                            data-filtered-table-row="11" data-filtered-table-row-name="Manchester City"
-                                            data-filtered-table-row-opta="t43" data-position="1"
-                                            data-filtered-table-row-abbr="11">
+                                        <% for (let i=0; i<dataTongKet.length; i++) { %>
+                                        <tr class="tableDark">
                                             <td class="pos button-tooltip" tabindex="0" id="Tooltip">
-                                                <span class="value">1</span>
-                                                <span class="movement  none">
-                                                    <span class="tooltipContainer tooltip-left" role="tooltip">
-                                                        <span class="tooltip-content">Previous Position
-                                                            <span class="resultHighlight">
-                                                                1
-                                                            </span>
-                                                        </span>
-                                                    </span>
-
-                                                </span>
+                                                <span class="value"><%= i+1 %></span>
                                             </td>
                                             <td class="team" scope="row">
                                                 <a href="/clubs/11/Manchester-City/overview">
-                                                    <span class="badge badge-image-container"
-                                                        data-widget="club-badge-image" data-size="25">
+                                                    <span class="badge badge-image-container">
                                                         <img class="badge-image badge-image--25"
                                                             src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
                                                             srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
                                                     </span>
-                                                    <span class="long">Manchester City</span>
-                                                    <span class="short">MCI</span>
+                                                    <span class="long"><%= dataTongKet[i].tenDoiBong %></span>
                                                 </a>
                                             </td>
-                                            <td>36</td>
-                                            <td>28</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td class="hideSmall">93</td>
-                                            <td class="hideSmall">31</td>
+                                            <td><%= dataTongKet[i].soTranDau %></td>
+                                            <td><%= dataTongKet[i].soTranThang %></td>
+                                            <td><%= dataTongKet[i].soTranHoa %></td>
+                                            <td><%= dataTongKet[i].soTranThua %></td>
+                                            <td class="hideSmall"><%= dataTongKet[i].soBanThang %></td>
+                                            <td class="hideSmall"><%= dataTongKet[i].soBanThua %></td>
                                             <td>
-                                                +62
+                                                <%= dataTongKet[i].hieuSo %>
                                             </td>
-                                            <td class="points">88</td>
+                                            <td class="points"><%= dataTongKet[i].diemSo %></td>
                                             <td class="form hideMed">
                                                 <li tabindex="0" class="win button-tooltip" id="Tooltip">
                                                     <abbr title="Won" class="form-abbreviation">W</abbr>
@@ -4037,78 +4022,7 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                        <tr class="expandable" data-filtered-table-row-expander="11">
-                                            <td colspan="13">
-                                                <a href="/clubs/11/Manchester-City/overview" class="expandableTeam">
-                                                    <span class="badge badge-image-container"
-                                                        data-widget="club-badge-image" data-size="50">
-                                                        <img class="badge-image badge-image--50"
-                                                            src="https://resources.premierleague.com/premierleague/badges/50/t43.png"
-                                                            srcset="https://resources.premierleague.com/premierleague/badges/50/t43@x2.png 2x">
-                                                    </span>
-                                                    <span class="teamName">Manchester City</span>
-                                                </a>
-                                                <div class="expandableFixtures">
-                                                    <div class="resultWidget">
-                                                        <div class="label"><strong>Recent Result</strong> - Sunday 21
-                                                            May
-                                                            2023</div>
-                                                        <a href="/match/75275" class="matchAbridged pre">
-                                                            <span class="teamName"><abbr
-                                                                    title="Manchester City">MCI</abbr></span>
-                                                            <span class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="20">
-                                                                <img class="badge-image badge-image--20"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t43.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t43@x2.png 2x">
-                                                            </span>
-                                                            <span class="score">1 <span>-</span>0</span>
-                                                            <span class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="20">
-                                                                <img class="badge-image badge-image--20"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t8.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t8@x2.png 2x">
-                                                            </span>
-                                                            <span class="teamName"><abbr
-                                                                    title="Chelsea">CHE</abbr></span>
-                                                            <span class="icn arrow-right"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="resultWidget">
-                                                        <div class="label"><strong>Next Fixture</strong> - Wednesday 24
-                                                            May
-                                                            2023</div>
-                                                        <a href="/match/75224" class="matchAbridged pre">
-                                                            <span class="teamName"><abbr
-                                                                    title="Brighton and Hove Albion">BHA</abbr></span>
-                                                            <span class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="20">
-                                                                <img class="badge-image badge-image--20"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t36.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t36@x2.png 2x">
-                                                            </span>
-                                                            <time>20:00</time>
-                                                            <span class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="20">
-                                                                <img class="badge-image badge-image--20"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t43.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t43@x2.png 2x">
-                                                            </span>
-                                                            <span class="teamName"><abbr
-                                                                    title="Manchester City">MCI</abbr></span>
-                                                            <span class="icn arrow-right"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="btnContainer">
-                                                        <a href="/clubs/11/Manchester-City/overview"
-                                                            class="btn-highlight" role="btn">Visit <span
-                                                                class="visuallyHidden">Manchester City
-                                                            </span>Club Page<span
-                                                                class="icn arrow-rightwhite"></span></a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>
