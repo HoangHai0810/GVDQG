@@ -22,21 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    tenDoiBong: {
-      type: sequelize.STRING,
-      references: {
-        model: 'doiBongs',
-        key: 'tenDoiBong'
-      }
-    },
-    maLoaiCauThu: {
-      type: sequelize.STRING,
-      references: {
-        model: 'loaiCauThus',
-        key: 'maLoaiCauThu'
-      }
-    },
     tenCauThu: DataTypes.STRING,
+    tenDoiBong: DataTypes.STRING,
+    maLoaiCauThu: DataTypes.STRING,
     viTri: DataTypes.TEXT,
     soAo: DataTypes.INTEGER,
     ngaySinh: DataTypes.DATE,

@@ -10,6 +10,20 @@ module.exports = {
       tenCauThu: {
         type: Sequelize.STRING
       },
+      tenDoiBong: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'doiBongs',
+          key: 'tenDoiBong'
+        }
+      },
+      maLoaiCauThu: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'loaiCauThus',
+          key: 'maLoaiCauThu'
+        }
+      },
       viTri: {
         type: Sequelize.TEXT
       },

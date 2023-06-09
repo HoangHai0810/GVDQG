@@ -7,6 +7,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      maLoaiChungChi: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'loaiChungChis',
+          key: 'maLoaiChungChi'
+        }
+      },
       ngayCap: {
         type: Sequelize.DATE
       },

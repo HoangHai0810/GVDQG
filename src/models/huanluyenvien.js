@@ -21,27 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     tenHLV: DataTypes.TEXT,
-    tenDoiBong: {
-      type: sequelize.STRING,
-      references: {
-        model: 'doiBongs',
-        key: 'tenDoiBong'
-      }
-    },
-    soChungChi: {
-      type: sequelize.STRING,
-      references: {
-        model: 'chungChis',
-        key: 'soChungChi'
-      }
-    },
-    maChucVu: {
-      type: sequelize.STRING,
-      references: {
-        model: 'chucVus',
-        key: 'maChucVu'
-      }
-    },
+    tenDoiBong: DataTypes.STRING,
+    soChungChi: DataTypes.STRING,
+    maChucVu: DataTypes.STRING,
     ngaySinh: DataTypes.DATE,
     SDT: DataTypes.STRING,
     quocTich: DataTypes.TEXT,

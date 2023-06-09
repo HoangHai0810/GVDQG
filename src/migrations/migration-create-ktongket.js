@@ -7,6 +7,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      tenDoiBong: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'doiBongs',
+          key: 'tenDoiBong'
+        }
+      },
       soTranDau: {
         type: Sequelize.INTEGER
       },
