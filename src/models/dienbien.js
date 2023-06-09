@@ -19,42 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     dienBien.init({
+        tenDoiBong: DataTypes.STRING,
+        maCauThu: DataTypes.STRING,
+        maLich: DataTypes.STRING,
+        maLoaiBanThang: DataTypes.STRING,
+        maLoaiThe: DataTypes.STRING,
         thoiDiem: DataTypes.INTEGER,
-        tenDoiBong: {
-            type: sequelize.STRING,
-            references: {
-                model: 'doiBongs',
-                key: 'tenDoiBong'
-            }
-        },
-        maCauThu: {
-            type: sequelize.STRING,
-            references: {
-                model: 'cauThus',
-                key: 'maCauThu'
-            }
-        },
-        maLich: {
-            type: sequelize.STRING,
-            references: {
-                model: 'lichThiDaus',
-                key: 'maLich'
-            }
-        },
-        maLoaiBanThang: {
-            type: sequelize.STRING,
-            references: {
-                model: 'loaiBanThangs',
-                key: 'maLoaiBanThang'
-            }
-        },
-        maLoaiThe: {
-            type: sequelize.STRING,
-            references: {
-                model: 'loaiThes',
-                key: 'maLoaiThe'
-            }
-        },
     }, {
         sequelize,
         modelName: 'dienBien',

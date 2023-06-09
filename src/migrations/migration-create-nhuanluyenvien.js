@@ -10,6 +10,27 @@ module.exports = {
       tenHLV: {
         type: Sequelize.TEXT
       },
+      tenDoiBong: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'doiBongs',
+          key: 'tenDoiBong'
+        }
+      },
+      soChungChi: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'chungChis',
+          key: 'soChungChi'
+        }
+      },
+      maChucVu: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'chucVus',
+          key: 'maChucVu'
+        }
+      },
       ngaySinh: {
         type: Sequelize.DATE
       },

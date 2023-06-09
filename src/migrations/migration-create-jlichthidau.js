@@ -7,6 +7,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      tenDoiBong1: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'doiBongs',
+          key: 'tenDoiBong'
+        }
+      },
+      tenDoiBong2: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'doiBongs',
+          key: 'tenDoiBong'
+        }
+      },
       ngayGio: {
         type: Sequelize.DATE
       },

@@ -18,13 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    tenDoiBong: {
-      type: sequelize.STRING,
-      references: {
-        model: 'doiBongs',
-        key: 'tenDoiBong'
-      }
-    },
+    tenDoiBong: DataTypes.STRING,
     soTranDau: DataTypes.INTEGER,
     soTranThang: DataTypes.INTEGER,
     soTranHoa: DataTypes.INTEGER,
