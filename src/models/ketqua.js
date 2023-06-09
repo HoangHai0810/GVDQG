@@ -19,6 +19,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             primaryKey: true,
         },
+        maLich: {
+            type: sequelize.STRING,
+            references: {
+                model: 'lichThiDaus',
+                key: 'maLich'
+            }
+        },
         soBanThangDoi1: DataTypes.INTEGER,
         soBanThangDoi2: DataTypes.INTEGER,
         soTheVang: DataTypes.INTEGER,

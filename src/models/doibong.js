@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       doiBong.hasMany(models.lichThiDau);
       doiBong.hasMany(models.dienBien);
       doiBong.hasMany(models.huanLuyenVien);
-      doiBong.hasMany(models.tongKet);
+      doiBong.hasMany(models.tongKet, { foreignKey: 'tenDoiBong' });
     }
   };
   doiBong.init({
