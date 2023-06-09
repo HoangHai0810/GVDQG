@@ -2,7 +2,6 @@ import { render } from "ejs";
 import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
-import migrationCreateDoibong from "../migrations/migration-create-doibong";
 
 let getHomePage = async (req, res) => {
     try {
