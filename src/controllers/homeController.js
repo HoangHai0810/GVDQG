@@ -18,6 +18,7 @@ let getHomePage = async (req, res) => {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
+            dataDoiBong: dataDoiBong,
         });
     } catch (e) {
         console.log(e);
