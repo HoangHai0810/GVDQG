@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="twitter:title" content="Premier League Football News, Fixtures, Scores & Results" />
+    <meta name="keywords" content="Premier League, Football, Soccer, Official" />
+    <meta property="og:type" content="website" />
+    <meta name="description"
+        content="For all the latest Premier League news, visit the official website of the Premier League." />
+    <meta name="twitter:description"
+        content="For all the latest Premier League news, visit the official website of the Premier League." />
+    <meta name="twitter:image"
+        content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
+    <meta property="og:title" content="Premier League Football News, Fixtures, Scores & Results" />
+    <meta property="og:image" content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    <meta name="theme-color" content="#38003C" />
+    <title>Quản lý giải bóng đá vô địch quốc gia</title>
+
+    <!-- Designed and built by Pulselive - www.pulselive.com -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="./css/badge-abbreviations.css">
+    <link rel="stylesheet" href="./css/screen.css">
+    <!--<![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <meta name="apple-itunes-app" content="app-id=1138895159">
+</head>
+
+<body>
+    <header class="masthead">
+        <!--Các câu lạc bộ-->
+        <nav class="clubNavigation" data-script="pl_global-header" role="menubar">
+
+            <div class="clubSitesHeading">
+                <!-- TO-TRANSLATE -->
+                <h4>Các câu lạc bộ:
+                </h4>
+            </div>
+            <ul class="clubList" role="menu">
+                <li>
+                    <a target="_blank" href="        https://www.afcb.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t91.png"
+                                srcset="./photos/badges/25/t91@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t91.png"
+                                srcset="./photos/badges/50/t91@x2.png 2x" />
+                            <span class="visuallyHidden">AFC Bournemouth</span>
+                        </div>
+                        <span class="name">AFC Bournemouth</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.arsenal.com?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t3.png"
+                                srcset="./photos/badges/25/t3@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t3.png"
+                                srcset="./photos/badges/50/t3@x2.png 2x" />
+                            <span class="visuallyHidden">Arsenal</span>
+                        </div>
+                        <span class="name">Arsenal</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.avfc.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t7.png"
+                                srcset="./photos/badges/25/t7@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t7.png"
+                                srcset="./photos/badges/50/t7@x2.png 2x" />
+                            <span class="visuallyHidden">Aston Villa</span>
+                        </div>
+                        <span class="name">Aston Villa</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.brentfordfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t94.png"
+                                srcset="./photos/badges/25/t94@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t94.png"
+                                srcset="./photos/badges/50/t94@x2.png 2x" />
+                            <span class="visuallyHidden">Brentford</span>
+                        </div>
+                        <span class="name">Brentford</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.brightonandhovealbion.com?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t36.png"
+                                srcset="./photos/badges/25/t36@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t36.png"
+                                srcset="./photos/badges/50/t36@x2.png 2x" />
+                            <span class="visuallyHidden">Brighton & Hove Albion</span>
+                        </div>
+                        <span class="name">Brighton & Hove Albion</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.chelseafc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t8.png"
+                                srcset="./photos/badges/25/t8@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t8.png"
+                                srcset="./photos/badges/50/t8@x2.png 2x" />
+                            <span class="visuallyHidden">Chelsea</span>
+                        </div>
+                        <span class="name">Chelsea</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.cpfc.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t31.png"
+                                srcset="./photos/badges/25/t31@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t31.png"
+                                srcset="./photos/badges/50/t31@x2.png 2x" />
+                            <span class="visuallyHidden">Crystal Palace</span>
+                        </div>
+                        <span class="name">Crystal Palace</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.evertonfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t11.png"
+                                srcset="./photos/badges/25/t11@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t11.png"
+                                srcset="./photos/badges/50/t11@x2.png 2x" />
+                            <span class="visuallyHidden">Everton </span>
+                        </div>
+                        <span class="name">Everton </span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.fulhamfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t54.png"
+                                srcset="./photos/badges/25/t54@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t54.png"
+                                srcset="./photos/badges/50/t54@x2.png 2x" />
+                            <span class="visuallyHidden">Fulham</span>
+                        </div>
+                        <span class="name">Fulham</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.leedsunited.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t2.png"
+                                srcset="./photos/badges/25/t2@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t2.png"
+                                srcset="./photos/badges/50/t2@x2.png 2x" />
+                            <span class="visuallyHidden">Leeds United</span>
+                        </div>
+                        <span class="name">Leeds United</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.lcfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t13.png"
+                                srcset="./photos/badges/25/t13@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t13.png"
+                                srcset="./photos/badges/50/t13@x2.png 2x" />
+                            <span class="visuallyHidden">Leicester City</span>
+                        </div>
+                        <span class="name">Leicester City</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.liverpoolfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t14.png"
+                                srcset="./photos/badges/25/t14@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t14.png"
+                                srcset="./photos/badges/50/t14@x2.png 2x" />
+                            <span class="visuallyHidden">Liverpool</span>
+                        </div>
+                        <span class="name">Liverpool</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.mancity.com?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t43.png"
+                                srcset="./photos/badges/25/t43@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t43.png"
+                                srcset="./photos/badges/50/t43@x2.png 2x" />
+                            <span class="visuallyHidden">Manchester City</span>
+                        </div>
+                        <span class="name">Manchester City</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.manutd.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t1.png"
+                                srcset="./photos/badges/25/t1@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t1.png"
+                                srcset="./photos/badges/50/t1@x2.png 2x" />
+                            <span class="visuallyHidden">Manchester United</span>
+                        </div>
+                        <span class="name">Manchester United</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.nufc.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t4.png"
+                                srcset="./photos/badges/25/t4@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t4.png"
+                                srcset="./photos/badges/50/t4@x2.png 2x" />
+                            <span class="visuallyHidden">Newcastle United</span>
+                        </div>
+                        <span class="name">Newcastle United</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.nottinghamforest.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t17.png"
+                                srcset="./photos/badges/25/t17@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t17.png"
+                                srcset="./photos/badges/50/t17@x2.png 2x" />
+                            <span class="visuallyHidden">Nottingham Forest</span>
+                        </div>
+                        <span class="name">Nottingham Forest</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.southamptonfc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t20.png"
+                                srcset="./photos/badges/25/t20@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t20.png"
+                                srcset="./photos/badges/50/t20@x2.png 2x" />
+                            <span class="visuallyHidden">Southampton</span>
+                        </div>
+                        <span class="name">Southampton</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.tottenhamhotspur.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t6.png"
+                                srcset="./photos/badges/25/t6@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t6.png"
+                                srcset="./photos/badges/50/t6@x2.png 2x" />
+                            <span class="visuallyHidden">Tottenham Hotspur</span>
+                        </div>
+                        <span class="name">Tottenham Hotspur</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        http://www.whufc.com/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t21.png"
+                                srcset="./photos/badges/25/t21@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t21.png"
+                                srcset="./photos/badges/50/t21@x2.png 2x" />
+                            <span class="visuallyHidden">West Ham United</span>
+                        </div>
+                        <span class="name">West Ham United</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="        https://www.wolves.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link
+" role="menuitem">
+                        <div class="badge badge--small badge-image-container">
+                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t39.png"
+                                srcset="./photos/badges/25/t39@x2.png 2x" />
+                        </div>
+                        <div class="badge badge--large badge-image-container" data-size="50">
+                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t39.png"
+                                srcset="./photos/badges/50/t39@x2.png 2x" />
+                            <span class="visuallyHidden">Wolverhampton Wanderers</span>
+                        </div>
+                        <span class="name">Wolverhampton Wanderers</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!--Phần navbar-->
+        <div class="fixedContainer" id="navbar">
+            <a href="/" class="u-hide-tab logoContainer logo-resizable" id="mainlogo"
+                aria-label="Premier League Home Page on logo link">
+                <svg class="logo logo-resizable" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 131.1 166.7"
+                    style="enable-background:new 0 0 131.1 166.7;transition: width 0.3s, height 0.3s;"
+                    xml:space="preserve">
+                    <style type="text/css">
+                        .st0 {
+                            fill: #360D3A;
+                        }
+                    </style>
+                    <path class="st0" d="M28.8,18.8c6.8,3.2,11.3,7.1,12.1,7.7c-0.3-1.8-1.7-10.3-2.6-15.5c3.9,2.7,13.3,9.2,16.3,11.3
+                C55.8,18.5,60.2,6,60.2,6s7.8,12.5,9,14.6C70.9,19,80.1,8.6,82.5,6c0.5,5.9,0.9,14.5,1.1,15.7c0.5-0.6,4.1-5.6,10-10.3
+                c-2.6,5.1-3.8,12.1-4.4,17.8c-5.9-1.7-12.1-2.6-18.4-2.6c-12.2,0-23.8,3.2-33.8,8.9C35.3,30,32.6,23.2,28.8,18.8z M122.6,126.2
+                l-5.4-6c-1.5,16.1-9.5,29.9-24,39.5l-2.3-8.7c-12.4,8.9-33.5,14.6-51.7,4.4c2.3-11.5,4.2-23.2,0-37.2c-10.1,15.5-19,21.7-19,21.7
+                c-6.8-11.5-6.2-34.4-4.2-41.2l-11.3,3.5c0-7.7,5.6-24,13.6-33.2l-6.9-1.1c4.8-9.8,11.9-18.2,20.8-24.7c-2.7,4.4-2.7,14.6,5,18.5
+                c-3.3-5.7-3.6-12.8-0.3-16.6c3.5-3.8,9.2-2.4,12.8,0.5c-1.1-3.2-4.4-7.2-9-7.5c9-4.7,19.5-7.2,30.3-7.2c2.1,0,4.1,0.2,6,0.3
+                c3.2,1.2,7.8,5.7,10,8.6c0,0,0.2-3.3-1.7-7.2c11.8,2.9,17.5,7.7,19.8,10c0.5,5.1,2,8.1,4.1,13c-3.8-4.2-13.4-11.2-18.1-12.8
+                c0,0-0.5,4.4-2,6.5c-9.2-6.6-13.6-8.3-13.6-8.3C65.3,42,59,46,55.4,49l3,2.6c-6,1.8-10,7.1-10,7.1c0,0.2,5.4,0.9,5.4,0.9
+                s-0.6,6.3,7.4,10.3c6.8,3.3,16.4-0.8,25.6,2.9c-6-6.9-10.1-10.1-10.1-10.1s-2.4-0.5-4.1-0.5c-2.1,0-5.3,0.5-8.6-0.9
+                c-1.7-0.6-3.6-1.8-5-2.7c0,0,4.2-4.4,10.4-5.3c0,0,5.6,1.5,10,4.8c2.9-2.9,6-2.7,6-2.7s-3,2.9-2.1,6.2c4.4,3.9,9.2,9.5,9.2,9.5
+                c4.8-2.7,15.4-2.1,17.6,0.5c-2.7-3.6-6.8-6.5-9.8-9c-0.3-1.4-3.8-6-4.2-6.5c0,0,3.2,1.1,6,3.5c0.8-1.2,2.4-2.4,4.4-2.9
+                c2.1,1.8,2.6,4.5,2.4,5c-0.9,1.2-2,1.7-2,1.7l5.1,5.6l0.5-4.1C124.4,81.8,130.9,101.5,122.6,126.2z M100.2,89.7v-8.7
+                c0,0-3.9-1.2-8.1-4.5c-8.4,1.2-18.5,9.7-18.5,9.7s3.5,6.5,7.2,13.6C87.4,100.5,97.2,92.3,100.2,89.7z M108.6,105.5
+                c0,0-0.6-3.6-3.6-6.9l-6.5,0.2c0,0-8.9,7.5-14.2,7.7c0,0,3,5.6,4.5,8.4c3-0.6,8.1-3,10.3-5.4c0,0,1.4,4.5,1.1,9.8
+                C103.2,117.4,107.3,112.8,108.6,105.5z M111.3,76.7c-3.3,2.7-6,4.4-6,4.4v8.7c2.4,2.6,4.7,4.8,6.5,8.7
+                C115.1,92.7,114.3,84,111.3,76.7z" />
+                </svg>
+                <div class="logoBackground logo-resizable"></div>
+            </a>
+            <div class="navContainer" data-script="pl_global-header">
+                <section id="mainNav" class="navBar" role="menubar">
+                    <div class="menuBtn" role="button" id="hamburgerToggle" aria-expanded="false">
+                        <div class="menuBtnContainer">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <nav class="mainNav">
+                        <ul class="pageLinks" role="menu">
+                            <li class=" premierleague 
+    " tabindex="0" aria-haspopup="true" role="menuitem">
+                                <div role="button" class="navLink active  " tabindex="index">
+                                    <span class="navText">Giải vô địch quốc gia</span>
+                                    <span class="icn chevron-dropdown"></span>
+                                </div>
+
+                                <div class="dropdown " aria-hidden="true">
+                                    <ul role="menu">
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="trangchu" role="menuitem">
+                                                Trang chủ
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="trandau" role="menuitem">
+                                                Lịch thi đấu
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="ketqua" role="menuitem">
+                                                Kết quả
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="bangxephang" role="menuitem">
+                                                Bảng xếp hạng
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="caulacbo" role="menuitem">
+                                                Câu lạc bộ
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="#" data-tab="cauthu" role="menuitem">
+                                                Cầu thủ
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class=" about " role="menuitem">
+                                <div role="button" class="navLink   " tabindex="index">
+                                    <span class="navText">Thông tin</span>
+                                    <span class="icn chevron-dropdown"></span>
+                                </div>
+
+                                <div class="dropdown " aria-hidden="true">
+                                    <ul role="menu">
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="/thongtin/giaidau" role="menuitem">
+                                                Thông tin giải đấu
+                                            </a>
+                                        </li>
+                                        <li tabindex="-1">
+                                            <a tabindex="0" href="/thongtin/nhom" role="menuitem">
+                                                Thông tin nhóm
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="more " tabindex="0" aria-haspopup="true" role="menuitem">
+                                <div role="button" class="navLink ">More<span class="icn chevron-dropdown"></span></div>
+                                <div class="dropdown" aria-hidden="true">
+                                    <ul role="menu">
+                                        <li>
+                                            <a href="/trongtai" role="menuitem">Trọng tài</a>
+                                        </li>
+                                        <li>
+                                            <a href="/huanluyenvien" role="menuitem">Huấn luyện viên</a>
+                                        </li>
+                                        <li>
+                                            <a href="/lienhe" role="menuitem">Liên hệ</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="navOption search">
+                        <div class="searchBtn headerSearchButton" role="button" tabindex="0"><span
+                                class="visuallyHidden">Search</span>
+                            <div alt="" class="icn search-w"></div>
+                        </div>
+                    </div>
+                </section>
+                <div class="searchBar searchBarContainer" data-widget="search-header-redirect" role="search">
+                    <div class="searchBox">
+                        <div class="plSearch js-search-input-container">
+                            <input id="searchPremierLeagueInput" class="searchInput searchInputContainer" type="text"
+                                placeholder="Tìm cầu thủ hoặc câu lạc bộ">
+                            <div class="searchBar__predicted-search-wrapper">
+                                <div class="searchBar__predicted-search-content-wrapper js-predicted-search-wrapper">
+                                </div>
+                                <div class="loader js-loader u-hide">
+                                    <div class="loader-small">
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="search-input__button search-input__button--dark js-empty-input-btn">
+                                <svg class="search-input__icon">
+                                </svg>
+                            </button>
+                            <span class="focusBorder"></span>
+                            <span class="searchBtnContainer searchButtonContainer">
+                                <input type="submit" class="searchInputBtn" tabindex="0" id="searchPremierLeagueInput"
+                                    aria-label="Submit search">
+                                <span class="btnBg"></span>
+                                <span class="icn search-sm"><span class="visuallyHidden">Submit search</span></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="searchBar__suggested-wrapper">
+                        <div class="searchBar__suggested-content-wrapper">
+                            <div class="searchBar__suggested-section">
+                                <h3 class="searchBar__suggested-section-title">Đề xuất</h3>
+
+                            </div>
+                            <div class="searchBar__suggested-section">
+                                <h3 class="searchBar__suggested-section-title">Cầu thủ</h3>
+
+                                <div class="searchBar__suggested-item-wrapper">
+                                    <button class="searchBar__suggested-item btn js-suggested-item"
+                                        data-player-id="65970" data-title="BuiLeTrongDuc">Bùi Lê Trọng Đức</button>
+                                    <button class="searchBar__suggested-item btn js-suggested-item"
+                                        data-player-id="5178" data-title="TruongKhanhLong">Trương Khánh Long</button>
+                                    <button class="searchBar__suggested-item btn js-suggested-item"
+                                        data-player-id="24630" data-title="NguyenChiThi">Nguyễn Chí Thi</button>
+                                    <button class="searchBar__suggested-item btn js-suggested-item"
+                                        data-player-id="70287" data-title="NguyenTienThinh">Nguyễn Tiến Thịnh</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchOverlay"></div>
+            </div>
+            <nav class="subNav" role="menubar">
+                <ul>
+                    <li><a href="#" data-tab="trandau" role="menuitem">Phân quyền tài khoản</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+        <!--Thanh loading-->
+        <div class="loader js-tab-loader u-hide">
+            <div class="loader-small">
+                <div class="line"></div>
+            </div>
+        </div>
+        <!--Các tài khoản đã phân quyền-->
+        
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                border: 1px solid black;
+            }
+    
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+            .action-buttons{
+                display: flex;
+                gap: 5px;
+            }
+            .action-buttons button{
+                border: none;
+                background-color: transparent;
+                margin-right: 0;
+            }
+        </style>
+        <script>
+            function addRow() {
+                var table = document.getElementById("myTable");
+                var row = table.insertRow(-1);
+
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = "<input type='text'>";
+
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = "<input type='text'>";
+
+                var cell3 = row.insertCell(2);
+                cell3.innerHTML = "<input type='text'>";
+
+                var cell4 = row.insertCell(3);
+                cell4.innerHTML = "<input type='text'>";
+                
+                var cell5 = row.insertCell(4);
+                cell5.innerHTML = "<input type='text'>";
+                
+                var cell6 = row.insertCell(5);
+                cell6.innerHTML = "<input type='text'>";
+
+                var cell7 = row.insertCell(6);
+                cell7.innerHTML = createRoleSelect();
+                
+                addDeleteButton(row);
+                addPermissionButton(row);
+            }
+
+            function createRoleSelect(){
+                var select = "<select>";
+                    select += "<option value='role1'>--</option>";
+                    select += "<option value='role1'>Admin</option>";
+                    select += "<option value='role2'>Ban Quản lý</option>";
+                    select += "<option value='role3'>Manager</option>";
+                    select += "</select>";
+                return select;
+            }
+            function addDeleteButton(row)
+            {
+                var cell = row.insertCell(7);
+                var deleteButton = document.createElement("button");
+                deleteButton.innerHTML = "Xóa";
+                deleteButton.onclick = function()
+                {
+                    var row = this.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                };
+                cell.appendChild(deleteButton);
+            }
+            function addPermissionButton(row) 
+            {
+            var cell = row.insertCell(7);
+            var permissionButton = document.createElement("button");
+            permissionButton.innerHTML = "Phân quyền";
+            permissionButton.onclick = function() {
+                // Xử lý logic khi nhấp vào nút "Phân quyền"
+                var row = this.parentNode.parentNode;
+                // ...
+            };
+            cell.appendChild(permissionButton);
+            }
+        </script>
+        <table id="myTable">
+            <tr>
+                <th>STT</th>
+                <th>Tên người dùng</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Vai trò</th>
+            </tr>
+        </table>
+        <button onclick="addRow()">Thêm dòng</button>
+
+    <!--Footer chính-->
+    <footer class="mainFooter">
+        <!--Nội dung Footer-->
+        <div class="footerContent">
+            <div class="wrapper">
+                <!--GVDQG-->
+                <div class="footerCol ">
+                    <h3 class="subHeader">Giải vô địch quốc gia</h3>
+                    <ul class="list--premier-league" role="menu">
+                        <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
+                                <span class=" link">Trang chủ</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
+                                <span class=" link">Trận đấu</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
+                                <span class=" link">Kết quả</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
+                                <span class=" link">Bảng xếp hang</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
+                                <span class=" link">Câu lạc bộ</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
+                                <span class=" link">Cầu thủ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--More-->
+                <div class="footerCol ">
+                    <h3 class="subHeader">More</h3>
+                    <ul class="list--more" role="menu">
+                        <li> <a href="//www.premierleague.com/referees" target="_self" role="menuitem">
+                                <span class=" link">Trọng tài</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/managers" target="_self" role="menuitem">
+                                <span class=" link">Huấn luyện viên</span>
+                            </a>
+                        </li>
+                        <li> <a href="//www.premierleague.com/contact" target="_self" role="menuitem">
+                                <span class=" link">Liên hệ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Thông tin nhóm-->
+                <div class="footerCol ">
+                    <h3 class="subHeader">Thông tin nhóm</h3>
+                    <ul class="list--social" role="menu">
+                        <li> <a href="https://www.facebook.com/hai2k3/" target="_blank" role="menuitem">
+                                <span class=" link">Hoàng Hải Anh - 21521819</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                        <li> <a href="https://www.facebook.com/builetrongduc031103" target="_blank" role="menuitem">
+                                <span class=" link">Bùi Lê Tọng Đức - 21520725</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                        <li> <a href="https://www.facebook.com/thinguyen.27072003" target="_blank" role="menuitem">
+                                <span class=" link">Nguyễn Chí Thi - 21522614</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                        <li> <a href="https://www.facebook.com/khanhlong150403" target="_blank" role="menuitem">
+                                <span class=" link">Trương Khánh Long - 21521750</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                        <li> <a href="https://www.facebook.com/notthin123" target="_blank" role="menuitem">
+                                <span class=" link">Nguyễn Tiến Thịnh - 21521472</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Giáo viên hướng dẫn-->
+                <div class="footerCol ">
+                    <h3 class="subHeader">Giáo viên hướng dẫn</h3>
+                    <ul class="list--more" role="menu">
+                        <li>
+                            <a href="https://courses.uit.edu.vn/user/profile.php?id=534" target="_self" role="menuitem">
+                                <span class=" link">Đỗ Thị Thanh Tuyền</span>
+                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                        Link</span></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Footer Corporate-->
+        <div class="footerCorporate" data-script="pl_footer" data-widget="footer-corporate">
+            <div class="wrapper col-12">
+                <ul role="menu">
+                    <li><strong>Giải vô địch quốc gia 2023</strong></li>
+                    <li>
+                        <a onclick="scrollToTop()" class="backToTopContainer" role="menuitem"
+                            style="cursor: pointer;">Về đầu trang</a>
+                        <script>
+                            function scrollToTop() {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth"
+                                });
+                            }
+                        </script>
+                    </li>
+                </ul>
+                <div class="official"><a href="//www.premierleague.com" class="icn pl-logo-corporate"></a></div>
+                <style>
+                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings {
+                        padding: 0;
+                        border: 0;
+                        background: none;
+                        color: #000;
+                        font-size: 11px;
+                    }
+
+                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings:hover {
+                        background: none;
+                        color: #000;
+                        text-decoration: underline;
+                    }
+                </style>
+            </div>
+        </div>
+
+    </footer>
+    <script src="./scripts/vendors.min.js"></script>
+    <script src="./scripts/main.min.js"></script>
+    <script src="./widgets/common.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var adfScr = document.createElement("script");
+            adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
+            adfScr.onload = function () {
+                adf.container(998269, 'Master Tag');
+            };
+            document.head.appendChild(adfScr);
+        })();
+    </script>
+    <!--Taskbar Script-->
+    <script>
+        var search = document.querySelector(".searchBtn");
+
+        search.addEventListener("click", function () {
+            if (document.querySelector(".searchBar").classList.contains("open")) {
+                document.querySelector(".searchBar").classList.remove("open");
+                document.querySelector()
+            } else {
+                document.querySelector(".searchBar").classList.add("open");
+            }
+            if (search.classList.contains("active")) {
+                search.classList.remove("active");
+            } else {
+                search.classList.add("active");
+            }
+        });
+
+        const logo = document.querySelector('.logo-resizable');
+
+        window.addEventListener('scroll', function () {
+            var limit = 100;
+
+            // Lấy giá trị cuộn chuột hiện tại
+            var scrollValue = window.scrollY;
+
+            // Tính toán kích thước mới của logo
+            var newSize = Math.max(150 - scrollValue, limit);
+
+            // Cập nhật kích thước của logo
+            logo.style.height = newSize + 'px';
+
+            var fixedPosition = 60;
+
+            if (scrollValue >= fixedPosition) {
+                // Thanh navbar cố định ở đầu trang
+                document.getElementById('navbar').style.position = 'fixed';
+                document.getElementById('navbar').style.top = '0';
+            } else {
+                // Thanh navbar theo dòng chảy bình thường
+                document.getElementById('navbar').style.position = 'static';
+                document.getElementById('navbar').style.top = 'auto';
+            }
+        });
+        // Lắng nghe sự kiện khi tab được click
+        const tabLinks = document.querySelectorAll('nav ul li a');
+
+        //Lắng nghe sự kiện khi nút đăng nhập được click
+        const signinLink = document.querySelector('.fantasySignIn');
+
+        signinLink.addEventListener('click', (e) => {
+            // Loại bỏ lớp active từ tất cả các tab
+            tabLinks.forEach((tab) => {
+                tab.classList.remove('active');
+            });
+            // Ẩn tất cả các nội dung tab
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach((tabContent) => {
+                tabContent.style.display = 'none';
+            });
+            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
+            const selectedTabContent = document.getElementById('dangnhap');
+            selectedTabContent.style.display = 'block';
+            link.classList.add('active');
+        })
+
+        tabLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Loại bỏ lớp active từ tất cả các tab
+                tabLinks.forEach((tab) => {
+                    tab.classList.remove('active');
+                });
+
+                // Ẩn tất cả các nội dung tab
+                const tabContents = document.querySelectorAll('.tab-content');
+                tabContents.forEach((tabContent) => {
+                    tabContent.style.display = 'none';
+                });
+
+                // Lấy tab được click
+                const selectedTab = e.target.getAttribute('data-tab');
+
+                // Hiển thị nội dung của tab được click và thêm lớp active cho tab
+                const selectedTabContent = document.getElementById(selectedTab);
+                selectedTabContent.style.display = 'block';
+                link.classList.add('active');
+            });
+        });
+    </script>
+
+    <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
+        data-page-section="Premier League"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+</body>
+
+</html>
