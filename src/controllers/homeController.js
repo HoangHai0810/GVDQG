@@ -16,12 +16,21 @@ let getHomePage = async (req, res) => {
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
+        });
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+            raw: true,
+        });
+        let dataKetQua = await CRUDSevice.getAllKetQua({
+            raw: true,
         })
+        console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
             dataDoiBong: dataDoiBong,
+            dataLichThiDau: dataLichThiDau,
+            dataKetQua: dataKetQua,
         });
     } catch (e) {
         console.log(e);

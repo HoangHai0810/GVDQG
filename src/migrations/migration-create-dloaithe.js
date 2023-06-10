@@ -5,7 +5,8 @@ module.exports = {
       maLoaiThe: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       tenLoaiThe: {
         type: Sequelize.TEXT

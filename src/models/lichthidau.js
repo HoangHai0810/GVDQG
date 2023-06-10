@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     lichThiDau.init({
         maLich: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             primaryKey: true,
         },
         ngayGio: DataTypes.DATE,

@@ -47,18 +47,17 @@ let createTeam = async(data) => {
                     canNang: data.playerData[i][5]
                 })
             } 
-            await db.tongKet.create({
-                tenDoiBong: data.teamName,
+            await db.tongKet.create({   
+                soBanThangSanKhach: 0,
                 soTranDau: 0,
                 soTranThang: 0,
                 soTranHoa: 0,
-                soBanThang: 0,
-                soBanThua: 0,
-                soBanThangSanKhach: 0,
                 soTheVang: 0,
                 soTheDo: 0,
                 hieuSo: 0,
                 diemSo: 0,
+                soTranThua: 0,
+                tenDoiBong: data.teamName,
             });  
             reslove('Added Team!')
         } catch(e) {
@@ -103,7 +102,7 @@ let getAllTongKet = () => {
 let getAllCauThu = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let cauThu = await sequelize.query("SELECT * FROM `cauThus` GROUP BY tenDoiBong ORDER BY tenCauThu DESC", { type: QueryTypes.SELECT});
+            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT});
             reslove(cauThu);
         } catch(e)
         {
@@ -117,6 +116,30 @@ let getALLDoiBong = () => {
         try {
             let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT});
             reslove(doibong);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
+}
+
+let getAllLichThiDau = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let lichThiDau = await sequelize.query("SELECT distinct DATE(ngayGio) AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) <= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            reslove(lichThiDau);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
+}
+
+let getAllKetQua = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT});
+            reslove(ketqua);
         } catch(e)
         {
             reject(e)
@@ -201,5 +224,7 @@ module.exports = {
     createTeam: createTeam,
     getAllTongKet: getAllTongKet,
     getAllCauThu: getAllCauThu,
-    getALLDoiBong: getALLDoiBong
+    getALLDoiBong: getALLDoiBong,
+    getAllLichThiDau: getAllLichThiDau,
+    getAllKetQua: getAllKetQua,
 }

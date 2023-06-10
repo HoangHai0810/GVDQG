@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   chungChi.init({
     soChungChi: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     maLoaiChungChi: DataTypes.STRING,

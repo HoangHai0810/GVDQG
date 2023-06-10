@@ -5,7 +5,8 @@ module.exports = {
       maHLV: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       tenHLV: {
         type: Sequelize.TEXT
@@ -25,7 +26,7 @@ module.exports = {
         }
       },
       maChucVu: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'chucVus',
           key: 'maChucVu'

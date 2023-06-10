@@ -5,7 +5,8 @@ module.exports = {
       maTK: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       tenDoiBong: {
         type: Sequelize.STRING,
