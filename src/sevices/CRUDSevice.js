@@ -58,8 +58,20 @@ let createTeam = async(data) => {
                     quocTich: data.playerData[i][6],
                     maLoaiCauThu: tempLoaiCT
                 })
-                
-            }      
+            } 
+            await db.tongKet.create({
+                tenDoiBong: data.teamName,
+                soTranDau: 0,
+                soTranThang: 0,
+                soTranHoa: 0,
+                soBanThang: 0,
+                soBanThua: 0,
+                soBanThangSanKhach: 0,
+                soTheVang: 0,
+                soTheDo: 0,
+                hieuSo: 0,
+                diemSo: 0,
+            });  
             reslove('Added Team!')
         } catch(e) {
             reject(e);

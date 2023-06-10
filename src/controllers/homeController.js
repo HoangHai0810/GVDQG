@@ -14,10 +14,14 @@ let getHomePage = async (req, res) => {
         let data = await CRUDSevice.getAllUser({
             raw: true,
         });
+        let dataDoiBong = await CRUDSevice.getALLDoiBong({
+            raw: true,
+        })
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
+            dataDoiBong: dataDoiBong,
         });
     } catch (e) {
         console.log(e);
@@ -126,6 +130,20 @@ let postTeam = async (req, res) => {
     res.redirect('/banquanly');
 }
 
+let getAdmin = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Admin.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -140,5 +158,5 @@ module.exports = {
     getManager: getManager,
     getBanQuanLy: getBanQuanLy,
     postTeam: postTeam,
-    
+    getAdmin: getAdmin,
 }

@@ -16,6 +16,7 @@ let initWebRoutes = (app) => {
     router.get('/manager', homeController.getManager);
     router.get('/banquanly', homeController.getBanQuanLy);
     router.post('/post-teaminf', homeController.postTeam);
+    router.get('/admin', homeController.getAdmin);
     return app.use("/", router);
 }
 
