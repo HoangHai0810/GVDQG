@@ -39,12 +39,12 @@ let createTeam = async(data) => {
             for (let i=0;i<data.playerData.length; i++)
             {
                 await db.cauThu.create({
-                    tenCauThu: data.playerData[i][1],
-                    soAo: data.playerData[i][2],
-                    viTri: data.playerData[i][3],
-                    ngaySinh: data.playerData[i][4],
-                    chieuCao: data.playerData[i][5],
-                    canNang: data.playerData[i][6]
+                    tenCauThu: data.playerData[i][0],
+                    soAo: data.playerData[i][1],
+                    viTri: data.playerData[i][2],
+                    ngaySinh: data.playerData[i][3],
+                    chieuCao: data.playerData[i][4],
+                    canNang: data.playerData[i][5]
                 })
             }      
             reslove('Added Team!')
@@ -85,6 +85,30 @@ let getAllTongKet = () => {
             reject(e);
         }
     })
+}
+
+let getAllCauThu = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let cauThu = await sequelize.query("SELECT * FROM `cauThus` GROUP BY tenDoiBong ORDER BY tenCauThu DESC", { type: QueryTypes.SELECT});
+            reslove(cauThu);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
+}
+
+let getALLDoiBong = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT});
+            reslove(doibong);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
 }
 
 let getUserInfoById = (userId) => {
@@ -163,4 +187,6 @@ module.exports = {
     deleteUserById: deleteUserById,
     createTeam: createTeam,
     getAllTongKet: getAllTongKet,
+    getAllCauThu: getAllCauThu,
+    getALLDoiBong: getALLDoiBong
 }
