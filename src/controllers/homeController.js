@@ -130,6 +130,20 @@ let postTeam = async (req, res) => {
     res.redirect('/banquanly');
 }
 
+let getAdmin = async(req, res) => 
+{
+    try{
+        let data = await CRUDSevice.getAllUser({
+            raw :   true,
+        });
+        return res.render('Admin.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -144,5 +158,5 @@ module.exports = {
     getManager: getManager,
     getBanQuanLy: getBanQuanLy,
     postTeam: postTeam,
-    
+    getAdmin: getAdmin,
 }

@@ -342,6 +342,9 @@ textarea {
     font: inherit;
     margin: 0
 }
+.hot-display-license-info{
+    display: none;
+}
 
 button {
     overflow: visible
