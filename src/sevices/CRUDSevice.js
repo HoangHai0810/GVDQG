@@ -36,15 +36,27 @@ let createTeam = async(data) => {
                 mauAoSanKhach: data.awayJerseyColor,
             });
             data.playerData = JSON.parse(data.playerData);
+            console.log(data.playerData);
             for (let i=0;i<data.playerData.length; i++)
             {
+                var tempLoaiCT = null;
+                if (data.playerData[i][7] === 'Cầu thủ nước ngoài'){
+                    tempLoaiCT = 'NN';
+                }
+                if (data.playerData[i][7] === 'Cầu thủ trong nước'){
+                    tempLoaiCT = 'TN';
+                }
+
                 await db.cauThu.create({
                     tenCauThu: data.playerData[i][0],
                     soAo: data.playerData[i][1],
                     viTri: data.playerData[i][2],
                     ngaySinh: data.playerData[i][3],
                     chieuCao: data.playerData[i][4],
-                    canNang: data.playerData[i][5]
+                    canNang: data.playerData[i][5],
+                    tenDoiBong: data.teamName,
+                    quocTich: data.playerData[i][6],
+                    maLoaiCauThu: tempLoaiCT
                 })
             } 
             await db.tongKet.create({
