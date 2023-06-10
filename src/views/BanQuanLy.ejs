@@ -6570,10 +6570,6 @@
 
                 <div id="playerTable"></div>
 
-                <div id='import-ho-so'>
-                    <input type="file" id="file-input" accept=".xlsx" />
-                </div>
-
                 <div class="submit-btn">
                     <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
                     <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
@@ -6613,7 +6609,31 @@
                     manualRowResize: true,
                     manualColumnResize: true,
                     height: 200,
-                    licenseKey: 'non-commercial-and-evaluation'
+                    licenseKey: 'non-commercial-and-evaluation',
+                    afterChange: (changes, source) => {
+                        if (source === 'edit') {
+                            var quocTichColumn = playerColumns.findIndex(function (column) {
+                                return column.title === 'Quốc tịch';
+                            });
+
+                            var loaiCauThuColumn = playerColumns.findIndex(function (column) {
+                                return column.title === 'Loại cầu thủ';
+                            });
+                            changes.forEach(function (change) {
+                                var row = change[0];
+                                var column = change[1];
+                                var newValue = change[3];
+                                if (column === quocTichColumn) {
+                                    if (newValue === 'Việt Nam' || newValue === 'việt nam' || newValue === 'Việt nam' || newValue === 'việt Nam'){
+                                        hot.setDataAtCell(row, loaiCauThuColumn, 'Cầu thủ trong nước');
+                                    }
+                                    else {
+                                        hot.setDataAtCell(row, loaiCauThuColumn, 'Cầu thủ nước ngoài');
+                                    }
+                                }
+                            });
+                        }
+                    }
                 });
             }
 
@@ -6641,8 +6661,30 @@
                     }
                 }
                 if (!checkTeamName) {
+
+                    // var dataPlayer = hot.getData();
+                    // for (var row = 0; row < dataPlayer.length; row++) {
+
+                    //     if (dataPlayer[row][6] === 'Việt Nam'){
+                    //         hot.setDataAtCell(row, 7, 'Cầu thủ trong nước');
+                    //     }
+
+                    //     var cellProperties = hot.getCellMeta(row, col);
+                    //     if (cellProperties.type === 'dropdown' && data[row][col] === 'Cau Thu nuoc ngoai') {
+                    //         data[row][col] = 'New Data'; // Thay đổi dữ liệu trong ô
+                    //         cellProperties.source = ['New Option 1', 'New Option 2', 'New Option 3'];
+                    //         hot.setDataAtCell(row, col, 'New Data'); // Cập nhật dữ liệu của ô
+                    //         hot.setCellMeta(row, col, cellProperties);
+                    //         hot.render(); // Cập nhật giao diện
+                    //     }
+
+                    // }
+
                     // Lấy dữ liệu từ bảng cầu thủ
                     const playerData = hot.getData();
+
+
+
                     // Tạo đối tượng đại diện cho đội bóng
                     const team = {
                         teamName,
@@ -6730,27 +6772,27 @@
                                             </td>
                                         </tr>
                                         <% } } <!--Luot ve-->
-                                        for (let i=datadoiBong.length - 1; i >= 0; i-- ) {
-                                        for (let j = i - 1; j >= 0; j--) {
+                                            for (let i=datadoiBong.length - 1; i >= 0; i-- ) {
+                                            for (let j = i - 1; j >= 0; j--) {
                                             %>
-                                        <tr>
-                                            <td class="hide-s">
-                                                <%= datadoiBong[i].tenDoiBong%>
-                                            </td>
-                                            <td class="hide-s">
-                                                <%= datadoiBong[j].tenDoiBong%>
-                                            </td>
-                                            <td class="hide-s">
-                                                <%= datadoiBong[i].sanNha%>
-                                            </td>
-                                            <td class="hide-s">
-                                                Lượt về
-                                            </td>
-                                            <td class="hide-s">
-                                                <input type="date">
-                                            </td>
-                                        </tr>
-                                        <% } } %>
+                                            <tr>
+                                                <td class="hide-s">
+                                                    <%= datadoiBong[i].tenDoiBong%>
+                                                </td>
+                                                <td class="hide-s">
+                                                    <%= datadoiBong[j].tenDoiBong%>
+                                                </td>
+                                                <td class="hide-s">
+                                                    <%= datadoiBong[i].sanNha%>
+                                                </td>
+                                                <td class="hide-s">
+                                                    Lượt về
+                                                </td>
+                                                <td class="hide-s">
+                                                    <input type="date">
+                                                </td>
+                                            </tr>
+                                            <% } } %>
                             </tbody>
                         </table>
                         <div class="submit-btn" style="margin-top: 30px;">
