@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     dienBien.init({
         tenDoiBong: DataTypes.STRING,
-        maCauThu: DataTypes.STRING,
+        maCauThu: DataTypes.INTEGER,
         maLich: DataTypes.STRING,
         maLoaiBanThang: DataTypes.STRING,
         maLoaiThe: DataTypes.STRING,
