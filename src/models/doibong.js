@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       doiBong.hasMany(models.cauThu);
       doiBong.hasMany(models.lichThiDau);
-      doiBong.hasMany(models.lichThiDau);
       doiBong.hasMany(models.dienBien);
       doiBong.hasMany(models.huanLuyenVien);
       doiBong.hasMany(models.tongKet, { foreignKey: 'tenDoiBong' });
