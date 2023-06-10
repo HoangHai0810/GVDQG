@@ -5,8 +5,11 @@ import CRUDSevice from "../sevices/CRUDSevice";
 
 let getHomePage = async (req, res) => {
     try {
+        let dataCauThu = await CRUDSevice.getAllCauThu({
+            raw: true,
+        })
         let dataTongKet = await CRUDSevice.getAllTongKet({
-            raw: true
+            raw: true,
         });
         let data = await CRUDSevice.getAllUser({
             raw: true,
@@ -14,6 +17,7 @@ let getHomePage = async (req, res) => {
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
+            dataCauThu: dataCauThu,
         });
     } catch (e) {
         console.log(e);
@@ -113,12 +117,6 @@ let getBanQuanLy = async(req, res) =>
 
 
 let postTeam = async (req, res) => {
-    // console.log (req.body);
-    //     const { teamName, coach, homeGround, homeJerseyColor, awayJerseyColor } = req.body;
-    //     console.log({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
-    //     // Lưu thông tin đội bóng vào CSDL
-    //     let teaminfo = await db.Doibong.create({ teamName, coach, homeGround, homeJerseyColor, awayJerseyColor});
-    //     console.log (teaminfo)
     console.log(req.body.playerData.length);
     let mes = await CRUDSevice.createTeam(req.body);
     res.redirect('/banquanly');
