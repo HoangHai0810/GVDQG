@@ -2,7 +2,7 @@ import { render } from "ejs";
 import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
-import migrationCreateDoibong from "../migrations/migration-create-doibong";
+import migrationCreateDoibong from "../migrations/migration-create-edoibong";
 
 let getHomePage = async (req, res) => {
     try {
@@ -80,11 +80,10 @@ let loginCRUD = (req, res) => {
     return res.send('Login')
 }
 
-let getManager = async(req, res) => 
-{
-    try{
+let getManager = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('Manager.ejs', {
             data: JSON.stringify(data)
@@ -94,11 +93,10 @@ let getManager = async(req, res) =>
     }
 }
 
-let getBanQuanLy = async(req, res) => 
-{
-    try{
+let getBanQuanLy = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data)
@@ -118,9 +116,9 @@ let postTeam = async (req, res) => {
     //     console.log (teaminfo)
     console.log(req.body);
     let mes = await CRUDSevice.createTeam(req.body);
-    try{
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data)
@@ -144,5 +142,5 @@ module.exports = {
     getManager: getManager,
     getBanQuanLy: getBanQuanLy,
     postTeam: postTeam,
-    
+
 }
