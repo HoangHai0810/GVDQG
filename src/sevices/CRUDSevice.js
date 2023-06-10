@@ -1,5 +1,7 @@
-import db from '../models/index'
+import doibong from '../models/doibong';
+import db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
+const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
 
 
@@ -68,6 +70,28 @@ let getAllUser = () => {
         try {
             let users = db.User.findAll();
             reslove(users);
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let getAllTongKet = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let tongket = await sequelize.query("SELECT * FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
+            reslove(tongket);
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let getAllTongKet = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let tongket = await sequelize.query("SELECT * FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
+            reslove(tongket);
         } catch (e) {
             reject(e);
         }
@@ -144,4 +168,5 @@ module.exports = {
     editUser: editUser,
     deleteUserById: deleteUserById,
     createTeam: createTeam,
+    getAllTongKet: getAllTongKet,
 }
