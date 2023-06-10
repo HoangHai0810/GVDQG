@@ -14,6 +14,9 @@ let getHomePage = async (req, res) => {
         let data = await CRUDSevice.getAllUser({
             raw: true,
         });
+        let dataDoiBong = await CRUDSevice.getALLDoiBong({
+            raw: true,
+        })
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,

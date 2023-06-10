@@ -80,17 +80,6 @@ body {
     border-radius: 50%;
 }
 
-h2{
-    width: 100%;
-    height: 50px;
-    background-color: rgb(255, 40, 130);
-    position: relative;
-    padding-top: 10px;
-    margin: 0;
-    margin-bottom: 20px;
-    border-radius: 20px 20px 0 0;
-}
-
 .players-section h2
 {
     padding-left: 80px;
@@ -70969,574 +70958,574 @@ div.matchHighlightsBanner .competition span {
 }
 
 .clubIndex .t3 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t3.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t3.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t3 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t3@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t3@x2.jpg)
     }
 }
 
 .clubIndex .t7 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t7.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t7.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t7 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t7@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t7@x2.jpg)
     }
 }
 
 .clubIndex .t91 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t91.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t91.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t91 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t91@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t91@x2.jpg)
     }
 }
 
 .clubIndex .t8 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t8.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t8.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t8 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t8@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t8@x2.jpg)
     }
 }
 
 .clubIndex .t31 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t31.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t31.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t31 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t31@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t31@x2.jpg)
     }
 }
 
 .clubIndex .t38 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t38.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t38.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t38 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t38@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t38@x2.jpg)
     }
 }
 
 .clubIndex .t11 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t11.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t11.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t11 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t11@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t11@x2.jpg)
     }
 }
 
 .clubIndex .t13 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t13.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t13.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t13 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t13@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t13@x2.jpg)
     }
 }
 
 .clubIndex .t14 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t14.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t14.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t14 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t14@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t14@x2.jpg)
     }
 }
 
 .clubIndex .t43 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t43.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t43.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t43 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t43@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t43@x2.jpg)
     }
 }
 
 .clubIndex .t1 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t1.jpg)
+    background-image: url(	https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t1.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t1 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t1@x2.jpg)
+        background-image: url(	https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t1@x2.jpg)
     }
 }
 
 .clubIndex .t4 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t4.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t4.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t4 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t4@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t4@x2.jpg)
     }
 }
 
 .clubIndex .t45 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t45.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t45.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t45 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t45@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t45@x2.jpg)
     }
 }
 
 .clubIndex .t20 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t20.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t20.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t20 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t20@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t20@x2.jpg)
     }
 }
 
 .clubIndex .t110 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t110.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t110.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t110 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t110@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t110@x2.jpg)
     }
 }
 
 .clubIndex .t56 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t56.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t56.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t56 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t56@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t56@x2.jpg)
     }
 }
 
 .clubIndex .t80 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t80.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t80.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t80 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t80@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t80@x2.jpg)
     }
 }
 
 .clubIndex .t6 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t6.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t6.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t6 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t6@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t6@x2.jpg)
     }
 }
 
 .clubIndex .t57 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t57.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t57.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t57 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t57@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t57@x2.jpg)
     }
 }
 
 .clubIndex .t35 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t35.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t35.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t35 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t35@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t35@x2.jpg)
     }
 }
 
 .clubIndex .t21 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t21.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t21.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t21 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t21@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t21@x2.jpg)
     }
 }
 
 .clubIndex .t37 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t37.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t37.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t37 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t37@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t37@x2.jpg)
     }
 }
 
 .clubIndex .t36 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t36.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t36.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t36 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t36@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t36@x2.jpg)
     }
 }
 
 .clubIndex .t41 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t41.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t41.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t41 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t41@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t41@x2.jpg)
     }
 }
 
 .clubIndex .t5 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t5.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t5.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t5 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t5@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t5@x2.jpg)
     }
 }
 
 .clubIndex .t92 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t92.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t92.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t92 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t92@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t92@x2.jpg)
     }
 }
 
 .clubIndex .t30 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t30.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t30.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t30 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t30@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t30@x2.jpg)
     }
 }
 
 .clubIndex .t55 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t55.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t55.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t55 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t55@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t55@x2.jpg)
     }
 }
 
 .clubIndex .t94 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t94.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t94.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t94 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t94@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t94@x2.jpg)
     }
 }
 
 .clubIndex .t113 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t113.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t113.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t113 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t113@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t113@x2.jpg)
     }
 }
 
 .clubIndex .t90 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t90.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t90.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t90 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t90@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t90@x2.jpg)
     }
 }
 
 .clubIndex .t97 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t97.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t97.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t97 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t97@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t97@x2.jpg)
     }
 }
 
 .clubIndex .t33 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t33.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t33.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t33 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t33@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t33@x2.jpg)
     }
 }
 
 .clubIndex .t9 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t9.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t9.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t9 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t9@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t9@x2.jpg)
     }
 }
 
 .clubIndex .t24 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t24.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t24.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t24 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t24@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t24@x2.jpg)
     }
 }
 
 .clubIndex .t54 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t54.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t54.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t54 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t54@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t54@x2.jpg)
     }
 }
 
 .clubIndex .t88 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t88.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t88.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t88 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t88@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t88@x2.jpg)
     }
 }
 
 .clubIndex .t40 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t40.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t40.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t40 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t40@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t40@x2.jpg)
     }
 }
 
 .clubIndex .t2 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t2.jpg)
+    background-image: url(	https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t2.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t2 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t2@x2.jpg)
+        background-image: url(	https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t2@x2.jpg)
     }
 }
 
 .clubIndex .t25 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t25.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t25.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t25 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t25@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t25@x2.jpg)
     }
 }
 
 .clubIndex .t22 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t22.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t22.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t22 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t22@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t22@x2.jpg)
     }
 }
 
 .clubIndex .t17 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t17.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t17.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t17 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t17@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t17@x2.jpg)
     }
 }
 
 .clubIndex .t105 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t105.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t105.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t105 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t105@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t105@x2.jpg)
     }
 }
 
 .clubIndex .t52 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t52.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t52.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t52 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t52@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t52@x2.jpg)
     }
 }
 
 .clubIndex .t47 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t47.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t47.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t47 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t47@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t47@x2.jpg)
     }
 }
 
 .clubIndex .t108 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t108.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t108.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t108 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t108@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t108@x2.jpg)
     }
 }
 
 .clubIndex .t49 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t49.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t49.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t49 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t49@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t49@x2.jpg)
     }
 }
 
 .clubIndex .t19 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t19.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t19.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t19 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t19@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t19@x2.jpg)
     }
 }
 
 .clubIndex .t46 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t46.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t46.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t46 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t46@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t46@x2.jpg)
     }
 }
 
 .clubIndex .t111 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t111.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t111.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t111 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t111@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t111@x2.jpg)
     }
 }
 
 .clubIndex .t39 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t39.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t39.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t39 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t39@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t39@x2.jpg)
     }
 }
 
 .clubIndex .t1736 .indexImg__img {
-    background-image: url(../photos/i/stadiums/club-index/t1736.jpg)
+    background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t1736.jpg)
 }
 
 @media (-moz-min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio:2) {
     .clubIndex .t1736 .indexImg__img {
-        background-image: url(../photos/i/stadiums/club-index/t1736@x2.jpg)
+        background-image: url(https://www.premierleague.com/resources/prod/v6.122.4-6039/i/stadiums/club-index/t1736@x2.jpg)
     }
 }
 
