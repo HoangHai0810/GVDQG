@@ -87,6 +87,18 @@ let getAllTongKet = () => {
     })
 }
 
+let getAllCauThu = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let cauThu = await sequelize.query("SELECT * FROM `cauThus` GROUP BY tenDoiBong ORDER BY tenCauThu DESC", { type: QueryTypes.SELECT});
+            reslove(cauThu);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
+}
+
 let getUserInfoById = (userId) => {
     return new Promise(async(reslove, reject) => {
         try {
@@ -163,4 +175,5 @@ module.exports = {
     deleteUserById: deleteUserById,
     createTeam: createTeam,
     getAllTongKet: getAllTongKet,
+    getAllCauThu: getAllCauThu,
 }
