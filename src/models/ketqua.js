@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     ketQua.init({
         maKetQua: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             primaryKey: true,
         },
         maLich: DataTypes.STRING,

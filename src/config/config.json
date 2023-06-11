@@ -5,7 +5,10 @@
     "database": "haianhtest",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "logging": false
+    "logging": false,
+    "dialectOptions": {
+    "dateStrings": true
+    }
   },
   "test": {
     "username": "root",

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   tongKet.init({
     maTK: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     tenDoiBong: DataTypes.STRING,
@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     soTranThang: DataTypes.INTEGER,
     soTranHoa: DataTypes.INTEGER,
     soTranThua: DataTypes.INTEGER,
+    soBanThang: DataTypes.INTEGER,
+    soBanThua: DataTypes.INTEGER,
     soBanThangSanKhach: DataTypes.INTEGER,
     soTheVang: DataTypes.INTEGER,
     soTheDo: DataTypes.INTEGER,

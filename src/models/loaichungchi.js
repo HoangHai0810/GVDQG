@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   loaiChungChi.init({
     maLoaiChungChi: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     tenLoaiChungChi: DataTypes.TEXT,

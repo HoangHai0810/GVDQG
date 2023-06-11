@@ -5,7 +5,8 @@ module.exports = {
       maChucVu: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       tenChucVu: {
         type: Sequelize.TEXT

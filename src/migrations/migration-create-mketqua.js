@@ -5,10 +5,11 @@ module.exports = {
       maKetqua: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       maLich: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'lichThiDaus',
           key: 'maLich'

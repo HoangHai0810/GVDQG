@@ -19,7 +19,7 @@ module.exports = {
         }
       },
       maLoaiCauThu: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'loaiCauThus',
           key: 'maLoaiCauThu'

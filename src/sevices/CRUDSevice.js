@@ -36,17 +36,40 @@ let createTeam = async (data) => {
                 mauAoSanKhach: data.awayJerseyColor,
             });
             data.playerData = JSON.parse(data.playerData);
+            console.log(data.playerData);
             for (let i = 0; i < data.playerData.length; i++) {
+                var tempLoaiCT = null;
+                if (data.playerData[i][7] === 'Cầu thủ nước ngoài') {
+                    tempLoaiCT = 'NN';
+                }
+                if (data.playerData[i][7] === 'Cầu thủ trong nước') {
+                    tempLoaiCT = 'TN';
+                }
+
                 await db.cauThu.create({
-                    tenCauThu: data.playerData[i][1],
-                    soAo: data.playerData[i][2],
-                    viTri: data.playerData[i][3],
-                    ngaySinh: data.playerData[i][4],
-                    chieuCao: data.playerData[i][5],
-                    canNang: data.playerData[i][6]
+                    tenCauThu: data.playerData[i][0],
+                    soAo: data.playerData[i][1],
+                    viTri: data.playerData[i][2],
+                    ngaySinh: data.playerData[i][3],
+                    chieuCao: data.playerData[i][4],
+                    canNang: data.playerData[i][5],
+                    tenDoiBong: data.teamName,
+                    quocTich: data.playerData[i][6],
+                    maLoaiCauThu: tempLoaiCT
                 })
             }
-
+            await db.tongKet.create({
+                soBanThangSanKhach: 0,
+                soTranDau: 0,
+                soTranThang: 0,
+                soTranHoa: 0,
+                soTheVang: 0,
+                soTheDo: 0,
+                hieuSo: 0,
+                diemSo: 0,
+                soTranThua: 0,
+                tenDoiBong: data.teamName,
+            });
             reslove('Added Team!')
         } catch (e) {
             reject(e);
@@ -76,6 +99,8 @@ let getAllUser = () => {
     })
 }
 
+
+
 let getAllTongKet = () => {
     return new Promise(async (reslove, reject) => {
         try {
@@ -87,15 +112,48 @@ let getAllTongKet = () => {
     })
 }
 
-let getAllTongKet = () => {
+let getAllCauThu = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let tongket = await sequelize.query("SELECT * FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
-            reslove(tongket);
+            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT });
+            reslove(cauThu);
         } catch (e) {
-            reject(e);
+            reject(e)
         }
-    })
+    });
+}
+
+let getALLDoiBong = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT });
+            reslove(doibong);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllLichThiDau = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let lichThiDau = await sequelize.query("SELECT distinct DATE(ngayGio) AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) <= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT });
+            reslove(lichThiDau);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllKetQua = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT });
+            reslove(ketqua);
+        } catch (e) {
+            reject(e)
+        }
+    });
 }
 
 let getUserInfoById = (userId) => {
@@ -169,4 +227,8 @@ module.exports = {
     deleteUserById: deleteUserById,
     createTeam: createTeam,
     getAllTongKet: getAllTongKet,
+    getAllCauThu: getAllCauThu,
+    getALLDoiBong: getALLDoiBong,
+    getAllLichThiDau: getAllLichThiDau,
+    getAllKetQua: getAllKetQua,
 }
