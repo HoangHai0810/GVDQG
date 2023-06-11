@@ -1472,22 +1472,26 @@
                                                         <%= dataTongKet[i].diemSo %>
                                                     </td>
                                                     <td class="form hideMed">
-                                                        <% for (let k=0;k<dataKetQua.length;i++) { if
-                                                            (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong ||
-                                                            dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong) { if
-                                                            (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong &&
-                                                            dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2)
-                                                            {
-                                                            let status = 'win';
-                                                            let st = 'W';
-                                                            }
-                                                            if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong
-                                                            && dataKetQua[k].soBanThangDoi1
-                                                            <dataKetQua[k].soBanThangDoi2) { let status='lose' ; let
-                                                                st='L' ; } if
-                                                                (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong &&
-                                                                dataKetQua[k].soBanThangDoi1==dataKetQua[k].soBanThangDoi2)
-                                                                { let status='draw' ; let st='D' ; } %>
+                                                        <% for (let k=0;k<dataKetQua.length;k++) { 
+                                                            if (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong ||
+                                                            dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong) { 
+                                                                let status='' ; let st='' ; 
+                                                                if (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2)
+                                                                {
+                                                                status = 'win';
+                                                                st = 'W';
+                                                                }
+                                                                if (dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1<dataKetQua[k].soBanThangDoi2)
+                                                                {
+                                                                status = 'win';
+                                                                st = 'W';
+                                                                }
+                                                                if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1<dataKetQua[k].soBanThangDoi2) 
+                                                                { status='lose' ; st='L' ; }
+                                                                if (dataKetQua[k].tenDoiBong2 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2) 
+                                                                { status='lose' ; st='L' ; }
+                                                                if (dataKetQua[k].soBanThangDoi1 == dataKetQua[k].soBanThangDoi2)
+                                                                { status='draw' ; st='D' ; } %>
                                                                 <li tabindex="0" class="<%= status%> button-tooltip"
                                                                     id="Tooltip">
                                                                     <abbr title="Won" class="form-abbreviation">
@@ -1510,8 +1514,8 @@
                                                                                     data-widget="club-badge-image"
                                                                                     data-size="20">
                                                                                     <img class="badge-image badge-image--20"
-                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t54.png"
-                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t54@x2.png 2x">
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>@x2.png 2x">
                                                                                 </span>
                                                                                 <span class="score">
                                                                                     <%= dataKetQua[k].soBanThangDoi1 %>
@@ -1524,8 +1528,8 @@
                                                                                     data-widget="club-badge-image"
                                                                                     data-size="20">
                                                                                     <img class="badge-image badge-image--20"
-                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t43.png"
-                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t43@x2.png 2x">
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>@x2.png 2x">
                                                                                 </span>
                                                                                 <span class="teamName"><abbr
                                                                                         title="Manchester City">
