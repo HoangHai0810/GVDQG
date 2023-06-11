@@ -1645,7 +1645,7 @@
                 data-page-size="30" class="playerIndex">
                 <header class="pageHero">
                     <div class="wrapper col-12">
-                        <h1 class="pageTitle">Cầu thủ</h1>
+                        <h1 class="pageTitle">Players</h1>
                         <div class="searchDataContainer" data-placeholder="Search for a Player">
                             <div class="searchInputContainer" role="search"> <label for="search-input"
                                     class="visuallyHidden">Search for a Player</label> <input id="search-input"
@@ -1871,6 +1871,13 @@
                                                     (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; if
                                                     (dataCauThu[i].quocTich=='Cameroon' ) { flag='CM' };%>
                                                     <span class="flag <%=flag%>" id="flags"></span>
+                                                    <script>
+                                                        var dataCauThu = '<%- dataCauThu[i].quocTich %>';
+                                                        flag = document.getElementById('flags');
+                                                        if (dataCauThu == 'Việt Nam') {
+                                                            flag.classList.add('VN');
+                                                        }
+                                                    </script>
                                                     <span class="playerCountry">
                                                         <%= dataCauThu[i].quocTich %>
                                                     </span>

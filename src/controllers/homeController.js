@@ -108,11 +108,10 @@ let loginCRUD = (req, res) => {
     return res.send('Login')
 }
 
-let getManager = async(req, res) => 
-{
-    try{
+let getManager = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('Manager.ejs', {
             data: JSON.stringify(data)
@@ -132,6 +131,7 @@ let getBanQuanLy = async(req, res) =>
             raw: true,
         });
         let data = await CRUDSevice.getAllUser({
+            raw: true,
             raw: true,
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
@@ -168,14 +168,22 @@ let getBanQuanLy = async(req, res) =>
 let postTeam = async (req, res) => {
     console.log(req.body.playerData.length);
     let mes = await CRUDSevice.createTeam(req.body);
-    res.redirect('/banquanly');
+    try {
+        let data = await CRUDSevice.getAllUser({
+            raw: true,
+        });
+        return res.render('BanQuanLy.ejs', {
+            data: JSON.stringify(data)
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
-let getAdmin = async(req, res) => 
-{
-    try{
+let getAdmin = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('Admin.ejs', {
             data: JSON.stringify(data)
