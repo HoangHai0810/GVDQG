@@ -123,9 +123,18 @@ let getBanQuanLy = async(req, res) =>
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw :   true,
         })
+        let dataThamSo = await CRUDSevice.getAllThamSo({
+            raw :   true,
+        })
+        let dataCauThu = await CRUDSevice.getAllCauThu({
+            raw :   true,
+        })
+        
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data),
-            dataDoiBong: JSON.stringify(dataDoiBong)
+            dataDoiBong: JSON.stringify(dataDoiBong),
+            dataThamSo: JSON.stringify(dataThamSo),
+            dataCauThu: JSON.stringify(dataCauThu),
         });
     } catch (e) {
         console.log(e);

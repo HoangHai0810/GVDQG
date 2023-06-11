@@ -226,6 +226,16 @@ let deleteUserById = (userId) => {
     })
 }
 
+let getAllThamSo = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
+            reslove(ketqua);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
 
 module.exports = {
     createNewUser : createNewUser,
@@ -239,4 +249,5 @@ module.exports = {
     getALLDoiBong: getALLDoiBong,
     getAllLichThiDau: getAllLichThiDau,
     getAllKetQua: getAllKetQua,
+    getAllThamSo: getAllThamSo,
 }
