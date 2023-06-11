@@ -353,11 +353,11 @@
                 <!--Bảng thi đấu-->
                 <div class="fixturesAbridgedHeader ">
                     <header>
-                        <div class="week">Vòng <%= dataKetQua[1].vong %> </div>
+                        <div class="week">Vòng <%//= dataKetQua[0].vong %>  </div>
                         <div class="competition"><span class="competitionLabel1">Giải bóng đá vô địch quốc gia</span></div>
                         <div class="headerLocalTimeContainer"> Thời gian
                         </div>
-                        <div class="today" id="today-match"><%= dataKetQua[1].ngay %></div>
+                        <div class="today" id="today-match"><%//= dataKetQua[0].ngay %></div>
                     </header>
                 </div>
                 <div class="embeddableMatchSummary clubSidebarWidget fixturesAbridgedContainer  calendar">
@@ -1760,32 +1760,17 @@
                 const awayJerseyColor = document.getElementById('id-awayJerseyColor').value;
                 //Kiểm tra khóa chính 
                 var DOIBONG = JSON.parse(unescape('<%- dataDoiBong%>'));
+                //Kiểm tra tên đội có trùng hay không
                 var checkTeamName = false;
                 for (let i = 0; i < DOIBONG.length; i++) {
                     if (teamName === DOIBONG[i].tenDoiBong) {
                         checkTeamName = true;
                     }
                 }
+                //Kiểm tra số cầu thủ tối thiểu, tối đa
+
+
                 if (!checkTeamName) {
-
-                    // var dataPlayer = hot.getData();
-                    // for (var row = 0; row < dataPlayer.length; row++) {
-
-                    //     if (dataPlayer[row][6] === 'Việt Nam'){
-                    //         hot.setDataAtCell(row, 7, 'Cầu thủ trong nước');
-                    //     }
-
-                    //     var cellProperties = hot.getCellMeta(row, col);
-                    //     if (cellProperties.type === 'dropdown' && data[row][col] === 'Cau Thu nuoc ngoai') {
-                    //         data[row][col] = 'New Data'; // Thay đổi dữ liệu trong ô
-                    //         cellProperties.source = ['New Option 1', 'New Option 2', 'New Option 3'];
-                    //         hot.setDataAtCell(row, col, 'New Data'); // Cập nhật dữ liệu của ô
-                    //         hot.setCellMeta(row, col, cellProperties);
-                    //         hot.render(); // Cập nhật giao diện
-                    //     }
-
-                    // }
-
                     // Lấy dữ liệu từ bảng cầu thủ
                     const playerData = hot.getData();
 
