@@ -17,27 +17,20 @@ let getHomePage = async (req, res) => {
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
         });
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
             raw: true,
         });
         let dataKetQua = await CRUDSevice.getAllKetQua({
             raw: true,
-        });
-        let dataTranDau = await CRUDSevice.getAllTranDau({
-            raw: true,
-        });
+        })
+        console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
             dataDoiBong: dataDoiBong,
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
+            dataLichThiDau: dataLichThiDau,
             dataKetQua: dataKetQua,
-            dataTranDau: dataTranDau,
         });
     } catch (e) {
         console.log(e);
@@ -107,10 +100,11 @@ let loginCRUD = (req, res) => {
     return res.send('Login')
 }
 
-let getManager = async (req, res) => {
-    try {
+let getManager = async(req, res) => 
+{
+    try{
         let data = await CRUDSevice.getAllUser({
-            raw: true,
+            raw :   true,
         });
         return res.render('Manager.ejs', {
             data: JSON.stringify(data)
@@ -123,43 +117,15 @@ let getManager = async (req, res) => {
 let getBanQuanLy = async(req, res) => 
 {
     try{
-        let dataCauThu = await CRUDSevice.getAllCauThu({
-            raw: true,
-        })
-        let dataTongKet = await CRUDSevice.getAllTongKet({
-            raw: true,
-        });
         let data = await CRUDSevice.getAllUser({
-            raw: true,
+            raw :   true,
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
-            raw: true,
-        });
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
-            raw: true,
-        });
-        let dataKetQua = await CRUDSevice.getAllKetQua({
-            raw: true,
-        });
-        let dataTranDau = await CRUDSevice.getAllTranDau({
-            raw: true,
-        });
-        let dataThamSo = await CRUDSevice.getAllThamSo({
-            raw: true,
+            raw :   true,
         })
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data),
-            dataTongKet: JSON.stringify(dataTongKet),
-            dataCauThu: JSON.stringify(dataCauThu),
-            dataDoiBong: JSON.stringify(dataDoiBong),
-            dataLichThiDauTruoc: JSON.stringify(dataLichThiDauTruoc),
-            dataLichThiDauSau: JSON.stringify(dataLichThiDauSau),
-            dataKetQua: JSON.stringify(dataKetQua),
-            dataTranDau: JSON.stringify(dataTranDau),
-            dataThamSo: JSON.stringify(dataThamSo),
+            dataDoiBong: JSON.stringify(dataDoiBong)
         });
     } catch (e) {
         console.log(e);
@@ -170,22 +136,14 @@ let getBanQuanLy = async(req, res) =>
 let postTeam = async (req, res) => {
     console.log(req.body.playerData.length);
     let mes = await CRUDSevice.createTeam(req.body);
-    try {
-        let data = await CRUDSevice.getAllUser({
-            raw: true,
-        });
-        return res.render('BanQuanLy.ejs', {
-            data: JSON.stringify(data)
-        });
-    } catch (e) {
-        console.log(e);
-    }
+    res.redirect('/banquanly');
 }
 
-let getAdmin = async (req, res) => {
-    try {
+let getAdmin = async(req, res) => 
+{
+    try{
         let data = await CRUDSevice.getAllUser({
-            raw: true,
+            raw :   true,
         });
         return res.render('Admin.ejs', {
             data: JSON.stringify(data)
