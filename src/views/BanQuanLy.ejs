@@ -2254,6 +2254,10 @@
 
                 <div id="playerTable"></div>
 
+                <div id="errorSoCT"></div>
+
+                <div id="errorTuoiCT"></div>
+
                 <div class="submit-btn">
                     <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
                     <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
@@ -2317,7 +2321,31 @@
                                 }
                             });
                         }
-                    }
+                    },
+                    beforeSubmit: function (changes, source) {
+                        if (source === 'external') {
+                            var ngaySinhColumn = playerColumns.findIndex(function (column) {
+                            return column.title === 'Ngày sinh';
+                            });
+
+                            changes.forEach(function (change) {
+                            var row = change[0];
+                            var column = change[1];
+                            var newValue = change[3];
+
+                            if (column === ngaySinhColumn) {
+                                var ngaySinh = moment(newValue, 'YYYY-MM-DD');
+                                var age = moment().diff(ngaySinh, 'years');
+
+                                if (age < 16 || age > 40) {
+                                alert('Tuổi của cầu thủ phải lớn hơn 16 và bé hơn 40');
+                                return false; // Ngăn người dùng submit
+                                }
+                            }
+                            });
+                        }
+                        // return true; //Cho phép submit
+                    },
                 });
             }
 
@@ -2326,6 +2354,11 @@
             }
 
             initializeTable();
+
+            //Ham lay du lieu
+            function takeData(){
+               
+            }
 
             function handleSubmit(event) {
                 event.preventDefault();
@@ -2336,8 +2369,10 @@
                 const homeGround = document.getElementById('id-homeGround').value;
                 const homeJerseyColor = document.getElementById('id-homeJerseyColor').value;
                 const awayJerseyColor = document.getElementById('id-awayJerseyColor').value;
+                console.log('Hello');
                 //Kiểm tra khóa chính 
                 var DOIBONG = JSON.parse(unescape('<%- dataDoiBong %>'));
+                console.log('Hello');
                 var checkTeamName = false;
                 for (let i = 0; i < DOIBONG.length; i++) {
                     if (teamName === DOIBONG[i].tenDoiBong) {
@@ -2345,14 +2380,44 @@
                     }
                 }
                 //Kiểm tra số cầu thủ tối thiểu, tối đa
+              /*   var CAUTHU = JSON.parse(unescape('<%- dataCauThu %>'));
+                var THAMSO = JSON.parse(unescape('<%- dataThamSo%>')); */
+                /* var checkCTToiThieuToiDa = true;
+                var checkTuoiCTToiThieuToiDa;
+                let countCT = string(CAUTHU.length);
+                let tuoiCT;
+                var SoCTToiDa;
+                var SoCTToiThieu;
+                var TuoiCTToiDa;
+                var TuoiCTToiThieu;
+                for (let i = 0; i < CAUTHU.length; i++){
+                    if(CAUTHU[i].tenThamSo === 'SoCauThuToiThieu'){
+                        SoCTToiThieu = CAUTHU[i].giaTri;
+                    }
+                    if(CAUTHU[i].tenThamSo === 'SoCauThuToiDa'){
+                        SoCTToiDa = CAUTHU[i].giaTri;
+                    }
+                    if(CAUTHU[i].tenThamSo === 'TuoiCauThuToiDa'){
+                        TuoiCTToiDa = CAUTHU[i].giaTri;
+                    }
+                    if(CAUTHU[i].tenThamSo === 'TuoiCauThuToiThieu'){
+                        TuoiCTToiThieu = CAUTHU[i].giaTri;
+                    }
+                }
+                if (countCT < SoCTToiThieu){
+                    checkCTToiThieuToiDa = 'ToiThieu';
+                }
+                else if(countCT > SoCTToiDa){
+                    checkCTToiThieuToiDa = 'ToiDa';
+                }
+                if (checkCTToiThieuToiDa === 'ToiThieu'){
+                    checkCTToiThieuToiDa ='ToiThieu';
+                }
+ */
 
-
-                if (!checkTeamName) {
-                    // Lấy dữ liệu từ bảng cầu thủ
+                if (!checkTeamName/*  && checkCTToiThieuToiDa */ /* && checkTuoiCTToiThieuToiDa */) {
+                     // Lấy dữ liệu từ bảng cầu thủ
                     const playerData = hot.getData();
-
-
-
                     // Tạo đối tượng đại diện cho đội bóng
                     const team = {
                         teamName,
@@ -2364,19 +2429,31 @@
                     };
                     // Cập nhật giá trị của hidden input
                     document.getElementById('playerData').value = JSON.stringify(team.players);
-
                     // Gửi form
                     document.getElementById('teamForm').submit();
                 }
-                else {
+                else if (!checkTeamName) {
                     errorTeamName.innerHTML = 'Đội bóng đã tồn tại';
                     errorTeamName.style.color = '#e53535';
                     teamNameBox.classList.add('error-border');
                 }
+                /* if(checkCTToiThieuToiDa === 'Toi Thieu'){
+                    errorSoCT.innerHTML = 'Số lượng cầu thủ tối thiểu là ' + SoCTToiThieu;
+                    errorSoCT.style.color = '#e53535';
+                }
+                if(checkCTToiThieuToiDa === 'Toi Da'){
+                    errorSoCT.innerHTML = 'Số lượng cầu thủ tối da là ' + SoCTToiDa;
+                    errorSoCT.style.color = '#e53535';
+                }
+
+ */
             }
             //Bỏ error
             const errorTeamName = document.getElementById('errorTeamName');
             const teamNameBox = document.getElementById('id-teamName');
+            const errorSoCT = document.getElementById('errorSoCT');
+            const errorTuoiCT = document.getElementById('errorTuoiCT');
+            
 
             teamNameBox.addEventListener('keyup', () => {
                 if (event.key !== 'Enter') {

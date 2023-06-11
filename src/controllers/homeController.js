@@ -132,7 +132,6 @@ let getBanQuanLy = async(req, res) =>
         });
         let data = await CRUDSevice.getAllUser({
             raw: true,
-            raw: true,
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
@@ -149,15 +148,19 @@ let getBanQuanLy = async(req, res) =>
         let dataTranDau = await CRUDSevice.getAllTranDau({
             raw: true,
         });
+        let dataThamSo = await CRUDSevice.getAllThamSo({
+            raw: true,
+        })
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data),
-            dataTongKet: dataTongKet,
-            dataCauThu: dataCauThu,
-            dataDoiBong: dataDoiBong,
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
-            dataKetQua: dataKetQua,
-            dataTranDau: dataTranDau,
+            dataTongKet: JSON.stringify(dataTongKet),
+            dataCauThu: JSON.stringify(dataCauThu),
+            dataDoiBong: JSON.stringify(dataDoiBong),
+            dataLichThiDauTruoc: JSON.stringify(dataLichThiDauTruoc),
+            dataLichThiDauSau: JSON.stringify(dataLichThiDauSau),
+            dataKetQua: JSON.stringify(dataKetQua),
+            dataTranDau: JSON.stringify(dataTranDau),
+            dataThamSo: JSON.stringify(dataThamSo),
         });
     } catch (e) {
         console.log(e);

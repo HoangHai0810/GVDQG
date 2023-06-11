@@ -126,8 +126,8 @@ let getAllCauThu = () => {
 let getALLDoiBong = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT });
-            reslove(doibong);
+            let alldoibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT });
+            reslove(alldoibong);
         } catch (e) {
             reject(e)
         }
@@ -173,7 +173,18 @@ let getAllTranDau = () => {
 let getAllKetQua = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT });
+            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas`,`lichThiDaus` WHERE ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT });
+            reslove(ketqua);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllThamSo = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
             reslove(ketqua);
         } catch (e) {
             reject(e)
@@ -258,4 +269,5 @@ module.exports = {
     getAllLichThiDauTruoc: getAllLichThiDauTruoc,
     getAllKetQua: getAllKetQua,
     getAllTranDau: getAllTranDau,
+    getAllThamSo: getAllThamSo,
 }
