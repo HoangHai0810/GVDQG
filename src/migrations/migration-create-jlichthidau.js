@@ -5,7 +5,8 @@ module.exports = {
       maLich: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       tenDoiBong1: {
         type: Sequelize.STRING,

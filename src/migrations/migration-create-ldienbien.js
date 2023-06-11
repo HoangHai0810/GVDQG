@@ -23,21 +23,21 @@ module.exports = {
         }
       },
       maLich: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'lichThiDaus',
           key: 'maLich'
         }
       },
       maLoaiBanThang: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'loaiBanThangs',
           key: 'maLoaiBanThang'
         }
       },
       maLoaiThe: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
           model: 'loaiThes',
           key: 'maLoaiThe'
