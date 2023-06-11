@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
     <meta name="twitter:title" content="Premier League Football News, Fixtures, Scores & Results" />
     <meta name="keywords" content="Premier League, Football, Soccer, Official" />
     <meta property="og:type" content="website" />
@@ -97,7 +98,6 @@
 </head>
 
 <body>
-    <% let anh=[1,2,3,4,6,7,8,11,13,14,17,20,21,31,36,39,43,54,91,94]; %>
     <header class="masthead">
         <!--Các câu lạc bộ-->
         <nav class="clubNavigation" data-script="pl_global-header" role="menubar">
@@ -108,20 +108,7 @@
                 </h4>
             </div>
             <ul class="clubList" role="menu">
-                <li>
-                    <a target="_blank" href="        https://www.afcb.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link" role="menuitem">
-                        <div class="badge badge--small badge-image-container">
-                            <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t91.png"
-                                srcset="./photos/badges/25/t91@x2.png 2x" />
-                        </div>
-                        <div class="badge badge--large badge-image-container" data-size="50">
-                            <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t91.png"
-                                srcset="./photos/badges/50/t91@x2.png 2x" />
-                            <span class="visuallyHidden">AFC Bournemouth</span>
-                        </div>
-                        <span class="name">AFC Bournemouth</span>
-                    </a>
-                </li>
+                
             </ul>
         </nav>
         <!--Phần navbar-->
@@ -289,50 +276,7 @@
                 <!--Bảng thi đấu-->
                 <div class="fixturesAbridgedHeader ">
                     <header>
-                        <div class="week">Vòng <%//= dataKetQua[0].vong %>  </div>
-                        <div class="competition"><span class="competitionLabel1">Giải bóng đá vô địch quốc gia</span></div>
-                        <div class="headerLocalTimeContainer"> Thời gian
-                        </div>
-                        <div class="today" id="today-match"><%//= dataKetQua[0].ngay %></div>
                     </header>
-                </div>
-                <div class="embeddableMatchSummary clubSidebarWidget fixturesAbridgedContainer  calendar">
-                    <% for (let j=0;j<dataKetQua.length; j++) { if (dataKetQua[j].ngay==dataLichThiDauTruoc[1].ngay)
-                        { %>
-                        <div class="fixturesAbridged matchListContainer">
-                            <a href="/match/75229" class="matchAbridged embeddableMatchContainer">
-                                <div class="embeddableMatchInfoContainer">
-                                    <span class="teamName">
-                                        <abbr title="Manchester United">
-                                            <%= dataKetQua[j].tenDoiBong1.slice(0,3) %>
-                                        </abbr>
-                                    </span>
-                                    <span class="badge badge-image-container">
-                                        <img class="badge-image badge-image--25 js-badge-image"
-                                            src="./photos/badges/25/t1.png"
-                                            srcset="./photos/badges/25/t1.png, ./photos/badges/25/t1@x2.png 2x" />
-                                    </span>
-                                    <time class="renderKOContainer" data-kickoff="1685041200000">
-                                        <%= dataKetQua[j].soBanThangDoi1 %> - <%= dataKetQua[j].soBanThangDoi2 %>
-                                    </time>
-                                    <span class="badge badge-image-container">
-                                        <img class="badge-image badge-image--25 js-badge-image"
-                                            src="./photos/badges/25/t8.png"
-                                            srcset="./photos/badges/25/t8.png, ./photos/badges/25/t8@x2.png 2x" />
-                                    </span>
-                                    <span class="teamName">
-                                        <abbr title="Chelsea">
-                                            <%= dataKetQua[j].tenDoiBong2.slice(0,3) %>
-                                        </abbr>
-                                    </span>
-                                </div>
-                                <div class="matchSummaryBroadcastersContainer"></div>
-                                <span class="icn arrow-right"></span>
-                            </a>
-                        </div>
-                        <% } }%>
-                            <a class="btn widget-button" data-tab="ketqua">Xem tất cả các kết quả<span
-                                    class="icn arrow-right"></span></a>
                 </div>
                 <!--Tiêu đề bảng xếp hạng-->
                 <div data-script="pl_tabbed" data-widget="tabbed-content" class="tabbedContent homeStandingsHeader"
@@ -348,10 +292,6 @@
                     <div>
                         <div class="tablesContainer">
                             <div class="table tableSmall homeStandings js-standings-entry-container">
-                                <div class="liveLeague toggle-btn js-live-toggle-container is-active u-hide">
-                                    <div class="live-animation"><span></span></div>
-                                    <span><span class="liveLeague__live"> Live</span> League Table</span>
-                                </div>
                                 <table>
                                     <thead>
                                         <tr>
@@ -359,43 +299,12 @@
                                             <th class="team" scope="col">Club</th>
                                             <th scope="col"><abbr title="Played">Pl</abbr></th>
                                             <th scope="col"><abbr title="Goal Difference">GD</abbr></th>
-                                            <th scope="col">
-                                                <ab br title="Points">Pts</abbr>
-                                            </th>
+                                            <th scope="col"><abbr title="Points">Pts</abbr></th>
                                         </tr>
-                                    </thead>
-
-                                    <tbody class="standingEntriesContainer isPL">
-                                        <% for (let i=0;i< dataTongKet.length ;i++) { %>
-                                            <tr class="tableDark">
-                                                <td class="pos">
-                                                    <span class="value">1</span>
-                                                </td>
-                                                <td class="team" scope="row">
-                                                    <a href="/clubs/11/Manchester-City/overview">
-                                                        <span class="badge badge-image-container" data-size="20">
-                                                            <img class="badge-image badge-image--20 js-badge-image"
-                                                                srcset="./photos/badges/20/t43.png, ./photos/badges/20/t43@x2.png 2x"
-                                                                src="./photos/badges/20/t43.png" />
-                                                        </span>
-                                                        <%= dataTongKet[i].tenDoiBong.slice(0,3) %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].vong %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].hieuSo %>
-                                                </td>
-                                                <td class="points">
-                                                    <%=dataTongKet[i].diem %>
-                                                </td>
-                                            </tr>
-                                            <% } %>
-                                    </tbody>
+                                    </thead>                  
                                 </table>
                             </div>
-                            <a class="btn widget-button" href="/fixtures">Xem bảng xếp hạng <span
-                                    class="icn arrow-right"></span></a>
+                            <a class="btn widget-button" href="/fixtures">Xem bảng xếp hạng</a>
                         </div>
                     </div>
                 </div>
@@ -489,12 +398,14 @@
                                 <!-- Nội dung bên cạnh hình chính-->
                                 <figcaption>
                                     <span class="hero-playlist__thumbnail-tag">Tin mới nhất</span>
-                                    <h4 class="hero-playlist__thumbnail-title"><a
-                                            style="user-select: none;cursor:pointer;">Rodri hóa người hùng khi ghi
-                                            bàn trong trận chung kết C1</a></h4>
+                                    <h4 class="hero-playlist__thumbnail-title"><a style="user-select: none;cursor:pointer;">Rodri hóa người hùng khi ghi
+                                        bàn trong trận chung kết C1</a></h4>
                                     <p>Sau khi đánh bại Manchester-United tại FA Cup, Manchester-City đánh bại luôn
                                         Inter Milan để dành Champions League</p>
+
+
                                     <h5 class="related-title">Nội dung liên quan</h5>
+
                                     <div>
                                         <div class="related-item">
                                             <a class="relatedArticle club text">
@@ -504,6 +415,8 @@
                                             </a>
                                         </div>
 
+
+
                                         <div class="related-item">
                                             <a class="relatedArticle club video">
                                                 <p>
@@ -511,6 +424,8 @@
                                                 </p>
                                             </a>
                                         </div>
+
+
 
                                         <div class="related-item">
                                             <a class="relatedArticle club text">
@@ -529,7 +444,7 @@
                             <div class="hero-playlist__thumbnail hero-playlist__thumbnail--secondary">
                                 <figure class="hero-playlist__thumbnail-figure">
 
-                                    <a href="/video/single/3418657" class="image hero-playlist__thumbnail-image  ">
+                                    <a class="image hero-playlist__thumbnail-image  ">
                                         <img src="https://resources.premierleague.com/photos/premierleague/photo/2023/05/21/244b1088-4d6c-495f-975f-ec6a60565d4b/1492066991.jpg?width=860&height=573"
                                             alt="Matchweek 37 preview: Saturday's matches" />
 
@@ -540,8 +455,7 @@
                                         </svg>
                                         <span class="hero-playlist__thumbnail-run-time">
                                             <span class="icn play-w"></span>
-                                            <time class="hero-playlist__thumbnail-time"
-                                                datetime="PT2M59S">02:40</time>
+                                            <time class="hero-playlist__thumbnail-time" datetime="PT2M59S">00:00</time>
                                         </span>
 
                                     </a>
@@ -550,7 +464,9 @@
                                         <div class="hero-playlist__thumbnail-caption-wrapper">
                                         </div>
                                         <h4 class="hero-playlist__thumbnail-title"><a
-                                                href="/video/single/3418657">Nội dung dưới trái</a></h4>
+                                                >Nội dung dưới trái</a></h4>
+
+
                                     </figcaption>
                                 </figure>
                             </div>
@@ -558,15 +474,16 @@
                             <div class="hero-playlist__thumbnail hero-playlist__thumbnail--secondary">
                                 <figure class="hero-playlist__thumbnail-figure">
 
-                                    <a href="/news/3444044" class="image hero-playlist__thumbnail-image  ">
+                                    <a class="image hero-playlist__thumbnail-image  ">
                                         <img src="https://resources.premierleague.com/photos/premierleague/photo/2023/05/21/244b1088-4d6c-495f-975f-ec6a60565d4b/1492066991.jpg?width=930&height=620"
                                             alt="Riyad Mahrez MCI cele" />
+
+
                                     </a>
 
                                     <figcaption>
                                         <span class="hero-playlist__thumbnail-tag">Tiêu đề</span>
-                                        <h4 class="hero-playlist__thumbnail-title"><a href="/news/3444044">Nội dung
-                                                dưới phải</a></h4>
+                                        <h4 class="hero-playlist__thumbnail-title"><a>Nội dung dưới phải</a></h4>
 
 
                                     </figcaption>
@@ -575,11 +492,21 @@
                         </div>
                     </section>
 
+
+                    
+
+
+
+
+                    
+                    
                     <section class="mainWidget latestFeatures ">
                         <!-- TO-TRANSLATE -->
                         <header>
-                            <h3 class="subHeader">Thông báo mới nhất từ web</h3>
+                            <h3 class="subHeader">Thông báo mới nhất</h3>
                         </header>
+
+
 
                         <ul class="block-list-3" data-widget="lazy-load">
                             <li class="article-thumb placeholder js-content-load" data-initialised="false">
@@ -591,12 +518,14 @@
 
                                             <img class="article-thumb__img"
                                                 src="https://resources.premierleague.com./photos/2023/05/19/7a3c2166-594c-48db-b470-93e117af83c3/1471457296.jpg?width=500&height=333"
-                                                data-src="https://resources.premierleague.com./photos/2023/05/19/7a3c2166-594c-48db-b470-93e117af83c3/1471457296.jpg?width=500&height=333"
-                                                data-src-placeholder="https://resources.premierleague.com./photos/2023/05/19/7a3c2166-594c-48db-b470-93e117af83c3/1471457296.jpg?width=500&height=333"
+                                                data-src="https://resources.premierleague.com./photos/2023/05/19/7a3c2166-594c-48db-b470-93e117af83c3/1471457296.jpg?width=500&height=333
+" data-src-placeholder="https://resources.premierleague.com./photos/2023/05/19/7a3c2166-594c-48db-b470-93e117af83c3/1471457296.jpg?width=500&height=333"
                                                 alt="Liverpool FC v Manchester United - Premier League">
 
                                         </span>
                                         <figcaption>
+
+
                                             <span class="tag">Feature</span>
                                             <span class="title">Tiêu đề thông báo mới 1</span>
                                         </figcaption>
@@ -605,464 +534,21 @@
                                 <div class="relatedArticles">
 
                                     <a class="relatedArticle club text">
-                                        <p>Tiêu đề thông báo 2</p>
+                                        <p>
+                                            Tiêu đề thông báo 2
+                                        </p>
                                     </a>
 
                                     <a class="relatedArticle club video">
-                                        <p>Tiêu đề thông báo 3</p>
+                                        <p>
+                                            Tiêu đề thông báo 3
+                                        </p>
                                     </a>
                                 </div>
                             </li>
                         </ul>
                     </section>
 
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Tab đăng nhập-->
-    <section class="ism tab-content" id="dangnhap" tabindex="0">
-        <header class="pageHero">
-            <div class="wrapper col-12">
-                <h1 class="pageTitle">Tài khoản của bạn</h1>
-            </div>
-        </header>
-        <div class="ism-container">
-            <div class="wrapper">
-                <div id="ismr-content">
-                    <form class="ism-form__login-box">
-                        <div class="wrapper">
-                            <div class="col-6">
-                                <h1>Đăng nhập</h1>
-                                <div class="ism-form__group">
-                                    <label for="ism-email">Tên đăng nhập</label>
-                                    <div class="ism-input-holder">
-                                        <input type="text" name="login" id="ism-email" placeholder="Tên đăng nhập">
-                                        <div id="error-userName"></div>
-                                    </div>
-                                </div>
-                                <div class="ism-form__group">
-                                    <label for="ism-password">Mật khẩu</label>
-                                    <div class="ism-input-holder">
-                                        <input type="password" name="password" id="ism-password"
-                                            placeholder="Password" data-password-element="input">
-                                        <button type="button" class="btn ism-show-password" id="ismjs-show-password"
-                                            onclick="togglePasswordVisibility()">Hiện</button>
-                                        <script>
-                                            //Ẩn hiện mật khẩu
-                                            function togglePasswordVisibility() {
-                                                var passwordInput = document.getElementById("ism-password");
-                                                var toggleButton = document.getElementById("ismjs-show-password");
-                                                if (passwordInput.type === "password") {
-                                                    passwordInput.type = "text";
-                                                    toggleButton.textContent = "Ẩn";
-                                                } else {
-                                                    passwordInput.type = "password";
-                                                    toggleButton.textContent = "Hiện";
-                                                }
-                                            }
-                                        </script>
-                                    </div>
-                                    <div id="error-Password"></div>
-                                </div>
-                                <div class="ism-form__group">
-                                    <a href="/accounts/password-reset/"
-                                        class="ism-arrow-link ism-arrow-link__login">Quên mật khẩu?</a>
-                                    <button type="button" class="btn btn-primary" onclick="checkLogin()">
-                                        Đăng nhập
-                                    </button>
-                                </div>
-                                <script>
-
-                                    var ismEmail = document.getElementById('ism-email');
-                                    var ismPassword = document.getElementById('ism-password');
-                                    var errorPassword = document.getElementById('error-Password');
-                                    var errorUserName = document.getElementById('error-userName');
-                                    ismEmail.addEventListener('keyup', () => {
-                                        errorUserName.innerHTML = '';
-                                        ismEmail.classList.remove('error-border');
-
-                                        if (event.key === 'Enter') {
-                                            checkLogin();
-                                        }
-
-                                    });
-                                    ismPassword.addEventListener('keyup', () => {
-                                        errorPassword.innerHTML = '';
-                                        ismPassword.classList.remove('error-border');
-
-                                        if (event.key === 'Enter') {
-                                            checkLogin();
-                                        }
-                                    });
-                                    function checkLogin() {
-                                        var data = JSON.parse(unescape('<%- data %>'));
-                                        console.log(data);
-                                        var checkUserName = false;
-                                        var ismEmailValue = ismEmail.value;
-                                        for (let i = 0; i < data.length; i++) {
-                                            if (ismEmailValue === data[i].userName) {
-                                                checkUserName = true;
-                                            }
-                                        }
-                                        if (checkUserName) {
-                                            var checkPassword = false;
-                                            var idUser = 0;
-                                            var ismPasswordValue = ismPassword.value;
-                                            for (let i = 0; i < data.length; i++) {
-                                                if (ismPasswordValue === data[i].password) {
-                                                    checkPassword = true;
-                                                    idUser = i;
-                                                }
-                                            }
-                                            if (checkPassword) {
-
-                                                // Lấy danh sách các phần tử khớp với truy vấn CSS
-                                                var elements = document.querySelectorAll('.fantasySignInLabel');
-                                                // Lặp qua từng phần tử và thay đổi nội dung
-                                                for (var j = 0; j < elements.length; j++) {
-                                                    elements[j].innerHTML = data[idUser].lastName;
-                                                }
-                                                // Loại bỏ lớp active từ tất cả các tab
-                                                tabLinks.forEach((tab) => {
-                                                    tab.classList.remove('active');
-                                                });
-                                                // Ẩn tất cả các nội dung tab
-                                                const tabContents = document.querySelectorAll('.tab-content');
-                                                tabContents.forEach((tabContent) => {
-                                                    tabContent.style.display = 'none';
-                                                });
-
-                                                // Hiển thị nội dung của tab trang chủ và thêm lớp active cho tab
-                                                const selectedTabContent = document.getElementById('trangchu');
-                                                selectedTabContent.style.display = 'block';
-                                                link.classList.add('active');
-                                            } else {
-                                                errorPassword.innerHTML = 'Mật khẩu sai!';
-                                                errorPassword.style.color = '#e53535';
-                                                ismPassword.classList.add('error-border');
-                                            }
-                                        }
-                                        else {
-                                            errorUserName.innerHTML = 'Tên đăng nhập không tồn tại!';
-                                            errorUserName.style.color = '#e53535';
-                                            ismEmail.classList.add('error-border');
-                                        }
-                                    }
-                                </script>
-                            </div>
-
-                            <div class="col-6">
-                                <h1 class="ism-hide--mobile">Đăng ký</h1>
-                                <div class="ism-well ism-well__reg-spacer">
-                                    <h2>Chưa có tài khoản?</h2>
-                                    <p>Trường hợp chưa có tài khoản, bạn có thể bị bỏ lỡ:</p>
-                                    <ul>
-                                        <li>Các trận cầu hấp dẫn</li>
-                                        <li>Các dịch vụ cho người hâm mộ</li>
-                                        <li>Thông tin về giải đấu</li>
-                                        <li>Thông tin về câu lạc bộ yêu thích và thông báo mới</li>
-                                    </ul>
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="btn-highlight btn ism-button--full"
-                                                    data-tab="dangky">Đăng ký ngay</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Tab đăng kí-->
-    <section id="dangky" class="ism tab-content">
-        <header class="pageHero">
-            <div class="wrapper col-12">
-                <h1 class="pageTitle">Tài khoản của bạn</h1>
-            </div>
-        </header>
-        <div class="ism-container">
-            <div class="wrapper">
-                <div id="ismr-content2">
-                    <form class="ism-form__login-box" method="post" action="/post-crud">
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                            value="y8sewwykk97bI1cdkF2r5sT3kpIPooO1NkH9walxgjR7bsUstS8HMUSYHrnaGqYx">
-                        <div class="wrapper">
-                            <div class="col-12">
-                                <h1>Đăng ký</h1>
-                                <div class="ism-form---group">
-                                    <div class="ism-form__group">
-                                        <label for="ism-ho">Họ</label>
-                                        <div class="ism-input-holder">
-                                            <input type="text" name="firstName" id="ism-ho"
-                                                placeholder="Họ của bạn">
-                                        </div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <label for="ism-ten">Tên</label>
-                                        <div class="ism-input-holder">
-                                            <input type="text" name="lastName" id="ism-ten"
-                                                placeholder="Tên của bạn">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ism-form__group">
-                                    <label for="ism-email">Tên đăng nhập</label>
-                                    <div class="ism-input-holder">
-                                        <input type="text" name="userName" id="ism-userName"
-                                            placeholder="Tên đăng nhập">
-                                        <div id="userNameInfo">Tên đăng nhập dưới 6 kí tự</div>
-                                    </div>
-                                </div>
-                                <div class="ism-form__group">
-                                    <label for="ism-password">Mật khẩu mới</label>
-                                    <div class="ism-input-holder">
-                                        <input type="password" name="password" id="ism-password2"
-                                            placeholder="Mật khẩu" data-password-element="input">
-                                        <button type="button" class="btn ism-show-password"
-                                            id="ismjs-show-password2"
-                                            onclick="togglePasswordVisibility2()">Hiện</button>
-                                        <script>
-                                            //Ẩn hiện mật khẩu
-                                            function togglePasswordVisibility2() {
-                                                var passwordInput = document.getElementById("ism-password2");
-                                                var toggleButton = document.getElementById("ismjs-show-password2");
-                                                if (passwordInput.type === "password") {
-                                                    passwordInput.type = "text";
-                                                    toggleButton.textContent = "Ẩn";
-                                                } else {
-                                                    passwordInput.type = "password";
-                                                    toggleButton.textContent = "Hiện";
-                                                }
-                                            }
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="ism-form__group">
-                                    <h5>Mật khẩu phải thỏa mãn các điều kiện sau:</h5>
-                                    <ul class="ism-PassList">
-                                        <li class="PassList__StyledPassItem">
-                                            <h5 class="PassList__Label col-6">Có ít nhất 8 kí tự</h5>
-                                            <div class="PassList__box" id="box1">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </li>
-                                        <li class="PassList__StyledPassItem">
-                                            <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự đặc biệt</h5>
-                                            <div class="PassList__box" id="box2">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </li>
-                                        <li class="PassList__StyledPassItem">
-                                            <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự in hoa</h5>
-                                            <div class="PassList__box" id="box3">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </li>
-                                        <li class="PassList__StyledPassItem">
-                                            <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự số</h5>
-                                            <div class="PassList__box" id="box4">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="ism-form__group">
-                                    <button type="button" class="btn btn-primary" id="signUpBtn">
-                                        Đăng ký
-                                    </button>
-                                </div>
-                                <script>
-                                    function checkPassword1(password) {
-                                        // Kiểm tra độ dài tối thiểu 8 kí tự
-                                        if (password.length < 8) {
-                                            return false;
-                                        }
-                                        return true;
-                                    }
-
-                                    function checkPassword2(password) {
-                                        // Kiểm tra kí tự đặc biệt
-                                        var specialChars = /[!@#$%^&*(),.?":{}|<>`~;']/;
-                                        if (!specialChars.test(password)) {
-                                            return false;
-                                        }
-                                        return true;
-                                    }
-
-                                    function checkPassword3(password) {
-                                        // Kiểm tra kí tự in hoa
-                                        var uppercaseChars = /[A-Z]/;
-                                        if (!uppercaseChars.test(password)) {
-                                            return false;
-                                        }
-                                        return true;
-                                    }
-
-                                    function checkPassword4(password) {
-                                        var numberChars = /[0-9]/;
-                                        if (!numberChars.test(password)) {
-                                            return false;
-                                        }
-                                        return true;
-                                    }
-                                    var data = JSON.parse(unescape('<%- data %>'));
-                                    var userNameCheck = false;
-                                    var checkUserNameInput = document.getElementById("ism-userName");
-                                    checkUserNameInput.addEventListener('input', () => {
-                                        var userNameInput = document.getElementById("ism-userName").value;
-                                        var userNameInfo = document.getElementById('userNameInfo');
-                                        if (checkPassword2(userNameInput)) {
-                                            userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
-                                            userNameInfo.style.color = '#e53535';
-                                            userNameCheck = false;
-                                        }
-                                        else {
-                                            if (userNameInput.length < 6) {
-                                                userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
-                                                userNameInfo.style.color = '#e53535';
-                                                userNameCheck = false;
-                                            } else {
-                                                userNameCheck = true;
-                                                userNameInfo.style.color = '#08e104';
-
-                                                for (let i = 0; i < data.length; i++) {
-                                                    if (data[i].userName === userNameInput) {
-                                                        userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
-                                                        userNameInfo.style.color = '#e53535';
-                                                        userNameCheck = false;
-                                                        break;
-                                                    }
-                                                }
-                                                if (userNameCheck)
-                                                    userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
-                                                userNameInfo.style.color = '#08e104';
-                                            }
-                                        }
-                                        if (userNameCheck) {
-                                            checkUserNameInput.classList.remove('error-border');
-                                        }
-                                        var signUpBtn = document.getElementById('signUpBtn');
-                                        if (!userNameCheck) {
-                                            signUpBtn.onclick = scrollUserName;
-                                        } else {
-                                            signUpBtn.onclick = scrollPasswordName;
-                                        }
-                                    });
-
-                                    var checkPasswordInput = document.getElementById("ism-password2");
-                                    checkPasswordInput.addEventListener('input', () => {
-                                        var passwordInput = document.getElementById("ism-password2").value;
-                                        var isValidPassword1 = checkPassword1(passwordInput);
-                                        var Box1 = document.getElementById('box1');
-                                        if (isValidPassword1) {
-                                            Box1.style.backgroundColor = '#08e104';
-                                            Box1.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                        } else {
-                                            Box1.style.backgroundColor = '#e53535';
-                                            Box1.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                        }
-
-                                        var isValidPassword2 = checkPassword2(passwordInput);
-                                        var Box2 = document.getElementById('box2');
-                                        if (isValidPassword2) {
-                                            Box2.style.backgroundColor = '#08e104';
-                                            Box2.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                        } else {
-                                            Box2.style.backgroundColor = '#e53535';
-                                            Box2.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                        }
-
-                                        var isValidPassword3 = checkPassword3(passwordInput);
-                                        var Box3 = document.getElementById('box3');
-                                        if (isValidPassword3) {
-                                            Box3.style.backgroundColor = '#08e104';
-                                            Box3.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                        } else {
-                                            Box3.style.backgroundColor = '#e53535';
-                                            Box3.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                        }
-
-                                        var isValidPassword4 = checkPassword4(passwordInput);
-                                        var Box4 = document.getElementById('box4');
-                                        if (isValidPassword4) {
-                                            Box4.style.backgroundColor = '#08e104';
-                                            Box4.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                        } else {
-                                            Box4.style.backgroundColor = '#e53535';
-                                            Box4.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                        }
-
-                                        if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4) {
-                                            checkPasswordInput.classList.remove('error-border');
-                                        }
-
-                                        var signUpBtn = document.getElementById('signUpBtn');
-                                        if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4 && userNameCheck) {
-                                            signUpBtn.type = 'submit';
-                                            signUpBtn.onclick = replaceTab;
-                                        } else {
-                                            signUpBtn.type = 'button';
-                                            if (!userNameCheck) {
-                                                signUpBtn.onclick = scrollUserName;
-                                            } else {
-                                                signUpBtn.onclick = scrollPasswordName;
-                                            }
-                                        }
-                                    });
-                                    var passwordInput = document.getElementById("ism-password2").value;
-                                    var signUpBtn = document.getElementById('signUpBtn');
-                                    if (checkPassword1(passwordInput) && checkPassword2(passwordInput) && checkPassword3(passwordInput) && checkPassword4(passwordInput) && userNameCheck) {
-                                        signUpBtn.type = 'submit';
-                                        signUpBtn.onclick = replaceTab;
-                                    } else {
-                                        signUpBtn.type = 'button';
-                                        if (!userNameCheck) {
-                                            signUpBtn.onclick = scrollUserName;
-                                        } else {
-                                            signUpBtn.onclick = scrollPasswordName;
-                                        }
-                                    }
-                                    function scrollPasswordName() {
-                                        checkPasswordInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                        checkPasswordInput.classList.add('error-border');
-                                    }
-                                    function scrollUserName() {
-                                        checkUserNameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                        checkUserNameInput.classList.add('error-border');
-                                    }
-                                    function replaceTab() {
-                                        Swal.fire(
-                                            'Thành công',
-                                            'Bạn đã đăng kí thành công tài khoản',
-                                            'success'
-                                        ).then((result) => {
-                                            // Loại bỏ lớp active từ tất cả các tab
-                                            tabLinks.forEach((tab) => {
-                                                tab.classList.remove('active');
-                                            });
-                                            // Ẩn tất cả các nội dung tab
-                                            const tabContents = document.querySelectorAll('.tab-content');
-                                            tabContents.forEach((tabContent) => {
-                                                tabContent.style.display = 'none';
-                                            });
-                                            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-                                            const selectedTabContent = document.getElementById('dangnhap');
-                                            selectedTabContent.style.display = 'block';
-                                            link.classList.add('active');
-                                        })
-                                    }                                           
-                                </script>
-                                <input type="hidden" name="app" value="pl-web">
-                                <input type="hidden" name="redirect_uri" value="https://www.premierleague.com/">
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1077,8 +563,6 @@
                     <div class="tabs">
                         <ul class="tablist" role="tablist">
                             <li role="tab" tabindex="0" data-tab-index="0" class="active">Giải hạng nhất</li>
-                            <li role="tab" tabindex="0" data-tab-index="1">Giải hạng 2</li>
-                            <li role="tab" tabindex="0" data-tab-index="2">U18</li>
                         </ul>
                     </div>
                 </div>
@@ -1089,82 +573,55 @@
                         <div class="socialShareBtn" role="button" tabindex="0" aria-haspopup="true">
                             <div class="icn share-black"></div>Chia sẻ
                         </div>
+                        <ul class="socialOptions" role="listbox">
+                            <li>
+                                <div class="option whatsapp" role="option" tabindex="0" data-social-service="whatsapp">
+                                    <span class="icn whatsapp-w"></span><span
+                                        class="visuallyHidden">action.share.whatsApp</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option twitter" role="option" tabindex="0" data-social-service="twitter">
+                                    <span class="icn twitter-lg-w"></span><span class="visuallyHidden">Share on
+                                        Twitter</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option facebook" role="option" tabindex="0" data-social-service="facebook">
+                                    <span class="icn facebook-lg-w"></span><span class="visuallyHidden">Share on
+                                        Facebook</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option copy" role="option" tabindex="0" data-social-service="copy"><span
+                                        class="icn copy-link-w"></span><span
+                                        class="visuallyHidden">action.share.copy</span></div>
+                            </li>
+                            <li>
+                                <div class="option email" role="option" tabindex="0" data-social-service="email"><span
+                                        class="icn mail-w"></span><span class="visuallyHidden">Email</span></div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </header>
+        <!--Thanh loading-->
+        <div class="loader js-tab-loader u-hide">
+            <div class="loader-small">
+                <div class="line"></div>
+            </div>
+        </div>
         <!--Các trận đấu-->
         <div class="tabbedContent">
             <div class="wrapper col-12 tabLoader active">
                 <div class="col-12">
-                    <% for (let i=0;i< dataLichThiDauSau.length;i++) { %>
-                        <section class="fixtures">
-                            <time class="date long" datetime="Saturday 20 May 2023">
-                                <strong>
-                                    <%= dataLichThiDauSau[i].ngay %>
-                                </strong>
-                            </time>
-                            <time class="date short" datetime="Saturday 20 May 2023">
-                                <strong>
-                                    <%= dataLichThiDauSau[i].ngay %>
-                                </strong>
-                            </time>
-                            <div data-competition-matches-list="Saturday 20 May 2023"
-                                class="fixtures__matches-list">
-                                <div class="competitionContainer">
-                                    <div class="competition right ">
-                                        <span class="competitionImage1">
-                                        </span> <span class="competitionLabel1">Premier League</span>
-                                    </div>
-                                </div>
-                                <ul class="matchList" data-comp-id="1">
-                                    <% for (let j=0;j<dataTranDau.length; j++) { if
-                                        (dataTranDau[j].ngay==dataLichThiDauSau[i].ngay) { %>
-                                        <li class="matchFixtureContainer">
-                                            <div data-template-rendered=""
-                                                data-href="//www.premierleague.com/match/75275"
-                                                class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
-                                                    class="overview"> <span class="teams"> <span class="team"> <span
-                                                                class="teamName"> <span class="shortname">
-                                                                    <%=dataTranDau[j].tenDoiBong1%>
-                                                                </span> <span class="abbr">MCI</span> </span> <span
-                                                                class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="25"> <img
-                                                                    class="badge-image badge-image--25 js-badge-image"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                            </span> </span> <time datetime="22:00">
-                                                            <%=dataTranDau[j].gio%>
-                                                        </time> <span class="team"> <span
-                                                                class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="25"> <img
-                                                                    class="badge-image badge-image--25 js-badge-image"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t8.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
-                                                            </span> <span class="teamName"> <span class="shortname">
-                                                                    <%=dataTranDau[j].tenDoiBong2%>
-                                                                </span> <span class="abbr">CHE</span> </span>
-                                                        </span> </span> <span class="stadiumName"> <span
-                                                            class="icn stadium-b"></span>
-                                                        <%=dataTranDau[j].sanNha%>
-                                                    </span> <span class="fixtureBroadcast broadcastDataContainer"
-                                                        data-id="75275"></span>
-                                                    <span class="icn arrow-right"></span> </span> </div> <span
-                                                class="btn quickView" role="button" data-modal-active="true">Xem
-                                                ngay</span>
-                                        </li>
-                                        <% }} %>
-                                </ul>
-                            </div>
-                            <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
-                        </section>
-                        <% } %>
+                    <!-- Copy code từ bên homepage qua-->
                 </div>
             </div>
-            <div class="wrapper col-12 u-hide" data-ui-tab="PL2" data-team-type="FIRST"
-                data-script="pl_filtered-list" data-comp-seasons="33" data-team="-1" data-filter-list="U21"
-                data-widget="results-filtered-list" data-page="0" data-page-size="40" data-match-states="U,L"
-                data-sort="ASCENDING">
+            <div class="wrapper col-12 u-hide" data-ui-tab="PL2" data-team-type="FIRST" data-script="pl_filtered-list"
+                data-comp-seasons="33" data-team="-1" data-filter-list="U21" data-widget="results-filtered-list"
+                data-page="0" data-page-size="40" data-match-states="U,L" data-sort="ASCENDING">
                 <div class="col-12">
                     <section class="fixtures">
                     </section>
@@ -1191,8 +648,6 @@
                     <div class="tabs">
                         <ul class="tablist" role="tablist">
                             <li role="tab" tabindex="0" data-tab-index="0" class="active">Giải hạng nhất</li>
-                            <li role="tab" tabindex="0" data-tab-index="1">Giải hạng 2</li>
-                            <li role="tab" tabindex="0" data-tab-index="2">U18
                             </li>
                         </ul>
                     </div>
@@ -1216,70 +671,21 @@
                 data-tab-aware-default="true">
 
                 <div class="col-12">
-                    <% for (let i=0; i< dataLichThiDauTruoc.length; i++) { %>
-                        <section class="fixtures"><time class="date long" datetime="Saturday 20 May 2023"><strong>
-                                    <%= dataLichThiDauTruoc[i].ngay %>
-                                </strong></time><time class="date short"><strong>
-                                    <%= dataLichThiDauTruoc[1].ngay%>
-                                </strong></time>
-                            <div data-competition-matches-list="Saturday 20 May 2023"
-                                class="fixtures__matches-list">
-                                <div class="competitionContainer">
-                                    <div class="competition right "> <span class="competitionImage1"></span> <span
-                                            class="competitionLabel1">Premier League</span> </div>
-                                </div>
-                                <ul class="matchList" data-comp-id="1">
-                                    <% for (let j=0;j<dataKetQua.length; j++) { if
-                                        (dataKetQua[j].ngay==dataLichThiDauTruoc[i].ngay) { %>
-                                        <li class="matchFixtureContainer">
-                                            <div data-template-rendered=""
-                                                data-href="//www.premierleague.com/match/75278"
-                                                class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
-                                                    class="overview"> <span class="teams"> <span class="team"> <span
-                                                                class="teamName"> <span class="shortname">
-                                                                    <%= dataKetQua[i].tenDoiBong1 %>
-                                                                </span> <span class="abbr">TOT</span> </span> <span
-                                                                class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="25"> <img
-                                                                    class="badge-image badge-image--25 js-badge-image"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>@x2.png 2x">
-                                                            </span> </span> <span class="score ">
-                                                            <%= dataKetQua[i].soBanThangDoi1 %><span>-</span>
-                                                                <%= dataKetQua[i].soBanThangDoi2 %>
-                                                        </span> <span class="team"> <span
-                                                                class="badge badge-image-container"
-                                                                data-widget="club-badge-image" data-size="25"> <img
-                                                                    class="badge-image badge-image--25 js-badge-image"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png, https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>@x2.png 2x">
-                                                            </span> <span class="teamName"> <span class="shortname">
-                                                                    <%= dataKetQua[i].tenDoiBong2 %>
-                                                                </span> <span class="abbr">BRE</span> </span>
-                                                        </span> </span>
-                                                    <% let sanNha='' ; for (let j=0;j<dataDoiBong.length;j++) { if
-                                                        (dataDoiBong[j].tenDoiBong==dataKetQua[i].tenDoiBong1) {
-                                                        sanNha=dataDoiBong[j].sanNha; }}%>
-                                                        <span class="stadiumName"> <span
-                                                                class="icn stadium-b"></span>
-                                                            <%=sanNha %>
-                                                        </span> <span
-                                                            class="fixtureBroadcast broadcastDataContainer"
-                                                            data-id="75278"></span>
-                                                        <span class="icn arrow-right"></span>
-                                                </span> </div>
-                                        </li>
-                                        <% } } %>
-                                </ul>
+                    <!--copy từ homepage-->
+                    
+                        </div>
+                        <div class="loader" data-scroll-loader="" style="min-height: 10px; display: block;">Đang tải
+                            thêm thông tin...<div class="loader-small">
+                                <div class="line"></div>
                             </div>
-
-                        </section>
-                        <% } %>
+                        </div>
+                    </section>
                 </div>
                 <div id="quickviewModal" class="fixturesModel">
                     <div class="fixtureModalHeader">
                     </div>
                 </div>
+
             </div>
     </section>
     <!--Tab bảng xếp hạng-->
@@ -1292,8 +698,6 @@
                     <div class="tabs">
                         <ul class="tablist" role="tablist">
                             <li role="tab" tabindex="0" data-tab-index="0" class="active">Giải hạng nhất</li>
-                            <li role="tab" tabindex="0" data-tab-index="1">Giải hạng 2</li>
-                            <li role="tab" tabindex="0" data-tab-index="2">U18</li>
                         </ul>
                     </div>
                 </div>
@@ -1307,11 +711,11 @@
                 </div>
             </div>
         </header>
-
+    
         <div class="tabbedContent">
             <div class="mainTableTab active" data-ui-tab="First Team" data-script="pl_filtered-list"
-                data-filter-list="FIRST" data-compseason="489" data-widget="table-filtered" data-detail="2"
-                data-live="true" data-tab-aware-default="true">
+                data-filter-list="FIRST" data-compseason="489" data-widget="table-filtered" data-detail="2" data-live="true"
+                data-tab-aware-default="true"> 
                 <div class="wrapper">
                     <section class="pageFilter col-12" data-widget="table-filter" data-use-basic-history="true"
                         data-reset-available="true">
@@ -1343,9 +747,8 @@
                                     data-option-index="6" class="">2017/18</li>
                                 <li role="option" tabindex="0" data-option-name="2016/17" data-option-id="54"
                                     data-option-index="7" class="">2016/17</li>
-                        </div>
-                        <div class="pageFilter__filter-btn" role="button">Filter<span class="icn dropdown"></span>
-                        </div>
+                        </div>  
+                        <div class="pageFilter__filter-btn" role="button">Filter<span class="icn dropdown"></span></div>
                         <div class="btn-highlight apply" role="button">
                             <div class="icn tick-w"></div>Apply Filters
                         </div>
@@ -1382,17 +785,14 @@
                                             <th scope="col">
                                                 <div class="thFull">Hòa</div>
                                                 <div class="thShort">D</div>
-
+    
                                             </th>
                                             <th scope="col">
                                                 <div class="thFull">Thua</div>
                                                 <div class="thShort">L</div>
                                             </th>
-                                            <th class="hideSmall" scope="col"><abbr title="Bàn thắng">Bàn
-                                                    thắng</abbr>
-                                            </th>
-                                            <th class="hideSmall" scope="col"><abbr title="Bàn thua">Bàn thua</abbr>
-                                            </th>
+                                            <th class="hideSmall" scope="col"><abbr title="Bàn thắng">Bàn thắng</abbr></th>
+                                            <th class="hideSmall" scope="col"><abbr title="Bàn thua">Bàn thua</abbr></th>
                                             <th scope="col"><abbr title="Hiệu số">Hiệu số</abbr></th>
                                             <th scope="col" class="points">
                                                 <div class="thFull">Điểm</div>
@@ -1403,130 +803,20 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
-                                        <% for (let i=0; i<dataTongKet.length; i++) { %>
-                                            <tr class="tableDark">
-                                                <td class="pos button-tooltip" tabindex="0" id="Tooltip">
-                                                    <span class="value">
-                                                        <%= i+1 %>
-                                                    </span>
-                                                </td>
-                                                <td class="team" scope="row">
-                                                    <a href="/clubs/11/Manchester-City/overview">
-                                                        <span class="badge badge-image-container">
-                                                            <img class="badge-image badge-image--25"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                        </span>
-                                                        <span class="long">
-                                                            <%= dataTongKet[i].tenDoiBong %>
-                                                        </span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].soTranDau %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].soTranThang %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].soTranHoa %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].soTranThua %>
-                                                </td>
-                                                <td class="hideSmall">
-                                                    <%= dataTongKet[i].soBanThang %>
-                                                </td>
-                                                <td class="hideSmall">
-                                                    <%= dataTongKet[i].soBanThua %>
-                                                </td>
-                                                <td>
-                                                    <%= dataTongKet[i].hieuSo %>
-                                                </td>
-                                                <td class="points">
-                                                    <%= dataTongKet[i].diemSo %>
-                                                </td>
-                                                <td class="form hideMed">
-                                                    <% for (let k=0;k<dataKetQua.length;i++) { if
-                                                        (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong ||
-                                                        dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong) { if
-                                                        (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong &&
-                                                        dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2)
-                                                        {
-                                                        let status = 'win';
-                                                        let st = 'W';
-                                                        }
-                                                        if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong
-                                                        && dataKetQua[k].soBanThangDoi1
-                                                        <dataKetQua[k].soBanThangDoi2) { let status='lose' ; let
-                                                            st='L' ; } if
-                                                            (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong &&
-                                                            dataKetQua[k].soBanThangDoi1==dataKetQua[k].soBanThangDoi2)
-                                                            { let status='draw' ; let st='D' ; } %>
-                                                            <li tabindex="0" class="<%= status%> button-tooltip"
-                                                                id="Tooltip">
-                                                                <abbr title="Won" class="form-abbreviation">
-                                                                    <%=st%>
-                                                                </abbr>
-                                                                <a href="/match/75246"
-                                                                    class="tooltipContainer linkable tooltip-link tooltip-right"
-                                                                    role="tooltip">
-                                                                    <span class="tooltip-content">
-                                                                        <div class="matchAbridged">
-                                                                            <span class="matchInfo">
-                                                                                <%= dataKetQua[k].ngay %>
-                                                                            </span>
-                                                                            <span class="teamName"><abbr
-                                                                                    title="Fulham">
-                                                                                    <%= dataKetQua[k].tenDoiBong1 %>
-                                                                                </abbr></span>
-                                                                            <span
-                                                                                class="badge badge-image-container"
-                                                                                data-widget="club-badge-image"
-                                                                                data-size="20">
-                                                                                <img class="badge-image badge-image--20"
-                                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t54.png"
-                                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t54@x2.png 2x">
-                                                                            </span>
-                                                                            <span class="score">
-                                                                                <%= dataKetQua[k].soBanThangDoi1 %>
-                                                                                    <span>-</span>
-                                                                                    <%= dataKetQua[k].soBanThangDoi2
-                                                                                        %>
-                                                                            </span>
-                                                                            <span
-                                                                                class="badge badge-image-container"
-                                                                                data-widget="club-badge-image"
-                                                                                data-size="20">
-                                                                                <img class="badge-image badge-image--20"
-                                                                                    src="https://resources.premierleague.com/premierleague/badges/20/t43.png"
-                                                                                    srcset="https://resources.premierleague.com/premierleague/badges/20/t43@x2.png 2x">
-                                                                            </span>
-                                                                            <span class="teamName"><abbr
-                                                                                    title="Manchester City">
-                                                                                    <%= dataKetQua[k].tenDoiBong2 %>
-                                                                                </abbr></span>
-                                                                            <span class="icn arrow-right"></span>
-                                                                        </div>
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <% } } %>
-                                                </td>
-                                            </tr>
-                                            <% } %>
-                                    </tbody>
+                                        <!--copy bên homepage-->
+                                        
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tableCompetitionExplainedContainer"></div>
+            <div class="tableCompetitionExplainedContainer"></div>
             </div>
         </div>
     </section>
     <!--Tab câu lạc bộ-->
     <section id="caulacbo" tabindex="0" class="tab-content" style="display: none;">
+        <!-- /131332370/GeneralTakeover_0 -->
         <header class="pageHero">
             <div class="wrapper col-12">
                 <h1 class="pageTitle">Đội bóng</h1>
@@ -1559,308 +849,371 @@
             <div class="clubIndex col-12">
                 <div class="indexSection">
                     <div class="">
-                        <ul
-                            class="block-list-5 block-list-3-m block-list-1-s block-list-1-xs block-list-padding dataContainer">
-                            <% for (let i=0; i < dataDoiBong.length; i++) { %>
-                                <li>
-                                    <a href="/clubs/127/Bournemouth/overview" class="indexItem t<%= anh[i] %>">
-                                        <div class="indexImg">
-                                            <span class="indexImg__img"></span>
-                                        </div>
-                                        <div class="indexBadge">
-                                            <span class="badge badge-image-container" data-widget="club-badge-image"
-                                                data-size="70">
-                                                <img class="badge-image badge-image--70 js-badge-image"
-                                                    src="photos/badges/70/t<%= anh[i] %>.png"
-                                                    srcset="photos/badges/70/t<%= anh[i] %>@x2.png 2x">
-                                            </span>
-                                        </div>
-                                        <div class="indexInfo clubColourBg">
-                                            <div class="indexBadge-mob">
-                                                <span class="badge badge-image-container"
-                                                    data-widget="club-badge-image" data-size="25">
-                                                    <img class="badge-image badge-image--25 js-badge-image"
-                                                        src="photos/badges/25/t<%= anh[i] %>.png"
-                                                        srcset="photos/badges/25/t<%= anh[i] %>@x2.png 2x">
-                                                </span>
-                                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        
+    </section>
 
-                                            <div class="nameContainer">
-                                                <h4 class="clubName">
-                                                    <%= dataDoiBong[i].tenDoiBong %>
-                                                </h4>
-                                                <div class="stadiumName">
-                                                    <%= dataDoiBong[i].sanNha %>
-                                                </div>
-                                            </div>
-                                            <div class="clubIndex__button">
-                                                <span class="u-hide-mob">Thông tin câu lạc bộ</span>
-                                                <svg class="clubIndex__button-icon"
-                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 20">
-                                                    <path
-                                                        d="M31.996 9.996c-.028-.603-.225-1.233-.69-1.657l-.001-.002-2.577-2.576-4.117-4.118L23.667.7a2.438 2.438 0 0 0-1.658-.69c-.576 0-1.262.255-1.658.69-.407.447-.713 1.032-.69 1.658.027.623.24 1.206.69 1.657l2.583 2.583 1.052 1.052H12.52l-6.816.001c-1.1 0-2.21-.013-3.31 0h-.048c-.605 0-1.23.262-1.657.69-.41.409-.713 1.07-.69 1.658.027.603.225 1.233.69 1.657.463.425 1.027.691 1.657.69h9.224l7.905-.002h4.521l-2.701 2.702-.945.944a2.44 2.44 0 0 0-.69 1.658c0 .575.255 1.262.69 1.657.447.408 1.031.714 1.657.69.621-.032 1.209-.24 1.658-.69l2.584-2.583 4.118-4.118.944-.945c.24-.24.41-.525.522-.831.108-.272.173-.56.163-.832">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <% } %>
+    <!--Tab Ghi nhận kết quả-->
+    <section id="ghinhanketqua" tabindex="0" class="tab-content" style="display: none;">
+        <header class="pageHero tabbedHero ">
+            <div class="wrapper col-12">
+                <h1 class="pageTitle">Ghi nhận kết quả</h1>
+                <div data-script="pl_tabbed" data-widget="tabbed-content" class="tabLinks left" data-tab-wrap=".tabs"
+                    data-tab-class="mainTableTab" data-update-tab-param="true">
+                    <div class="tabs">
+                        <ul class="tablist" role="tablist">
+                            <li role="tab" tabindex="0" data-tab-index="0" class="active">Giải hạng nhất</li>
                         </ul>
                     </div>
                 </div>
             </div>
+        </header>
+        <div class="loader js-tab-loader u-hide">
+            <div class="loader-small">
+                <div class="line"></div>
+            </div>
         </div>
-        </div>
+        <div class="tabbedContent">
+            <div class="wrapper col-12 tabLoader active"
+                data-fixturesids="38678,38679,38680,38681,38682,38683,38684,38685,38686,38687,38674,38668,38671,38673,38675,38670,38676,38677,38669,38672,38664,38659,38662,38658,38660,38661,38665,38667,38666,38663,38613,38617,38635,38615,38651,38648,38650,38652,38655,38649"
+                data-ui-tab="First Team" data-team-type="FIRST" data-script="pl_filtered-list" data-comp-seasons="210"
+                data-team="-1" data-filter-list="FIRST" data-widget="results-filtered-list" data-page="0"
+                data-page-size="40" data-match-states="C" data-sort="DESCENDING" data-tab-aware-default="true">
 
-    </section>
-    <!--Tab cầu thủ-->
-    <section id="cauthu" tabindex="0" class="tab-content" style="display: none;">
-        <div data-widget="list-data" data-type="player" data-comp-seasons="418" data-script="pl_filtered-list"
-            data-page-size="30" class="playerIndex">
-            <header class="pageHero">
-                <div class="wrapper col-12">
-                    <h1 class="pageTitle">Cầu thủ</h1>
-                    <div class="searchDataContainer" data-placeholder="Search for a Player">
-                        <div class="searchInputContainer" role="search"> <label for="search-input"
-                                class="visuallyHidden">Search for a Player</label> <input id="search-input"
-                                type="text" value="" placeholder="Search for a Player"
-                                class="searchTextContainer searchInput"> <button
-                                class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
-                                    <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        xlink:href="/resources/prod/v6.122.4-6039/i/svg-output/icons.svg#icn-close">
-                                    </use>
-                                </svg> </button>
-                            <div class="searchIconContainer searchCommit" role="button" tabindex="0">
-                                <div alt="" class="icn search-sm-g"><span class="visuallyHidden">Submit
-                                        search</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right" data-script="pl_social-share" data-widget="social-page-share"
-                        data-render="pagehover" data-body="Premier League - Players">
-                        <div class="socialShareHover">
-                            <div class="socialShareBtn" role="button" tabindex="0" aria-haspopup="true">
-                                <div class="icn share-black"></div>Share
-                            </div>
-                            <ul class="socialOptions" role="listbox">
-                                <li>
-                                    <div class="option whatsapp" role="option" tabindex="0"
-                                        data-social-service="whatsapp"><span class="icn whatsapp-w"></span><span
-                                            class="visuallyHidden">action.share.whatsApp</span></div>
+                <div class="col-12">
+                    <section class="fixtures"><time class="date long" datetime="Saturday 20 May 2023"><strong>Saturday
+                                20 May 2023</strong></time><time class="date short"
+                            datetime="Saturday 20 May 2023"><strong>Sat 20 May 2023</strong></time>
+                        <div data-competition-matches-list="Saturday 20 May 2023" class="fixtures__matches-list">
+                            <ul class="matchList" data-comp-id="1">
+                                <!-- Trận 1 -->
+                                <li class="matchFixtureContainer" data-home="Spurs" data-away="Brentford"
+                                    onclick="hienthi(this)" data-competition="Premier League"
+                                    data-venue="Tottenham Hotspur Stadium, <strong>London</strong>"
+                                    data-comp-match-item="75278" data-comp-match-item-ko="1684582200000"
+                                    data-comp-match-item-status="C">
+                                    <div data-template-rendered="" data-href="//www.premierleague.com/match/75278"
+                                        class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
+                                            class="overview"> <span class="teams"> <span class="team"> <span
+                                                        class="teamName"> <span class="shortname">Đội 1</span> <span
+                                                            class="abbr">Đội 1</span> </span> <span
+                                                        class="badge badge-image-container"
+                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                            class="badge-image badge-image--25 js-badge-image"
+                                                            src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
+                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
+                                                    </span> </span> <span class="score "><span>-</span></span> <span
+                                                    class="team"> <span class="badge badge-image-container"
+                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                            class="badge-image badge-image--25 js-badge-image"
+                                                            src="https://resources.premierleague.com/premierleague/badges/25/t94.png"
+                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
+                                                    </span> <span class="teamName"> <span class="shortname">Đội 2</span>
+                                                        <span class="abbr">Đội 2</span> </span> </span> </span> <span
+                                                class="stadiumName"> <span class="icn stadium-b"></span> Sân đội 1,
+                                                <strong>Việt Nam</strong> </span> <span
+                                                class="fixtureBroadcast broadcastDataContainer" data-id="75278"></span>
+                                            <span class="icn arrow-right"></span> </span> </div>
+                                    <!--Bảng thông tin tổng quát của trận đấu-->
+                                    <style>
+                                        .table-container {
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                        }
+
+                                        .table-container>div {
+                                            flex-basis: 50%;
+                                        }
+                                    </style>
+                                    <tr>
+                                        <th>Thông tin chi tiết</th>
+                                    </tr>
+                                    <div class="table-container">
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>Tên đội 1:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tỷ số:</td>
+                                                    <td><input type="text" id="coach"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ngày:</td>
+                                                    <td><input type="text" id="homeGround"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Số thẻ vàng:</td>
+                                                    <td><input type="text" id="homeGround"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>Tên đội 2:</td>
+                                                    <td><input type="text" id="homeJerseyColor"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sân:</td>
+                                                    <td><input type="text" id="awayJerseyColor"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Giờ:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Số thẻ đỏ:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="thongtin-trandau">
+                                        <!-- Nội dung của bảng -->
+                                        <script>
+                                            const thongtin_trandau = document.querySelectorAll('.thongtin-trandau');
+                                            thongtin_trandau.forEach((tttd) => {
+                                                let hot;
+
+                                                function initializeTable() {
+                                                    var thongTinTranDau = [
+                                                        { title: 'STT', data: 0 },
+                                                        { title: 'Cầu thủ', data: 1 },
+                                                        { title: 'Đội', data: 2 },
+                                                        { title: 'Loại bàn thắng', data: 3, type: 'dropdown', source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà'] },
+                                                        { title: 'Loại thẻ', data: 4, type: 'dropdown', source: ['Không', 'Thẻ vàng', 'Thẻ đỏ'] },
+                                                        { title: 'Thời điểm', data: 5 },
+                                                    ];
+                                                    hot = new Handsontable(tttd, {
+                                                        data: [
+                                                            ['', '', '', '', '', '']
+                                                        ],
+
+                                                        columns: thongTinTranDau,
+                                                        rowHeaders: true,
+                                                        stretchH: 'all',
+                                                        columnSorting: true,
+                                                        contextMenu: true,
+                                                        manualRowResize: true,
+                                                        manualColumnResize: true,
+                                                        cells: function (row, col, prop) {
+                                                            var cellProperties = {};
+
+                                                            // Đặt đường viền cho ô
+                                                            cellProperties.renderer = function (instance, td, row, col, prop, value, cellProperties) {
+                                                                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                                                                td.style.border = '1px solid #ccc';
+                                                            };
+
+                                                            return cellProperties;
+                                                        }
+                                                    })
+                                                }
+
+                                                function addPlayerRow() {
+                                                    hot.alter('insert_row', hot.countRows());
+                                                }
+
+                                                initializeTable()
+
+                                            })
+                                        </script>
+
+                                        <!-- Nút Submit -->
+                                        <button type="submit" id="submit1">Submit</button>
+                                    </div>
+                                    <script>
+
+                                        function hienthi(element) {
+                                            $('.thongtin-trandau').hide();
+                                            element.find('.thongtin-trandau').show();
+                                        }
+                                    </script>
                                 </li>
-                                <li>
-                                    <div class="option twitter" role="option" tabindex="0"
-                                        data-social-service="twitter"><span class="icn twitter-lg-w"></span><span
-                                            class="visuallyHidden">Share on Twitter</span></div>
-                                </li>
-                                <li>
-                                    <div class="option facebook" role="option" tabindex="0"
-                                        data-social-service="facebook"><span class="icn facebook-lg-w"></span><span
-                                            class="visuallyHidden">Share on Facebook</span></div>
-                                </li>
-                                <li>
-                                    <div class="option copy" role="option" tabindex="0" data-social-service="copy">
-                                        <span class="icn copy-link-w"></span><span
-                                            class="visuallyHidden">action.share.copy</span></div>
-                                </li>
-                                <li>
-                                    <div class="option email" role="option" tabindex="0"
-                                        data-social-service="email"><span class="icn mail-w"></span><span
-                                            class="visuallyHidden">Email</span></div>
+                                <!-- Trận 2-->
+                                <li class="matchFixtureContainer" data-home="Spurs" data-away="Brentford"
+                                    onclick="hienthi(this)" data-competition="Premier League"
+                                    data-venue="Tottenham Hotspur Stadium, <strong>London</strong>"
+                                    data-comp-match-item="75278" data-comp-match-item-ko="1684582200000"
+                                    data-comp-match-item-status="C">
+                                    <div data-template-rendered="" data-href="//www.premierleague.com/match/75278"
+                                        class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
+                                            class="overview"> <span class="teams"> <span class="team"> <span
+                                                        class="teamName"> <span class="shortname">Đội 3</span> <span
+                                                            class="abbr">Đội 3</span> </span> <span
+                                                        class="badge badge-image-container"
+                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                            class="badge-image badge-image--25 js-badge-image"
+                                                            src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
+                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
+                                                    </span> </span> <span class="score "><span>-</span></span> <span
+                                                    class="team"> <span class="badge badge-image-container"
+                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                            class="badge-image badge-image--25 js-badge-image"
+                                                            src="https://resources.premierleague.com/premierleague/badges/25/t94.png"
+                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
+                                                    </span> <span class="teamName"> <span class="shortname">Đội 4</span>
+                                                        <span class="abbr">Đội 4</span> </span> </span> </span> <span
+                                                class="stadiumName"> <span class="icn stadium-b"></span> Sân đội 3,
+                                                <strong>Việt Nam</strong> </span> <span
+                                                class="fixtureBroadcast broadcastDataContainer" data-id="75278"></span>
+                                            <span class="icn arrow-right"></span> </span> </div>
+                                    <!--Bảng thông tin tổng quát của trận đấu-->
+                                    <style>
+                                        .table-container {
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                        }
+
+                                        .table-container>div {
+                                            flex-basis: 50%;
+                                        }
+                                    </style>
+                                    <tr>
+                                        <th>Thông tin chi tiết</th>
+                                    </tr>
+                                    <div class="table-container">
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>Tên đội 1:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tỷ số:</td>
+                                                    <td><input type="text" id="coach"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ngày:</td>
+                                                    <td><input type="text" id="homeGround"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Số thẻ vàng:</td>
+                                                    <td><input type="text" id="homeGround"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>Tên đội 2:</td>
+                                                    <td><input type="text" id="homeJerseyColor"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sân:</td>
+                                                    <td><input type="text" id="awayJerseyColor"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Giờ:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Số thẻ đỏ:</td>
+                                                    <td><input type="text" id="teamName"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="thongtin-trandau">
+                                        <!-- Nội dung của bảng -->
+                                        <script
+                                            src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+                                        <script>
+                                            const thongtin_trandau1 = document.querySelectorAll('.thongtin-trandau');
+                                            thongtin_trandau1.forEach((tttd) => {
+                                                let hot;
+
+                                                function initializeTable() {
+                                                    var thongTinTranDau = [
+                                                        { title: 'STT', data: 0 },
+                                                        { title: 'Cầu thủ', data: 1 },
+                                                        { title: 'Đội', data: 2 },
+                                                        { title: 'Loại bàn thắng', data: 3, type: 'dropdown', source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà'] },
+                                                        { title: 'Loại thẻ', data: 4, type: 'dropdown', source: ['Không', 'Thẻ vàng', 'Thẻ đỏ'] },
+                                                        { title: 'Thời điểm', data: 5 },
+                                                    ];
+                                                    hot = new Handsontable(tttd, {
+                                                        data: [
+                                                            ['', '', '', '', '', '']
+                                                        ],
+
+                                                        columns: thongTinTranDau,
+                                                        rowHeaders: true,
+                                                        stretchH: 'all',
+                                                        columnSorting: true,
+                                                        contextMenu: true,
+                                                        manualRowResize: true,
+                                                        manualColumnResize: true,
+                                                        cells: function (row, col, prop) {
+                                                            var cellProperties = {};
+
+                                                            // Đặt đường viền cho ô
+                                                            cellProperties.renderer = function (instance, td, row, col, prop, value, cellProperties) {
+                                                                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                                                                td.style.border = '1px solid #ccc';
+                                                            };
+
+                                                            return cellProperties;
+                                                        }
+                                                    })
+                                                }
+
+                                                function addPlayerRow() {
+                                                    hot.alter('insert_row', hot.countRows());
+                                                }
+
+                                                initializeTable()
+
+                                            })
+                                        </script>
+
+                                        <!-- Nút Submit -->
+                                        <button type="submit" id="submit1">Submit</button>
+                                    </div>
+                                    <script>
+
+                                        function hienthi(element) {
+                                            $('.thongtin-trandau').hide();
+                                            element.find('.thongtin-trandau').show();
+                                        }
+                                    </script>
                                 </li>
                             </ul>
                         </div>
+                        <div class="loader" data-scroll-loader="" style="min-height: 10px; display: block;">Đang tải
+                            thêm thông tin...<div class="loader-small">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div id="quickviewModal" class="fixturesModel">
+                    <div class="fixtureModalHeader">
                     </div>
                 </div>
-            </header>
-            <div class="wrapper">
-                <div class="col-12">
-                    <section class="pageFilter col-12" data-use-history="true" data-filter-config="players"
-                        data-widget="tables-filter" data-reset-available="true">
-                        <header class="mobileHeader">
-                            <h4>Adjust Filters</h4>
-                            <div class="close" role="button">Cancel<span class="icn menu-close"></span></div>
-                        </header>
-                        <div class="dropDown active" data-dropdown-block="compSeasons" data-dropdown-default="">
-                            <div class="label" id="dd-compSeasons">Filter by Season</div>
-                            <div class="current" data-dropdown-current="compSeasons" role="button" tabindex="0"
-                                aria-expanded="false" aria-labelledby="dd-compSeasons" data-listen-keypress="true"
-                                data-listen-click="true">2022/23</div>
-                            <ul class="dropdownList" data-dropdown-list="compSeasons" role="listbox"
-                                aria-labelledby="dd-compSeasons" data-listen-keypress="true"
-                                data-listen-click="true">
-                                <li role="option" tabindex="0" data-option-name="2022/23" data-option-id="489"
-                                    data-option-index="0" class="">2022/23</li>
-                                <li role="option" tabindex="0" data-option-name="2021/22" data-option-id="418"
-                                    data-option-index="1" class="">2021/22</li>
-                                <li role="option" tabindex="0" data-option-name="2020/21" data-option-id="363"
-                                    data-option-index="2" class="">2020/21</li>
-                                <li role="option" tabindex="0" data-option-name="2019/20" data-option-id="274"
-                                    data-option-index="3" class="">2019/20</li>
-                                <li role="option" tabindex="0" data-option-name="2018/19" data-option-id="210"
-                                    data-option-index="4" class="">2018/19</li>
-                                <li role="option" tabindex="0" data-option-name="2017/18" data-option-id="79"
-                                    data-option-index="5" class="">2017/18</li>
-                                <li role="option" tabindex="0" data-option-name="2016/17" data-option-id="54"
-                                    data-option-index="6" class="">2016/17</li>
-                                <li role="option" tabindex="0" data-option-name="2015/16" data-option-id="42"
-                                    data-option-index="7" class="">2015/16</li>
-                                <li role="option" tabindex="0" data-option-name="2014/15" data-option-id="27"
-                                    data-option-index="8" class="">2014/15</li>
-                                <li role="option" tabindex="0" data-option-name="2013/14" data-option-id="22"
-                                    data-option-index="9" class="">2013/14</li>
-                                <li role="option" tabindex="0" data-option-name="2012/13" data-option-id="21"
-                                    data-option-index="10" class="">2012/13</li>
-                                <li role="option" tabindex="0" data-option-name="2011/12" data-option-id="20"
-                                    data-option-index="11" class="">2011/12</li>
-                                <li role="option" tabindex="0" data-option-name="2010/11" data-option-id="19"
-                                    data-option-index="12" class="">2010/11</li>
-                                <li role="option" tabindex="0" data-option-name="2009/10" data-option-id="18"
-                                    data-option-index="13" class="">2009/10</li>
-                                <li role="option" tabindex="0" data-option-name="2008/09" data-option-id="17"
-                                    data-option-index="14" class="">2008/09</li>
-                                <li role="option" tabindex="0" data-option-name="2007/08" data-option-id="16"
-                                    data-option-index="15" class="">2007/08</li>
-                                <li role="option" tabindex="0" data-option-name="2006/07" data-option-id="15"
-                                    data-option-index="16" class="">2006/07</li>
-                                <li role="option" tabindex="0" data-option-name="2005/06" data-option-id="14"
-                                    data-option-index="17" class="">2005/06</li>
-                                <li role="option" tabindex="0" data-option-name="2004/05" data-option-id="13"
-                                    data-option-index="18" class="">2004/05</li>
-                                <li role="option" tabindex="0" data-option-name="2003/04" data-option-id="12"
-                                    data-option-index="19" class="">2003/04</li>
-                                <li role="option" tabindex="0" data-option-name="2002/03" data-option-id="11"
-                                    data-option-index="20" class="">2002/03</li>
-                                <li role="option" tabindex="0" data-option-name="2001/02" data-option-id="10"
-                                    data-option-index="21" class="">2001/02</li>
-                                <li role="option" tabindex="0" data-option-name="2000/01" data-option-id="9"
-                                    data-option-index="22" class="">2000/01</li>
-                                <li role="option" tabindex="0" data-option-name="1999/00" data-option-id="8"
-                                    data-option-index="23" class="">1999/00</li>
-                                <li role="option" tabindex="0" data-option-name="1998/99" data-option-id="7"
-                                    data-option-index="24" class="">1998/99</li>
-                                <li role="option" tabindex="0" data-option-name="1997/98" data-option-id="6"
-                                    data-option-index="25" class="">1997/98</li>
-                                <li role="option" tabindex="0" data-option-name="1996/97" data-option-id="5"
-                                    data-option-index="26" class="">1996/97</li>
-                                <li role="option" tabindex="0" data-option-name="1995/96" data-option-id="4"
-                                    data-option-index="27" class="">1995/96</li>
-                                <li role="option" tabindex="0" data-option-name="1994/95" data-option-id="3"
-                                    data-option-index="28" class="">1994/95</li>
-                                <li role="option" tabindex="0" data-option-name="1993/94" data-option-id="2"
-                                    data-option-index="29" class="">1993/94</li>
-                                <li role="option" tabindex="0" data-option-name="1992/93" data-option-id="1"
-                                    data-option-index="30" class="">1992/93</li>
-                            </ul>
+
+                <div id="broadcasterInfoWrapModal" class="plBroadcastModal">
+                    <div id="broadcasterInfoContentModal" class="plBroadcastModalContent">
+                        <a class="close broadcastModalCloseButton" role="button" tabindex="0">close</a>
+                        <div id="broadcastersModal" class="broadcastersModal open">
+                            <div class="broadcastersTvInfoHeader"><span class="broadcastersTvInfoHeaderInner"><span
+                                        class="icn tv-w"></span>TV Info</span></div>
+                            <div class="broadcastersModalHeader">Broadcasters</div>
+                            <div class="allBroadcastersModalContainer"></div>
                         </div>
-                        <div class="dropDown mobile" data-dropdown-block="clubs" data-dropdown-default="All Clubs">
-                            <div class="label" id="dd-clubs">Filter by Club</div>
-                            <div class="current" data-dropdown-current="clubs" role="button" tabindex="0"
-                                aria-expanded="false" aria-labelledby="dd-clubs" data-listen-keypress="true"
-                                data-listen-click="true">All Clubs</div>
-                            <ul class="dropdownList" data-dropdown-list="clubs" role="listbox"
-                                aria-labelledby="dd-clubs" data-listen-keypress="true" data-listen-click="true">
-                                <li role="option" tabindex="0" data-option-name="All Clubs" data-option-id="-1"
-                                    data-option-index="-1" class="">All Clubs</li>
-                                <li role="option" tabindex="0" data-option-name="Bournemouth" data-option-id="127"
-                                    data-option-index="0" class="">Bournemouth</li>
-                                <li role="option" tabindex="0" data-option-name="Arsenal" data-option-id="1"
-                                    data-option-index="1" class="">Arsenal</li>
-                                <li role="option" tabindex="0" data-option-name="Aston Villa" data-option-id="2"
-                                    data-option-index="2" class="">Aston Villa</li>
-                                <li role="option" tabindex="0" data-option-name="Brentford" data-option-id="130"
-                                    data-option-index="3" class="">Brentford</li>
-                                <li role="option" tabindex="0" data-option-name="Brighton &amp; Hove Albion"
-                                    data-option-id="131" data-option-index="4" class="">Brighton &amp; Hove Albion
-                                </li>
-                                <li role="option" tabindex="0" data-option-name="Chelsea" data-option-id="4"
-                                    data-option-index="5" class="">Chelsea</li>
-                                <li role="option" tabindex="0" data-option-name="Crystal Palace" data-option-id="6"
-                                    data-option-index="6" class="">Crystal Palace</li>
-                                <li role="option" tabindex="0" data-option-name="Everton" data-option-id="7"
-                                    data-option-index="7" class="">Everton</li>
-                                <li role="option" tabindex="0" data-option-name="Fulham" data-option-id="34"
-                                    data-option-index="8" class="">Fulham</li>
-                                <li role="option" tabindex="0" data-option-name="Leeds United" data-option-id="9"
-                                    data-option-index="9" class="">Leeds United</li>
-                                <li role="option" tabindex="0" data-option-name="Leicester City" data-option-id="26"
-                                    data-option-index="10" class="">Leicester City</li>
-                                <li role="option" tabindex="0" data-option-name="Liverpool" data-option-id="10"
-                                    data-option-index="11" class="">Liverpool</li>
-                                <li role="option" tabindex="0" data-option-name="Manchester City"
-                                    data-option-id="11" data-option-index="12" class="">Manchester City</li>
-                                <li role="option" tabindex="0" data-option-name="Manchester United"
-                                    data-option-id="12" data-option-index="13" class="">Manchester United</li>
-                                <li role="option" tabindex="0" data-option-name="Newcastle United"
-                                    data-option-id="23" data-option-index="14" class="">Newcastle United</li>
-                                <li role="option" tabindex="0" data-option-name="Nottingham Forest"
-                                    data-option-id="15" data-option-index="15" class="">Nottingham Forest</li>
-                                <li role="option" tabindex="0" data-option-name="Southampton" data-option-id="20"
-                                    data-option-index="16" class="">Southampton</li>
-                                <li role="option" tabindex="0" data-option-name="Tottenham Hotspur"
-                                    data-option-id="21" data-option-index="17" class="">Tottenham Hotspur</li>
-                                <li role="option" tabindex="0" data-option-name="West Ham United"
-                                    data-option-id="25" data-option-index="18" class="">West Ham United</li>
-                                <li role="option" tabindex="0" data-option-name="Wolverhampton Wanderers"
-                                    data-option-id="38" data-option-index="19" class="">Wolverhampton Wanderers</li>
-                            </ul>
-                        </div>
-                        <div class="pageFilter__filter-btn" role="button">Filter<span class="icn dropdown"></span>
-                        </div>
-                        <div class="btn-highlight apply" role="button">
-                            <div class="icn tick-w"></div>Apply Filters
-                        </div>
-                        <div class="filter-button filter-button--reset" role="button" tabindex="0"> <i
-                                class="filter-button__icon icn reset-b"></i> <i
-                                class="filter-button__icon filter-button__icon--hover icn reset-p"></i> <span
-                                class="filter-button__text">Reset Filters</span> </div>
-                    </section>
-                    <div class="table playerIndex">
-                        <summary class="visuallyHidden">This table lists the player index</summary>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cầu thủ</th>
-                                    <th class="hide-s" scope="col">Vị trí</th>
-                                    <th class="hide-s" scope="col">Quốc tịch</th>
-                                    <th class="hide-s" scope="col">Đội bóng</th>
-                                </tr>
-                            </thead>
-                            <tbody class="dataContainer indexSection">
-                                <% for (let i=0;i < dataCauThu.length; i++) { %>
-                                    <tr>
-                                        <td class="hide-s">
-                                            <%= dataCauThu[i].tenCauThu %>
-                                        </td>
-                                        <td class="hide-s">
-                                            <%= dataCauThu[i].viTri %>
-                                        </td>
-                                        <td class="hide-s">
-                                            <% let flag='' ; if (dataCauThu[i].quocTich=='Việt Nam' ) { flag='VN' };
-                                                if (dataCauThu[i].quocTich=='Brazil' ) { flag='BR' }; if
-                                                (dataCauThu[i].quocTich=='Hàn Quốc' ) { flag='KR' }; if
-                                                (dataCauThu[i].quocTich=='Jamaica' ) { flag='JM' }; if
-                                                (dataCauThu[i].quocTich=='Trung Quốc' ) { flag='CN' }; if
-                                                (dataCauThu[i].quocTich=='Nigeria' ) { flag='NG' }; if
-                                                (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; if
-                                                (dataCauThu[i].quocTich=='Cameroon' ) { flag='CM' };%>
-                                                <span class="flag <%=flag%>" id="flags"></span>
-                                                <span class="playerCountry">
-                                                    <%= dataCauThu[i].quocTich %>
-                                                </span>
-                                        </td>
-                                        <td class="hide-s">
-                                            <%= dataCauThu[i].tenDoiBong %>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                        </table>
                     </div>
                 </div>
             </div>
-            <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
-        </div>
     </section>
 
     <!--Tab Ghi nhận kết quả-->
@@ -2259,7 +1612,7 @@
                 <div id="errorTuoiCT"></div>
 
                 <div class="submit-btn">
-                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
+                    <button type="submit" class="btn btn-primary">Gửi</button>
                     <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
                 </div>
 
@@ -2278,11 +1631,11 @@
                     { title: 'Tên cầu thủ', data: 0 },
                     { title: 'Số áo', data: 1 },
                     { title: 'Vị trí', data: 2, type: 'dropdown', source: ['Thủ môn', 'Hậu vệ', 'Trung vệ', 'Tiền vệ', 'Tiền đạo'] },
-                    { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'YYYY-MM-DD' },
+                    { title: 'Ngày sinh', data: 3, type: 'date' },
                     { title: 'Chiều cao (cm)', data: 4 },
                     { title: 'Cân nặng (kg)', data: 5 },
                     { title: 'Quốc tịch', data: 6 },
-                    { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'] },
+                    { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ chính', 'Cầu thủ dự bị'] },
                     { title: 'Ghi chú', data: 8 }
                 ];
                 hot = new Handsontable(playerTable, {
@@ -2371,7 +1724,7 @@
                 const awayJerseyColor = document.getElementById('id-awayJerseyColor').value;
                 console.log('Hello');
                 //Kiểm tra khóa chính 
-                var DOIBONG = JSON.parse(unescape('<%- dataDoiBong %>'));
+                var DOIBONG = JSON.parse(unescape('<%- dataDoiBong  %>'));
                 console.log('Hello');
                 var checkTeamName = false;
                 for (let i = 0; i < DOIBONG.length; i++) {
@@ -2427,6 +1780,7 @@
                         awayJerseyColor,
                         players: playerData.slice(0) // Bỏ qua hàng đầu tiên (tiêu đề)
                     };
+
                     // Cập nhật giá trị của hidden input
                     document.getElementById('playerData').value = JSON.stringify(team.players);
                     // Gửi form
@@ -2456,9 +1810,9 @@
             
 
             teamNameBox.addEventListener('keyup', () => {
-                if (event.key !== 'Enter') {
-                    errorTeamName.innerHTML = '';
-                    teamNameBox.ClassList.remove('error-border');
+                if(event.key !== 'Enter'){
+                errorTeamName.innerHTML = '';
+                teamNameBox.ClassList.remove('error-border');
                 }
             })
 
@@ -2474,14 +1828,35 @@
             data-page-size="30" class="playerIndex">
             <header class="pageHero">
                 <div class="wrapper col-12">
-                    <h1 class="pageTitle">Lập lịch thi đấu</h1>
+                    <h1 class="pageTitle">Players</h1>
+                    <div class="searchDataContainer" data-placeholder="Search for a Player">
+                        <div class="searchInputContainer" role="search"> <label for="search-input"
+                                class="visuallyHidden">Search for a Player</label> <input id="search-input" type="text"
+                                value="" placeholder="Search for a Player" class="searchTextContainer searchInput">
+                            <button class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
+                                    <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="/resources/prod/v6.122.4-6039/i/svg-output/icons.svg#icn-close">
+                                    </use>
+                                </svg> </button>
+                            <div class="searchIconContainer searchCommit" role="button" tabindex="0">
+                                <div alt="" class="icn search-sm-g"><span class="visuallyHidden">Submit search</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="right" data-script="pl_social-share" data-widget="social-page-share"
                         data-render="pagehover" data-body="Premier League - Players">
+                        <div class="socialShareHover">
+                            <div class="socialShareBtn" role="button" tabindex="0" aria-haspopup="true">
+                                <div class="icn share-black"></div>Share
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
             <div class="wrapper">
                 <div class="col-12">
+                    
                     <div class="table playerIndex">
                         <summary class="visuallyHidden">This table lists the player index</summary>
                         <table>
@@ -2540,9 +1915,6 @@
                                             <% } } %>
                             </tbody>
                         </table>
-                        <div class="submit-btn" style="margin-top: 30px;">
-                            <button type="submit" class="btn btn-primary">Gửi</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2559,27 +1931,27 @@
                 <div class="footerCol ">
                     <h3 class="subHeader">Giải vô địch quốc gia</h3>
                     <ul class="list--premier-league" role="menu">
-                        <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Trang chủ</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Trận đấu</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Kết quả</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Bảng xếp hang</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Câu lạc bộ</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Cầu thủ</span>
                             </a>
                         </li>
@@ -2589,15 +1961,15 @@
                 <div class="footerCol ">
                     <h3 class="subHeader">More</h3>
                     <ul class="list--more" role="menu">
-                        <li> <a href="//www.premierleague.com/referees" target="_self" role="menuitem">
+                        <li> <atarget="_self" role="menuitem">
                                 <span class=" link">Trọng tài</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/managers" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Huấn luyện viên</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/contact" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Liên hệ</span>
                             </a>
                         </li>

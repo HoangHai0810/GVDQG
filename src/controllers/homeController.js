@@ -29,7 +29,6 @@ let getHomePage = async (req, res) => {
         let dataTranDau = await CRUDSevice.getAllTranDau({
             raw: true,
         });
-        console.log('Add player!!');
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
