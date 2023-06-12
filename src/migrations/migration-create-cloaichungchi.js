@@ -5,8 +5,7 @@ module.exports = {
       maLoaiChungChi: {
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       tenLoaiChungChi: {
         type: Sequelize.TEXT
