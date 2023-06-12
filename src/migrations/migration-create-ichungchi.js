@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       maLoaiChungChi: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'loaiChungChis',
           key: 'maLoaiChungChi'

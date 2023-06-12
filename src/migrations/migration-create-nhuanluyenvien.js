@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       maChucVu: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'chucVus',
           key: 'maChucVu'
