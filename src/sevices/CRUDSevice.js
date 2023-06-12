@@ -1,13 +1,13 @@
 import doibong from '../models/doibong';
-import  db, { sequelize } from '../models/index'
+import db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
 
 
-let createNewUser = async(data) => {
-    return new Promise(async (reslove,reject) => {
-        try{
+let createNewUser = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
             await db.User.create({
                 firstName: data.firstName,
                 lastName: data.lastName,
@@ -16,18 +16,18 @@ let createNewUser = async(data) => {
                 address: data.address,
                 gender: data.gender === '1' ? true : false,
                 roleId: data.roleId,
-                phoneNumber: data.phoneNumber, 
+                phoneNumber: data.phoneNumber,
             })
 
             reslove('Added user!')
-        } catch(e) {
+        } catch (e) {
             reject(e);
         }
     })
 }
 
-let createDienBien = async(data) => {
-    return new Promise(async (reslove, reject) => {
+let createDienBien = async (data) => {
+    return new Promise(async (reslove, reject) => 
         try{ 
             
             for (let i=0;i<data.dienBien.length; i++)
@@ -64,16 +64,15 @@ let createDienBien = async(data) => {
                 })
             }
             reslove('AddDienBien!!');
-        } catch(e)
-        {
+        } catch (e) {
             reject(e)
         }
     })
 }
 
-let createTeam = async(data) => {
-    return new Promise(async (reslove,reject) => {
-        try{
+let createTeam = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
             await db.doiBong.create({
                 tenDoiBong: data.teamName,
                 sanNha: data.homeGround,
@@ -82,13 +81,12 @@ let createTeam = async(data) => {
             });
             data.playerData = JSON.parse(data.playerData);
             console.log(data.playerData);
-            for (let i=0;i<data.playerData.length; i++)
-            {
+            for (let i = 0; i < data.playerData.length; i++) {
                 var tempLoaiCT = null;
-                if (data.playerData[i][7] === 'Cầu thủ nước ngoài'){
+                if (data.playerData[i][7] === 'Cầu thủ nước ngoài') {
                     tempLoaiCT = 'NN';
                 }
-                if (data.playerData[i][7] === 'Cầu thủ trong nước'){
+                if (data.playerData[i][7] === 'Cầu thủ trong nước') {
                     tempLoaiCT = 'TN';
                 }
 
@@ -103,8 +101,8 @@ let createTeam = async(data) => {
                     quocTich: data.playerData[i][6],
                     maLoaiCauThu: tempLoaiCT
                 })
-            } 
-            await db.tongKet.create({   
+            }
+            await db.tongKet.create({
                 soBanThangSanKhach: 0,
                 soTranDau: 0,
                 soTranThang: 0,
@@ -117,9 +115,9 @@ let createTeam = async(data) => {
                 diemSo: 0,
                 soTranThua: 0,
                 tenDoiBong: data.teamName,
-            });  
+            });
             reslove('Added Team!')
-        } catch(e) {
+        } catch (e) {
             reject(e);
         }
     })
@@ -256,154 +254,134 @@ let createKetQua = async (data) => {
 
 let hashUserPassword = (password) => {
     return new Promise((reslove, reject) => {
-    try{
-        var hashPassword = bcrypt.hashSync(password, salt);
-        reslove(hashPassword);
-    } catch(e) {
-        reject(e);
-    }
+        try {
+            var hashPassword = bcrypt.hashSync(password, salt);
+            reslove(hashPassword);
+        } catch (e) {
+            reject(e);
+        }
     });
 }
 
 let getAllUser = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
             let users = db.User.findAll();
             reslove(users);
-        } catch(e){
+        } catch (e) {
             reject(e);
         }
     })
 }
 
 let getAllTongKet = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC, hieuSo DESC, soBanThang DESC", { type: QueryTypes.SELECT});
+            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
             reslove(tongket);
-        } catch(e){
+        } catch (e) {
             reject(e);
         }
     })
 }
 
 let getAllCauThu = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT});
+            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT });
             reslove(cauThu);
-        } catch(e)
-        {
+        } catch (e) {
             reject(e)
         }
     });
 }
 
 let getALLDoiBong = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT});
+            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT });
             reslove(doibong);
-        } catch(e)
-        {
+        } catch (e) {
             reject(e)
         }
     });
 }
 
 let getAllLichThiDauTruoc = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let lichThiDau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) <= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            let lichThiDau = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY ngay DESC", { type: QueryTypes.SELECT });
             reslove(lichThiDau);
-        } catch(e)
-        {
+        } catch (e) {
             reject(e)
         }
     });
 }
 
 let getAllLichThiDauSau = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let lichThiDauSau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) >= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            let lichThiDauSau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) >= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT });
             reslove(lichThiDauSau);
-        } catch(e)
-        {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichThiDau = () => {
-    return new Promise(async(reslove,reject) => {
-        try {
-            let lichThiDau = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT});
-            reslove(lichThiDau);
-        } catch(e)
-        {
-            reject(e)
-        }
-    });
-}
-
-let getAllTranDau = () => {
-    return new Promise(async(reslove,reject) => {
-        try {
-            let lichThiDauTruoc = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT});
-            reslove(lichThiDauTruoc);
-        } catch(e)
-        {
+        } catch (e) {
             reject(e)
         }
     });
 }
 
 let getAllKetQua = () => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay, DATE_FORMAT(ngayGio, '%H:%i') AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT });
             reslove(ketqua);
-        } catch(e)
-        {
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllTranDau = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let TranDau = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT });
+            reslove(TranDau);
+        } catch (e) {
             reject(e)
         }
     });
 }
 
 let getUserInfoById = (userId) => {
-    return new Promise(async(reslove, reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({
+            let user = await db.User.fi
+            ndOne({
                 where: {
                     id: userId,
                 }
             })
-            if (user)
-            {
+            if (user) {
                 reslove(user)
             }
-            else
-            {
+            else {
                 reslove({})
             }
             reslove(user);
-        } catch(e){
+        } catch (e) {
             reject(e);
         };
     })
 }
 
-let editUser = async(data) => {
-    return new Promise(async(reslove,reject) => {
-        try{
+let editUser = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
             let user = await db.User.findOne({
                 where: {
                     id: data.id,
                 }
             })
-            if (user)
-            {
+            if (user) {
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
                 user.address = data.address;
@@ -413,11 +391,10 @@ let editUser = async(data) => {
                 await user.save();
                 reslove('Edited user!');
             }
-            else
-            {
+            else {
                 reslove();
             }
-        } catch(e) {
+        } catch (e) {
             reject(e);
         }
     })
@@ -447,15 +424,14 @@ let editTongKet = async(data) => {
 }
 
 let deleteUserById = (userId) => {
-    return new Promise(async(reslove,reject) => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({ where: { id: userId} })
-            if (user)
-            {
+            let user = await db.User.findOne({ where: { id: userId } })
+            if (user) {
                 user.destroy();
             }
             reslove();
-        } catch(e) {
+        } catch (e) {
             reject(e);
         }
     })
@@ -473,8 +449,28 @@ let getAllThamSo = () => {
     });
 }
 
+let createLichThiDau = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            console.log(data.dataLich.length);
+            for (let i = 0; i < data.dataLich.length; i++) {
+                await db.lichThiDau.create({
+                    tenDoiBong1: data.dataLich[i][0],
+                    tenDOiBong2: data.dataLich[i][1],
+                    ngayGio: data.dataLich[i][4],
+                });
+            }
+
+            reslove('Lich added!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
 module.exports = {
-    createNewUser : createNewUser,
+    createNewUser: createNewUser,
     getAllUser: getAllUser,
     getUserInfoById: getUserInfoById,
     editUser: editUser,

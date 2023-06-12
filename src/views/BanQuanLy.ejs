@@ -2558,140 +2558,98 @@
             </header>
             <div class="wrapper">
                 <div class="col-12">
-                    <div class="table playerIndex">
-                        <summary class="visuallyHidden">This table lists the player index</summary>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên đội 1</th>
-                                    <th scope="col">Tên đội 2</th>
-                                    <th class="hide-s" scope="col">Sân</th>
-                                    <th class="hide-s" scope="col">Vòng thi đấu</th>
-                                    <th class="hide-s" scope="col">Ngày giờ</th>
-                                </tr>
-                            </thead>
-                            <tbody class="dataContainer indexSection">
-                                <% for (let i=0;i < dataDoiBong.length; i++ ) { for (let j=i + 1; j <dataDoiBong.length;
-                                    j++) { %>
+                    <div class="input-container"
+                        style="display: flex; margin-bottom: 30px; justify-content: space-around;">
+                        <span>
+                            <label for="team1">Tên đội 1:</label>
+                            <input type="text" id="team1">
+                        </span>
+                        <span>
+                            <label for="team2">Tên đội 2:</label>
+                            <input type="text" id="team2">
+                        </span>
+                    </div>
+                    <form id="form-laplich" action="/postLaplich" method="post">
+                        <div class="table playerIndex" id="tableLapLich">
+                            <summary class="visuallyHidden">This table lists the player index</summary>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td class="hide-s">
-                                            <%= dataDoiBong[i].tenDoiBong %>
-                                        </td>
-                                        <td class="hide-s">
-                                            <%= dataDoiBong[j].tenDoiBong %>
-                                        </td>
-                                        <td class="hide-s">
-                                            <%= dataDoiBong[i].sanNha%>
-                                        </td>
-                                        <td class="hide-s">
-                                            Lượt đi
-                                        </td>
-                                        <td class="hide-s">
-                                            <input type="date" id="search-input"
-                                                class="searchTextContainer searchInput">
-                                        </td>
+                                        <th scope="col" style="text-align: center;
+                                    vertical-align: middle;">Tên đội 1</th>
+                                        <th scope="col" style="text-align: center;
+                                    vertical-align: middle;">Tên đội 2</th>
+                                        <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Sân</th>
+                                        <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Vòng thi đấu</th>
+                                        <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Ngày giờ</th>
                                     </tr>
-                                    <% } } <!--Luot ve-->
-                                        for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
-                                        for (let j = i - 1; j >= 0; j--) {
-                                        %>
-                                        <tr>
-                                            <td class="hide-s">
-                                                <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
-                                                                </span>
-                                                <%= dataDoiBong[i].tenDoiBong %>
-                                            </td>
-                                            <td class="hide-s">
-                                                <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>@x2.png 2x">
-                                                                </span>
-                                                <%= dataDoiBong[j].tenDoiBong %>
-                                            </td>
-                                            <td class="hide-s">
-                                                <span class="stadiumName" style="white-space:normal; display: flex; justify-content: flex-start; align-items: center;"> <span class="icn stadium-b" style="margin-right:10px;"></span>
-                                                <%= dataDoiBong[i].sanNha%>
-                                                </span>
-                                            </td>
-                                            <td class="hide-s">
-                                                Lượt về
-                                            </td>
-                                            <td class="hide-s">
-                                                <% let check=false; 
-                                                for (let k=0;k < dataLichThiDau.length;k++) {
-                                                    if (dataDoiBong[i].tenDoiBong == dataLichThiDau[k].tenDoiBong1 && dataDoiBong[j].tenDoiBong==dataLichThiDau[k].tenDoiBong2) { 
-                                                        check = true; %>
-                                                    <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="<%=dataLichThiDau[k].ngayF%>"
-                                                    <% }   
-                                                }
-                                                if (!check) { %>
-                                                    <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="2020-12-26"> <% } %>                                
-                                            </td>
-                                        </tr>
-                                        <% } }  <!--Luot ve-->
-                                            for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
-                                            for (let j = i - 1; j >= 0; j--) {
-                                            %>
-                                            <tr>
-                                                <td class="hide-s">
-                                                    <span
-                                                                        class="badge badge-image-container"
-                                                                        data-widget="club-badge-image" data-size="25"> <img
-                                                                            class="badge-image badge-image--25 js-badge-image"
-                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
-                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
-                                                                    </span>
-                                                    <%= dataDoiBong[i].tenDoiBong %>
+                                </thead>
+                                <tbody class="dataContainer indexSection">
+                                    <% <!--Luot ve-->
+                                        for (let i=0;i < dataDoiBong.length; i++ ) { for (let j=i + 1; j <
+                                            dataDoiBong.length; j++) { %>
+                                            <tr style="text-align: center;
+                                        vertical-align: middle;">
+                                                <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;" id="tenDoi1">
+                                                    <%= dataDoiBong[i].tenDoiBong%>
                                                 </td>
-                                                <td class="hide-s">
-                                                    <span
-                                                                        class="badge badge-image-container"
-                                                                        data-widget="club-badge-image" data-size="25"> <img
-                                                                            class="badge-image badge-image--25 js-badge-image"
-                                                                            src="https://resources.premierleague.com/premierleague/badges/25/<%=anh[j]%>.png"
-                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>@x2.png 2x">
-                                                                    </span>
-                                                    <%= dataDoiBong[j].tenDoiBong %>
+                                                <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;" id="tenDoi2">
+                                                    <%= dataDoiBong[j].tenDoiBong%>
                                                 </td>
-                                                <td class="hide-s">
-                                                    <span class="stadiumName" style="white-space:normal; display: flex; justify-content: flex-start; align-items: center;"> <span class="icn stadium-b" style="margin-right:10px;"></span>
-                                                <%= dataDoiBong[i].sanNha%>
-                                                </span>
+                                                <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;" id="san">
+                                                    <%= dataDoiBong[i].sanNha%>
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;" id="vong">
                                                     Lượt đi
                                                 </td>
-                                                <td class="hide-s">
-                                                    <% let check=false; 
-                                                    for (let k=0;k < dataLichThiDau.length;k++) {
-                                                        if (dataDoiBong[i].tenDoiBong == dataLichThiDau[k].tenDoiBong1 && dataDoiBong[j].tenDoiBong==dataLichThiDau[k].tenDoiBong2) { 
-                                                            check = true; %>
-                                                        <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="<%=dataLichThiDau[k].ngayF%>"
-                                                        <% }   
-                                                    }
-                                                    if (!check) { %>
-                                                        <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="2020-12-26"> <% } %>                                
+                                                <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;" id='ngayDienRa'>
+                                                    <input type="date" id="ngay" name="ngay">
                                                 </td>
                                             </tr>
-                                            <% } } %>
-                                            <div class="submit-btn" style="margin-top: 30px;">
-                                                <button type="submit" class="btn btn-primary">Gửi</button>
-                                            </div>
-                            </tbody>
-
-                        </table>
-                        <div class="submit-btn" style="margin-top: 30px;">
-                            <button type="submit" class="btn btn-primary">Gửi</button>
+                                            <% } } <!--Luot ve-->
+                                                for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
+                                                for (let j = i - 1; j >= 0; j--) {
+                                                %>
+                                                <tr style="text-align: center;
+                                            vertical-align: middle;">
+                                                    <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;" id="tenDoi1">
+                                                        <%= dataDoiBong[i].tenDoiBong%>
+                                                    </td>
+                                                    <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;" id="tenDoi2">
+                                                        <%= dataDoiBong[j].tenDoiBong%>
+                                                    </td>
+                                                    <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;" id="san">
+                                                        <%= dataDoiBong[i].sanNha%>
+                                                    </td>
+                                                    <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;" id="vong">
+                                                        Lượt về
+                                                    </td>
+                                                    <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
+                                                        <input type="date" id="ngay" name="ngay">
+                                                    </td>
+                                                </tr>
+                                                <% } } %>
+                                </tbody>
+                            </table>
+                            <div class="submit-btn" style="margin-top: 30px;">
+                                <button type="submit" class="btn btn-primary" id="submitLich">Gửi</button>
+                            </div>
                         </div>
-                    </div>
+                        <input type="hidden" id="dataLich" name="dataLich" value="">
+                    </form>
                 </div>
             </div>
             <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
@@ -2699,6 +2657,91 @@
 
             <script>
 
+                // const tenDoi1 = document.getElementById('tenDoi1').innerText;
+                // const tenDoi2 = document.getElementById('tenDoi2').innerText;
+                // const san = document.getElementById('san').innerText;
+                // const vong = document.getElementById('vong').innerText;
+                // const formLapLich = document.getElementById('form-laplich');
+                // var table = document.getElementById('tableLapLich');
+                // console.log(table);
+                // var tbody = table.getElementsByTagName('tbody')[0];
+                // console.log(tbody);
+                // var rows = tbody.getElementsByTagName('tr');
+                // console.log(rows.length);
+                // var row = rows[1];
+                // console.log(row.getElementsByTagName('td'));
+                // var cells = row.getElementsByTagName('td');
+                // console.log(cells[3].textContent);
+                var data = [];
+
+
+                function handleSubmitLich(event) {
+                    pevnet.preventDefault();
+
+
+                    var table = document.getElementById('tableLapLich');
+                    console.log(table);
+                    var tbody = table.getElementsByTagName('tbody')[0];
+                    console.log(tbody);
+                    var rows = tbody.getElementsByTagName('tr');
+                    console.log(rows.length);
+                    for (let i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        var rowData = [];
+
+                        var cells = document.getElementsByTagName('td');
+                        for (var j = 0; j < cells.length; j++) {
+                            var cell = cells[j];
+
+                            if (j === cells.length - 1) {
+                                var input = cell.getElementsByTagName('input')[0];
+                                rowData.push(input.value);
+                            } else {
+                                rowData.push(cell.textContent.trim());
+                            }
+
+                        }
+                    }
+                    document.getElementsById('dataLich').value = JSON.stringify(data);
+
+                    document.getElementById('form-laplich').submit();
+                }
+
+                const formLapLich = document.getElementById('form-laplich');
+                formLapLich.addEventListener('submit', handleSubmitLich);
+                // const tempNgay = document.getElementById('vong')
+                // console.log(tempNgay.textContent);
+                // var table = document.getElementById('tableLapLich');
+                // var tbody = table.getElementsByTagName('tbody')[0];
+                // var rows = tbody.getElementsByTagName('tr');
+                // console.log(rows);
+                // document.getElementById('submitLich').addEventListener('click', function () {
+                //     var table = document.getElementById('tableLapLich');
+                //     var data = [];
+
+                //     // Lặp qua từng hàng trong tbody
+                //     var tbody = table.getElementsByTagName('tbody')[0];
+                //     var rows = tbody.getElementsByTagName('tr');
+                //     for (var i = 0; i < rows.length; i++) {
+                //         var row = rows[i];
+                //         var rowData = {};
+
+                //         // Lấy giá trị từ các ô trong hàng
+                //         var cells = row.getElementsByTagName('td');
+                //         rowData.tenDoi1 = cells[0].textContent;
+                //         rowData.tenDoi2 = cells[1].textContent;
+                //         rowData.san = cells[2].textContent;
+                //         rowData.vong = cells[3].textContent;
+                //         rowData.ngay = cells[4].value;
+
+                //         // Thêm đối tượng vào mảng data
+                //         data[i] = rowData;
+                //     }
+
+                //     // Gán giá trị của mảng data vào input hidden dataLich
+                //     dataLich = data;
+                // });
+                // console.log(dataLich);
             </script>
         </section>
 

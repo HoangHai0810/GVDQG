@@ -18,19 +18,16 @@ let getHomePage = async (req, res) => {
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
         });
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
             raw: true,
         });
         let dataKetQua = await CRUDSevice.getAllKetQua({
             raw: true,
-        });
+        })
         let dataTranDau = await CRUDSevice.getAllTranDau({
             raw: true,
-        });
-        console.log('Add player!!');
+        })
+        console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
@@ -109,11 +106,10 @@ let loginCRUD = (req, res) => {
     return res.send('Login')
 }
 
-let getManager = async(req, res) => 
-{
-    try{
+let getManager = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('Manager.ejs', {
             data: JSON.stringify(data)
@@ -123,21 +119,20 @@ let getManager = async(req, res) =>
     }
 }
 
-let getBanQuanLy = async(req, res) => 
-{
-    try{
+let getBanQuanLy = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
-            raw :   true,
+            raw: true,
         })
         let dataThamSo = await CRUDSevice.getAllThamSo({
-            raw :   true,
+            raw: true,
         })
         let dataCauThu = await CRUDSevice.getAllCauThu({
-            raw :   true,
-        })  
+            raw: true,
+        })
         let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
             raw: true,
         });
@@ -183,6 +178,11 @@ let postTeam = async (req, res) => {
     res.redirect('/banquanly');
 }
 
+let postLapLich = async (req, res) => {
+    console.log(req.body);
+    let mes = await CRUDSevice.createLichThiDau(req.body);
+    res.redirect('/banquanly');
+}
 let postDienBien = async (req,res) => {
     let data = req.body;  
     console.log(data);
@@ -192,11 +192,10 @@ let postDienBien = async (req,res) => {
     res.redirect('/banquanly');
 }
 
-let getAdmin = async(req, res) => 
-{
-    try{
+let getAdmin = async (req, res) => {
+    try {
         let data = await CRUDSevice.getAllUser({
-            raw :   true,
+            raw: true,
         });
         return res.render('Admin.ejs', {
             data: JSON.stringify(data)
@@ -221,5 +220,6 @@ module.exports = {
     getBanQuanLy: getBanQuanLy,
     postTeam: postTeam,
     getAdmin: getAdmin,
-    postDienBien: postDienBien
+    postDienBien: postDienBien,
+    postLapLich: postLapLich
 }
