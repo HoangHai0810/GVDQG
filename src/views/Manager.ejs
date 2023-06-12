@@ -205,6 +205,7 @@
                     <li><a href="#" data-tab="caulacbo" role="menuitem">Câu lạc bộ</a></li>
                     <li><a href="#" data-tab="cauthu" role="menuitem">Cầu thủ</a></li>
                     <li><a href="#" data-tab="xepdoihinh" role="menuitem">Xếp đội hình</a></li>
+                    <li><a href="#" data-tab="thaydoithongtincauthu" role="menuitem">Thay đổi thông tin cầu thủ</a></li>
                 </ul>
             </nav>
         </div>
@@ -969,6 +970,86 @@
     </script>
     </section>
 
+    <!--Tab  thay đổi thông tin cầu thủ -->
+
+    <section id="thaydoithongtincauthu" tabindex="0" class="tab-content" style="display: none;">
+        <header class="pageHero tabbedHero ">
+            <div class="wrapper col-12">
+                <h1 class="pageTitle">Thay đổi thông tin cầu thủ</h1>
+                <div data-script="pl_tabbed" data-widget="tabbed-content" class="tabLinks left" data-tab-wrap=".tabs"
+                    data-tab-class="mainTableTab" data-update-tab-param="true">
+                    <div class="tabs">
+                        <ul class="tablist" role="tablist">
+                            <li role="tab" tabindex="0" data-tab-index="0" class="active">Giải hạng nhất</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right" data-script="pl_social-share" data-widget="social-page-share" data-render="pagehover"
+                    data-body="Premier League - Tables">
+                </div>
+            </div>
+        </header>
+    
+        <div class="tabbedContent">
+            <div class="mainTableTab active"> 
+                <div class="wrapper">
+                    <section class="pageFilter col-12" data-widget="table-filter" data-use-basic-history="true"
+                        data-reset-available="true">  
+                    </section>
+                </div>
+                <div class="wrapper col-12">
+                    <div class="roundsContainer toggle"></div>
+                    <div class="allStructureContainer"></div>
+                </div>
+                <div class="allTablesContainer">
+                    <div class="wrapper col-12">
+                        <div class="tableContainer">
+                            <div class="table wrapper col-12">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-centre" scope="col">
+                                                <div class="thFull">Số thứ tự</div>
+                                                <div class="thShort">Pos</div>
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <div class="thFull">Tên cầu thủ</div>
+                                                <div class="thShort">Name</div>
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <div class="thFull">Vị trí</div>
+                                                <div class="thShort">Place</div>
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <div class="thFull">Số áo</div>
+                                                <div class="thShort">Num</div>
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <div class="thFull">Quốc tịch</div>
+                                                <div class="thShort">Num</div>
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <button>Thêm
+                                            </th>
+                                            <th class="text-centre" scope="col">
+                                                <button>Xóa
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tableBodyContainer isPL">
+                                        <!--copy bên homepage-->
+                                        
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="tableCompetitionExplainedContainer"></div>
+            </div>
+        </div>
+    </section>
+
 
     <!--Footer chính-->
     <footer class="mainFooter">
@@ -979,27 +1060,27 @@
                 <div class="footerCol ">
                     <h3 class="subHeader">Giải vô địch quốc gia</h3>
                     <ul class="list--premier-league" role="menu">
-                        <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Trang chủ</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Trận đấu</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Kết quả</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Bảng xếp hang</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Câu lạc bộ</span>
                             </a>
                         </li>
-                        <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
+                        <li> <a target="_self" role="menuitem">
                                 <span class=" link">Cầu thủ</span>
                             </a>
                         </li>
