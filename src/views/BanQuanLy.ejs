@@ -2314,17 +2314,17 @@
                         { title: 'Tên cầu thủ', data: 0 },
                         { title: 'Số áo', data: 1 },
                         { title: 'Vị trí', data: 2, type: 'dropdown', source: ['Thủ môn', 'Hậu vệ', 'Trung vệ', 'Tiền vệ', 'Tiền đạo'] },
-                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'DD-MM-YYYY' },
+                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'YYYY-MM-DD', defaultValue: 'YYYY-MM-DD', width: '150px' },
                         { title: 'Chiều cao (cm)', data: 4 },
                         { title: 'Cân nặng (kg)', data: 5 },
                         { title: 'Quốc tịch', data: 6 },
-                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'], defaultDate: 'cc' },
+                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'], defaultValue: 'Cầu thủ trong nước' },
                         { title: 'Ghi chú', data: 8 }
                     ];
 
                     hot = new Handsontable(playerTable, {
                         data: [
-                            ['', '', '', '01-01-1999', '', '', '', 'Cầu thủ trong nước', '']
+                            ['', '', '', 'YYYY-MM-DD', '', '', '', 'Cầu thủ trong nước', '']
                         ],
                         columns: playerColumns,
                         rowHeaders: true,
@@ -2340,6 +2340,20 @@
                         scrollbarModel: 'range',
                         scrollbarRange: 5,
                         licenseKey: 'non-commercial-and-evaluation',
+                        // afterCreateRow: function (index, amount, source) {
+                        //     for (var col = 0; col < playerColumns.length; col++) {
+                        //         var defaultValue = playerColumns[col].data;
+                        //         hot.setDataAtCell(index, col, defaultValue, 'alter');
+                        //     }
+                        // },
+                        beforeCreateRow: function (index, amount, source) {
+                            for (var i = 0; i < playerColumns.length; i++) {
+                                var column = playerColumns[i];
+                                if (column.defaultValue !== undefined) {
+                                    hot.setDataAtCell(index, i, column.defaultValue);
+                                }
+                            }
+                        },
                         afterChange: (changes, source) => {
                             if (source === 'edit') {
                                 var quocTichColumn = playerColumns.findIndex(function (column) {
@@ -2377,7 +2391,7 @@
                                     var newValue = change[3];
 
                                     if (column === ngaySinhColumn) {
-                                        var ngaySinh = moment(newValue, 'DD-MM-YYYY');
+                                        var ngaySinh = moment(newValue, 'YYYY-MM-DD');
                                         var age = moment().diff(ngaySinh, 'years');
 
                                         if (age < TuoiCTToiThieu || age > TuoiCTToiDa) {
@@ -2477,12 +2491,12 @@
                     }
                     //Kiểm tra ngày sinh không null
                     for (let i = 0; i < playerData.length; i++) {
-                        if (playerData[i][3] === null || playerData[i][3] === '') {
+                        if (playerData[i][3] === null || playerData[i][3] === 'YYYY-MM-DD') {
                             checkNULLNgaySinh = false;
                             break;
                         }
                     }
-
+                    console.log(playerData);
                     if (!checkTeamName && checkCTToiThieuToiDa && checkCTNNToiDa && checkNULLNgaySinh) {
 
                         // Tạo đối tượng đại diện cho đội bóng
@@ -2494,6 +2508,7 @@
                             awayJerseyColor,
                             players: playerData.slice(0) // Bỏ qua hàng đầu tiên (tiêu đề)
                         };
+
                         // Cập nhật giá trị của hidden input
                         document.getElementById('playerData').value = JSON.stringify(team.players);
 
@@ -2654,12 +2669,20 @@
                                                     <button type="submit" class="btn btn-primary">Gửi</button>
                                                 </div>
                             </tbody>
+
                         </table>
+                        <div class="submit-btn" style="margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
             </div>
+
+            <script>
+
+            </script>
         </section>
 
         <!--Footer chính-->
