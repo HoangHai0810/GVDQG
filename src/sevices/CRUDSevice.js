@@ -218,7 +218,8 @@ let getAllTranDau = () => {
 let getUserInfoById = (userId) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({
+            let user = await db.User.fi
+            ndOne({
                 where: {
                     id: userId,
                 }
@@ -289,6 +290,26 @@ let getAllThamSo = () => {
     });
 }
 
+let createLichThiDau = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            console.log(data.dataLich.length);
+            for (let i = 0; i < data.dataLich.length; i++) {
+                await db.lichThiDau.create({
+                    tenDoiBong1: data.dataLich[i][0],
+                    tenDOiBong2: data.dataLich[i][1],
+                    ngayGio: data.dataLich[i][4],
+                });
+            }
+
+            reslove('Lich added!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
@@ -305,4 +326,5 @@ module.exports = {
     createDienBien: createDienBien,
     getAllThamSo: getAllThamSo,
     getAllTranDau: getAllTranDau,
+    createLichThiDau: createLichThiDau
 }

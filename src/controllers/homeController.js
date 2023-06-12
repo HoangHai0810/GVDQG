@@ -172,6 +172,12 @@ let postTeam = async (req, res) => {
     res.redirect('/banquanly');
 }
 
+let postLapLich = async (req, res) => {
+    console.log(req.body);
+    let mes = await CRUDSevice.createLichThiDau(req.body);
+    res.redirect('/banquanly');
+}
+
 let postDienBien = async (req, res) => {
     let data = JSON.parse(req.body.dienbien);
     for (let k = 0; k < data.length; k++) {
@@ -208,5 +214,6 @@ module.exports = {
     getBanQuanLy: getBanQuanLy,
     postTeam: postTeam,
     getAdmin: getAdmin,
-    postDienBien: postDienBien
+    postDienBien: postDienBien,
+    postLapLich: postLapLich
 }
