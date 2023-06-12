@@ -26,6 +26,50 @@ let createNewUser = async(data) => {
     })
 }
 
+let createDienBien = async(data) => {
+    return new Promise(async (reslove, reject) => {
+        try{ 
+            
+            for (let i=0;i<data.length; i++)
+            {
+                var maLoaiBT = 1;
+                if (data[i][2] == 'Trực tiếp')
+                {
+                    maLoaiBT = 2;
+                }
+                if (data[i][2] == 'Đá phạt')
+                {
+                    maLoaiBT = 3;
+                }
+                if (data[i][2] == 'Phản lưới nhà')
+                {
+                    maLoaiBT = 4;
+                }
+                var maLoaiThe = 1;
+                if (data[i][3] == 'Thẻ vàng')
+                {
+                    maLoaiThe = 2;
+                }
+                if (data[i][3] == 'Thẻ đỏ')
+                {
+                    maLoaiThe = 3;
+                }
+                await db.dienBien.create({
+                    tenCauThu: data[i][0],
+                    tenDoiBong: data[i][1],
+                    maLoaiBanThang: maLoaiBT,
+                    maLoaiThe: maLoaiThe,
+                    thoiDiem: data[i][4],
+                })
+            }
+            reslove('AddDienBien!!');
+        } catch(e)
+        {
+            reject(e)
+        }
+    })
+}
+
 let createTeam = async(data) => {
     return new Promise(async (reslove,reject) => {
         try{
@@ -267,4 +311,5 @@ module.exports = {
     getAllLichThiDauTruoc: getAllLichThiDauTruoc,
     getAllKetQua: getAllKetQua,
     getAllTranDau: getAllTranDau,
+    createDienBien: createDienBien,
 }

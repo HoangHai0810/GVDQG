@@ -1907,13 +1907,7 @@
                 </div>
             </div>
             <div class="tabbedContent">
-                <div class="wrapper col-12 tabLoader active"
-                    data-fixturesids="38678,38679,38680,38681,38682,38683,38684,38685,38686,38687,38674,38668,38671,38673,38675,38670,38676,38677,38669,38672,38664,38659,38662,38658,38660,38661,38665,38667,38666,38663,38613,38617,38635,38615,38651,38648,38650,38652,38655,38649"
-                    data-ui-tab="First Team" data-team-type="FIRST" data-script="pl_filtered-list"
-                    data-comp-seasons="210" data-team="-1" data-filter-list="FIRST" data-widget="results-filtered-list"
-                    data-page="0" data-page-size="40" data-match-states="C" data-sort="DESCENDING"
-                    data-tab-aware-default="true">
-
+                <div class="wrapper col-12 tabLoader active">
                     <div class="col-12">
                         <section class="fixtures"><time class="date long"
                                 datetime="Saturday 20 May 2023"><strong>Saturday
@@ -1922,18 +1916,16 @@
                             <div data-competition-matches-list="Saturday 20 May 2023" class="fixtures__matches-list">
                                 <ul class="matchList" data-com p-id="1">
                                     <!-- Trận 1 -->
-                                    <li class="matchFixtureContainer" data-home="Spurs" data-away="Brentford"
-                                        onclick="hienthi(this)" data-competition="Premier League"
-                                        data-venue="Tottenham Hotspur Stadium, <strong>London</strong>"
-                                        data-comp-match-item="75278" data-comp-match-item-ko="1684582200000"
-                                        data-comp-match-item-status="C">
-                                        <div data-template-rendered="" data-href="//www.premierleague.com/match/75278"
-                                            class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
-                                                class="overview"> <span class="teams"> <span class="team"> <span
-                                                            class="teamName"> <span class="shortname">Đội 1</span> <span
-                                                                class="abbr">Đội 1</span> </span> <span
-                                                            class="badge badge-image-container"
-                                                            data-widget="club-badge-image" data-size="25"> <img
+                                        <!--Bảng thông tin tổng quát của trận đấu-->
+                                        <li class="matchFixtureContainer">
+                                        <div class="fixture postMatch" tabindex="0"> 
+                                            <span class="overview"> 
+                                                <span class="teams"> 
+                                                    <span class="team"> 
+                                                        <span class="teamName"> 
+                                                            <span class="shortname">Đội 1</span> 
+                                                            <span class="abbr">Đội 1</span> </span> 
+                                                            <span class="badge badge-image-container"> <img
                                                                 class="badge-image badge-image--25 js-badge-image"
                                                                 src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
                                                                 srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
@@ -1967,97 +1959,138 @@
                                         </style>
                                         <div class="thongtin-trandau">
                                             <!-- Nội dung của bảng -->
-                                            <form action="/postDienBien" method="post" id="dienBienForm">
-                                                <input hidden="true" name="DataDienBien" id="dienbiendata">
-                                            </form>
-                                            <script
-                                                src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
-                                            <script>
-                                                const thongtin_trandau = document.querySelectorAll('.thongtin-trandau');
-                                                thongtin_trandau.forEach((tttd) => {
-                                                    let hot;
+                                        </div>
+                                    </li>
+                                    <li class="matchFixtureContainer">
+                                        <div class="fixture postMatch" tabindex="0"> 
+                                            <span class="overview"> 
+                                                <span class="teams"> 
+                                                    <span class="team"> 
+                                                        <span class="teamName"> 
+                                                            <span class="shortname">Đội 1</span> 
+                                                            <span class="abbr">Đội 1</span> </span> 
+                                                            <span class="badge badge-image-container"> <img
+                                                                class="badge-image badge-image--25 js-badge-image"
+                                                                src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
+                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
+                                                        </span> </span> <span class="score "><span>-</span></span> <span
+                                                        class="team"> <span class="badge badge-image-container"
+                                                            data-widget="club-badge-image" data-size="25"> <img
+                                                                class="badge-image badge-image--25 js-badge-image"
+                                                                src="https://resources.premierleague.com/premierleague/badges/25/t94.png"
+                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
+                                                        </span> <span class="teamName"> <span class="shortname">Đội
+                                                                2</span>
+                                                            <span class="abbr">Đội 2</span> </span>
+                                                    </span>
+                                                </span> <span class="stadiumName"> <span class="icn stadium-b"></span>
+                                                    Sân đội 1,
+                                                    <strong>Việt Nam</strong> </span> <span
+                                                    class="fixtureBroadcast broadcastDataContainer"
+                                                    data-id="75278"></span>
+                                                <span class="icn arrow-right"></span> </span>
+                                        </div>
+                                        <!--Bảng thông tin tổng quát của trận đấu-->
+                                        <style>
+                                            .table-container {
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                            }
 
-                                                    function initializeTable() {
-                                                        var thongTinTranDau = [{
-                                                            title: 'Cầu thủ',
-                                                            data: 0
-                                                        }, {
-                                                            title: 'Đội',
-                                                            data: 1
-                                                        }, {
-                                                            title: 'Loại bàn thắng',
-                                                            data: 2,
-                                                            type: 'dropdown',
-                                                            source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà']
-                                                        }, {
-                                                            title: 'Loại thẻ',
-                                                            data: 3,
-                                                            type: 'dropdown',
-                                                            source: ['Không', 'Thẻ vàng', 'Thẻ đỏ']
-                                                        }, {
-                                                            title: 'Thời điểm',
-                                                            data: 4
-                                                        },];
-                                                        hot = new Handsontable(tttd, {
-                                                            data: [
-                                                                ['', '', '', '', '']
-                                                            ],
-
-                                                            columns: thongTinTranDau,
-                                                            rowHeaders: true,
-                                                            stretchH: 'all',
-                                                            columnSorting: true,
-                                                            contextMenu: true,
-                                                            manualRowResize: true,
-                                                            manualColumnResize: true,
-                                                            cells: function (row, col, prop) {
-                                                                var cellProperties = {};
-
-                                                                // Đặt đường viền cho ô
-                                                                cellProperties.renderer = function (instance, td, row, col, prop, value, cellProperties) {
-                                                                    Handsontable.renderers.TextRenderer.apply(this, arguments);
-                                                                    td.style.border = '1px solid #ccc';
-                                                                };
-
-                                                                return cellProperties;
-                                                            }
-                                                        })
-                                                    }
-
-                                                    function addPlayerRow() {
-                                                        hot.alter('insert_row', hot.countRows());
-                                                    }
-                                                    initializeTable();
-                                                });
-
-                                                function postDuLieu(
-
-
-                                                ) {
-                                                    //Lấy tham chiếu đến form và bảng dữ liệu
-                                                    const dienBienForm = document.getElementById('dienBienForm');
-                                                    const tableData = document.getElementById('dienbiendata');
-
-                                                    // Gán sự kiện submit cho form
-                                                    dienBienForm.addEventListener('submit', function (event) {
-                                                        // Ngăn chặn hành động mặc định của form
-                                                        event.preventDefault();
-
-                                                        // Lấy dữ liệu từ bảng và đưa vào input
-                                                        const hotData = hot.getSourceData();
-                                                        tableData.value = JSON.stringify(hotData);
-
-                                                        // Submit form
-                                                        dienBienForm.submit();
-                                                    })
-                                                }
-                                            </script>
-                                            <!-- Nút Submit -->
-                                            <button type="submit" id="submitBtn">Submit</button>
-
+                                            .table-container>div {
+                                                flex-basis: 50%;
+                                            }
+                                        </style>
+                                        <div class="thongtin-trandau">
+                                            <!-- Nội dung của bảng -->
                                         </div>
                                     </li>
                                 </ul>
+                                <form action="/postDienBien" method="post" id="dienBienForm">
+                                    <input hidden="true" value='' id="dienbiendata" name="dienbien">
+                                    <button type="submit" id="submitBtn">Submit</button>
+                                </form>
+                                <script
+                                        src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+                                    <script>
+                                        let handsontables = [];
+                                        const thongtin_trandau = document.querySelectorAll('.thongtin-trandau');
+                                        thongtin_trandau.forEach((tttd) => {
+                                            function initializeTable() {
+                                                var thongTinTranDau = [{
+                                                    title: 'Cầu thủ',
+                                                    data: 0
+                                                }, {
+                                                    title: 'Đội',
+                                                    data: 1
+                                                }, {
+                                                    title: 'Loại bàn thắng',
+                                                    data: 2,
+                                                    type: 'dropdown',
+                                                    source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà']
+                                                }, {
+                                                    title: 'Loại thẻ',
+                                                    data: 3,
+                                                    type: 'dropdown',
+                                                    source: ['Không', 'Thẻ vàng', 'Thẻ đỏ']
+                                                }, {
+                                                    title: 'Thời điểm',
+                                                    data: 4
+                                                },];
+                                                const hot = new Handsontable(tttd, {
+                                                    data: [
+                                                        ['', '', '', '', '']
+                                                    ],
+
+                                                    columns: thongTinTranDau,
+                                                    rowHeaders: true,
+                                                    stretchH: 'all',
+                                                    columnSorting: true,
+                                                    contextMenu: true,
+                                                    manualRowResize: true,
+                                                    manualColumnResize: true,
+                                                    cells: function (row, col, prop) {
+                                                        var cellProperties = {};
+
+                                                        // Đặt đường viền cho ô
+                                                        cellProperties.renderer = function (instance, td, row, col, prop, value, cellProperties) {
+                                                            Handsontable.renderers.TextRenderer.apply(this, arguments);
+                                                            td.style.border = '1px solid #ccc';
+                                                        };
+
+                                                        return cellProperties;
+                                                    }
+                                                });
+                                                handsontables.push(hot);    
+                                            }
+                                            
+                                            
+                                            function addPlayerRow() {
+                                                hot.alter('insert_row', hot.countRows());
+                                            }
+                                            initializeTable();
+                                        });
+                                            //Lấy tham chiếu đến form và bảng dữ liệu
+                                        const dienBienForm = document.getElementById('dienBienForm');
+                                        const tableData = document.getElementById('dienbiendata');
+                                        console.log(handsontables);
+                                        // Gán sự kiện submit cho form
+                                        dienBienForm.addEventListener('submit', function (event) {
+                                        // Ngăn chặn hành động mặc định của form
+                                            event.preventDefault();
+                                            // Lấy dữ liệu từ bảng và đưa vào input
+                                            const allTableData = [];
+                                            handsontables.forEach((hot) => {
+                                                const tableData = hot.getSourceData();
+                                                
+                                                allTableData.push(tableData);
+                                                
+                                            });
+                                            tableData.value = JSON.stringify(allTableData);
+                                            // Submit form
+                                            dienBienForm.submit();
+                                        });
+                                    </script>
                             </div>
                         </section>
                     </div>
@@ -2130,7 +2163,7 @@
             <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
             <script>
                 const playerTable = document.getElementById('playerTable');
-                let hot;
+                
 
                 function initializeTable() {
                     var playerColumns = [{
