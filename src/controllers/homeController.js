@@ -157,6 +157,8 @@ let getBanQuanLy = async(req, res) =>
             dataDoiBong: dataDoiBong,
             dataThamSo: dataThamSo,
             dataCauThu: dataCauThu,
+            parseDataDoiBong: JSON.stringify(dataDoiBong),
+            parseDataThamSo: JSON.stringify(dataThamSo),
             dataLichThiDauTruoc: dataLichThiDauTruoc,
             dataLichThiDauSau: dataLichThiDauSau,
             dataKetQua: dataKetQua,

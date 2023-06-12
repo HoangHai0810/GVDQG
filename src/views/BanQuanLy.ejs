@@ -2208,62 +2208,76 @@
 
         <!--Tab tiep nhan ho so-->
         <section id="tiepnhanhoso" tabindex="0" class="tab-content" style="display: none;">
-            <div class="container-tiep-nhan-hs">
-                <h2 style="text-align: center; font-weight: bolder; font-size: 200%; margin-bottom: 10px;">TIẾP NHẬN HỒ SƠ
-                    ĐỘI BÓNG</h2>
-    
-                <form id="teamForm" action="/post-teaminf" method="post">
-                    <div class="form-group">
-                        <label for="teamName">Tên đội:</label>
-                        <input type="text" class="form-control" id="id-teamName" name="teamName" placeholder="Nhập tên đội">
-                        <div id="errorTeamName"></div>
+            <div data-widget="list-data" data-type="player" data-comp-seasons="418" data-script="pl_filtered-list"
+                data-page-size="30" class="playerIndex">
+                <header class="pageHero">
+                    <div class="wrapper col-12">
+                        <h1 class="pageTitle">Team Registering</h1>
+                        <div class="right" data-script="pl_social-share" data-widget="social-page-share"
+                            data-render="pagehover" data-body="Premier League - Players">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="coach">Huấn luyện viên:</label>
-                        <input type="text" class="form-control" id="id-coach" name="coach"
-                            placeholder="Nhập tên huấn luyện viên">
-                    </div>
-                    <div class="form-group">
-                        <label for="homeGround">Sân nhà:</label>
-                        <input type="text" class="form-control" id="id-homeGround" name="homeGround"
-                            placeholder="Nhập tên sân nhà">
-                    </div>
-                    <div class="form-group">
-                        <label for="homeJerseyColor">Màu áo sân nhà:</label>
-                        <input type="text" class="form-control" id="id-homeJerseyColor" name="homeJerseyColor"
-                            placeholder="Nhập màu áo sân nhà">
-                    </div>
-                    <div class="form-group">
-                        <label for="awayJerseyColor">Màu áo sân khách:</label>
-                        <input type="text" class="form-control" id="id-awayJerseyColor" name="awayJerseyColor"
-                            placeholder="Nhập màu áo sân khách">
-                    </div>
-    
-                    <div id="playerTable"></div>
-    
-                    <div id="errorSoCT"></div>
-    
-                    <div id="errorCTNN"></div>
-                    
-                    <div id="errorNgaySinh"></div>
-    
-                    <div class="submit-btn">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
-                        <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
-                        <button type="button" class="btn btn-secondary" onclick="removePlayerRow()">Xóa cầu thủ</button>
-                    </div>
-    
-                    <!-- Các hidden input để lưu trữ dữ liệu từ bảng HandsonTable -->
-                    <input type="hidden" name="playerData" id="playerData" value="">
-                </form>
             </div>
-    
+            </header>
+            <div class="wrapper">
+                <div class="col-12">
+                    <div class="container-tiep-nhan-hs">            
+                        <form id="teamForm" action="/post-teaminf" method="post">
+                            <div class="form-group">
+                                <label for="teamName">Tên đội:</label>
+                                <input type="text" class="form-control" id="id-teamName" name="teamName" placeholder="Nhập tên đội">
+                                <div id="errorTeamName"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coach">Huấn luyện viên:</label>
+                                <input type="text" class="form-control" id="id-coach" name="coach"
+                                    placeholder="Nhập tên huấn luyện viên">
+                            </div>
+                            <div class="form-group">
+                                <label for="homeGround">Sân nhà:</label>
+                                <input type="text" class="form-control" id="id-homeGround" name="homeGround"
+                                    placeholder="Nhập tên sân nhà">
+                            </div>
+                            <div class="form-group">
+                                <label for="homeJerseyColor">Màu áo sân nhà:</label>
+                                <input type="text" class="form-control" id="id-homeJerseyColor" name="homeJerseyColor"
+                                    placeholder="Nhập màu áo sân nhà">
+                            </div>
+                            <div class="form-group">
+                                <label for="awayJerseyColor">Màu áo sân khách:</label>
+                                <input type="text" class="form-control" id="id-awayJerseyColor" name="awayJerseyColor"
+                                    placeholder="Nhập màu áo sân khách">
+                            </div>
+            
+                            <div id="playerTable"></div>
+            
+                            <div id="errorSoCT"></div>
+            
+                            <div id="errorCTNN"></div>
+                            
+                            <div id="errorNgaySinh"></div>
+            
+                            <div class="submit-btn">
+                                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
+                                <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
+                                <button type="button" class="btn btn-secondary" onclick="removePlayerRow()">Xóa cầu thủ</button>
+                            </div>
+            
+                            <!-- Các hidden input để lưu trữ dữ liệu từ bảng HandsonTable -->
+                            <input type="hidden" name="playerData" id="playerData" value="">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
+            </div>
+           
             <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
             <script>
                 var CAUTHU = '<%- dataCauThu %>';
-                var DOIBONG = '<%- dataDoiBong %>';
+                var DOIBONG = JSON.parse(unescape('<%- parseDataDoiBong %>'));
                 const playerTable = document.getElementById('playerTable');
-                const THAMSO = '<%- dataThamSo %>';
+                const THAMSO = JSON.parse(unescape('<%- parseDataThamSo %>'));
                 var TuoiCTToiThieu;
                 var TuoiCTToiDa;
                 var SoCTToiDa;
@@ -2288,7 +2302,7 @@
                         CTNNToiDa = parseInt(THAMSO[i].giaTri);
                     }
                 }
-                console.log(TuoiCTToiDa);
+                console.log(SoCTToiDa);
                 //import Handsontable from 'handsontable';
                 let hot;
     
@@ -2301,13 +2315,13 @@
                         { title: 'Chiều cao (cm)', data: 4 },
                         { title: 'Cân nặng (kg)', data: 5 },
                         { title: 'Quốc tịch', data: 6 },
-                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'] },
+                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'], defaultDate: 'cc' },
                         { title: 'Ghi chú', data: 8 }
                     ];
     
                     hot = new Handsontable(playerTable, {
                         data: [
-                            ['', '', '', '', '', '', '', '', '']
+                            ['', '', '', '01-01-1999', '', '', '', 'Cầu thủ trong nước', '']
                         ],
                         columns: playerColumns,
                         rowHeaders: true,
@@ -2460,7 +2474,7 @@
                     }
                     //Kiểm tra ngày sinh không null
                     for (let i = 0; i < playerData.length; i++){
-                        if (playerData[i][3]) {
+                        if (playerData[i][3] === null || playerData[i][3] === '') {
                             checkNULLNgaySinh = false;
                             break;
                         }
@@ -2604,11 +2618,11 @@
                                                 </td>
                                             </tr>
                                             <% } } %>
+                                            <div class="submit-btn" style="margin-top: 30px;">
+                                                <button type="submit" class="btn btn-primary">Gửi</button>
+                                            </div>
                             </tbody>
                         </table>
-                        <div class="submit-btn" style="margin-top: 30px;">
-                            <button type="submit" class="btn btn-primary">Gửi</button>
-                        </div>
                     </div>
                 </div>
             </div>

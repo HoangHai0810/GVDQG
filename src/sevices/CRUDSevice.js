@@ -209,6 +209,7 @@ let getAllTranDau = () => {
     return new Promise(async(reslove,reject) => {
         try {
             let lichThiDauTruoc = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            console.log(lichThiDauTruoc);
             reslove(lichThiDauTruoc);
         } catch(e)
         {
@@ -300,6 +301,7 @@ let getAllThamSo = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
+            console.log(ketqua);
             reslove(ketqua);
         } catch (e) {
             reject(e)
