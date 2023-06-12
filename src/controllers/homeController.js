@@ -143,6 +143,9 @@ let getBanQuanLy = async(req, res) =>
         let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
             raw: true,
         });
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+            raw: true,
+        })
         let dataKetQua = await CRUDSevice.getAllKetQua({
             raw: true,
         });
@@ -161,7 +164,8 @@ let getBanQuanLy = async(req, res) =>
             dataLichThiDauSau: dataLichThiDauSau,
             dataKetQua: dataKetQua,
             dataTranDau: dataTranDau,
-            dataTongKet: dataTongKet
+            dataTongKet: dataTongKet,
+            dataLichThiDau: dataLichThiDau
         });
     } catch (e) {
         console.log(e);
