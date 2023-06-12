@@ -32,27 +32,27 @@ let createDienBien = async(data) => {
             
             for (let i=0;i<data.length; i++)
             {
-                var maLoaiBT = null;
+                var maLoaiBT = 'LBT01';
                 if (data[i][2] == 'Trực tiếp')
                 {
-                    maLoaiBT = 2;
+                    maLoaiBT = 'LBT02';
                 }
                 if (data[i][2] == 'Đá phạt')
                 {
-                    maLoaiBT = 3;
+                    maLoaiBT = 'LBT03';
                 }
                 if (data[i][2] == 'Phản lưới nhà')
                 {
-                    maLoaiBT = 4;
+                    maLoaiBT = 'LBT04';
                 }
-                var maLoaiThe = 1;
+                var maLoaiThe = 'LT01';
                 if (data[i][3] == 'Thẻ vàng')
                 {
-                    maLoaiThe = 2;
+                    maLoaiThe = 'LT02';
                 }
                 if (data[i][3] == 'Thẻ đỏ')
                 {
-                    maLoaiThe = 3;
+                    maLoaiThe = 'LT03';
                 }
                 await db.dienBien.create({
                     tenCauThu: data[i][0],
