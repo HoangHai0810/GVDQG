@@ -26,6 +26,43 @@ let createNewUser = async (data) => {
     })
 }
 
+let createDienBien = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+
+            for (let i = 0; i < data.length; i++) {
+                var maLoaiBT = 1;
+                if (data[i][2] == 'Trực tiếp') {
+                    maLoaiBT = 2;
+                }
+                if (data[i][2] == 'Đá phạt') {
+                    maLoaiBT = 3;
+                }
+                if (data[i][2] == 'Phản lưới nhà') {
+                    maLoaiBT = 4;
+                }
+                var maLoaiThe = 1;
+                if (data[i][3] == 'Thẻ vàng') {
+                    maLoaiThe = 2;
+                }
+                if (data[i][3] == 'Thẻ đỏ') {
+                    maLoaiThe = 3;
+                }
+                await db.dienBien.create({
+                    tenCauThu: data[i][0],
+                    tenDoiBong: data[i][1],
+                    maLoaiBanThang: maLoaiBT,
+                    maLoaiThe: maLoaiThe,
+                    thoiDiem: data[i][4],
+                })
+            }
+            reslove('AddDienBien!!');
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 let createTeam = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
@@ -64,6 +101,8 @@ let createTeam = async (data) => {
                 soTranThang: 0,
                 soTranHoa: 0,
                 soTheVang: 0,
+                soBanThang: 0,
+                soBanThua: 0,
                 soTheDo: 0,
                 hieuSo: 0,
                 diemSo: 0,
@@ -99,12 +138,10 @@ let getAllUser = () => {
     })
 }
 
-
-
 let getAllTongKet = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let tongket = await sequelize.query("SELECT * FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
+            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT });
             reslove(tongket);
         } catch (e) {
             reject(e);
@@ -134,7 +171,7 @@ let getALLDoiBong = () => {
     });
 }
 
-let getAllLichThiDau = () => {
+let getAllLichThiDauTruoc = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let lichThiDau = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY ngay DESC", { type: QueryTypes.SELECT });
@@ -240,6 +277,17 @@ let deleteUserById = (userId) => {
     })
 }
 
+let getAllThamSo = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
+            console.log(ketqua);
+            reslove(ketqua);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
 
 module.exports = {
     createNewUser: createNewUser,
@@ -251,8 +299,10 @@ module.exports = {
     getAllTongKet: getAllTongKet,
     getAllCauThu: getAllCauThu,
     getALLDoiBong: getALLDoiBong,
-    getAllLichThiDau: getAllLichThiDau,
     getAllLichThiDauSau: getAllLichThiDauSau,
+    getAllLichThiDauTruoc: getAllLichThiDauTruoc,
     getAllKetQua: getAllKetQua,
+    createDienBien: createDienBien,
+    getAllThamSo: getAllThamSo,
     getAllTranDau: getAllTranDau,
 }

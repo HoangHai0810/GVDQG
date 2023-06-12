@@ -22,8 +22,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             primaryKey: true,
         },
-        tenDoiBong1: DataTypes.STRING,
-        tenDoiBong2: DataTypes.STRING,
         ngayGio: DataTypes.DATE,
         vong: DataTypes.INTEGER
     }, {
