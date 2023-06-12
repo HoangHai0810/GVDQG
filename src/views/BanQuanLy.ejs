@@ -2221,11 +2221,12 @@
             </header>
             <div class="wrapper">
                 <div class="col-12">
-                    <div class="container-tiep-nhan-hs">            
+                    <div class="container-tiep-nhan-hs">
                         <form id="teamForm" action="/post-teaminf" method="post">
                             <div class="form-group">
                                 <label for="teamName">Tên đội:</label>
-                                <input type="text" class="form-control" id="id-teamName" name="teamName" placeholder="Nhập tên đội">
+                                <input type="text" class="form-control" id="id-teamName" name="teamName"
+                                    placeholder="Nhập tên đội">
                                 <div id="errorTeamName"></div>
                             </div>
                             <div class="form-group">
@@ -2248,21 +2249,23 @@
                                 <input type="text" class="form-control" id="id-awayJerseyColor" name="awayJerseyColor"
                                     placeholder="Nhập màu áo sân khách">
                             </div>
-            
+
                             <div id="playerTable"></div>
-            
+
                             <div id="errorSoCT"></div>
-            
+
                             <div id="errorCTNN"></div>
-                            
+
                             <div id="errorNgaySinh"></div>
-            
+
                             <div class="submit-btn">
                                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Gửi</button>
-                                <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu thủ</button>
-                                <button type="button" class="btn btn-secondary" onclick="removePlayerRow()">Xóa cầu thủ</button>
+                                <button type="button" class="btn btn-secondary" onclick="addPlayerRow()">Thêm cầu
+                                    thủ</button>
+                                <button type="button" class="btn btn-secondary" onclick="removePlayerRow()">Xóa cầu
+                                    thủ</button>
                             </div>
-            
+
                             <!-- Các hidden input để lưu trữ dữ liệu từ bảng HandsonTable -->
                             <input type="hidden" name="playerData" id="playerData" value="">
                         </form>
@@ -2271,7 +2274,7 @@
             </div>
             <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
             </div>
-           
+
             <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
             <script>
                 var CAUTHU = '<%- dataCauThu %>';
@@ -2305,23 +2308,23 @@
                 console.log(SoCTToiDa);
                 //import Handsontable from 'handsontable';
                 let hot;
-    
+
                 function initializeTable() {
                     var playerColumns = [
                         { title: 'Tên cầu thủ', data: 0 },
                         { title: 'Số áo', data: 1 },
                         { title: 'Vị trí', data: 2, type: 'dropdown', source: ['Thủ môn', 'Hậu vệ', 'Trung vệ', 'Tiền vệ', 'Tiền đạo'] },
-                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'DD-MM-YYYY' },
+                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'YYYY-MM-DD', defaultValue: 'YYYY-MM:DD' },
                         { title: 'Chiều cao (cm)', data: 4 },
                         { title: 'Cân nặng (kg)', data: 5 },
                         { title: 'Quốc tịch', data: 6 },
-                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'], defaultDate: 'cc' },
+                        { title: 'Loại cầu thủ', data: 7, type: 'dropdown', source: ['Cầu thủ nước ngoài', 'Cầu thủ trong nước'], defaultValue: 'Cầu thủ trong nước' },
                         { title: 'Ghi chú', data: 8 }
                     ];
-    
+
                     hot = new Handsontable(playerTable, {
                         data: [
-                            ['', '', '', '01-01-1999', '', '', '', 'Cầu thủ trong nước', '']
+                            ['', '', '', 'YYYY-MM-DD', '', '', '', 'Cầu thủ trong nước', '']
                         ],
                         columns: playerColumns,
                         rowHeaders: true,
@@ -2337,12 +2340,26 @@
                         scrollbarModel: 'range',
                         scrollbarRange: 5,
                         licenseKey: 'non-commercial-and-evaluation',
+                        // afterCreateRow: function (index, amount, source) {
+                        //     for (var col = 0; col < playerColumns.length; col++) {
+                        //         var defaultValue = playerColumns[col].data;
+                        //         hot.setDataAtCell(index, col, defaultValue, 'alter');
+                        //     }
+                        // },
+                        beforeCreateRow: function (index, amount, source) {
+                            for (var i = 0; i < playerColumns.length; i++) {
+                                var column = playerColumns[i];
+                                if (column.defaultValue !== undefined) {
+                                    hot.setDataAtCell(index, i, column.defaultValue);
+                                }
+                            }
+                        },
                         afterChange: (changes, source) => {
                             if (source === 'edit') {
                                 var quocTichColumn = playerColumns.findIndex(function (column) {
                                     return column.title === 'Quốc tịch';
                                 });
-    
+
                                 var loaiCauThuColumn = playerColumns.findIndex(function (column) {
                                     return column.title === 'Loại cầu thủ';
                                 });
@@ -2367,16 +2384,16 @@
                                     return column.title === 'Ngày sinh';
                                 });
                                 var errorMessages = [];
-    
+
                                 changes.forEach(function (change) {
                                     var row = change[0];
                                     var column = change[1];
                                     var newValue = change[3];
-    
+
                                     if (column === ngaySinhColumn) {
-                                        var ngaySinh = moment(newValue, 'DD-MM-YYYY');
+                                        var ngaySinh = moment(newValue, 'YYYY-MM-DD');
                                         var age = moment().diff(ngaySinh, 'years');
-    
+
                                         if (age < TuoiCTToiThieu || age > TuoiCTToiDa) {
                                             var errorMess = 'Tuổi cầu thủ phải nằm trong khoảng từ ' + TuoiCTToiThieu + ' đến ' + TuoiCTToiDa;
                                             errorMessages.push(errorMess);
@@ -2389,16 +2406,16 @@
                                 alert(errorMessages.join('\n'));
                                 return false; // Ngăn chặn thực hiện thay đổi
                             }
-    
+
                             return true; // Cho phép thực hiện thay đổi
                         }
                     });
                 }
-    
+
                 function addPlayerRow() {
                     hot.alter('insert_row', hot.countRows());
                 }
-    
+
                 function removePlayerRow() {
                     hot.alter('remove_row', hot.countRows());
                 }
@@ -2407,7 +2424,7 @@
                 //         return arrayMap(selection.getSelectedRange(), ({ from, to }) => [from.row, from.col, to.row, to.col]);
                 //     }
                 // };
-    
+
                 // function removePlayerRow() {
                 //     const selectedRows = hot.getSelected(); // Lấy các hàng đã chọn
                 //     console.log(selectedRows);
@@ -2419,22 +2436,22 @@
                 //         selectedRowIndexes[i] = temp.rowIndex;
                 //     }
                 //     console.log(selectedRowIndexes);
-    
+
                 //     // Xóa các hàng đã chọn từ cuối cùng đến đầu để tránh lỗi chỉ số hàng thay đổi
                 //     selectedRowIndexes.sort(function (a, b) {
                 //         return b - a;
                 //     });
-    
+
                 //     selectedRowIndexes.forEach(function (rowIndex) {
                 //         hot.alter('remove_row', rowIndex); // Xóa hàng
                 //     });
                 // }
-    
+
                 initializeTable();
-    
+
                 function handleSubmit(event) {
                     event.preventDefault();
-    
+
                     // Lấy thông tin từ các trường nhập
                     const teamName = document.getElementById('id-teamName').value;
                     const coach = document.getElementById('id-coach').value;
@@ -2449,15 +2466,15 @@
                             checkTeamName = true;
                         }
                     }
-    
+
                     var checkCTToiThieuToiDa = true;
                     var checkCTNNToiDa = true;
                     var checkNULLNgaySinh = true;
                     console.log(hot.countRows());
                     let countCT = hot.countRows();
                     let countNN = 0;
-    
-    
+
+
                     //Kiểm tra số lượng CTNN
                     for (let i = 0; i < playerData.length; i++) {
                         if (playerData[i][7] === 'Cầu thủ nước ngoài') {
@@ -2468,20 +2485,20 @@
                     if (countCT < SoCTToiThieu || countCT > SoCTToiDa) {
                         checkCTToiThieuToiDa = false;
                     }
-    
+
                     if (countNN > CTNNToiDa) {
                         checkCTNNToiDa = false;
                     }
                     //Kiểm tra ngày sinh không null
-                    for (let i = 0; i < playerData.length; i++){
-                        if (playerData[i][3] === null || playerData[i][3] === '') {
+                    for (let i = 0; i < playerData.length; i++) {
+                        if (playerData[i][3] === null || playerData[i][3] === 'DD-MM-YYYY') {
                             checkNULLNgaySinh = false;
                             break;
                         }
                     }
-    
+                    console.log(playerData);
                     if (!checkTeamName && checkCTToiThieuToiDa && checkCTNNToiDa && checkNULLNgaySinh) {
-    
+
                         // Tạo đối tượng đại diện cho đội bóng
                         const team = {
                             teamName,
@@ -2491,9 +2508,10 @@
                             awayJerseyColor,
                             players: playerData.slice(0) // Bỏ qua hàng đầu tiên (tiêu đề)
                         };
+
                         // Cập nhật giá trị của hidden input
                         document.getElementById('playerData').value = JSON.stringify(team.players);
-    
+
                         // Gửi form
                         document.getElementById('teamForm').submit();
                     }
@@ -2534,14 +2552,14 @@
                 const errorCTNN = document.getElementById('errorCTNN');
                 const errorNgaySinh = document.getElementById('errorNgaySinh');
                 const teamNameBox = document.getElementById('id-teamName');
-    
+
                 teamNameBox.addEventListener('keyup', () => {
                     if (event.key !== 'Enter') {
                         errorTeamName.innerHTML = '';
                         teamNameBox.ClassList.remove('error-border');
                     }
                 })
-    
+
                 const teamForm = document.getElementById('teamForm');
                 teamForm.addEventListener('submit', handleSubmit);
             </script>
@@ -2576,58 +2594,63 @@
                                 </tr>
                             </thead>
                             <tbody class="dataContainer indexSection">
-                                <%   for (let i=0;i < dataDoiBong.length; i++ ) { 
-                                    for (let j=i + 1; j <dataDoiBong.length; j++) { %>
+                                <% for (let i=0;i < dataDoiBong.length; i++ ) { for (let j=i + 1; j <dataDoiBong.length;
+                                    j++) { %>
+                                    <tr>
+                                        <td class="hide-s">
+                                            <%= dataDoiBong[i].tenDoiBong %>
+                                        </td>
+                                        <td class="hide-s">
+                                            <%= dataDoiBong[j].tenDoiBong %>
+                                        </td>
+                                        <td class="hide-s">
+                                            <%= dataDoiBong[i].sanNha%>
+                                        </td>
+                                        <td class="hide-s">
+                                            Lượt đi
+                                        </td>
+                                        <td class="hide-s">
+                                            <input type="date" id="search-input"
+                                                class="searchTextContainer searchInput">
+                                        </td>
+                                    </tr>
+                                    <% } } <!--Luot ve-->
+                                        for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
+                                        for (let j = i - 1; j >= 0; j--) {
+                                        %>
                                         <tr>
                                             <td class="hide-s">
-                                                <%= dataDoiBong[i].tenDoiBong %>
+                                                <%= dataDoiBong[i].tenDoiBong%>
                                             </td>
                                             <td class="hide-s">
-                                                <%= dataDoiBong[j].tenDoiBong %>
+                                                <%= dataDoiBong[j].tenDoiBong%>
                                             </td>
                                             <td class="hide-s">
                                                 <%= dataDoiBong[i].sanNha%>
                                             </td>
                                             <td class="hide-s">
-                                                Lượt đi
+                                                Lượt về
                                             </td>
                                             <td class="hide-s">
-                                                <input type="date" id="search-input"
-                                                    class="searchTextContainer searchInput">
+                                                <input type="date">
                                             </td>
                                         </tr>
-                                        <% } } <!--Luot ve-->
-                                            for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
-                                            for (let j = i - 1; j >= 0; j--) {
-                                            %>
-                                            <tr>
-                                                <td class="hide-s">
-                                                    <%= dataDoiBong[i].tenDoiBong%>
-                                                </td>
-                                                <td class="hide-s">
-                                                    <%= dataDoiBong[j].tenDoiBong%>
-                                                </td>
-                                                <td class="hide-s">
-                                                    <%= dataDoiBong[i].sanNha%>
-                                                </td>
-                                                <td class="hide-s">
-                                                    Lượt về
-                                                </td>
-                                                <td class="hide-s">
-                                                    <input type="date">
-                                                </td>
-                                            </tr>
-                                            <% } } %>
-                                            <div class="submit-btn" style="margin-top: 30px;">
-                                                <button type="submit" class="btn btn-primary">Gửi</button>
-                                            </div>
+                                        <% } } %>
                             </tbody>
+
                         </table>
+                        <div class="submit-btn" style="margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
             </div>
+
+            <script>
+
+            </script>
         </section>
 
         <!--Footer chính-->
@@ -2758,12 +2781,12 @@
                             <a onclick="scrollToTop()" class="backToTopContainer" role="menuitem"
                                 style="cursor: pointer;">Về đầu trang</a>
                             <script>
-                function scrollToTop() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-                }
+                                function scrollToTop() {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }
                             </script>
                         </li>
                     </ul>
@@ -2793,109 +2816,110 @@
         <script src="./scripts/main.min.js"></script>
         <script src="./widgets/common.min.js"></script>
         <script type="text/javascript">
-                (function () {
-                    var adfScr = document.createElement("script");
-                    adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
-                    adfScr.onload = function () {
-                        adf.container(998269, 'Master Tag');
-                    };
-                    document.head.appendChild(adfScr);
-                })();
+            (function () {
+                var adfScr = document.createElement("script");
+                adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
+                adfScr.onload = function () {
+                    adf.container(998269, 'Master Tag');
+                };
+                document.head.appendChild(adfScr);
+            })();
         </script>
         <!--Taskbar Script-->
         <script>
-                var search = document.querySelector(".searchBtn");
+            var search = document.querySelector(".searchBtn");
 
-                search.addEventListener("click", function () {
-                    if (document.querySelector(".searchBar").classList.contains("open")) {
-                        document.querySelector(".searchBar").classList.remove("open");
-                        document.querySelector()
-                    } else {
-                        document.querySelector(".searchBar").classList.add("open");
-                    }
-                    if (search.classList.contains("active")) {
-                        search.classList.remove("active");
-                    } else {
-                        search.classList.add("active");
-                    }
+            search.addEventListener("click", function () {
+                if (document.querySelector(".searchBar").classList.contains("open")) {
+                    document.querySelector(".searchBar").classList.remove("open");
+                    document.querySelector()
+                } else {
+                    document.querySelector(".searchBar").classList.add("open");
+                }
+                if (search.classList.contains("active")) {
+                    search.classList.remove("active");
+                } else {
+                    search.classList.add("active");
+                }
+            });
+
+            const logo = document.querySelector('.logo-resizable');
+
+            window.addEventListener('scroll', function () {
+                var limit = 100;
+
+                // Lấy giá trị cuộn chuột hiện tại
+                var scrollValue = window.scrollY;
+
+                // Tính toán kích thước mới của logo
+                var newSize = Math.max(150 - scrollValue, limit);
+
+                // Cập nhật kích thước của logo
+                logo.style.height = newSize + 'px';
+
+                var fixedPosition = 60;
+
+                if (scrollValue >= fixedPosition) {
+                    // Thanh navbar cố định ở đầu trang
+                    document.getElementById('navbar').style.position = 'fixed';
+                    document.getElementById('navbar').style.top = '0';
+                } else {
+                    // Thanh navbar theo dòng chảy bình thường
+                    document.getElementById('navbar').style.position = 'static';
+                    document.getElementById('navbar').style.top = 'auto';
+                }
+            });
+            // Lắng nghe sự kiện khi tab được click
+            const tabLinks = document.querySelectorAll('nav ul li a');
+
+            //Lắng nghe sự kiện khi nút đăng nhập được click
+            const signinLink = document.querySelector('.fantasySignIn');
+
+            signinLink.addEventListener('click', (e) => {
+                // Loại bỏ lớp active từ tất cả các tab
+                tabLinks.forEach((tab) => {
+                    tab.classList.remove('active');
                 });
-
-                const logo = document.querySelector('.logo-resizable');
-
-                window.addEventListener('scroll', function () {
-                    var limit = 100;
-
-                    // Lấy giá trị cuộn chuột hiện tại
-                    var scrollValue = window.scrollY;
-
-                    // Tính toán kích thước mới của logo
-                    var newSize = Math.max(150 - scrollValue, limit);
-
-                    // Cập nhật kích thước của logo
-                    logo.style.height = newSize + 'px';
-
-                    var fixedPosition = 60;
-
-                    if (scrollValue >= fixedPosition) {
-                        // Thanh navbar cố định ở đầu trang
-                        document.getElementById('navbar').style.position = 'fixed';
-                        document.getElementById('navbar').style.top = '0';
-                    } else {
-                        // Thanh navbar theo dòng chảy bình thường
-                        document.getElementById('navbar').style.position = 'static';
-                        document.getElementById('navbar').style.top = 'auto';
-                    }
+                // Ẩn tất cả các nội dung tab
+                const tabContents = document.querySelectorAll('.tab-content');
+                tabContents.forEach((tabContent) => {
+                    tabContent.style.display = 'none';
                 });
-                // Lắng nghe sự kiện khi tab được click
-                const tabLinks = document.querySelectorAll('nav ul li a');
+                // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
+                const selectedTabContent = document.getElementById('dangnhap');
+                selectedTabContent.style.display = 'block';
+                link.classList.add('active');
+            })
 
-                //Lắng nghe sự kiện khi nút đăng nhập được click
-                const signinLink = document.querySelector('.fantasySignIn');
+            tabLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
 
-                signinLink.addEventListener('click', (e) => {
                     // Loại bỏ lớp active từ tất cả các tab
                     tabLinks.forEach((tab) => {
                         tab.classList.remove('active');
                     });
+
                     // Ẩn tất cả các nội dung tab
                     const tabContents = document.querySelectorAll('.tab-content');
                     tabContents.forEach((tabContent) => {
                         tabContent.style.display = 'none';
                     });
-                    // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-                    const selectedTabContent = document.getElementById('dangnhap');
+
+                    // Lấy tab được click
+                    const selectedTab = e.target.getAttribute('data-tab');
+
+                    // Hiển thị nội dung của tab được click và thêm lớp active cho tab
+                    const selectedTabContent = document.getElementById(selectedTab);
                     selectedTabContent.style.display = 'block';
                     link.classList.add('active');
-                })
-
-                tabLinks.forEach((link) => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-
-                        // Loại bỏ lớp active từ tất cả các tab
-                        tabLinks.forEach((tab) => {
-                            tab.classList.remove('active');
-                        });
-
-                        // Ẩn tất cả các nội dung tab
-                        const tabContents = document.querySelectorAll('.tab-content');
-                        tabContents.forEach((tabContent) => {
-                            tabContent.style.display = 'none';
-                        });
-
-                        // Lấy tab được click
-                        const selectedTab = e.target.getAttribute('data-tab');
-
-                        // Hiển thị nội dung của tab được click và thêm lớp active cho tab
-                        const selectedTabContent = document.getElementById(selectedTab);
-                        selectedTabContent.style.display = 'block';
-                        link.classList.add('active');
-                    });
                 });
+            });
         </script>
 
         <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
             data-page-section="Premier League"></div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 </body>
+
 </html>
