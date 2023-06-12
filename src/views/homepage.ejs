@@ -1735,106 +1735,162 @@
                 </div>
                 <div class="allTablesContainer">
                     <div class="wrapper col-12">
-                        <div class="tableContainer">
-                            <div class="table wrapper col-12">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="text-centre" scope="col">
-                                                <div class="thFull">Xếp hạng</div>
-                                                <div class="thShort">Pos</div>
-                                            </th>
-                                            <th class="team" scope="col">Câu lạc bộ</th>
-                                            <th scope="col">
-                                                <div class="thFull">Vòng đấu</div>
-                                                <div class="thShort">Pl</div>
-                                            </th>
-                                            <th scope="col">
-                                                <div class="thFull">Thắng</div>
-                                                <div class="thShort">W</div>
-                                            </th>
-                                            <th scope="col">
-                                                <div class="thFull">Hòa</div>
-                                                <div class="thShort">D</div>
+                        <div class="roundsContainer toggle"></div>
+                        <div class="allStructureContainer"></div>
+                    </div>
+                    <div class="allTablesContainer">
+                        <div class="wrapper col-12">
+                            <div class="tableContainer">
+                                <div class="table wrapper col-12">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-centre" scope="col">
+                                                    <div class="thFull">Xếp hạng</div>
+                                                    <div class="thShort">Pos</div>
+                                                </th>
+                                                <th class="team" scope="col">Câu lạc bộ</th>
+                                                <th scope="col">
+                                                    <div class="thFull">Vòng đấu</div>
+                                                    <div class="thShort">Pl</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="thFull">Thắng</div>
+                                                    <div class="thShort">W</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="thFull">Hòa</div>
+                                                    <div class="thShort">D</div>
 
-                                            </th>
-                                            <th scope="col">
-                                                <div class="thFull">Thua</div>
-                                                <div class="thShort">L</div>
-                                            </th>
-                                            <th class="hideSmall" scope="col"><abbr title="Bàn thắng">Bàn thắng</abbr>
-                                            </th>
-                                            <th class="hideSmall" scope="col"><abbr title="Bàn thua">Bàn thua</abbr>
-                                            </th>
-                                            <th scope="col"><abbr title="Hiệu số">Hiệu số</abbr></th>
-                                            <th scope="col" class="points">
-                                                <div class="thFull">Điểm</div>
-                                                <div class="thShort">Pts</div>
-                                            </th>
-                                            <th class="teamForm hideMed" scope="col">Tình trạng</th>
-                                            <th class="hideMed text-centre" scope="col">Kế tiếp</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="tableBodyContainer isPL">
-                                        <% for (let i=0; i<dataTongKet.length; i++) { %>
-                                        <tr class="tableDark">
-                                            <td class="pos button-tooltip" tabindex="0" id="Tooltip">
-                                                <span class="value"><%= i+1 %></span>
-                                            </td>
-                                            <td class="team" scope="row">
-                                                <a href="/clubs/11/Manchester-City/overview">
-                                                    <span class="badge badge-image-container">
-                                                        <img class="badge-image badge-image--25"
-                                                            src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                    </span>
-                                                    <span class="long"><%= dataTongKet[i].tenDoiBong %></span>
-                                                </a>
-                                            </td>
-                                            <td><%= dataTongKet[i].soTranDau %></td>
-                                            <td><%= dataTongKet[i].soTranThang %></td>
-                                            <td><%= dataTongKet[i].soTranHoa %></td>
-                                            <td><%= dataTongKet[i].soTranThua %></td>
-                                            <td class="hideSmall"><%= dataTongKet[i].soBanThang %></td>
-                                            <td class="hideSmall"><%= dataTongKet[i].soBanThua %></td>
-                                            <td>
-                                                <%= dataTongKet[i].hieuSo %>
-                                            </td>
-                                            <td class="points"><%= dataTongKet[i].diemSo %></td>
-                                            <td class="form hideMed">
-                                                <% for (let k=0;k<dataKetQua.length;i++) {
-                                                    if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong || dataKetQua[k].tenDoiBong2 == dataTongKet[i].tenDoiBong) {
-                                                        if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2)
-                                                        {
-                                                            let status = 'win';
-                                                            let st = 'W';
-                                                        }
-                                                        if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1<dataKetQua[k].soBanThangDoi2)
-                                                        {
-                                                            let status = 'lose';
-                                                            let st = 'L';
-                                                        }
-                                                        if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1 == dataKetQua[k].soBanThangDoi2)
-                                                        {
-                                                            let status = 'draw';
-                                                            let st = 'D';
-                                                        }
-                                                         %>
-                                                        <li tabindex="0" class="<%= status%> button-tooltip" id="Tooltip">
-                                                            <abbr title="Won" class="form-abbreviation"><%=st%></abbr>
-                                                            <a href="/match/75246"
-                                                                class="tooltipContainer linkable tooltip-link tooltip-right"
-                                                                role="tooltip">
-                                                                <span class="tooltip-content">
-                                                                    <div class="matchAbridged">
-                                                                        <span class="matchInfo"><%= dataKetQua[k].ngay %></span>
-                                                                        <span class="teamName"><abbr
-                                                                                title="Fulham"><%= dataKetQua[k].tenDoiBong1 %></abbr></span>
-                                                                        <span class="badge badge-image-container"
-                                                                            data-widget="club-badge-image" data-size="20">
-                                                                            <img class="badge-image badge-image--20"
-                                                                                src="https://resources.premierleague.com/premierleague/badges/20/t54.png"
-                                                                                srcset="https://resources.premierleague.com/premierleague/badges/20/t54@x2.png 2x">
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="thFull">Thua</div>
+                                                    <div class="thShort">L</div>
+                                                </th>
+                                                <th class="hideSmall" scope="col"><abbr title="Bàn thắng">Bàn
+                                                        thắng</abbr>
+                                                </th>
+                                                <th class="hideSmall" scope="col"><abbr title="Bàn thua">Bàn thua</abbr>
+                                                </th>
+                                                <th scope="col"><abbr title="Hiệu số">Hiệu số</abbr></th>
+                                                <th scope="col" class="points">
+                                                    <div class="thFull">Điểm</div>
+                                                    <div class="thShort">Pts</div>
+                                                </th>
+                                                <th class="teamForm hideMed" scope="col">Tình trạng</th>
+                                                <th class="hideMed text-centre" scope="col">Kế tiếp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableBodyContainer isPL">
+                                            <% for (let i=0; i<dataTongKet.length; i++) { %>
+                                                <tr class="tableDark">
+                                                    <td class="pos button-tooltip" tabindex="0" id="Tooltip">
+                                                        <span class="value">
+                                                            <%= i+1 %>
+                                                        </span>
+                                                    </td>
+                                                    <td class="team" scope="row">
+                                                        <a href="/clubs/11/Manchester-City/overview">
+                                                            <span class="badge badge-image-container">
+                                                                <img class="badge-image badge-image--25"
+                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
+                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
+                                                            </span>
+                                                            <span class="long">
+                                                                <%= dataTongKet[i].tenDoiBong %>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%= dataTongKet[i].soTranDau %>
+                                                    </td>
+                                                    <td>
+                                                        <%= dataTongKet[i].soTranThang %>
+                                                    </td>
+                                                    <td>
+                                                        <%= dataTongKet[i].soTranHoa %>
+                                                    </td>
+                                                    <td>
+                                                        <%= dataTongKet[i].soTranThua %>
+                                                    </td>
+                                                    <td class="hideSmall">
+                                                        <%= dataTongKet[i].soBanThang %>
+                                                    </td>
+                                                    <td class="hideSmall">
+                                                        <%= dataTongKet[i].soBanThua %>
+                                                    </td>
+                                                    <td>
+                                                        <%= dataTongKet[i].hieuSo %>
+                                                    </td>
+                                                    <td class="points">
+                                                        <%= dataTongKet[i].diemSo %>
+                                                    </td>
+                                                    <td class="form hideMed">
+                                                        <% for (let k=0;k<dataKetQua.length;k++) { 
+                                                            if (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong ||
+                                                            dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong) { 
+                                                                let status='' ; let st='' ; 
+                                                                if (dataKetQua[k].tenDoiBong1==dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2)
+                                                                {
+                                                                status = 'win';
+                                                                st = 'W';
+                                                                }
+                                                                if (dataKetQua[k].tenDoiBong2==dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1<dataKetQua[k].soBanThangDoi2)
+                                                                {
+                                                                status = 'win';
+                                                                st = 'W';
+                                                                }
+                                                                if (dataKetQua[k].tenDoiBong1 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1<dataKetQua[k].soBanThangDoi2) 
+                                                                { status='lose' ; st='L' ; }
+                                                                if (dataKetQua[k].tenDoiBong2 == dataTongKet[i].tenDoiBong && dataKetQua[k].soBanThangDoi1>dataKetQua[k].soBanThangDoi2) 
+                                                                { status='lose' ; st='L' ; }
+                                                                if (dataKetQua[k].soBanThangDoi1 == dataKetQua[k].soBanThangDoi2)
+                                                                { status='draw' ; st='D' ; } %>
+                                                                <li tabindex="0" class="<%= status%> button-tooltip"
+                                                                    id="Tooltip">
+                                                                    <abbr title="Won" class="form-abbreviation">
+                                                                        <%=st%>
+                                                                    </abbr>
+                                                                    <a href="/match/75246"
+                                                                        class="tooltipContainer linkable tooltip-link tooltip-right"
+                                                                        role="tooltip">
+                                                                        <span class="tooltip-content">
+                                                                            <div class="matchAbridged">
+                                                                                <span class="matchInfo">
+                                                                                    <%= dataKetQua[k].ngay %>
+                                                                                </span>
+                                                                                <span class="teamName"><abbr
+                                                                                        title="Fulham">
+                                                                                        <%= dataKetQua[k].tenDoiBong1 %>
+                                                                                    </abbr></span>
+                                                                                <span
+                                                                                    class="badge badge-image-container"
+                                                                                    data-widget="club-badge-image"
+                                                                                    data-size="20">
+                                                                                    <img class="badge-image badge-image--20"
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>@x2.png 2x">
+                                                                                </span>
+                                                                                <span class="score">
+                                                                                    <%= dataKetQua[k].soBanThangDoi1 %>
+                                                                                        <span>-</span>
+                                                                                        <%= dataKetQua[k].soBanThangDoi2
+                                                                                            %>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="badge badge-image-container"
+                                                                                    data-widget="club-badge-image"
+                                                                                    data-size="20">
+                                                                                    <img class="badge-image badge-image--20"
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>@x2.png 2x">
+                                                                                </span>
+                                                                                <span class="teamName"><abbr
+                                                                                        title="Manchester City">
+                                                                                        <%= dataKetQua[k].tenDoiBong2 %>
+                                                                                    </abbr></span>
+                                                                                <span class="icn arrow-right"></span>
+                                                                            </div>
                                                                         </span>
                                                                         <span class="score"><%= dataKetQua[k].soBanThangDoi1 %> <span>-</span><%= dataKetQua[k].soBanThangDoi2 %></span>
                                                                         <span class="badge badge-image-container"

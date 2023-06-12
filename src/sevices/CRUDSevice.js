@@ -65,6 +65,8 @@ let createTeam = async(data) => {
                 soTranThang: 0,
                 soTranHoa: 0,
                 soTheVang: 0,
+                soBanThang: 0,
+                soBanThua: 0,
                 soTheDo: 0,
                 hieuSo: 0,
                 diemSo: 0,
@@ -103,7 +105,7 @@ let getAllUser = () => {
 let getAllTongKet = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let tongket = await sequelize.query("SELECT * FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT});
+            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT});
             reslove(tongket);
         } catch(e){
             reject(e);
