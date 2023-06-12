@@ -1441,6 +1441,21 @@
             <header class="pageHero tabbedHero ">
                 <div class="wrapper col-12">
                     <h1 class="pageTitle">Các trận đấu</h1>
+                    <div class="searchDataContainer" data-placeholder="Search" for="" a="" club="">
+                        <div class="searchInputContainer" role="search"> <label for="search-input"
+                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input-match" type="text"
+                                value="" placeholder="Search" class="searchTextContainer searchInput"> <button
+                                class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
+                                    <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="/resources/prod/v6.122.2-5844/i/svg-output/icons.svg#icn-close">
+                                    </use>
+                                </svg> </button>
+                            <div class="searchIconContainer searchCommit" role="button" tabindex="0">
+                                <div alt="" class="icn search-sm-g"><span class="visuallyHidden">Gửi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div data-script="pl_tabbed" data-widget="tabbed-content" class="tabLinks left"
                         data-tab-wrap=".tabs" data-tab-class="mainTableTab" data-update-tab-param="true">
                         <div class="tabs">
@@ -1458,115 +1473,102 @@
                             <div class="socialShareBtn" role="button" tabindex="0" aria-haspopup="true">
                                 <div class="icn share-black"></div>Chia sẻ
                             </div>
-                            <ul class="socialOptions" role="listbox">
-                                <li>
-                                    <div class="option whatsapp" role="option" tabindex="0"
-                                        data-social-service="whatsapp">
-                                        <span class="icn whatsapp-w"></span><span
-                                            class="visuallyHidden">action.share.whatsApp</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="option twitter" role="option" tabindex="0"
-                                        data-social-service="twitter">
-                                        <span class="icn twitter-lg-w"></span><span class="visuallyHidden">Share on
-                                            Twitter</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="option facebook" role="option" tabindex="0"
-                                        data-social-service="facebook">
-                                        <span class="icn facebook-lg-w"></span><span class="visuallyHidden">Share on
-                                            Facebook</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="option copy" role="option" tabindex="0" data-social-service="copy"><span
-                                            class="icn copy-link-w"></span><span
-                                            class="visuallyHidden">action.share.copy</span></div>
-                                </li>
-                                <li>
-                                    <div class="option email" role="option" tabindex="0" data-social-service="email">
-                                        <span class="icn mail-w"></span><span class="visuallyHidden">Email</span>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </header>
-            <!--Thanh loading-->
-            <div class="loader js-tab-loader u-hide">
-                <div class="loader-small">
-                    <div class="line"></div>
-                </div>
-            </div>
             <!--Các trận đấu-->
             <div class="tabbedContent">
-                <div class="wrapper col-12 tabLoader active"
-                    data-fixturesids="75271,75273,75274,75280,75277,75279,75272,75275,75276,75224,75229,75281,75282,75283,75284,75285,75286,75287,75288,75289,75290"
-                    data-ui-tab="First Team" data-team-type="FIRST" data-script="pl_filtered-list"
-                    data-comp-seasons="489" data-team="-1" data-filter-list="FIRST" data-widget="results-filtered-list"
-                    data-page="0" data-page-size="40" data-match-states="U,L" data-sort="ASCENDING"
-                    data-tab-aware-default="true">
-                    <div class="col-12">
-                        <section class="fixtures">
-                            <time class="date long" datetime="Saturday 20 May 2023">
-                                <strong>Saturday 20 May 2023</strong>
-                            </time>
-                            <time class="date short" datetime="Saturday 20 May 2023">
-                                <strong>Sat 20 May 2023</strong>
-                            </time>
-                            <div data-competition-matches-list="Saturday 20 May 2023" class="fixtures__matches-list">
-                                <div class="competitionContainer">
-                                    <div class="competition right ">
-                                        <span class="competitionImage1">
-
-                                        </span> <span class="competitionLabel1">Premier League</span>
+                <div class="wrapper col-12 tabLoader active">
+                    <div class="col-12" id="match">
+                        <% for (let i=0;i< dataLichThiDau.length;i++) { %>
+                            <section class="fixtures">
+                                <time class="date long" datetime="Saturday 20 May 2023">
+                                    <strong>
+                                        <%= dataLichThiDau[i].ngay %>
+                                    </strong>
+                                </time>
+                                <time class="date short" datetime="Saturday 20 May 2023">
+                                    <strong>
+                                        <%= dataLichThiDau[i].ngay %>
+                                    </strong>
+                                </time>
+                                <div data-competition-matches-list="Saturday 20 May 2023"
+                                    class="fixtures__matches-list">
+                                    <div class="competitionContainer">
+                                        <div class="competition right ">
+                                            <span class="competitionImage1">
+                                            </span> <span class="competitionLabel1">Premier League</span>
+                                        </div>
                                     </div>
+                                    <ul class="matchList" data-comp-id="1">
+                                        <% for (let j=0;j<dataLichThiDau.length; j++) { if
+                                            (dataLichThiDau[j].ngay==dataLichThiDau[i].ngay) { %>
+                                            <li class="matchFixtureContainer">
+                                                <div data-template-rendered=""
+                                                    data-href="//www.premierleague.com/match/75275"
+                                                    class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
+                                                        class="overview"> <span class="teams"> <span class="team"> <span
+                                                                    class="teamName"> <span class="shortname">
+                                                                        <%=dataTranDau[j].tenDoiBong1%>
+                                                                    </span> </span> <span
+                                                                    class="badge badge-image-container"
+                                                                    data-widget="club-badge-image" data-size="25"> <img
+                                                                        class="badge-image badge-image--25 js-badge-image"
+                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
+                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
+                                                                </span> </span> <time datetime="22:00">
+                                                                <%=dataLichThiDau[j].gio%>
+                                                            </time> <span class="team"> <span
+                                                                    class="badge badge-image-container"
+                                                                    data-widget="club-badge-image" data-size="25"> <img
+                                                                        class="badge-image badge-image--25 js-badge-image"
+                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t8.png"
+                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
+                                                                </span> <span class="teamName"> <span class="shortname">
+                                                                        <%=dataLichThiDau[j].tenDoiBong2%>
+                                                                    </span> <span class="abbr">CHE</span> </span>
+                                                            </span>
+                                                        </span> <span class="stadiumName"> <span
+                                                                class="icn stadium-b"></span>
+                                                            <%=dataLichThiDau[j].sanNha%>
+                                                        </span> <span class="fixtureBroadcast broadcastDataContainer"
+                                                            data-id="75275"></span>
+                                                        <span class="icn arrow-right"></span> </span>
+                                                </div> <span class="btn quickView" role="button"
+                                                    data-modal-active="true">Xem
+                                                    ngay</span>
+                                            </li>
+                                            <% }} %>
+                                    </ul>
                                 </div>
-                                <ul class="matchList" data-comp-id="1">
-                                    <li class="matchFixtureContainer" data-home="Man City" data-away="Chelsea"
-                                        data-competition="Premier League"
-                                        data-venue="Etihad Stadium, <strong>Manchester</strong>"
-                                        data-comp-match-item="75275" data-comp-match-item-ko="1684681200000"
-                                        data-comp-match-item-status="U">
-                                        <div data-template-rendered="" data-href="//www.premierleague.com/match/75275"
-                                            class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
-                                                class="overview"> <span class="teams"> <span class="team"> <span
-                                                            class="teamName"> <span class="shortname">Man City</span>
-                                                            <span class="abbr">MCI</span> </span> <span
-                                                            class="badge badge-image-container"
-                                                            data-widget="club-badge-image" data-size="25"> <img
-                                                                class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                        </span> </span> <time datetime="22:00">22:00</time> <span
-                                                        class="team"> <span class="badge badge-image-container"
-                                                            data-widget="club-badge-image" data-size="25"> <img
-                                                                class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t8.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
-                                                        </span> <span class="teamName"> <span
-                                                                class="shortname">Chelsea</span> <span
-                                                                class="abbr">CHE</span> </span> </span> </span> <span
-                                                    class="stadiumName"> <span class="icn stadium-b"></span> Etihad
-                                                    Stadium,
-                                                    <strong>Manchester</strong> </span> <span
-                                                    class="fixtureBroadcast broadcastDataContainer"
-                                                    data-id="75275"></span>
-                                                <span class="icn arrow-right"></span> </span> </div> <span
-                                            data-ui-modal="#quickviewModal"
-                                            data-ui-args="{&quot;gameweek&quot;:{&quot;id&quot;:7867,&quot;compSeason&quot;:{&quot;label&quot;:&quot;2022/23&quot;,&quot;competition&quot;:{&quot;abbreviation&quot;:&quot;EN_PR&quot;,&quot;description&quot;:&quot;Premier League&quot;,&quot;level&quot;:&quot;SEN&quot;,&quot;source&quot;:&quot;&quot;,&quot;id&quot;:1,&quot;altIds&quot;:{&quot;opta&quot;:&quot;8&quot;}},&quot;id&quot;:489},&quot;gameweek&quot;:37,&quot;competitionPhase&quot;:{&quot;id&quot;:2024,&quot;type&quot;:&quot;L&quot;,&quot;gameweekRange&quot;:[1,38]}},&quot;kickoff&quot;:{&quot;completeness&quot;:3,&quot;millis&quot;:1684681200000,&quot;label&quot;:&quot;Sun 21 May 2023, 16:00 BST&quot;,&quot;gmtOffset&quot;:1},&quot;provisionalKickoff&quot;:{&quot;completeness&quot;:3,&quot;millis&quot;:1684681200000,&quot;label&quot;:&quot;Sun 21 May 2023, 16:00 BST&quot;,&quot;gmtOffset&quot;:1},&quot;teams&quot;:[{&quot;team&quot;:{&quot;name&quot;:&quot;Manchester City&quot;,&quot;club&quot;:{&quot;name&quot;:&quot;Manchester City&quot;,&quot;shortName&quot;:&quot;Man City&quot;,&quot;abbr&quot;:&quot;MCI&quot;,&quot;id&quot;:11},&quot;teamType&quot;:&quot;FIRST&quot;,&quot;shortName&quot;:&quot;Man City&quot;,&quot;id&quot;:11,&quot;altIds&quot;:{&quot;opta&quot;:&quot;t43&quot;}},&quot;opta&quot;:&quot;t43&quot;,&quot;clubBadge&quot;:&quot;https://resources.premierleague.com/premierleague/badges/25/t43.png&quot;,&quot;clubBadgeRetina&quot;:&quot;https://resources.premierleague.com/premierleague/badges/25/t43@x2.png&quot;,&quot;url&quot;:&quot;//www.premierleague.com/clubs/11/Manchester-City/overview&quot;},{&quot;team&quot;:{&quot;name&quot;:&quot;Chelsea&quot;,&quot;club&quot;:{&quot;name&quot;:&quot;Chelsea&quot;,&quot;shortName&quot;:&quot;Chelsea&quot;,&quot;abbr&quot;:&quot;CHE&quot;,&quot;id&quot;:4},&quot;teamType&quot;:&quot;FIRST&quot;,&quot;shortName&quot;:&quot;Chelsea&quot;,&quot;id&quot;:4,&quot;altIds&quot;:{&quot;opta&quot;:&quot;t8&quot;}},&quot;opta&quot;:&quot;t8&quot;,&quot;clubBadge&quot;:&quot;https://resources.premierleague.com/premierleague/badges/25/t8.png&quot;,&quot;clubBadgeRetina&quot;:&quot;https://resources.premierleague.com/premierleague/badges/25/t8@x2.png&quot;,&quot;url&quot;:&quot;//www.premierleague.com/clubs/4/Chelsea/overview&quot;}],&quot;replay&quot;:false,&quot;ground&quot;:{&quot;name&quot;:&quot;Etihad Stadium&quot;,&quot;city&quot;:&quot;Manchester&quot;,&quot;source&quot;:&quot;OPTA&quot;,&quot;id&quot;:457},&quot;neutralGround&quot;:false,&quot;status&quot;:&quot;U&quot;,&quot;phase&quot;:&quot;0&quot;,&quot;fixtureType&quot;:&quot;REGULAR&quot;,&quot;extraTime&quot;:false,&quot;shootout&quot;:false,&quot;goals&quot;:[],&quot;penaltyShootouts&quot;:[],&quot;behindClosedDoors&quot;:false,&quot;id&quot;:75275,&quot;altIds&quot;:{&quot;opta&quot;:&quot;g2293174&quot;},&quot;matchDate&quot;:&quot;Sunday 21 May 2023&quot;,&quot;kickOffTime&quot;:&quot;22:00&quot;,&quot;url&quot;:&quot;//www.premierleague.com/match/75275&quot;}"
-                                            class="btn quickView" role="button" data-modal-active="true">Quick
-                                            View</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
-                        </section>
+                                <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
+                            </section>
+                            <% } %>
                     </div>
                 </div>
+                <script>
+                    const searchMatchInput = document.getElementById('search-input-match');
+                    const matchList = document.getElementById('match');
+                    searchMatchInput.addEventListener("keyup", () => {
+                        const searchMatchTerm = searchMatchInput.value.toLowerCase();
+                        console.log(searchMatchTerm);
+                        const r = matchList.querySelectorAll('section');
+                        console.log(r);
+                        //const k = clbList.querySelectorAll('h4');
+                        //console.log(k);
+                        for (let i = 0; i < r.length; i++) {
+                            const ngay = r[i].querySelector('time:first-child').textContent;
+                            console.log(ngay);
+                            //const clbName = k[i].textContent.toLowerCase();
+                            if (ngay.includes(searchMatchTerm)) {
+                                r[i].style.display = ''; // Hiển thị hàng nếu khớp
+                            } else {
+                                r[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                            }
+                        }
+                    });
+                </script>
                 <div class="wrapper col-12 u-hide" data-ui-tab="PL2" data-team-type="FIRST"
                     data-script="pl_filtered-list" data-comp-seasons="33" data-team="-1" data-filter-list="U21"
                     data-widget="results-filtered-list" data-page="0" data-page-size="40" data-match-states="U,L"
@@ -1578,18 +1580,35 @@
                     <div id="quickviewModal" class="fixturesModel">
                         <div class="fixtureModalHeader">
                         </div>
-                    </div>
-
-                    <div id="broadcasterInfoWrapModal" class="plBroadcastModal">
-                        <div id="broadcasterInfoContentModal" class="plBroadcastModalContent">
-                            <a class="close broadcastModalCloseButton" role="button" tabindex="0">close</a>
-                            <div id="broadcastersModal" class="broadcastersModal open">
-                                <div class="broadcastersTvInfoHeader"><span class="broadcastersTvInfoHeaderInner"><span
-                                            class="icn tv-w"></span>TV Info</span></div>
-                                <div class="broadcastersModalHeader">Broadcasters</div>
-                                <div class="allBroadcastersModalContainer"></div>
-                            </div>
-                        </div>
+                        <ul class="socialOptions" role="listbox">
+                            <li>
+                                <div class="option whatsapp" role="option" tabindex="0" data-social-service="whatsapp">
+                                    <span class="icn whatsapp-w"></span><span
+                                        class="visuallyHidden">action.share.whatsApp</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option twitter" role="option" tabindex="0" data-social-service="twitter">
+                                    <span class="icn twitter-lg-w"></span><span class="visuallyHidden">Share on
+                                        Twitter</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option facebook" role="option" tabindex="0" data-social-service="facebook">
+                                    <span class="icn facebook-lg-w"></span><span class="visuallyHidden">Share on
+                                        Facebook</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option copy" role="option" tabindex="0" data-social-service="copy"><span
+                                        class="icn copy-link-w"></span><span
+                                        class="visuallyHidden">action.share.copy</span></div>
+                            </li>
+                            <li>
+                                <div class="option email" role="option" tabindex="0" data-social-service="email"><span
+                                        class="icn mail-w"></span><span class="visuallyHidden">Email</span></div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="wrapper col-12 u-hide" data-ui-tab="U18" data-team-type="FIRST"
@@ -1638,7 +1657,7 @@
                             <section class="fixtures"><time class="date long" datetime="Saturday 20 May 2023"><strong>
                                         <%= dataLichThiDau[i].ngay %>
                                     </strong></time><time class="date short"><strong>
-                                        <%= dataLichThiDau[1].ngay%>
+                                        <%= dataLichThiDau[i].ngay%>
                                     </strong></time>
                                 <div data-competition-matches-list="Saturday 20 May 2023"
                                     class="fixtures__matches-list">
@@ -1971,7 +1990,7 @@
                 <div class="clubIndex col-12">
                     <div class="indexSection">
                         <div class="">
-                            <ul
+                            <ul id="CLB"
                                 class="block-list-5 block-list-3-m block-list-1-s block-list-1-xs block-list-padding dataContainer">
                                 <% for (let i=0; i < dataDoiBong.length; i++) { %>
                                     <li>
@@ -1998,7 +2017,7 @@
                                                 </div>
 
                                                 <div class="nameContainer">
-                                                    <h4 class="clubName">
+                                                    <h4>
                                                         <%= dataDoiBong[i].tenDoiBong %>
                                                     </h4>
                                                     <div class="stadiumName">
@@ -2025,23 +2044,22 @@
             </div>
             </div>
             <script>
-                // Lấy tham chiếu đến ô tìm kiếm và bảng dữ liệu cầu thủ
                 const searchCLBInput = document.getElementById('search-input-CLB');
-                // const clbTable = document.getElementById('hienthiplayer');
-                console.log(searchCLBInput.value);
-                // Lắng nghe sự kiện người dùng nhập dữ liệu
-                searchInput.addEventListener("keyup", () => {
-                    const searchclbTerm = searchCLBInput.value.toLowerCase(); // Chuyển đổi giá trị tìm kiếm thành chữ thường để tìm kiếm không phân biệt hoa thường
-                    // Lặp qua các hàng trong bảng dữ liệu cầu thủ
+                const clbList = document.getElementById('CLB');
+                searchCLBInput.addEventListener("keyup", () => {
+                    const searchclbTerm = searchCLBInput.value.toLowerCase();
                     console.log(searchclbTerm);
-                    const rs = document.getElementsByClassName('clubName');
-                    for (let i = 1; i < rs.length; i++) {
-                        const clbName = rs[i].textContent.toLowerCase(); // Lấy tên cầu thủ từ cột đầu tiên
-                        // Kiểm tra nếu tên cầu thủ chứa từ khóa tìm kiếm
+                    const r = clbList.querySelectorAll('li');
+                    console.log(r);
+                    const k = clbList.querySelectorAll('h4');
+                    console.log(k);
+                    for (let i = 0; i < r.length; i++) {
+                        console.log(k[i].textContent);
+                        const clbName = k[i].textContent.toLowerCase();
                         if (clbName.includes(searchclbTerm)) {
-                            rs[i].style.display = ''; // Hiển thị hàng nếu khớp
+                            r[i].style.display = ''; // Hiển thị hàng nếu khớp
                         } else {
-                            rs[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                            r[i].style.display = 'none'; // Ẩn hàng nếu không khớp
                         }
                     }
                 });
@@ -2319,8 +2337,9 @@
 
                     for (let i = 1; i < rows.length; i++) {
                         const playerName = rows[i].querySelector('td:first-child').textContent.toLowerCase(); // Lấy tên cầu thủ từ cột đầu tiên
+                        const tendoi = rows[i].querySelector('td:last-child').textContent.toLowerCase();
                         // Kiểm tra nếu tên cầu thủ chứa từ khóa tìm kiếm
-                        if (playerName.includes(searchTerm)) {
+                        if (playerName.includes(searchTerm) || tendoi.includes(searchTerm)) {
                             rows[i].style.display = ''; // Hiển thị hàng nếu khớp
                         } else {
                             rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp

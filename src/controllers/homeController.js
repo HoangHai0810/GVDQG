@@ -20,7 +20,14 @@ let getHomePage = async (req, res) => {
         let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
             raw: true,
         });
+        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
+            raw: true,
+        });
+
         let dataKetQua = await CRUDSevice.getAllKetQua({
+            raw: true,
+        })
+        let dataTranDau = await CRUDSevice.getAllTranDau({
             raw: true,
         })
         console.log(dataDoiBong);
@@ -31,6 +38,8 @@ let getHomePage = async (req, res) => {
             dataDoiBong: dataDoiBong,
             dataLichThiDau: dataLichThiDau,
             dataKetQua: dataKetQua,
+            dataLichThiDauSau: dataLichThiDauSau,
+            dataTranDau: dataTranDau,
         });
     } catch (e) {
         console.log(e);

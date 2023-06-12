@@ -137,8 +137,19 @@ let getALLDoiBong = () => {
 let getAllLichThiDau = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let lichThiDau = await sequelize.query("SELECT distinct DATE(ngayGio) AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) <= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT });
+            let lichThiDau = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY ngay DESC", { type: QueryTypes.SELECT });
             reslove(lichThiDau);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllLichThiDauSau = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let lichThiDauSau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) >= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT });
+            reslove(lichThiDauSau);
         } catch (e) {
             reject(e)
         }
@@ -150,6 +161,17 @@ let getAllKetQua = () => {
         try {
             let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngay, TIME(ngayGio) AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich", { type: QueryTypes.SELECT });
             reslove(ketqua);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllTranDau = () => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let TranDau = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT });
+            reslove(TranDau);
         } catch (e) {
             reject(e)
         }
@@ -230,5 +252,7 @@ module.exports = {
     getAllCauThu: getAllCauThu,
     getALLDoiBong: getALLDoiBong,
     getAllLichThiDau: getAllLichThiDau,
+    getAllLichThiDauSau: getAllLichThiDauSau,
     getAllKetQua: getAllKetQua,
+    getAllTranDau: getAllTranDau,
 }
