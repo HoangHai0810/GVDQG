@@ -1487,7 +1487,8 @@
                                 </li>
                                 <li>
                                     <div class="option email" role="option" tabindex="0" data-social-service="email">
-                                        <span class="icn mail-w"></span><span class="visuallyHidden">Email</span></div>
+                                        <span class="icn mail-w"></span><span class="visuallyHidden">Email</span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -1943,8 +1944,8 @@
                     <h1 class="pageTitle">Đội bóng</h1>
                     <div class="searchDataContainer" data-placeholder="Search" for="" a="" club="">
                         <div class="searchInputContainer" role="search"> <label for="search-input"
-                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input" type="text" value=""
-                                placeholder="Search" class="searchTextContainer searchInput"> <button
+                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input-CLB" type="text"
+                                value="" placeholder="Search" class="searchTextContainer searchInput"> <button
                                 class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
                                     <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         xlink:href="/resources/prod/v6.122.2-5844/i/svg-output/icons.svg#icn-close">
@@ -2023,7 +2024,28 @@
                 </div>
             </div>
             </div>
-
+            <script>
+                // Lấy tham chiếu đến ô tìm kiếm và bảng dữ liệu cầu thủ
+                const searchCLBInput = document.getElementById('search-input-CLB');
+                // const clbTable = document.getElementById('hienthiplayer');
+                console.log(searchCLBInput.value);
+                // Lắng nghe sự kiện người dùng nhập dữ liệu
+                searchInput.addEventListener("keyup", () => {
+                    const searchclbTerm = searchCLBInput.value.toLowerCase(); // Chuyển đổi giá trị tìm kiếm thành chữ thường để tìm kiếm không phân biệt hoa thường
+                    // Lặp qua các hàng trong bảng dữ liệu cầu thủ
+                    console.log(searchclbTerm);
+                    const rs = document.getElementsByClassName('clubName');
+                    for (let i = 1; i < rs.length; i++) {
+                        const clbName = rs[i].textContent.toLowerCase(); // Lấy tên cầu thủ từ cột đầu tiên
+                        // Kiểm tra nếu tên cầu thủ chứa từ khóa tìm kiếm
+                        if (clbName.includes(searchclbTerm)) {
+                            rs[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rs[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+            </script>
         </section>
         <!--Tab cầu thủ-->
         <section id="cauthu" tabindex="0" class="tab-content" style="display: none;">
@@ -2034,7 +2056,7 @@
                         <h1 class="pageTitle">Players</h1>
                         <div class="searchDataContainer" data-placeholder="Search for a Player">
                             <div class="searchInputContainer" role="search"> <label for="search-input"
-                                    class="visuallyHidden">Search for a Player</label> <input id="search-input"
+                                    class="visuallyHidden">Search for a Player</label> <input id="search-input-cauthu"
                                     type="text" value="" placeholder="Search for a Player"
                                     class="searchTextContainer searchInput"> <button
                                     class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
@@ -2048,6 +2070,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="right" data-script="pl_social-share" data-widget="social-page-share"
                             data-render="pagehover" data-body="Premier League - Players">
                             <div class="socialShareHover">
@@ -2073,7 +2097,8 @@
                                     <li>
                                         <div class="option copy" role="option" tabindex="0" data-social-service="copy">
                                             <span class="icn copy-link-w"></span><span
-                                                class="visuallyHidden">action.share.copy</span></div>
+                                                class="visuallyHidden">action.share.copy</span>
+                                        </div>
                                     </li>
                                     <li>
                                         <div class="option email" role="option" tabindex="0"
@@ -2227,7 +2252,7 @@
                                     class="filter-button__icon filter-button__icon--hover icn reset-p"></i> <span
                                     class="filter-button__text">Reset Filters</span> </div>
                         </section>
-                        <div class="table playerIndex">
+                        <div class="table playerIndex" id="hienthiplayer">
                             <summary class="visuallyHidden">This table lists the player index</summary>
                             <table>
                                 <thead>
@@ -2275,10 +2300,34 @@
                                         <% } %>
                             </table>
                         </div>
+
                     </div>
                 </div>
                 <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
             </div>
+            <script>
+                // Lấy tham chiếu đến ô tìm kiếm và bảng dữ liệu cầu thủ
+                const searchInput = document.getElementById('search-input-cauthu');
+                const playerTable = document.getElementById('hienthiplayer');
+
+                // Lắng nghe sự kiện người dùng nhập dữ liệu
+                searchInput.addEventListener("keyup", () => {
+                    const searchTerm = searchInput.value.toLowerCase(); // Chuyển đổi giá trị tìm kiếm thành chữ thường để tìm kiếm không phân biệt hoa thường
+                    // Lặp qua các hàng trong bảng dữ liệu cầu thủ
+
+                    const rows = playerTable.getElementsByTagName('tr');
+
+                    for (let i = 1; i < rows.length; i++) {
+                        const playerName = rows[i].querySelector('td:first-child').textContent.toLowerCase(); // Lấy tên cầu thủ từ cột đầu tiên
+                        // Kiểm tra nếu tên cầu thủ chứa từ khóa tìm kiếm
+                        if (playerName.includes(searchTerm)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+            </script>
         </section>
 
         <!--Footer chính-->
