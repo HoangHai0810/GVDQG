@@ -136,7 +136,7 @@ let getBanQuanLy = async(req, res) =>
         })
         let dataCauThu = await CRUDSevice.getAllCauThu({
             raw :   true,
-        })
+        })  
         let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
             raw: true,
         });
