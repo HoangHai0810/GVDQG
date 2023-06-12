@@ -2314,7 +2314,7 @@
                         { title: 'Tên cầu thủ', data: 0 },
                         { title: 'Số áo', data: 1 },
                         { title: 'Vị trí', data: 2, type: 'dropdown', source: ['Thủ môn', 'Hậu vệ', 'Trung vệ', 'Tiền vệ', 'Tiền đạo'] },
-                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'YYYY-MM-DD', defaultValue: 'YYYY-MM:DD' },
+                        { title: 'Ngày sinh', data: 3, type: 'date', dateFormat: 'YYYY-MM-DD', defaultValue: 'YYYY-MM-DD', width: '150px' },
                         { title: 'Chiều cao (cm)', data: 4 },
                         { title: 'Cân nặng (kg)', data: 5 },
                         { title: 'Quốc tịch', data: 6 },
@@ -2491,7 +2491,7 @@
                     }
                     //Kiểm tra ngày sinh không null
                     for (let i = 0; i < playerData.length; i++) {
-                        if (playerData[i][3] === null || playerData[i][3] === 'DD-MM-YYYY') {
+                        if (playerData[i][3] === null || playerData[i][3] === 'YYYY-MM-DD') {
                             checkNULLNgaySinh = false;
                             break;
                         }
