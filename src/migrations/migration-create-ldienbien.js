@@ -30,14 +30,14 @@ module.exports = {
         }
       },
       maLoaiBanThang: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'loaiBanThangs',
           key: 'maLoaiBanThang'
         }
       },
       maLoaiThe: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'loaiThes',
           key: 'maLoaiThe'

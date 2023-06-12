@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   chucVu.init({
     maChucVu: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
     tenChucVu: DataTypes.TEXT,

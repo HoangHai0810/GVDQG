@@ -2,6 +2,7 @@ import { render } from "ejs";
 import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
+import { json } from "body-parser";
 
 let getHomePage = async (req, res) => {
     try {
@@ -165,7 +166,8 @@ let getBanQuanLy = async(req, res) =>
             dataKetQua: dataKetQua,
             dataTranDau: dataTranDau,
             dataTongKet: dataTongKet,
-            dataLichThiDau: dataLichThiDau
+            dataLichThiDau: dataLichThiDau,
+            pharsedataLichThiDau: JSON.stringify(dataLichThiDau)
         });
     } catch (e) {
         console.log(e);
@@ -180,11 +182,11 @@ let postTeam = async (req, res) => {
 }
 
 let postDienBien = async (req,res) => {
-    let data = JSON.parse(req.body.dienbien);
-    for (let k=0;k<data.length;k++)
-    {
-        let mes = await CRUDSevice.createDienBien(data[k]);
-    }
+    let data = req.body;  
+    console.log(data);
+    data.dienBien = JSON.parse(data.dienBien);
+    let mes1 = await CRUDSevice.createDienBien(data);
+    let mes2 = await CRUDSevice.createKetQua(data);
     res.redirect('/banquanly');
 }
 
