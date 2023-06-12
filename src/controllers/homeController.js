@@ -17,28 +17,20 @@ let getHomePage = async (req, res) => {
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
         });
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
             raw: true,
         });
         let dataKetQua = await CRUDSevice.getAllKetQua({
             raw: true,
-        });
-        let dataTranDau = await CRUDSevice.getAllTranDau({
-            raw: true,
-        });
-        console.log('Add player!!');
+        })
+        console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
             dataDoiBong: dataDoiBong,
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
+            dataLichThiDau: dataLichThiDau,
             dataKetQua: dataKetQua,
-            dataTranDau: dataTranDau,
         });
     } catch (e) {
         console.log(e);
@@ -125,39 +117,24 @@ let getManager = async(req, res) =>
 let getBanQuanLy = async(req, res) => 
 {
     try{
-        let dataCauThu = await CRUDSevice.getAllCauThu({
-            raw: true,
-        })
-        let dataTongKet = await CRUDSevice.getAllTongKet({
-            raw: true,
-        });
         let data = await CRUDSevice.getAllUser({
-            raw: true,
+            raw :   true,
         });
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
-            raw: true,
-        });
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
-            raw: true,
-        });
-        let dataKetQua = await CRUDSevice.getAllKetQua({
-            raw: true,
-        });
-        let dataTranDau = await CRUDSevice.getAllTranDau({
-            raw: true,
-        });
+            raw :   true,
+        })
+        let dataThamSo = await CRUDSevice.getAllThamSo({
+            raw :   true,
+        })
+        let dataCauThu = await CRUDSevice.getAllCauThu({
+            raw :   true,
+        })
+        
         return res.render('BanQuanLy.ejs', {
             data: JSON.stringify(data),
-            dataTongKet: dataTongKet,
-            dataCauThu: dataCauThu,
-            dataDoiBong: dataDoiBong,
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
-            dataKetQua: dataKetQua,
-            dataTranDau: dataTranDau,
+            dataDoiBong: JSON.stringify(dataDoiBong),
+            dataThamSo: JSON.stringify(dataThamSo),
+            dataCauThu: JSON.stringify(dataCauThu),
         });
     } catch (e) {
         console.log(e);
