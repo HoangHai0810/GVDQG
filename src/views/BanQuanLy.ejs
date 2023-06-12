@@ -4522,36 +4522,58 @@
             </header>
             <div class="wrapper">
                 <div class="col-12">
+                    <div class="input-container"
+                        style="display: flex; margin-bottom: 30px; justify-content: space-around;">
+                        <span>
+                            <label for="team1">Tên đội 1:</label>
+                            <input type="text" id="team1">
+                        </span>
+                        <span>
+                            <label for="team2">Tên đội 2:</label>
+                            <input type="text" id="team2">
+                        </span>
+                    </div>
                     <div class="table playerIndex">
                         <summary class="visuallyHidden">This table lists the player index</summary>
                         <table>
                             <thead>
                                 <tr>
-                                    <th scope="col">Tên đội 1</th>
-                                    <th scope="col">Tên đội 2</th>
-                                    <th class="hide-s" scope="col">Sân</th>
-                                    <th class="hide-s" scope="col">Vòng thi đấu</th>
-                                    <th class="hide-s" scope="col">Ngày giờ</th>
+                                    <th scope="col" style="text-align: center;
+                                    vertical-align: middle;">Tên đội 1</th>
+                                    <th scope="col" style="text-align: center;
+                                    vertical-align: middle;">Tên đội 2</th>
+                                    <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Sân</th>
+                                    <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Vòng thi đấu</th>
+                                    <th class="hide-s" scope="col" style="text-align: center;
+                                    vertical-align: middle;">Ngày giờ</th>
                                 </tr>
                             </thead>
                             <tbody class="dataContainer indexSection">
                                 <% let datadoiBong=JSON.parse(dataDoiBong); <!--Luot ve-->
                                     for (let i=0;i < datadoiBong.length; i++ ) { for (let j=i + 1; j <
                                         datadoiBong.length; j++) { %>
-                                        <tr>
-                                            <td class="hide-s">
+                                        <tr style="text-align: center;
+                                        vertical-align: middle;">
+                                            <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;">
                                                 <%= datadoiBong[i].tenDoiBong%>
                                             </td>
-                                            <td class="hide-s">
+                                            <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;">
                                                 <%= datadoiBong[j].tenDoiBong%>
                                             </td>
-                                            <td class="hide-s">
+                                            <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;">
                                                 <%= datadoiBong[i].sanNha%>
                                             </td>
-                                            <td class="hide-s">
+                                            <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;">
                                                 Lượt đi
                                             </td>
-                                            <td class="hide-s">
+                                            <td class="hide-s" style="text-align: center;
+                                            vertical-align: middle;">
                                                 <input type="date" id="search-input"
                                                     class="searchTextContainer searchInput">
                                             </td>
@@ -4560,20 +4582,26 @@
                                             for (let i=datadoiBong.length - 1; i >= 0; i-- ) {
                                             for (let j = i - 1; j >= 0; j--) {
                                             %>
-                                            <tr>
-                                                <td class="hide-s">
+                                            <tr style="text-align: center;
+                                            vertical-align: middle;">
+                                                <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
                                                     <%= datadoiBong[i].tenDoiBong%>
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
                                                     <%= datadoiBong[j].tenDoiBong%>
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
                                                     <%= datadoiBong[i].sanNha%>
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
                                                     Lượt về
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="hide-s" style="text-align: center;
+                                                vertical-align: middle;">
                                                     <input type="date">
                                                 </td>
                                             </tr>
