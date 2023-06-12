@@ -33,9 +33,6 @@ module.exports = {
       soBanThua: {
         type: Sequelize.INTEGER
       },
-      soBanThangSanKhach: {
-        type: Sequelize.INTEGER
-      },
       soTheVang: {
         type: Sequelize.INTEGER
       },

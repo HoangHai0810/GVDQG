@@ -40,6 +40,7 @@
     <meta name="apple-itunes-app" content="app-id=1138895159">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    
     <style>
         .container-tiep-nhan-hs {
             max-width: 1000px;
@@ -96,7 +97,7 @@
 </head>
 
 <body>
-    <% let anh=[1,2,3,4,6,7,8,11,13,14,17,20,21,31,36,39,43,54,91,94]; %>
+    <% let anh=[1,2,3,4,6,7,8,11,13,14,17,20,21,31,36,39,43,54,91,94]; %> 
         <header class="masthead">
             <!--Các câu lạc bộ-->
             <nav class="clubNavigation" data-script="pl_global-header" role="menubar">
@@ -107,22 +108,24 @@
                     </h4>
                 </div>
                 <ul class="clubList" role="menu">
+                    <% for (let i =0;i< dataDoiBong.length;i++) { %>
                     <li>
                         <a target="_blank"
                             href="        https://www.afcb.co.uk/?utm_source=premier-league-website&utm_campaign=website&utm_medium=link"
                             role="menuitem">
                             <div class="badge badge--small badge-image-container">
-                                <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t91.png"
+                                <img class="badge-image badge-image--25 js-badge-image" src="./photos/badges/25/t<%=anh[i]%>.png"
                                     srcset="./photos/badges/25/t91@x2.png 2x" />
                             </div>
                             <div class="badge badge--large badge-image-container" data-size="50">
-                                <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t91.png"
+                                <img class="badge-image badge-image--50 js-badge-image" src="./photos/badges/50/t<%=anh[i]%>.png"
                                     srcset="./photos/badges/50/t91@x2.png 2x" />
                                 <span class="visuallyHidden">AFC Bournemouth</span>
                             </div>
                             <span class="name">AFC Bournemouth</span>
                         </a>
                     </li>
+                    <% } %>
                 </ul>
             </nav>
             <!--Phần navbar-->
@@ -1182,16 +1185,16 @@
             <div class="tabbedContent">
                 <div class="wrapper col-12 tabLoader active">
                     <div class="col-12">
-                        <% for (let i=0;i< dataLichThiDauSau.length;i++) { %>
+                        <% for (let i=0;i< dataLichThiDau.length;i++) { %>
                             <section class="fixtures">
                                 <time class="date long" datetime="Saturday 20 May 2023">
                                     <strong>
-                                        <%= dataLichThiDauSau[i].ngay %>
+                                        <%= dataLichThiDau[i].ngay %>
                                     </strong>
                                 </time>
                                 <time class="date short" datetime="Saturday 20 May 2023">
                                     <strong>
-                                        <%= dataLichThiDauSau[i].ngay %>
+                                        <%= dataLichThiDau[i].ngay %>
                                     </strong>
                                 </time>
                                 <div data-competition-matches-list="Saturday 20 May 2023"
@@ -1203,36 +1206,42 @@
                                         </div>
                                     </div>
                                     <ul class="matchList" data-comp-id="1">
-                                        <% for (let j=0;j<dataTranDau.length; j++) { if
-                                            (dataTranDau[j].ngay==dataLichThiDauSau[i].ngay) { %>
+                                        
+                                        <% for (let j=0;j<dataLichThiDau.length; j++) { if
+                                            (dataLichThiDau[j].ngay==dataLichThiDau[i].ngay) { %>
                                             <li class="matchFixtureContainer">
                                                 <div data-template-rendered=""
                                                     data-href="//www.premierleague.com/match/75275"
                                                     class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
                                                         class="overview"> <span class="teams"> <span class="team"> <span
                                                                     class="teamName"> <span class="shortname">
-                                                                        <%=dataTranDau[j].tenDoiBong1%>
-                                                                    </span> <span class="abbr">MCI</span> </span> <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                                </span> </span> <time datetime="22:00">
-                                                                <%=dataTranDau[j].gio%>
-                                                            </time> <span class="team"> <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t8.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
-                                                                </span> <span class="teamName"> <span class="shortname">
-                                                                        <%=dataTranDau[j].tenDoiBong2%>
+                                                                        <%=dataLichThiDau[j].tenDoiBong1%>
+                                                                    </span> <span class="abbr">MCI</span> </span> 
+                                                                    <% for (let u=0;u< dataDoiBong.length;u++) {
+                                                                        if (dataDoiBong[u].tenDoiBong == dataLichThiDau[j].tenDoiBong1) {%>
+                                                                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25"> 
+                                                                            <img class="badge-image badge-image--25 js-badge-image"
+                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                </span> 
+                                                                <% } } %>
+                                                            </span> 
+                                                            <time datetime="22:00">
+                                                                <%=dataLichThiDau[j].gio%>
+                                                            </time> 
+                                                            <span class="team"> 
+                                                                <% for (let u=0;u< dataDoiBong.length;u++) {
+                                                                    if (dataDoiBong[u].tenDoiBong == dataLichThiDau[j].tenDoiBong2) { %>
+                                                                        <span class="badge badge-image-container" data-widget="club-badge-image" data-size="25"> 
+                                                                            <img class="badge-image badge-image--25 js-badge-image" src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png" srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                        </span> 
+                                                                <% } } %> 
+                                                        <span class="teamName"> <span class="shortname">
+                                                                        <%=dataLichThiDau[j].tenDoiBong2%>
                                                                     </span> <span class="abbr">CHE</span> </span>
                                                             </span>
-                                                        </span> <span class="stadiumName"> <span
-                                                                class="icn stadium-b"></span>
-                                                            <%=dataTranDau[j].sanNha%>
+                                                        </span> <span class="stadiumName" style="white-space:nowrap; padding-left: 70px;"> <span class="icn stadium-b"></span>
+                                                            <%=dataLichThiDau[j].sanNha%>
                                                         </span> <span class="fixtureBroadcast broadcastDataContainer"
                                                             data-id="75275"></span>
                                                         <span class="icn arrow-right"></span> </span>
@@ -1353,7 +1362,7 @@
                                                     class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
                                                         class="overview"> <span class="teams"> <span class="team"> <span
                                                                     class="teamName"> <span class="shortname">
-                                                                        <%= dataKetQua[i].tenDoiBong1 %>
+                                                                        <%= dataKetQua[j].tenDoiBong1 %>
                                                                     </span> <span class="abbr">TOT</span> </span> <span
                                                                     class="badge badge-image-container"
                                                                     data-widget="club-badge-image" data-size="25"> <img
@@ -1361,8 +1370,8 @@
                                                                         src="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png"
                                                                         srcset="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>@x2.png 2x">
                                                                 </span> </span> <span class="score ">
-                                                                <%= dataKetQua[i].soBanThangDoi1 %><span>-</span>
-                                                                    <%= dataKetQua[i].soBanThangDoi2 %>
+                                                                <%= dataKetQua[j].soBanThangDoi1 %><span>-</span>
+                                                                    <%= dataKetQua[j].soBanThangDoi2 %>
                                                             </span> <span class="team"> <span
                                                                     class="badge badge-image-container"
                                                                     data-widget="club-badge-image" data-size="25"> <img
@@ -1370,12 +1379,12 @@
                                                                         src="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png"
                                                                         srcset="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png, https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>@x2.png 2x">
                                                                 </span> <span class="teamName"> <span class="shortname">
-                                                                        <%= dataKetQua[i].tenDoiBong2 %>
+                                                                        <%= dataKetQua[j].tenDoiBong2 %>
                                                                     </span> <span class="abbr">BRE</span> </span>
                                                             </span>
                                                         </span>
-                                                        <% let sanNha='' ; for (let j=0;j<dataDoiBong.length;j++) { if
-                                                            (dataDoiBong[j].tenDoiBong==dataKetQua[i].tenDoiBong1) {
+                                                        <% let sanNha='' ; for (let k=0;k<dataDoiBong.length;k++) { if
+                                                            (dataDoiBong[k].tenDoiBong==dataKetQua[j].tenDoiBong1) {
                                                             sanNha=dataDoiBong[j].sanNha; }}%>
                                                             <span class="stadiumName"> <span
                                                                     class="icn stadium-b"></span>
@@ -1516,8 +1525,7 @@
                                                     <div class="thFull">Điểm</div>
                                                     <div class="thShort">Pts</div>
                                                 </th>
-                                                <th class="teamForm hideMed" scope="col">Tình trạng</th>
-                                                <th class="hideMed text-centre" scope="col">Kế tiếp</th>
+                                                <th class="teamForm hideMed" scope="col">Tình trạng         </th>
                                             </tr>
                                         </thead>
                                         <tbody class="tableBodyContainer isPL">
@@ -1531,9 +1539,12 @@
                                                     <td class="team" scope="row">
                                                         <a href="/clubs/11/Manchester-City/overview">
                                                             <span class="badge badge-image-container">
+                                                                <% for (let u=0;u<dataDoiBong.length;u++) {
+                                                                if (dataDoiBong[u].tenDoiBong == dataTongKet[i].tenDoiBong) { %>
                                                                 <img class="badge-image badge-image--25"
-                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
+                                                                    src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                    srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                    <% } } %>   
                                                             </span>
                                                             <span class="long">
                                                                 <%= dataTongKet[i].tenDoiBong %>
@@ -1609,9 +1620,12 @@
                                                                                     class="badge badge-image-container"
                                                                                     data-widget="club-badge-image"
                                                                                     data-size="20">
+                                                                                    <% for (let u=0;u<dataDoiBong.length;u++) {
+                                                                                        if (dataDoiBong[u].tenDoiBong == dataKetQua[k].tenDoiBong1) { %>
                                                                                     <img class="badge-image badge-image--20"
-                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>.png"
-                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k]%>@x2.png 2x">
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[u]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[u]%>@x2.png 2x">
+                                                                                        <% }}%>
                                                                                 </span>
                                                                                 <span class="score">
                                                                                     <%= dataKetQua[k].soBanThangDoi1 %>
@@ -1623,9 +1637,12 @@
                                                                                     class="badge badge-image-container"
                                                                                     data-widget="club-badge-image"
                                                                                     data-size="20">
+                                                                                    <% for (let u=0;u<dataDoiBong.length;u++) {
+                                                                                        if (dataDoiBong[u].tenDoiBong == dataKetQua[k].tenDoiBong2) { %>
                                                                                     <img class="badge-image badge-image--20"
-                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>.png"
-                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[k + 1]%>@x2.png 2x">
+                                                                                        src="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[u]%>.png"
+                                                                                        srcset="https://resources.premierleague.com/premierleague/badges/20/t<%=anh[u]%>@x2.png 2x">
+                                                                                        <% } } %>
                                                                                 </span>
                                                                                 <span class="teamName"><abbr
                                                                                         title="Manchester City">
@@ -2013,43 +2030,48 @@
             <div class="tabbedContent">
                 <div class="wrapper col-12 tabLoader active">
                     <div class="col-12">
-                        <section class="fixtures"><time class="date long"
-                                datetime="Saturday 20 May 2023"><strong>Saturday
-                                    20 May 2023</strong></time><time class="date short"
-                                datetime="Saturday 20 May 2023"><strong>Sat 20 May 2023</strong></time>
+                        <section class="fixtures">
                             <div data-competition-matches-list="Saturday 20 May 2023" class="fixtures__matches-list">
                                 <ul class="matchList" data-com p-id="1">
-                                    <!-- Trận 1 -->
-                                    <!--Bảng thông tin tổng quát của trận đấu-->
-                                    <li class="matchFixtureContainer">
+                                    <% for (let i=0; i< dataLichThiDau.length; i++) { 
+                                        let maLich = dataLichThiDau.maLich;
+                                        let tenDoiBong1 = dataLichThiDau.tenDoiBong1;
+                                         %>
+                                        <form action="/postDienBien" method="post" id="dienBienForm">
+                                            <input hidden="true" value='' id="dienbiendata" name="dienBien">
+                                            <input hidden="true" value="" id="maLichdata" name="maLich">
+                                            <input hidden="true" value="" id="doiKhachdata" name="doiKhach">
+                                            <input hidden="true" value="" id='doiNhadata' name="doiNha">
+                                    <li class="matchFixtureContainer"  style="border: 1px solid #0005; margin-bottom:90px; z-index: 0;">
                                         <div class="fixture postMatch" tabindex="0">
                                             <span class="overview">
                                                 <span class="teams">
                                                     <span class="team">
                                                         <span class="teamName">
-                                                            <span class="shortname">Đội 1</span>
-                                                            <span class="abbr">Đội 1</span> </span>
+                                                            <span class="shortname" id="tenDoi1"><%= dataLichThiDau[i].tenDoiBong1 %></span>
+                                                            <span class="abbr"><%= dataLichThiDau[i].tenDoiBong2 %></span> </span>
                                                         <span class="badge badge-image-container"> <img
                                                                 class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
-                                                        </span> </span> <span class="score "><span>-</span></span> <span
+                                                                src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
+                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
+                                                        </span> </span> <time datetime="">
+                                                            <%=dataLichThiDau[i].gio%>
+                                                        </time>  <span
                                                         class="team"> <span class="badge badge-image-container"
                                                             data-widget="club-badge-image" data-size="25"> <img
                                                                 class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t94.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
-                                                        </span> <span class="teamName"> <span class="shortname">Đội
-                                                                2</span>
-                                                            <span class="abbr">Đội 2</span> </span>
+                                                                src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>.png"
+                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>@x2.png 2x">
+                                                        </span> <span class="teamName"> <span class="shortname" id="tenDoi2"><%= dataLichThiDau[i].tenDoiBong2 %></span>
+                                                            <span class="abbr"><%= dataLichThiDau[i].tenDoiBong2 %></span> </span>
                                                     </span>
-                                                </span> <span class="stadiumName"> <span class="icn stadium-b"></span>
-                                                    Sân đội 1,
-                                                    <strong>Việt Nam</strong> </span> <span
-                                                    class="fixtureBroadcast broadcastDataContainer"
-                                                    data-id="75278"></span>
-                                                <span class="icn arrow-right"></span> </span>
-                                        </div>
+                                                </span> <span class="stadiumName" style="white-space:normal"> <span class="icn stadium-b"></span>
+                                                    <%=dataLichThiDau[i].sanNha%></span> 
+                                                    <span><%= dataLichThiDau[i].ngay%></span>
+                                                        <button type"submit" class="icn arrow-right" style="position: absolute; border: none; width:50px; height:20px; background-size: 169px !important; background: url(../photos/i/sprites/arrows-sprite.png) -137px -44px no-repeat;"></button> </span>
+                                            </form>
+                                                
+                                        </div >
                                         <!--Bảng thông tin tổng quát của trận đấu-->
                                         <style>
                                             .table-container {
@@ -2061,77 +2083,35 @@
                                                 flex-basis: 50%;
                                             }
                                         </style>
-                                        <div class="thongtin-trandau">
+                                        <div class="thongtin-trandau" style="z-index: 9999; background-color:#fff">
                                             <!-- Nội dung của bảng -->
                                         </div>
                                     </li>
-                                    <li class="matchFixtureContainer">
-                                        <div class="fixture postMatch" tabindex="0">
-                                            <span class="overview">
-                                                <span class="teams">
-                                                    <span class="team">
-                                                        <span class="teamName">
-                                                            <span class="shortname">Đội 1</span>
-                                                            <span class="abbr">Đội 1</span> </span>
-                                                        <span class="badge badge-image-container"> <img
-                                                                class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t6.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t6.png, https://resources.premierleague.com/premierleague/badges/25/t6@x2.png 2x">
-                                                        </span> </span> <span class="score "><span>-</span></span> <span
-                                                        class="team"> <span class="badge badge-image-container"
-                                                            data-widget="club-badge-image" data-size="25"> <img
-                                                                class="badge-image badge-image--25 js-badge-image"
-                                                                src="https://resources.premierleague.com/premierleague/badges/25/t94.png"
-                                                                srcset="https://resources.premierleague.com/premierleague/badges/25/t94.png, https://resources.premierleague.com/premierleague/badges/25/t94@x2.png 2x">
-                                                        </span> <span class="teamName"> <span class="shortname">Đội
-                                                                2</span>
-                                                            <span class="abbr">Đội 2</span> </span>
-                                                    </span>
-                                                </span> <span class="stadiumName"> <span class="icn stadium-b"></span>
-                                                    Sân đội 1,
-                                                    <strong>Việt Nam</strong> </span> <span
-                                                    class="fixtureBroadcast broadcastDataContainer"
-                                                    data-id="75278"></span>
-                                                <span class="icn arrow-right"></span> </span>
-                                        </div>
-                                        <!--Bảng thông tin tổng quát của trận đấu-->
-                                        <style>
-                                            .table-container {
-                                                display: flex;
-                                                flex-wrap: wrap;
-                                            }
-
-                                            .table-container>div {
-                                                flex-basis: 50%;
-                                            }
-                                        </style>
-                                        <div class="thongtin-trandau">
-                                            <!-- Nội dung của bảng -->
-                                        </div>
-                                    </li>
+                                    <% } %>
                                 </ul>
-                                <form action="/postDienBien" method="post" id="dienBienForm">
-                                    <input hidden="true" value='' id="dienbiendata" name="dienbien">
-                                    <button type="submit" id="submitBtn">Submit</button>
-                                </form>
                                 <script
                                     src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
                                 <script>
                                     let handsontables = [];
                                     const thongtin_trandau = document.querySelectorAll('.thongtin-trandau');
-                                    thongtin_trandau.forEach((tttd) => {
+                                    let tendoi1 = document.querySelectorAll('[id="tenDoi1"]');
+                                    let tendoi2 = document.querySelectorAll('[id="tenDoi2"]');
+                                    thongtin_trandau.forEach((tttd, index) => {
                                         function initializeTable() {
+                                            let options = [tendoi1[index].innerHTML,tendoi2[index].innerHTML];
                                             var thongTinTranDau = [{
                                                 title: 'Cầu thủ',
                                                 data: 0
                                             }, {
                                                 title: 'Đội',
+                                                type: 'dropdown',
+                                                source: options,
                                                 data: 1
                                             }, {
                                                 title: 'Loại bàn thắng',
                                                 data: 2,
                                                 type: 'dropdown',
-                                                source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà']
+                                                source: ['Không','Trực tiếp','Đá phạt','Phản lưới nhà'],
                                             }, {
                                                 title: 'Loại thẻ',
                                                 data: 3,
@@ -2153,17 +2133,6 @@
                                                 contextMenu: true,
                                                 manualRowResize: true,
                                                 manualColumnResize: true,
-                                                cells: function (row, col, prop) {
-                                                    var cellProperties = {};
-
-                                                    // Đặt đường viền cho ô
-                                                    cellProperties.renderer = function (instance, td, row, col, prop, value, cellProperties) {
-                                                        Handsontable.renderers.TextRenderer.apply(this, arguments);
-                                                        td.style.border = '1px solid #ccc';
-                                                    };
-
-                                                    return cellProperties;
-                                                }
                                             });
                                             handsontables.push(hot);
                                         }
@@ -2175,25 +2144,34 @@
                                         initializeTable();
                                     });
                                     //Lấy tham chiếu đến form và bảng dữ liệu
-                                    const dienBienForm = document.getElementById('dienBienForm');
-                                    const tableData = document.getElementById('dienbiendata');
-                                    console.log(handsontables);
+                                    
+                                    
+                                    const dienBienForm = document.querySelectorAll('[id="dienBienForm"]');
+                                    const tableData = document.querySelectorAll('[id="dienbiendata"]');
+                                    const maLichData = document.querySelectorAll('[id="maLichdata"]');
+                                    const doiKhachData = document.querySelectorAll('[id="doiKhachdata"]')
+                                    const doiNhaData = document.querySelectorAll('[id="doiNhadata"]');
+                                    var lichThiDau = JSON.parse('<%- pharsedataLichThiDau %>')
                                     // Gán sự kiện submit cho form
-                                    dienBienForm.addEventListener('submit', function (event) {
-                                        // Ngăn chặn hành động mặc định của form
-                                        event.preventDefault();
-                                        // Lấy dữ liệu từ bảng và đưa vào input
-                                        const allTableData = [];
-                                        handsontables.forEach((hot) => {
-                                            const tableData = hot.getSourceData();
+                                    console.log(lichThiDau[1]);
+                                    for (let m=0;m<dienBienForm.length;m++)
+                                    {
+                                        
+                                        dienBienForm[m].addEventListener('submit', function (event) {
+                                            // Ngăn chặn hành động mặc định của form
+                                            event.preventDefault();
+                                            // Lấy dữ liệu từ bảng và đưa vào input
+                                            const tableDataValue = handsontables[m].getSourceData();
 
-                                            allTableData.push(tableData);
+                                            maLichData[m].value = lichThiDau[m].maLich;
 
+                                            doiKhachData[m].value = lichThiDau[m].tenDoiBong2;
+                                            doiNhaData[m].value = lichThiDau[m].tenDoiBong1;
+                                            tableData[m].value = JSON.stringify(tableDataValue);
+                                            //Submit form
+                                            dienBienForm[m].submit();
                                         });
-                                        tableData.value = JSON.stringify(allTableData);
-                                        // Submit form
-                                        dienBienForm.submit();
-                                    });
+                                    }
                                 </script>
                             </div>
                         </section>
@@ -2548,7 +2526,6 @@
         </section>
 
         <!--Lap lich thi dau-->
-
         <section id="laplichthidau" tabindex="0" class="tab-content" style="display: none;">
             <div data-widget="list-data" data-type="player" data-comp-seasons="418" data-script="pl_filtered-list"
                 data-page-size="30" class="playerIndex">
@@ -2580,41 +2557,88 @@
                                     for (let j=i + 1; j <dataDoiBong.length; j++) { %>
                                         <tr>
                                             <td class="hide-s">
+                                                <span
+                                                                    class="badge badge-image-container"
+                                                                    data-widget="club-badge-image" data-size="25"> <img
+                                                                        class="badge-image badge-image--25 js-badge-image"
+                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
+                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
+                                                                </span>
                                                 <%= dataDoiBong[i].tenDoiBong %>
                                             </td>
                                             <td class="hide-s">
+                                                <span
+                                                                    class="badge badge-image-container"
+                                                                    data-widget="club-badge-image" data-size="25"> <img
+                                                                        class="badge-image badge-image--25 js-badge-image"
+                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png"
+                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>@x2.png 2x">
+                                                                </span>
                                                 <%= dataDoiBong[j].tenDoiBong %>
                                             </td>
                                             <td class="hide-s">
+                                                <span class="stadiumName" style="white-space:normal; display: flex; justify-content: flex-start; align-items: center;"> <span class="icn stadium-b" style="margin-right:10px;"></span>
                                                 <%= dataDoiBong[i].sanNha%>
+                                                </span>
                                             </td>
                                             <td class="hide-s">
                                                 Lượt đi
                                             </td>
                                             <td class="hide-s">
-                                                <input type="date" id="search-input"
-                                                    class="searchTextContainer searchInput">
+                                                <% let check=false; 
+                                                for (let k=0;k < dataLichThiDau.length;k++) {
+                                                    if (dataDoiBong[i].tenDoiBong == dataLichThiDau[k].tenDoiBong1 && dataDoiBong[j].tenDoiBong==dataLichThiDau[k].tenDoiBong2) { 
+                                                        check = true; %>
+                                                    <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="<%=dataLichThiDau[k].ngayF%>"
+                                                    <% }   
+                                                }
+                                                if (!check) { %>
+                                                    <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="2020-12-26"> <% } %>                                
                                             </td>
                                         </tr>
-                                        <% } } <!--Luot ve-->
+                                        <% } }  <!--Luot ve-->
                                             for (let i=dataDoiBong.length - 1; i >= 0; i-- ) {
                                             for (let j = i - 1; j >= 0; j--) {
                                             %>
                                             <tr>
                                                 <td class="hide-s">
-                                                    <%= dataDoiBong[i].tenDoiBong%>
+                                                    <span
+                                                                        class="badge badge-image-container"
+                                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                                            class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
+                                                                    </span>
+                                                    <%= dataDoiBong[i].tenDoiBong %>
                                                 </td>
                                                 <td class="hide-s">
-                                                    <%= dataDoiBong[j].tenDoiBong%>
+                                                    <span
+                                                                        class="badge badge-image-container"
+                                                                        data-widget="club-badge-image" data-size="25"> <img
+                                                                            class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/<%=anh[j]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[j]%>@x2.png 2x">
+                                                                    </span>
+                                                    <%= dataDoiBong[j].tenDoiBong %>
                                                 </td>
                                                 <td class="hide-s">
-                                                    <%= dataDoiBong[i].sanNha%>
+                                                    <span class="stadiumName" style="white-space:normal; display: flex; justify-content: flex-start; align-items: center;"> <span class="icn stadium-b" style="margin-right:10px;"></span>
+                                                <%= dataDoiBong[i].sanNha%>
+                                                </span>
                                                 </td>
                                                 <td class="hide-s">
-                                                    Lượt về
+                                                    Lượt đi
                                                 </td>
                                                 <td class="hide-s">
-                                                    <input type="date">
+                                                    <% let check=false; 
+                                                    for (let k=0;k < dataLichThiDau.length;k++) {
+                                                        if (dataDoiBong[i].tenDoiBong == dataLichThiDau[k].tenDoiBong1 && dataDoiBong[j].tenDoiBong==dataLichThiDau[k].tenDoiBong2) { 
+                                                            check = true; %>
+                                                        <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="<%=dataLichThiDau[k].ngayF%>"
+                                                        <% }   
+                                                    }
+                                                    if (!check) { %>
+                                                        <input type="date" id="ngay-input" class="searchTextContainer searchInput" value="2020-12-26"> <% } %>                                
                                                 </td>
                                             </tr>
                                             <% } } %>

@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     soTranThua: DataTypes.INTEGER,
     soBanThang: DataTypes.INTEGER,
     soBanThua: DataTypes.INTEGER,
-    soBanThangSanKhach: DataTypes.INTEGER,
     soTheVang: DataTypes.INTEGER,
     soTheDo: DataTypes.INTEGER,
     hieuSo: DataTypes.INTEGER,
