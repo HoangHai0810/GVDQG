@@ -1713,9 +1713,11 @@
                                                         const col = change[1];
                                                         const oldValue = change[2];
                                                         const newValue = change[3];
+
                                                 
                                                         if (col === 0) { // Nếu cột thay đổi là cột đội bóng
                                                           // Lấy dữ liệu từ cột đội bóng đã thay đổi
+                                                          hot.setDataAtCell(row, 1, '');
                                                           const selectedTeam = hot.getDataAtCell(row, col);
                                                           {
                                                             // Cập nhật source của cột cầu thủ dựa trên đội bóng đã chọn
