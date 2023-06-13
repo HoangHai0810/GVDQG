@@ -12,7 +12,7 @@ let initWebRoutes = (app) => {
     router.get('/edit-CRUD', homeController.getEditCRUD);
     router.post('/put-crud', homeController.putCRUD);
     router.get('/delete-crud', homeController.delCRUD);
-    router.get('/login', homeController.loginCRUD);
+    router.post('/login', homeController.loginCRUD);
     router.get('/manager', homeController.getManager);
     router.get('/banquanly', homeController.getBanQuanLy);
     router.post('/post-teaminf', homeController.postTeam);

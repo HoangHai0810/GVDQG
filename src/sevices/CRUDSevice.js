@@ -13,13 +13,23 @@ let createNewUser = async(data) => {
                 lastName: data.lastName,
                 userName: data.userName,
                 password: data.password,
-                address: data.address,
-                gender: data.gender === '1' ? true : false,
                 roleId: data.roleId,
-                phoneNumber: data.phoneNumber, 
             })
 
             reslove('Added user!')
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
+let createNewLogin = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            await db.Login.create({
+                userId: data.userId
+            })
+            reslove('Added login!')
         } catch(e) {
             reject(e);
         }
@@ -276,6 +286,40 @@ let getAllUser = () => {
     })
 }
 
+let getAllCode = (userId) => {
+    return new Promise(async(reslove,reject) => {
+        try{
+            let allcode = await db.Allcode.findOne({
+                where: {
+                    userId: userId,
+                }
+            })
+            if (allcode)
+            {
+                reslove(allcode);
+            }
+            else
+            {
+                reslove();
+            }
+        }catch(e)
+        {
+            reject(e);
+        }
+    })
+}
+
+let getLogin = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let login = await sequelize.query("SELECT userId ,users.roleId FROM `logins` INNER JOIN `users` ON logins.userId = users.Id", { type: QueryTypes.SELECT});
+            reslove(login);
+        } catch(e){
+            reject(e);
+        }
+    })
+}
+
 let getAllTongKet = () => {
     return new Promise(async(reslove,reject) => {
         try {
@@ -302,7 +346,7 @@ let getAllCauThu = () => {
 let getALLDoiBong = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ", { type: QueryTypes.SELECT});
+            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ORDER BY createdAt", { type: QueryTypes.SELECT});
             reslove(doibong);
         } catch(e)
         {
@@ -323,10 +367,10 @@ let getAllLichThiDauTruoc = () => {
     });
 }
 
-let getAllLichThiDauSau = () => {
+let getAllLichChuaThiDau = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let lichThiDauSau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE DATE(ngayGio) >= NOW() ORDER BY ngay DESC", { type: QueryTypes.SELECT});
+            let lichThiDauSau = await sequelize.query("SELECT lichThiDaus.maLich, tenDoiBong1,tenDoiBong2, soBanThangDoi1, soBanThangDoi2, DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `ketQuas` ON lichThiDaus.maLich = ketQuas.maLich ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT});
             reslove(lichThiDauSau);
         } catch(e)
         {
@@ -485,10 +529,13 @@ module.exports = {
     getAllTongKet: getAllTongKet,
     getAllCauThu: getAllCauThu,
     getALLDoiBong: getALLDoiBong,
-    getAllLichThiDauSau: getAllLichThiDauSau,
+    getAllLichChuaThiDau: getAllLichChuaThiDau,
     getAllLichThiDauTruoc: getAllLichThiDauTruoc,
     getAllKetQua: getAllKetQua,
     getAllLichThiDau: getAllLichThiDau,
     getAllTranDau: getAllTranDau,
-    getAllThamSo: getAllThamSo
+    getAllThamSo: getAllThamSo,
+    createNewLogin: createNewLogin,
+    getLogin: getLogin,
+    getAllCode: getAllCode,
 }
