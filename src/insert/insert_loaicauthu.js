@@ -14,12 +14,20 @@ const lct = UserModel(sequelize, Sequelize.DataTypes);
 async function insertLCT() {
     try {
         await sequelize.sync(); // Ensure the table is created
-        const newLCT = {
-            tenLoaiCauThu: 'Trong nước',
+        const newLCT1 = {
+            maLoaiCauThu: 'TN',
+            tenLoaiCauThu: 'Cầu thủ trong nước',
             moTa: 'Quốc tịch Việt Nam'
         };
-        const Lct = await lct.create(newLCT);
-        console.log('LCT created:', Lct.toJSON());
+        const Lct1 = await lct.create(newLCT1);
+        console.log('LCT created:', Lct1.toJSON());
+        const newLCT2 = {
+            maLoaiCauThu: 'NN',
+            tenLoaiCauThu: 'Cầu thủ nước ngoài',
+            moTa: 'Quốc tịch khác'
+        };
+        const Lct2 = await lct.create(newLCT2);
+        console.log('LCT created:', Lct2.toJSON());
     } catch (error) {
         console.error('Error inserting user:', error);
     } finally {
