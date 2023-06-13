@@ -136,13 +136,50 @@
                 margin-right: 0;
             }
         </style>
+        <form id='tablepq' method="post" action="/post-crud"> 
+            <table id="myTable">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Vai trò</th>
+                </tr>
+            </table>
+        </form>
+        <button onclick="addRow()">Thêm dòng</button>
         <script>
+            let data = JSON.parse(unescape('<%-data%>'));
+            console.log(data);
+            for (let i=0; i<data.length; i++)
+            {
+                var table = document.getElementById("myTable");
+                var row = table.insertRow(-1);
+
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = "<input type='text' name='firstName' value='" + data[i].firstName + "'>";
+
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = "<input type='text name='lastName' value='" + data[i].lastName + "'>";
+
+                var cell3 = row.insertCell(2);
+                cell3.innerHTML = "<input type='text name='userName' value='" + data[i].userName + "'>";
+
+                var cell4 = row.insertCell(3);
+                cell4.innerHTML = "<input type='text name='password' value='" + data[i].password + "'>";
+
+                var cell5 = row.insertCell(4);
+                cell5.innerHTML = createRoleSelect();
+                
+                addDeleteButton(row);
+                addPermissionButton(row);
+            }
             function addRow() {
                 var table = document.getElementById("myTable");
                 var row = table.insertRow(-1);
 
                 var cell1 = row.insertCell(0);
-                cell1.innerHTML = "<input type='text'>";
+                cell1.innerHTML = "<input type='text' name='fi'>";
 
                 var cell2 = row.insertCell(1);
                 cell2.innerHTML = "<input type='text'>";
@@ -152,15 +189,9 @@
 
                 var cell4 = row.insertCell(3);
                 cell4.innerHTML = "<input type='text'>";
-                
-                var cell5 = row.insertCell(4);
-                cell5.innerHTML = "<input type='text'>";
-                
-                var cell6 = row.insertCell(5);
-                cell6.innerHTML = "<input type='text'>";
 
-                var cell7 = row.insertCell(6);
-                cell7.innerHTML = createRoleSelect();
+                var cell5 = row.insertCell(4);
+                cell5.innerHTML = createRoleSelect();
                 
                 addDeleteButton(row);
                 addPermissionButton(row);
@@ -168,16 +199,16 @@
 
             function createRoleSelect(){
                 var select = "<select>";
-                    select += "<option value='role1'>--</option>";
-                    select += "<option value='role1'>Admin</option>";
-                    select += "<option value='role2'>Ban Quản lý</option>";
-                    select += "<option value='role3'>Manager</option>";
+                    select += "<option value='guest'>--</option>";
+                    select += "<option value='admin'>Admin</option>";
+                    select += "<option value='banquanly'>Ban Quản lý</option>";
+                    select += "<option value='manager'>Manager</option>";
                     select += "</select>";
                 return select;
             }
             function addDeleteButton(row)
             {
-                var cell = row.insertCell(7);
+                var cell = row.insertCell(5);
                 var deleteButton = document.createElement("button");
                 deleteButton.innerHTML = "Xóa";
                 deleteButton.onclick = function()
@@ -189,30 +220,16 @@
             }
             function addPermissionButton(row) 
             {
-            var cell = row.insertCell(7);
+            var cell = row.insertCell(5);
             var permissionButton = document.createElement("button");
             permissionButton.innerHTML = "Phân quyền";
             permissionButton.onclick = function() {
                 // Xử lý logic khi nhấp vào nút "Phân quyền"
-                var row = this.parentNode.parentNode;
-                // ...
+                let form = document.getElementById('tablepq');
             };
             cell.appendChild(permissionButton);
             }
         </script>
-        <table id="myTable">
-            <tr>
-                <th>STT</th>
-                <th>Tên người dùng</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Vai trò</th>
-            </tr>
-        </table>
-        <button onclick="addRow()">Thêm dòng</button>
-
     <!--Footer chính-->
     <footer class="mainFooter">
         <!--Nội dung Footer-->

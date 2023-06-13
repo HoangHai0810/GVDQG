@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     dienBien.init({
+        maDienBien: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+        },
         tenDoiBong: DataTypes.STRING,
         maCauThu: DataTypes.INTEGER,
         maLich: DataTypes.STRING,

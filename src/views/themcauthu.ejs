@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <nav class="mainNav" style="height: 100px;">
-                            <h1 style="position: absolute; left: 150px; top: 50px">Thay thông tin cầu thủ</h1>
+                            <h1 style="position: absolute; left: 150px; top: 50px">Thêm cầu thủ vào đội bóng</h1>
                         </nav>
                         
                         <%  let name = '';
@@ -94,36 +94,40 @@
         </header>
     <div class="container">
         <div class="row" style="display: block; ">
-            <form action="/put-cauthu" method="post" style="font-size: 17px;">
-                <div class="column-14 mt-3" style="margin-bottom: 30px;"><h2>Sửa Cầu Thủ</h2></div>
+            <form action="/themcauthu" method="post" style="font-size: 17px;">
+                <div class="column-14 mt-3" style="margin-bottom: 30px;"><h2>Thêm Cầu Thủ</h2></div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                       <label for="inputEmail4">Tên cầu thủ:</label>
-                      <label><%=cauThu.tenCauThu%></label>
+                      <input type="text" class="form-control" id="inputLastname4" placeholder="Tên cầu thủ" name="tenCauThu">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="inputLastname4" placeholder="Ngày sinh" name="ngaySinh">
+                      </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Quốc tịch</label>
-                        <input type="text" class="form-control" id="inputLastname4" placeholder="Quốc tịch" name="quocTich" value="<%= cauThu.quocTich %>">
+                        <input type="text" class="form-control" id="inputLastname4" placeholder="Quốc tịch" name="quocTich">
                       </div>
                     <div class="form-group col-md-6">
                         <label for="inputAddress">Số áo</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Số áo" name="soAo" value="<%= cauThu.soAo %>">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Số áo" name="soAo">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputPhonenumber">Chiều cao</label>
-                        <input type="datetime" class="form-control" id="inputAddress" placeholder="cm" name="chieuCao" value="<%= cauThu.chieuCao %>">
+                        <input type="datetime" class="form-control" id="inputAddress" placeholder="cm" name="chieuCao">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhonenumber">Cân nặng</label>
-                        <input type="datetime" class="form-control" id="inputAddress" placeholder="kg" name="canNang" value="<%= cauThu.canNang %>">
+                        <input type="datetime" class="form-control" id="inputAddress" placeholder="kg" name="canNang">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="inputGender">Vị Trí</label>
-                        <select class="form-control" name="viTri" value="<%= cauThu.viTri %>">
+                        <select class="form-control" name="viTri">
                         <option selected>Chọn...</option>
                         <option value="1">Tiền đạo</option>
                         <option value="2">Tiền vệ</option>
@@ -133,9 +137,10 @@
                     </div>
                 </div>
                 <div>
-                    <input name="maCauThu" value="<%= cauThu.maCauThu %>" type="text" hidden />
+                    <input name="tenDoiBong" value="<%= doiBong %>" type="text" hidden />
+                    
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-top:20px;">Hoàn tất</button>
+                <button type="submit" class="btn btn-primary" style="margin-top:20px;">Thêm cầu thủ</button>
               </form>
         </div>
       </div>

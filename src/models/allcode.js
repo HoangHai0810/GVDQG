@@ -14,9 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Allcode.init({
-    key: DataTypes.STRING,
-    type: DataTypes.STRING,
-    value: DataTypes.STRING
+    userId: DataTypes.INTEGER,
+    tenDoiBong: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Allcode',

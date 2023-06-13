@@ -82,12 +82,12 @@ body {
 
 .players-section h2
 {
-    padding-left: 80px;
+    padding-left: 0px;
 }
 
 .lineup-section h2
 {
-    padding-left: 370px;
+    padding-left: 0px;
 }
 
 .position {
@@ -80123,6 +80123,7 @@ div.matchHighlightsBanner .competition span {
 @media (-webkit-min-device-pixel-ratio:2),
 (min-resolution:192dpi) {
     .t6 .icn.facebook-like-w {
+        
         background-image: url(../photos/i/sprites/social-sprite@x2.png);
         background-size: 130px 118px
     }
@@ -80154,6 +80155,14 @@ div.matchHighlightsBanner .competition span {
 
 .t6 .socialSection .socialCard .actions a.time {
     color: #000
+}
+time 
+{
+    border: 1px solid #ccc5 !important;
+}
+.wtSpreader{
+    background-color: #fff !important;
+    z-index: 100 !important;
 }
 
 .t6 .socialSection .socialCard.imageCard .cardContent {

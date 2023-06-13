@@ -5,8 +5,7 @@ module.exports = {
       maLoaiBanThang: {
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       tenLoaiBanThang: {
         type: Sequelize.TEXT,

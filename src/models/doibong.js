@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   doiBong.init({
     tenDoiBong: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
     sanNha: DataTypes.TEXT,

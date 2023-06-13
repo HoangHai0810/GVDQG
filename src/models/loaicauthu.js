@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   loaiCauThu.init({
     maLoaiCauThu: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
     tenLoaiCauThu: DataTypes.TEXT,

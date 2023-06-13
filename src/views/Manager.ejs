@@ -187,12 +187,11 @@
                             <div alt="" class="icn search-w"></div>
                         </div>
                     </div>
-                    <a href="#" class="navLink navOption navOption--no-border fantasySignIn" role="button" tabindex="0">
-                    </a>
-                    <a href="#!" class="navLink navOption navOption--no-border fantasySignOut" role="button"
-                        tabindex="0">
-                        <span class="fantasyUsername"></span>
-                    </a>
+                            <span style="right: 120px; position: absolute;"><%= doiBong %></span>
+                            <a href="/logout" hidden="true" class="navLink navOption navOption--no-border fantasySignOut" role="button"
+                                tabindex="0">
+                                <span class="fantasyUsername"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                            </a>
                 </section>
                 <div class="searchOverlay"></div>
             </div>
@@ -1038,11 +1037,67 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
-                                        <!--copy bên homepage-->
-                                        
+                                        <% let dem = 0;
+                                        for (let i=0;i < dataCauThu.length; i++) { 
+                                            if (dataCauThu[i].tenDoiBong === doiBong) { dem = dem + 1;%>
+                                            <tr>
+                                                <td class="hide-s">
+                                                    <%= dem %>
+                                                </td>
+                                                <td class="hide-s">
+                                                    <%= dataCauThu[i].tenCauThu %>
+                                                </td>
+                                                <td class="hide-s">
+                                                    <%= dataCauThu[i].viTri %>
+                                                </td>
+                                                <td class="hide-s">
+                                                    <%= dataCauThu[i].soAo %>
+                                                </td>
+                                                <td class="">
+                                                    <% let flag='' ; if (dataCauThu[i].quocTich=='Việt Nam' ) { flag='VN' };
+                                                        if (dataCauThu[i].quocTich=='Brazil' ) { flag='BR' }; if
+                                                        (dataCauThu[i].quocTich=='Hàn Quốc' ) { flag='KR' }; if
+                                                        (dataCauThu[i].quocTich=='Jamaica' ) { flag='JM' }; if
+                                                        (dataCauThu[i].quocTich=='Trung Quốc' ) { flag='CN' }; if
+                                                        (dataCauThu[i].quocTich=='Nigeria' ) { flag='NG' }; if
+                                                        (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; 
+                                                        if (dataCauThu[i].quocTich=='Mỹ' ) { flag='US' };
+                                                        if (dataCauThu[i].quocTich=='Pháp' ) { flag='FR' };
+                                                        if (dataCauThu[i].quocTich=='Argentina' ) { flag='AR' };
+                                                        if (dataCauThu[i].quocTich=='Anh' ) { flag='GB-ENG' };
+                                                        if (dataCauThu[i].quocTich=='Bồ Đào Nha' ) { flag='PO' };
+                                                        if (dataCauThu[i].quocTich=='Tây Ban Nha' ) { flag='ES' };
+                                                        if (dataCauThu[i].quocTich=='Nhật Bản' ) { flag='JP' };
+                                                        if (dataCauThu[i].quocTich=='Thái Lan' ) { flag='TH' };
+                                                        %>
+                                                        <span class="flag <%=flag%>" id="flags"></span>
+                                                        <span class="playerCountry">
+                                                            <%= dataCauThu[i].quocTich %>
+                                                        </span>
+                                                </td>
+                                                <td>
+                                                    <a href="/editCauThu?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-edit" type="button" style="color: #fff;
+                                                        display: block;
+                                                        width: 60%;
+                                                        margin: auto;">Sửa</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/deleteCauThu?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-del" type="button" style="color: #fff;
+                                                        display: block;
+                                                        width: 50%;
+                                                        margin: auto;">Xóa</a>
+                                                </td>
+                                            </tr>
+                                            <% }  }%>
+                                    </tbody>
                                 </table>
                             </div>
+                            
                         </div>
+                        <a href="/addCauThu" class="btn-del" type="button" style="color: #fff;
+                            display: block;
+                            width: 50%;
+                            margin: auto;">Thêm cầu thủ</a>
                     </div>
                 </div>
             <div class="tableCompetitionExplainedContainer"></div>
@@ -1251,25 +1306,6 @@
         });
         // Lắng nghe sự kiện khi tab được click
         const tabLinks = document.querySelectorAll('nav ul li a');
-
-        //Lắng nghe sự kiện khi nút đăng nhập được click
-        const signinLink = document.querySelector('.fantasySignIn');
-
-        signinLink.addEventListener('click', (e) => {
-            // Loại bỏ lớp active từ tất cả các tab
-            tabLinks.forEach((tab) => {
-                tab.classList.remove('active');
-            });
-            // Ẩn tất cả các nội dung tab
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach((tabContent) => {
-                tabContent.style.display = 'none';
-            });
-            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-            const selectedTabContent = document.getElementById('dangnhap');
-            selectedTabContent.style.display = 'block';
-            link.classList.add('active');
-        })
 
         tabLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
