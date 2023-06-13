@@ -1356,7 +1356,7 @@
                             <section class="fixtures"><time class="date long" datetime="Saturday 20 May 2023"><strong>
                                         <%= dataLichThiDauTruoc[i].ngay %>
                                     </strong></time><time class="date short"><strong>
-                                        <%//= dataLichThiDauTruoc[1].ngay%>
+                                        <% //=dataLichThiDauTruoc[1].ngay%>
                                     </strong></time>
                                 <div data-competition-matches-list="Saturday 20 May 2023"
                                     class="fixtures__matches-list">
@@ -2593,7 +2593,7 @@
                         style="display: flex; margin-bottom: 30px; justify-content: space-around;">
                         <span>
                             <label for="team1" style="margin-right: 10px;">Tên đội 1:</label>
-                            <input type="text" id="team1" >
+                            <input type="text" id="team1">
                         </span>
                         <span>
                             <label for="team2" style="margin-right: 10px;">Tên đội 2:</label>
@@ -2618,7 +2618,7 @@
                                     vertical-align: middle;">Ngày giờ</th>
                                     </tr>
                                 </thead>
-                                <tbody class="dataContainer indexSection">
+                                <tbody class="dataContainer indexSection" id="lichTable">
                                     <% <!--Luot đi-->
                                         for (let i=0;i < dataDoiBong.length; i++ ) { for (let j=i + 1; j <
                                             dataDoiBong.length; j++) { %>
@@ -2677,7 +2677,7 @@
                                                                 value="<%= dataDoiBong[i].sanNha%>">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
-                                                    vertical-align: middle;" id="vong"> 
+                                                    vertical-align: middle;" id="vong">
                                                         Lượt về
                                                         <input type="hidden" name="vong" value="Lượt về">
                                                     </td>
@@ -2700,8 +2700,41 @@
             </div>
 
             <script>
+                const searchT1Input = document.getElementById('team1');
+                const searchT2Input = document.getElementById('team2');
+                const lichTable = document.getElementById('lichTable');
+                // Lắng nghe sự kiện người dùng nhập dữ liệu
+                searchT1Input.addEventListener("keyup", () => {
+                    const searchT1Term = searchT1Input.value.toLowerCase();
+                    const searchT2Term = searchT2Input.value.toLowerCase();
+                    const rows = lichTable.querySelectorAll('tr');
+                    console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        const teamName1 = rows[i].querySelector('td:first-child').textContent.toLowerCase();
+                        const teamName2 = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        if (teamName1.includes(searchT1Term) && teamName2.includes(searchT2Term)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+                searchT2Input.addEventListener("keyup", () => {
+                    const searchT1Term = searchT1Input.value.toLowerCase();
+                    const searchT2Term = searchT2Input.value.toLowerCase();
+                    const rows = lichTable.querySelectorAll('tr');
+                    console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        const teamName1 = rows[i].querySelector('td:first-child').textContent.toLowerCase();
+                        const teamName2 = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        if (teamName1.includes(searchT1Term) && teamName2.includes(searchT2Term)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
 
-                
             </script>
         </section>
 
