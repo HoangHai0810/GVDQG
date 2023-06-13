@@ -505,6 +505,25 @@ let deleteUserById = (userId) => {
     })
 }
 
+let logoutCRUD  = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let login = await db.Login.findAll();
+            if (login)
+            {
+                for (let k=0;k<login.length;k++)
+                {
+                    login[k].destroy();
+                }
+            }
+            reslove();
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
+
 let getAllThamSo = () => {
     return new Promise(async (reslove, reject) => {
         try {
@@ -538,4 +557,5 @@ module.exports = {
     createNewLogin: createNewLogin,
     getLogin: getLogin,
     getAllCode: getAllCode,
+    logoutCRUD: logoutCRUD,
 }

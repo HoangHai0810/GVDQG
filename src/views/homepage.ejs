@@ -40,6 +40,7 @@
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <meta name="apple-itunes-app" content="app-id=1138895159">
+    
 </head>
 
 <body>
@@ -203,14 +204,21 @@
                                 <div alt="" class="icn search-w"></div>
                             </div>
                         </div>
+                        <% if (login.length == 0) { %>
                         <a href="#" class="navLink navOption navOption--no-border fantasySignIn" role="button"
                             tabindex="0">
                             <span class="fantasySignInLabel">Đăng nhập</span>
                         </a>
-                        <a href="#!" class="navLink navOption navOption--no-border fantasySignOut" role="button"
-                            tabindex="0">
-                            <span class="fantasyUsername"></span>
-                        </a>
+                        <% } else { 
+                            let name = '';
+                            for (let v = 0;v<dataF.length;v++) { 
+                                if (dataF[v].id == login[0].userId) { name = dataF[v].lastName; } }%>
+                            <span style="right: 120px; position: absolute;"><%= name %></span>
+                            <a href="/logout" hidden="true" class="navLink navOption navOption--no-border fantasySignOut" role="button"
+                                tabindex="0">
+                                <span class="fantasyUsername"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                            </a>
+                        <% }%>
                     </section>
                 </div>
                 <nav class="subNav" role="menubar">
@@ -2150,27 +2158,9 @@
                 document.getElementById('navbar').style.top = 'auto';
             }
         });
+
         // Lắng nghe sự kiện khi tab được click
         const tabLinks = document.querySelectorAll('nav ul li a');
-
-        //Lắng nghe sự kiện khi nút đăng nhập được click
-        const signinLink = document.querySelector('.fantasySignIn');
-
-        signinLink.addEventListener('click', (e) => {
-            // Loại bỏ lớp active từ tất cả các tab
-            tabLinks.forEach((tab) => {
-                tab.classList.remove('active');
-            });
-            // Ẩn tất cả các nội dung tab
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach((tabContent) => {
-                tabContent.style.display = 'none';
-            });
-            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-            const selectedTabContent = document.getElementById('dangnhap');
-            selectedTabContent.style.display = 'block';
-            link.classList.add('active');
-        })
 
         tabLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
@@ -2195,7 +2185,32 @@
                 selectedTabContent.style.display = 'block';
                 link.classList.add('active');
             });
-        });
+
+            let Login = JSON.parse('<%- Login %>');
+
+            if (Login.length == 0)
+            {
+                //Lắng nghe sự kiện khi nút đăng nhập được click
+                const signinLink = document.querySelector('.fantasySignIn');
+        
+                signinLink.addEventListener('click', (e) => {
+                    // Loại bỏ lớp active từ tất cả các tab
+                    tabLinks.forEach((tab) => {
+                        tab.classList.remove('active');
+                    });
+                    // Ẩn tất cả các nội dung tab
+                    const tabContents = document.querySelectorAll('.tab-content');
+                    tabContents.forEach((tabContent) => {
+                        tabContent.style.display = 'none';
+                    });
+                    // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
+                    const selectedTabContent = document.getElementById('dangnhap');
+                    selectedTabContent.style.display = 'block';
+                    link.classList.add('active');
+                })
+            } 
+    });
+        
     </script>
 
     <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""

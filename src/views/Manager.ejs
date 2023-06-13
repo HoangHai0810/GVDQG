@@ -187,12 +187,11 @@
                             <div alt="" class="icn search-w"></div>
                         </div>
                     </div>
-                    <a href="#" class="navLink navOption navOption--no-border fantasySignIn" role="button" tabindex="0">
-                    </a>
-                    <a href="#!" class="navLink navOption navOption--no-border fantasySignOut" role="button"
-                        tabindex="0">
-                        <span class="fantasyUsername"></span>
-                    </a>
+                            <span style="right: 120px; position: absolute;"><%= doiBong %></span>
+                            <a href="/logout" hidden="true" class="navLink navOption navOption--no-border fantasySignOut" role="button"
+                                tabindex="0">
+                                <span class="fantasyUsername"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                            </a>
                 </section>
                 <div class="searchOverlay"></div>
             </div>
@@ -1071,7 +1070,7 @@
                                                     <a href="/manager?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-edit" type="button">Edit</a>
                                                 </td>
                                                 <td>
-                                                    <a href="/manager?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-del" type="button">Delete</a>
+                                                    <a href="/manager?id=<%=dataCauThu[i].maCauThu%>" class="btn-del" type="button">Delete</a>
                                                 </td>
                                             </tr>
                                             <% }  }%>
@@ -1287,25 +1286,6 @@
         });
         // Lắng nghe sự kiện khi tab được click
         const tabLinks = document.querySelectorAll('nav ul li a');
-
-        //Lắng nghe sự kiện khi nút đăng nhập được click
-        const signinLink = document.querySelector('.fantasySignIn');
-
-        signinLink.addEventListener('click', (e) => {
-            // Loại bỏ lớp active từ tất cả các tab
-            tabLinks.forEach((tab) => {
-                tab.classList.remove('active');
-            });
-            // Ẩn tất cả các nội dung tab
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach((tabContent) => {
-                tabContent.style.display = 'none';
-            });
-            // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-            const selectedTabContent = document.getElementById('dangnhap');
-            selectedTabContent.style.display = 'block';
-            link.classList.add('active');
-        })
 
         tabLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
