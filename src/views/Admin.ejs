@@ -27,7 +27,10 @@
     <link rel="stylesheet" href="./css/screen.css">
     <!--<![endif]-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
@@ -540,112 +543,112 @@
             </nav>
         </div>
     </header>
-        <!--Thanh loading-->
-        <div class="loader js-tab-loader u-hide">
-            <div class="loader-small">
-                <div class="line"></div>
-            </div>
+    <!--Thanh loading-->
+    <div class="loader js-tab-loader u-hide">
+        <div class="loader-small">
+            <div class="line"></div>
         </div>
-        <!--Các tài khoản đã phân quyền-->
-        
-        <style>
-            table {
-                border-collapse: collapse;
-                width: 100%;
-                border: 1px solid black;
-            }
-    
-            th, td {
-                border: 1px solid black;
-                padding: 8px;
-                text-align: left;
-            }
-            .action-buttons{
-                display: flex;
-                gap: 5px;
-            }
-            .action-buttons button{
-                border: none;
-                background-color: transparent;
-                margin-right: 0;
-            }
-        </style>
-        <script>
-            function addRow() {
-                var table = document.getElementById("myTable");
-                var row = table.insertRow(-1);
+    </div>
+    <!--Các tài khoản đã phân quyền-->
 
-                var cell1 = row.insertCell(0);
-                cell1.innerHTML = "<input type='text'>";
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
 
-                var cell2 = row.insertCell(1);
-                cell2.innerHTML = "<input type='text'>";
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
 
-                var cell3 = row.insertCell(2);
-                cell3.innerHTML = "<input type='text'>";
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
 
-                var cell4 = row.insertCell(3);
-                cell4.innerHTML = "<input type='text'>";
-                
-                var cell5 = row.insertCell(4);
-                cell5.innerHTML = "<input type='text'>";
-                
-                var cell6 = row.insertCell(5);
-                cell6.innerHTML = "<input type='text'>";
+        .action-buttons button {
+            border: none;
+            background-color: transparent;
+            margin-right: 0;
+        }
+    </style>
+    <script>
+        function addRow() {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
 
-                var cell7 = row.insertCell(6);
-                cell7.innerHTML = createRoleSelect();
-                
-                addDeleteButton(row);
-                addPermissionButton(row);
-            }
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = "<input type='text'>";
 
-            function createRoleSelect(){
-                var select = "<select>";
-                    select += "<option value='role1'>--</option>";
-                    select += "<option value='role1'>Admin</option>";
-                    select += "<option value='role2'>Ban Quản lý</option>";
-                    select += "<option value='role3'>Manager</option>";
-                    select += "</select>";
-                return select;
-            }
-            function addDeleteButton(row)
-            {
-                var cell = row.insertCell(7);
-                var deleteButton = document.createElement("button");
-                deleteButton.innerHTML = "Xóa";
-                deleteButton.onclick = function()
-                {
-                    var row = this.parentNode.parentNode;
-                    row.parentNode.removeChild(row);
-                };
-                cell.appendChild(deleteButton);
-            }
-            function addPermissionButton(row) 
-            {
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = "<input type='text'>";
+
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = "<input type='text'>";
+
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = "<input type='text'>";
+
+            var cell5 = row.insertCell(4);
+            cell5.innerHTML = "<input type='text'>";
+
+            var cell6 = row.insertCell(5);
+            cell6.innerHTML = "<input type='text'>";
+
+            var cell7 = row.insertCell(6);
+            cell7.innerHTML = createRoleSelect();
+
+            addDeleteButton(row);
+            addPermissionButton(row);
+        }
+
+        function createRoleSelect() {
+            var select = "<select>";
+            select += "<option value='role1'>--</option>";
+            select += "<option value='role1'>Admin</option>";
+            select += "<option value='role2'>Ban Quản lý</option>";
+            select += "<option value='role3'>Manager</option>";
+            select += "</select>";
+            return select;
+        }
+        function addDeleteButton(row) {
+            var cell = row.insertCell(7);
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "Xóa";
+            deleteButton.onclick = function () {
+                var row = this.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+            };
+            cell.appendChild(deleteButton);
+        }
+        function addPermissionButton(row) {
             var cell = row.insertCell(7);
             var permissionButton = document.createElement("button");
             permissionButton.innerHTML = "Phân quyền";
-            permissionButton.onclick = function() {
+            permissionButton.onclick = function () {
                 // Xử lý logic khi nhấp vào nút "Phân quyền"
                 var row = this.parentNode.parentNode;
                 // ...
             };
             cell.appendChild(permissionButton);
-            }
-        </script>
-        <table id="myTable">
-            <tr>
-                <th>STT</th>
-                <th>Tên người dùng</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Vai trò</th>
-            </tr>
-        </table>
-        <button onclick="addRow()">Thêm dòng</button>
+        }
+    </script>
+    <table id="myTable">
+        <tr>
+            <th>STT</th>
+            <th>Tên người dùng</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Vai trò</th>
+        </tr>
+    </table>
+    <button onclick="addRow()">Thêm dòng</button>
 
     <!--Footer chính-->
     <footer class="mainFooter">

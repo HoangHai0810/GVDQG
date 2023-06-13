@@ -180,11 +180,23 @@ let postTeam = async (req, res) => {
 
 let postLapLich = async (req, res) => {
     console.log(req.body);
-    let mes = await CRUDSevice.createLichThiDau(req.body);
+    let lich = await CRUDSevice.getAllLichThiDau({
+        raw: true,
+    })
+    for (let i = 0; i < req.body.length; i++) {
+        for (let k = 0; k < lich.length; k++) {
+            if (req.body[i].tenDoiBong1 === lich[i].tenDoiBong1 && req.body[i].tenDoiBong2 === lich[i].tenDoiBong2) {
+                let mes1 = await CRUDSevice.updateLichThiDau(req.body);
+            }
+            else {
+                let mes2 = await CRUDSevice.createLichThiDau(req.body);
+            }
+        }
+    }
     res.redirect('/banquanly');
 }
-let postDienBien = async (req,res) => {
-    let data = req.body;  
+let postDienBien = async (req, res) => {
+    let data = req.body;
     console.log(data);
     data.dienBien = JSON.parse(data.dienBien);
     let mes1 = await CRUDSevice.createDienBien(data);
