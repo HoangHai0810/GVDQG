@@ -6,9 +6,6 @@ import { json } from "body-parser";
 
 let getHomePage = async (req, res) => {
     try {
-        let login = await CRUDSevice.getLogin({
-            raw: true,
-        })
         let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
             raw: true,
         })
@@ -18,6 +15,9 @@ let getHomePage = async (req, res) => {
         let dataTongKet = await CRUDSevice.getAllTongKet({
             raw: true,
         });
+        let login = await CRUDSevice.getLogin({
+            raw: true,
+        })
         let data = await CRUDSevice.getAllUser({
             raw: true,
         });
@@ -89,6 +89,29 @@ let getEditCRUD = async (req, res) => {
     }
 }
 
+let editCauThu = async (req, res) => {
+    let maCauThu = req.query.maCauThu;
+    if (maCauThu) {
+        let cauThuData = await CRUDSevice.getCauThuByMaCauThu(maCauThu);
+        if (cauThuData) {
+            let login = await CRUDSevice.getLogin({
+                raw: true,
+            })
+            let data = await CRUDSevice.getAllUser({
+                raw: true,
+            });
+            return res.render('edit-CRUD.ejs' ,{
+                cauThu: cauThuData,
+                dataF: data,
+                login: login
+            })
+        }
+    }
+    else {
+        return res.send('Cầu thủ không tìm thấy!');
+    }
+}
+
 let putCRUD = async (req, res) => {
     let data = req.body;
     await CRUDSevice.editUser(data);
@@ -96,6 +119,12 @@ let putCRUD = async (req, res) => {
     return res.render('displayCRUD.ejs', {
         dataTable: allUsers
     });
+}
+
+let postCauThu = async (req, res) => {
+    let data = req.body;
+    await CRUDSevice.editCauThu(data);
+    res.redirect('/manager');
 }
 
 let delCRUD = async (req, res) => {
@@ -106,6 +135,16 @@ let delCRUD = async (req, res) => {
         return res.render('./displayCRUD.ejs', {
             dataTable: allUsers
         });
+    } else {
+        return res.send('User not found!');
+    }
+}
+
+let delCauThu = async (req, res) => {
+    let maCauThu = req.query.maCauThu;
+    if (maCauThu) {
+        await CRUDSevice.deleteCauThuById(maCauThu);
+        res.redirect('/manager');
     } else {
         return res.send('User not found!');
     }
@@ -375,6 +414,24 @@ let getAdmin = async(req, res) =>
     }
 }
 
+let themCauThu = async (req,res) => {
+    let login = await CRUDSevice.getLogin({ raw: true});
+    let allcode = await CRUDSevice.getAllCode(login[0].userId);
+    let data = await CRUDSevice.getAllUser({
+        raw: true,
+    });
+    return res.render('themCauThu.ejs', {
+        dataF: data,
+        doiBong : allcode.tenDoiBong,
+        login: login
+    });
+}
+
+let themCauThuVuaNhap = async (req,res) => {
+    let mes = await CRUDSevice.createCauThu(req.body);
+    res.redirect('/manager')
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getInfoPage: getInfoPage,
@@ -391,6 +448,10 @@ module.exports = {
     getAdmin: getAdmin,
     postDienBien: postDienBien,
     logout: logout,
-    postLapLich: postLapLich
-
+    postLapLich: postLapLich,
+    editCauThu: editCauThu,
+    postCauThu: postCauThu,
+    delCauThu: delCauThu,
+    themCauThu: themCauThu,
+    themCauThuVuaNhap: themCauThuVuaNhap,
 }

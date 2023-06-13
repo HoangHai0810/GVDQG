@@ -1,5 +1,5 @@
 import doibong from '../models/doibong';
-import db, { sequelize } from '../models/index'
+import  db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
@@ -40,36 +40,37 @@ let createDienBien = async(data) => {
     return new Promise(async (reslove, reject) => {
         try{ 
             
-            for (let i=0;i<data.length; i++)
+            for (let i=0;i<data.dienBien.length; i++)
             {
-                var maLoaiBT = 1;
-                if (data[i][2] == 'Trực tiếp')
+                var maLoaiBT = 'LBT01';
+                if (data.dienBien[i][2] == 'Trực tiếp')
                 {
-                    maLoaiBT = 2;
+                    maLoaiBT = 'LBT02';
                 }
-                if (data[i][2] == 'Đá phạt')
+                if (data.dienBien[i][2] == 'Đá phạt')
                 {
-                    maLoaiBT = 3;
+                    maLoaiBT = 'LBT03';
                 }
-                if (data[i][2] == 'Phản lưới nhà')
+                if (data.dienBien[i][2] == 'Phản lưới nhà')
                 {
-                    maLoaiBT = 4;
+                    maLoaiBT = 'LBT04';
                 }
-                var maLoaiThe = 1;
-                if (data[i][3] == 'Thẻ vàng')
+                var maLoaiThe = 'LT01';
+                if (data.dienBien[i][3] == 'Thẻ vàng')
                 {
-                    maLoaiThe = 2;
+                    maLoaiThe = 'LT02';
                 }
-                if (data[i][3] == 'Thẻ đỏ')
+                if (data.dienBien[i][3] == 'Thẻ đỏ')
                 {
-                    maLoaiThe = 3;
+                    maLoaiThe = 'LT03';
                 }
                 await db.dienBien.create({
-                    tenCauThu: data[i][0],
-                    tenDoiBong: data[i][1],
+                    tenCauThu: data.dienBien[i][1],
+                    tenDoiBong: data.dienBien[i][0],
                     maLoaiBanThang: maLoaiBT,
                     maLoaiThe: maLoaiThe,
-                    thoiDiem: data[i][4],
+                    thoiDiem: data.dienBien[i][4],
+                    maLich: data.maLich,
                 })
             }
             reslove('AddDienBien!!');
@@ -128,6 +129,171 @@ let createTeam = async(data) => {
                 tenDoiBong: data.teamName,
             });  
             reslove('Added Team!')
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
+let createKetQua = async (data) => {
+    return new Promise( async (reslove,reject) => {
+        try {
+            let ketquaDoi1 = 0;
+            let ketquaDoi2 = 0;
+            let soTheVang = 0;
+            let soTheDo = 0;
+            let thamSo = getAllThamSo({ raw: true});
+            let DiemThang = 3;
+            let DiemHoa = 1;
+            let DiemThua = 0;
+            for (let i=0;i<thamSo.length;i++)
+            {
+                if (thamSo[i].tenThamSo == 'DiemThang')
+                {
+                    DiemThang = parseInt(thamSo[i].giaTri);
+                } 
+                if (thamSo[i].tenThamSo == 'DiemHoa')
+                {
+                    DiemHoa = parseInt(thamSo[i].giaTri);
+                }
+                if (thamSo[i].tenThamSo == 'DiemThua')
+                {
+                    DiemThua = parseInt(thamSo[i].giaTri);
+                }
+            }
+            for (let i=0;i<data.dienBien.length;i++)
+            {
+                console.log(data.dienBien[i])
+                console.log(data.doiNha)
+                console.log(data.maLich)
+                if (data.dienBien[i][3] == 'Thẻ vàng' ) {soTheVang = soTheVang + 1; };
+                if (data.dienBien[i][3] == 'Thẻ đỏ' ) {soTheDo = soTheDo + 1; };
+                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0]==data.doiNha) {ketquaDoi2 = ketquaDoi2 + 1};
+                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0]!=data.doiNha) {ketquaDoi1 = ketquaDoi1 + 1};
+                if (data.dienBien[i][0] == data.doiNha)
+                {
+                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt')
+                    {
+                        ketquaDoi1 = ketquaDoi1 + 1;
+                    }
+                }
+                if (data.dienBien[i][0] != data.doiNha)
+                {
+                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt')
+                    {
+                        ketquaDoi2 = ketquaDoi2 + 1;
+                    }
+                }
+            };
+            await db.ketQua.create({
+                maLich: data.maLich,
+                soBanThangDoi1: ketquaDoi1,
+                soBanThangDoi2: ketquaDoi2,
+                soTheDo: soTheDo,
+                soTheVang: soTheVang,
+            })
+            let tongKet1 = await db.tongKet.findOne({
+                where: {
+                    tenDoiBong: data.doiNha,
+                }
+            })
+            if (tongKet1)
+            {
+                tongKet1.soTranDau += 1;
+                if (ketquaDoi1>ketquaDoi2) {
+                    tongKet1.diemSo += DiemThang;
+                    tongKet1.soTranThang +=1;
+                } else if (ketquaDoi1 == ketquaDoi2) {
+                    tongKet1.diemSo += DiemHoa
+                    tongKet1.soTranHoa +=1;
+                } else
+                {
+                    tongKet1.diemSo += DiemThua;
+                    tongKet1.soTranThua += 1;
+                }
+                tongKet1.soBanThang = tongKet1.soBanThang + ketquaDoi1;
+                tongKet1.soBanThua += ketquaDoi2;
+                tongKet1.hieuSo = tongKet1.hieuSo + ketquaDoi1 - ketquaDoi2;
+                tongKet1.soTheVang = soTheVang;
+                tongKet1.soTheDo = soTheDo;
+
+                await tongKet1.save();
+            }
+            else
+            {
+                reslove();
+            }
+
+
+            let tongKet2 = await db.tongKet.findOne({
+                where: {
+                    tenDoiBong: data.doiKhach,
+                }
+            })
+            if (tongKet2)
+            {
+                tongKet2.soTranDau += 1;
+                if (ketquaDoi1<ketquaDoi2) {
+                    tongKet2.diemSo += DiemThang;
+                    tongKet2.soTranThang +=1;
+                } else if (ketquaDoi1 == ketquaDoi2) {
+                    tongKet2.diemSo += DiemHoa
+                    tongKet2.soTranHoa +=1;
+                } else
+                {
+                    tongKet2.diemSo += DiemThua;
+                    tongKet2.soTranThua += 1;
+                }
+                tongKet2.soBanThang = tongKet2.soBanThang + ketquaDoi2;
+                tongKet2.soBanThua += ketquaDoi1;
+                tongKet2.hieuSo = tongKet2.hieuSo + ketquaDoi1 - ketquaDoi2;
+                tongKet2.soTheVang = soTheVang;
+                tongKet2.soTheDo = soTheDo;
+
+                await tongKet2.save()
+            }
+            else
+            {
+                reslove();
+            }
+            reslove('Add kq!');
+        } catch(e)
+        {
+            reject(e)
+        }
+    })
+}
+
+let createCauThu = (data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            let viTri = 1;
+            if (data.viTri == '1')
+                viTri = 'Tiền đạo';
+            if (data.viTri == '2')
+                viTri = 'Tiền vệ';
+            if (data.viTri == '3')
+                viTri = 'Hậu vệ';
+            if (data.viTri == '4')
+                viTri = 'Thủ môn';
+            let maLoaiCT = '';
+            if (data.quocTich === 'Việt Nam')
+                maLoaiCT = 'TN';
+            else
+                maLoaiCT = 'NN';
+            await db.cauThu.create({
+                tenCauThu: data.tenCauThu,
+                quocTich: data.quocTich,
+                viTri: viTri,
+                chieuCao: data.chieuCao,
+                canNang: data.canNang,
+                soAo: data.soAo,
+                ngaySinh: data.ngaySinh,
+                tenDoiBong: data.tenDoiBong,
+                maLoaiCauThu: maLoaiCT
+            })
+
+            reslove('Added user!')
         } catch(e) {
             reject(e);
         }
@@ -193,7 +359,7 @@ let getLogin = () => {
 let getAllTongKet = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC", { type: QueryTypes.SELECT});
+            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC, hieuSo DESC, soBanThang DESC", { type: QueryTypes.SELECT});
             reslove(tongket);
         } catch(e){
             reject(e);
@@ -242,6 +408,18 @@ let getAllLichChuaThiDau = () => {
         try {
             let lichThiDauSau = await sequelize.query("SELECT lichThiDaus.maLich, tenDoiBong1,tenDoiBong2, soBanThangDoi1, soBanThangDoi2, DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `ketQuas` ON lichThiDaus.maLich = ketQuas.maLich ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT});
             reslove(lichThiDauSau);
+        } catch(e)
+        {
+            reject(e)
+        }
+    });
+}
+
+let getAllLichThiDau = () => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let lichThiDau = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT});
+            reslove(lichThiDau);
         } catch(e)
         {
             reject(e)
@@ -325,6 +503,65 @@ let editUser = async(data) => {
     })
 }
 
+let editCauThu = async(data) => {
+    return new Promise(async(reslove,reject) => {
+        try{
+            let cauthu = await db.cauThu.findOne({
+                where: {
+                    maCauThu: data.maCauThu,
+                }
+            })
+            if (cauthu)
+            {
+                cauthu.quocTich = data.quocTich;
+                cauthu.soAo = data.soAo;
+                cauthu.chieuCao = data.chieuCao;
+                cauthu.canNang = data.canNang;
+                if (data.viTri == '1')
+                    cauthu.viTri = 'Tiền đạo';
+                if (data.viTri == '2')
+                    cauthu.viTri = 'Tiền vệ';
+                if (data.viTri == '3')
+                    cauthu.viTri = 'Hậu Vệ';
+                if (data.viTri == '4')
+                    cauthu.viTri = 'Thủ môn';
+
+                await cauthu.save();
+                reslove('Edited user!');
+            }
+            else
+            {
+                reslove();
+            }
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
+let editTongKet = async(data) => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let tongKet = await db.tongKet.findOne({
+                where: {
+                    tenDoiBong: data,
+                }
+            })
+            if (user)
+            {
+                
+            }
+            else
+            {
+                reslove();
+            }
+        } catch (e) 
+        {
+            reject(e);
+        }
+    })
+}
+
 let deleteUserById = (userId) => {
     return new Promise(async(reslove,reject) => {
         try {
@@ -332,6 +569,21 @@ let deleteUserById = (userId) => {
             if (user)
             {
                 user.destroy();
+            }
+            reslove();
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
+let deleteCauThuById = (userId) => {
+    return new Promise(async(reslove,reject) => {
+        try {
+            let cauThu = await db.cauThu.findOne({ where: { maCauThu: userId} })
+            if (cauThu)
+            {
+                cauThu.destroy();
             }
             reslove();
         } catch(e) {
@@ -371,43 +623,30 @@ let getAllThamSo = () => {
     });
 }
 
-let getAllLichThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            console.log(ketqua);
-            reslove(ketqua);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
 
-let createLichThiDau = async (data) => {
-    return new Promise(async (reslove, reject) => {
+let getCauThuByMaCauThu = (maCauThu) => {
+    return new Promise(async(reslove, reject) => {
         try {
-            for (let i = 0; i < data.teamName1.length; i++) {
-                var tempVong;
-                if(data.vong[i] === 'Lượt đi'){
-                    tempVong = 1;
+            let cauThu = await db.cauThu.findOne({
+                where: {
+                    maCauThu: maCauThu,
                 }
-                else{
-                    tempVong = 2;
-                }
-                await db.lichThiDau.create({
-                    tenDoiBong1: data.teamName1[i],
-                    tenDoiBong2: data.teamName2[i],
-                    ngayGio: data.ngay[i],
-                    vong: tempVong,
-                });
+            })
+            if (cauThu)
+            {
+                reslove(cauThu)
             }
-
-            reslove('Lich added!');
-        } catch (e) {
+            else
+            {
+                reslove({})
+            }
+            reslove(user);
+        } catch(e){
             reject(e);
-        }
-     });
+        };
+    })
 }
+
 module.exports = {
     createNewUser : createNewUser,
     getAllUser: getAllUser,
@@ -415,19 +654,23 @@ module.exports = {
     editUser: editUser,
     deleteUserById: deleteUserById,
     createTeam: createTeam,
+    createKetQua: createKetQua,
+    createDienBien: createDienBien,
     getAllTongKet: getAllTongKet,
     getAllCauThu: getAllCauThu,
     getALLDoiBong: getALLDoiBong,
     getAllLichChuaThiDau: getAllLichChuaThiDau,
     getAllLichThiDauTruoc: getAllLichThiDauTruoc,
-    getAllLichThiDau: getAllLichThiDau,
     getAllKetQua: getAllKetQua,
+    getAllLichThiDau: getAllLichThiDau,
     getAllTranDau: getAllTranDau,
+    getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     getLogin: getLogin,
     getAllCode: getAllCode,
     logoutCRUD: logoutCRUD,
-    createDienBien: createDienBien,
-    getAllThamSo: getAllThamSo,
-    createLichThiDau: createLichThiDau
+    getCauThuByMaCauThu: getCauThuByMaCauThu,
+    editCauThu: editCauThu,
+    deleteCauThuById: deleteCauThuById,
+    createCauThu: createCauThu
 }

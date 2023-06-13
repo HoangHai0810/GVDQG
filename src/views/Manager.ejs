@@ -1053,32 +1053,51 @@
                                                 <td class="hide-s">
                                                     <%= dataCauThu[i].soAo %>
                                                 </td>
-                                                <td class="hide-s">
+                                                <td class="">
                                                     <% let flag='' ; if (dataCauThu[i].quocTich=='Việt Nam' ) { flag='VN' };
                                                         if (dataCauThu[i].quocTich=='Brazil' ) { flag='BR' }; if
                                                         (dataCauThu[i].quocTich=='Hàn Quốc' ) { flag='KR' }; if
                                                         (dataCauThu[i].quocTich=='Jamaica' ) { flag='JM' }; if
                                                         (dataCauThu[i].quocTich=='Trung Quốc' ) { flag='CN' }; if
                                                         (dataCauThu[i].quocTich=='Nigeria' ) { flag='NG' }; if
-                                                        (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; if
-                                                        (dataCauThu[i].quocTich=='Cameroon' ) { flag='CM' };%>
+                                                        (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; 
+                                                        if (dataCauThu[i].quocTich=='Mỹ' ) { flag='US' };
+                                                        if (dataCauThu[i].quocTich=='Pháp' ) { flag='FR' };
+                                                        if (dataCauThu[i].quocTich=='Argentina' ) { flag='AR' };
+                                                        if (dataCauThu[i].quocTich=='Anh' ) { flag='GB-ENG' };
+                                                        if (dataCauThu[i].quocTich=='Bồ Đào Nha' ) { flag='PO' };
+                                                        if (dataCauThu[i].quocTich=='Tây Ban Nha' ) { flag='ES' };
+                                                        if (dataCauThu[i].quocTich=='Nhật Bản' ) { flag='JP' };
+                                                        if (dataCauThu[i].quocTich=='Thái Lan' ) { flag='TH' };
+                                                        %>
                                                         <span class="flag <%=flag%>" id="flags"></span>
                                                         <span class="playerCountry">
                                                             <%= dataCauThu[i].quocTich %>
                                                         </span>
                                                 </td>
                                                 <td>
-                                                    <a href="/manager?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-edit" type="button">Edit</a>
+                                                    <a href="/editCauThu?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-edit" type="button" style="color: #fff;
+                                                        display: block;
+                                                        width: 60%;
+                                                        margin: auto;">Sửa</a>
                                                 </td>
                                                 <td>
-                                                    <a href="/manager?id=<%=dataCauThu[i].maCauThu%>" class="btn-del" type="button">Delete</a>
+                                                    <a href="/deleteCauThu?maCauThu=<%=dataCauThu[i].maCauThu%>" class="btn-del" type="button" style="color: #fff;
+                                                        display: block;
+                                                        width: 50%;
+                                                        margin: auto;">Xóa</a>
                                                 </td>
                                             </tr>
                                             <% }  }%>
                                     </tbody>
                                 </table>
                             </div>
+                            
                         </div>
+                        <a href="/addCauThu" class="btn-del" type="button" style="color: #fff;
+                            display: block;
+                            width: 50%;
+                            margin: auto;">Thêm cầu thủ</a>
                     </div>
                 </div>
             <div class="tableCompetitionExplainedContainer"></div>

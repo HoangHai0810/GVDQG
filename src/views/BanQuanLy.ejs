@@ -42,6 +42,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
 
     <style>
+        .handsontableEditor .autocompleteEditor {
+            z-index: 9999 !important;
+        } 
         .container-tiep-nhan-hs {
             max-width: 1000px;
             margin: 0 auto;
@@ -93,6 +96,7 @@
         .btn-secondary:hover {
             background-color: #545b62;
         }
+                
     </style>
 </head>
 
@@ -758,7 +762,7 @@
 
                                         <% for (let j=0;j<dataLichThiDau.length; j++) { if
                                             (dataLichThiDau[j].ngay==dataLichThiDau[i].ngay) { %>
-                                            <li class="matchFixtureContainer">
+                                            <li class="matchFixtureContainer" >
                                                 <div data-template-rendered=""
                                                     data-href="//www.premierleague.com/match/75275"
                                                     class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
@@ -1552,13 +1556,21 @@
                                             </td>
                                             <td class="hide-s">
                                                 <% let flag='' ; if (dataCauThu[i].quocTich=='Việt Nam' ) { flag='VN' };
-                                                    if (dataCauThu[i].quocTich=='Brazil' ) { flag='BR' }; if
-                                                    (dataCauThu[i].quocTich=='Hàn Quốc' ) { flag='KR' }; if
-                                                    (dataCauThu[i].quocTich=='Jamaica' ) { flag='JM' }; if
-                                                    (dataCauThu[i].quocTich=='Trung Quốc' ) { flag='CN' }; if
-                                                    (dataCauThu[i].quocTich=='Nigeria' ) { flag='NG' }; if
-                                                    (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; if
-                                                    (dataCauThu[i].quocTich=='Cameroon' ) { flag='CM' };%>
+                                                        if (dataCauThu[i].quocTich=='Brazil' ) { flag='BR' }; if
+                                                        (dataCauThu[i].quocTich=='Hàn Quốc' ) { flag='KR' }; if
+                                                        (dataCauThu[i].quocTich=='Jamaica' ) { flag='JM' }; if
+                                                        (dataCauThu[i].quocTich=='Trung Quốc' ) { flag='CN' }; if
+                                                        (dataCauThu[i].quocTich=='Nigeria' ) { flag='NG' }; if
+                                                        (dataCauThu[i].quocTich=='Ghana' ) { flag='GH' }; 
+                                                        if (dataCauThu[i].quocTich=='Mỹ' ) { flag='US' };
+                                                        if (dataCauThu[i].quocTich=='Pháp' ) { flag='FR' };
+                                                        if (dataCauThu[i].quocTich=='Argentina' ) { flag='AR' };
+                                                        if (dataCauThu[i].quocTich=='Anh' ) { flag='GB-ENG' };
+                                                        if (dataCauThu[i].quocTich=='Bồ Đào Nha' ) { flag='PO' };
+                                                        if (dataCauThu[i].quocTich=='Tây Ban Nha' ) { flag='ES' };
+                                                        if (dataCauThu[i].quocTich=='Nhật Bản' ) { flag='JP' };
+                                                        if (dataCauThu[i].quocTich=='Thái Lan' ) { flag='TH' };
+                                                        %>
                                                     <span class="flag <%=flag%>" id="flags"></span>
                                                     <span class="playerCountry">
                                                         <%= dataCauThu[i].quocTich %>
@@ -1603,14 +1615,16 @@
                         <section class="fixtures">
                             <div data-competition-matches-list="Saturday 20 May 2023" class="fixtures__matches-list">
                                 <ul class="matchList" data-com p-id="1">
-                                    <% for (let i=0; i< dataLichThiDau.length; i++) { let maLich=dataLichThiDau.maLich;
-                                        let tenDoiBong1=dataLichThiDau.tenDoiBong1; %>
+                                    <% for (let i=0; i< dataLichThiDau.length; i++) { 
+                                        let maLich = dataLichThiDau.maLich;
+                                        let tenDoiBong1 = dataLichThiDau.tenDoiBong1;
+                                         %>
                                         <form action="/postDienBien" method="post" id="dienBienForm">
                                             <input hidden="true" value='' id="dienbiendata" name="dienBien">
                                             <input hidden="true" value="" id="maLichdata" name="maLich">
                                             <input hidden="true" value="" id="doiKhachdata" name="doiKhach">
                                             <input hidden="true" value="" id='doiNhadata' name="doiNha">
-                                    <li class="matchFixtureContainer"  style="border: 1px solid #0005; margin-bottom:90px; z-index: 0; ">
+                                    <li class="matchFixtureContainer"  style="border: 1px solid #0005; margin-bottom:120px; z-index: 0; background-color:#fff;">
                                         <div class="fixture postMatch" tabindex="0">
                                             <span class="overview">
                                                 <span class="teams">
@@ -1638,7 +1652,11 @@
                                                         </span> <span class="teamName"> <span class="shortname" id="tenDoi2"><%= dataLichThiDau[i].tenDoiBong2 %></span>
                                                             <span class="abbr"><%= dataLichThiDau[i].tenDoiBong2 %></span> </span>
                                                     </span>
-                                        </form>
+                                                </span> <span class="stadiumName" style="white-space:normal"> <span class="icn stadium-b"></span>
+                                                    <%=dataLichThiDau[i].sanNha%></span> 
+                                                    <span><%= dataLichThiDau[i].ngay%></span>
+                                                        <button type"submit" class="icn arrow-right" style="position: absolute; border: none; width:50px; height:20px; background-size: 169px !important; background: url(../photos/i/sprites/arrows-sprite.png) -137px -44px no-repeat;"></button> </span>
+                                            </form>
 
                             </div>
                             <!--Bảng thông tin tổng quát của trận đấu-->
@@ -1678,13 +1696,15 @@
                                                 type: 'dropdown',
                                                 source: options,
                                                 data: 0,
-                                                width: 340
+                                                width: 340,
                                             }, {
                                                 title: 'Cầu thủ',
                                                 type: 'dropdown',
                                                 source: [],
                                                 data: 1,
-                                                width: 454
+                                                width: 454,
+                                                class: 'autocompleteEditor'
+                                                
                                             }, {
                                                 title: 'Loại bàn thắng',
                                                 data: 2,
@@ -1794,6 +1814,8 @@
                                             dienBienForm[m].submit();
                                         });
                                     }
+                                    
+
                                 </script>
                     </div>
         </section>
