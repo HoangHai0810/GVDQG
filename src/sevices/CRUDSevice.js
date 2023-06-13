@@ -351,7 +351,6 @@ let getAllLichThiDau = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let ketqua = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            console.log(ketqua);
             reslove(ketqua);
         } catch (e) {
             reject(e)
@@ -384,31 +383,31 @@ let createLichThiDau = async (data) => {
         }
     });
 }
-let updateLichThiDau = async (data) => {
+
+let updateLichThiDau = async (data, i) => {
     return new Promise(async (reslove, reject) => {
         try {
-            for (let i = 0; i < data.teamName1.length; i++) {
-                var tempVong;
-                if (data.vong[i] === 'Lượt đi') {
-                    tempVong = 1;
-                }
-                else {
-                    tempVong = 2;
-                }
-                await db.lichThiDau.create({
+            let tran = await db.lichThiDau.findOne({
+                where: {
                     tenDoiBong1: data.teamName1[i],
-                    tenDoiBong2: data.teamName2[i],
-                    ngayGio: data.ngay[i],
-                    vong: tempVong,
-                });
+                    tenDoiBong2: data.teamName2[i]
+                }
+            })
+            if (tran) {
+                tran.ngayGio = data.ngay[i];
+                await tran.save();
             }
-
-            reslove('Lich added!');
+            else {
+                reslove();
+            }
+            reslove('Lich updated!');
         } catch (e) {
             reject(e);
         }
     });
 }
+
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
@@ -430,5 +429,6 @@ module.exports = {
     logoutCRUD: logoutCRUD,
     createDienBien: createDienBien,
     getAllThamSo: getAllThamSo,
-    createLichThiDau: createLichThiDau
+    createLichThiDau: createLichThiDau,
+    updateLichThiDau: updateLichThiDau
 }

@@ -11,10 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            lichThiDau.belongsTo(models.doiBong, { foreignKey: 'tenDoiBong1' });
-            lichThiDau.belongsTo(models.doiBong, { foreignKey: 'tenDoiBong2' });
-            lichThiDau.hasOne(models.ketQua);
-            lichThiDau.hasMany(models.dienBien);
+
         }
     };
     lichThiDau.init({

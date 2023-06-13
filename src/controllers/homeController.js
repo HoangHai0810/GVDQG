@@ -278,17 +278,19 @@ let postTeam = async (req, res) => {
 
 let postLapLich = async (req, res) => {
     console.log(req.body);
-    let lich = await CRUDSevice.getAllLichThiDau({
-        raw: true,
-    })
-    for (let i = 0; i < req.body.length; i++) {
+    let lich = await CRUDSevice.getAllLichThiDau();
+    console.log(req.body.teamName1.length);
+    for (let i = 0; i < req.body.teamName1.length; i++) {
+        let checkDB = false;
         for (let k = 0; k < lich.length; k++) {
-            if (req.body[i].tenDoiBong1 === lich[i].tenDoiBong1 && req.body[i].tenDoiBong2 === lich[i].tenDoiBong2) {
-                let mes1 = await CRUDSevice.updateLichThiDau(req.body);
+            if (req.body.teamName1[i] === lich[k].tenDoiBong1 && req.body.teamName2[i] === lich[k].tenDoiBong2) {
+                checkDB = true;
+                let mes1 = await CRUDSevice.updateLichThiDau(req.body, i);
             }
-            else {
-                let mes2 = await CRUDSevice.createLichThiDau(req.body);
-            }
+        }
+        if (!checkDB) {
+            let mes2 = await CRUDSevice.createLichThiDau(req.body);
+            console.log(lich.length);
         }
     }
     res.redirect('/banquanly');

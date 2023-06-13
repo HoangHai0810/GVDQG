@@ -1170,7 +1170,7 @@
                                     </div>
                                     <ul class="matchList" data-comp-id="1">
                                         <% for (let j=0;j<dataLichThiDau.length; j++) { if
-                                            (dataLichThiDau[j].ngay==dataLichThiDau[i].ngay) { %>
+                                            (dataLichThiDau[j].ngay===dataLichThiDau[i].ngay) { %>
                                             <li class="matchFixtureContainer">
                                                 <div data-template-rendered=""
                                                     data-href="//www.premierleague.com/match/75275"
@@ -2312,7 +2312,7 @@
                     // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
                     const selectedTabContent = document.getElementById('dangnhap');
                     selectedTabContent.style.display = 'block';
-                    link.classList.add('active');
+                    signinLink.classList.add('active');
                 })
             }
         </script>
