@@ -29,11 +29,11 @@ let getHomePage = async (req, res) => {
         });
         let dataKetQua = await CRUDSevice.getAllKetQua({
             raw: true,
-        });
+        })
         let dataTranDau = await CRUDSevice.getAllTranDau({
             raw: true,
-        });
-        console.log('Add player!!');
+        })
+        console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
             dataF: data,
@@ -287,6 +287,11 @@ let postTeam = async (req, res) => {
     res.redirect('/banquanly');
 }
 
+let postLapLich = async (req, res) => {
+    console.log(req.body);
+    let mes = await CRUDSevice.createLichThiDau(req.body);
+    res.redirect('/banquanly');
+}
 let postDienBien = async (req,res) => {
     let data = req.body;  
     console.log(data);
@@ -366,9 +371,6 @@ let getAdmin = async(req, res) =>
     } else
     {
         res.redirect('/');
-    }
-}
-
 
 module.exports = {
     getHomePage: getHomePage,
@@ -386,4 +388,6 @@ module.exports = {
     getAdmin: getAdmin,
     postDienBien: postDienBien,
     logout: logout
+    postLapLich: postLapLich
+
 }

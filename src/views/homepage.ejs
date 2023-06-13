@@ -1106,6 +1106,21 @@
             <header class="pageHero tabbedHero ">
                 <div class="wrapper col-12">
                     <h1 class="pageTitle">Các trận đấu</h1>
+                    <div class="searchDataContainer" data-placeholder="Search" for="" a="" club="">
+                        <div class="searchInputContainer" role="search"> <label for="search-input"
+                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input-match" type="text"
+                                value="" placeholder="Search" class="searchTextContainer searchInput"> <button
+                                class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
+                                    <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="/resources/prod/v6.122.2-5844/i/svg-output/icons.svg#icn-close">
+                                    </use>
+                                </svg> </button>
+                            <div class="searchIconContainer searchCommit" role="button" tabindex="0">
+                                <div alt="" class="icn search-sm-g"><span class="visuallyHidden">Gửi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div data-script="pl_tabbed" data-widget="tabbed-content" class="tabLinks left"
                         data-tab-wrap=".tabs" data-tab-class="mainTableTab" data-update-tab-param="true">
                         <div class="tabs">
@@ -1130,7 +1145,7 @@
             <!--Các trận đấu-->
             <div class="tabbedContent">
                 <div class="wrapper col-12 tabLoader active">
-                    <div class="col-12">
+                    <div class="col-12" id="match">
                         <% for (let i=0;i< dataLichThiDau.length;i++) { %>
                             <section class="fixtures">
                                 <time class="date long" datetime="Saturday 20 May 2023">
@@ -1152,7 +1167,6 @@
                                         </div>
                                     </div>
                                     <ul class="matchList" data-comp-id="1">
-                                        
                                         <% for (let j=0;j<dataLichThiDau.length; j++) { if
                                             (dataLichThiDau[j].ngay==dataLichThiDau[i].ngay) { %>
                                             <li class="matchFixtureContainer">
@@ -1203,6 +1217,28 @@
                             <% } %>
                     </div>
                 </div>
+                <script>
+                    const searchMatchInput = document.getElementById('search-input-match');
+                    const matchList = document.getElementById('match');
+                    searchMatchInput.addEventListener("keyup", () => {
+                        const searchMatchTerm = searchMatchInput.value.toLowerCase();
+                        console.log(searchMatchTerm);
+                        const r = matchList.querySelectorAll('section');
+                        console.log(r);
+                        //const k = clbList.querySelectorAll('h4');
+                        //console.log(k);
+                        for (let i = 0; i < r.length; i++) {
+                            const ngay = r[i].querySelector('time:first-child').textContent;
+                            console.log(ngay);
+                            //const clbName = k[i].textContent.toLowerCase();
+                            if (ngay.includes(searchMatchTerm)) {
+                                r[i].style.display = ''; // Hiển thị hàng nếu khớp
+                            } else {
+                                r[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                            }
+                        }
+                    });
+                </script>
                 <div class="wrapper col-12 u-hide" data-ui-tab="PL2" data-team-type="FIRST"
                     data-script="pl_filtered-list" data-comp-seasons="33" data-team="-1" data-filter-list="U21"
                     data-widget="results-filtered-list" data-page="0" data-page-size="40" data-match-states="U,L"
@@ -1625,8 +1661,8 @@
                     <h1 class="pageTitle">Đội bóng</h1>
                     <div class="searchDataContainer" data-placeholder="Search" for="" a="" club="">
                         <div class="searchInputContainer" role="search"> <label for="search-input"
-                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input" type="text" value=""
-                                placeholder="Search" class="searchTextContainer searchInput"> <button
+                                class="visuallyHidden">Tìm kiếm</label> <input id="search-input-CLB" type="text"
+                                value="" placeholder="Search" class="searchTextContainer searchInput"> <button
                                 class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
                                     <use class="icon" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         xlink:href="/resources/prod/v6.122.2-5844/i/svg-output/icons.svg#icn-close">
@@ -1653,7 +1689,7 @@
                 <div class="clubIndex col-12">
                     <div class="indexSection">
                         <div class="">
-                            <ul
+                            <ul id="CLB"
                                 class="block-list-5 block-list-3-m block-list-1-s block-list-1-xs block-list-padding dataContainer">
                                 <% for (let i=0; i < dataDoiBong.length; i++) { %>
                                     <li>
@@ -1680,7 +1716,7 @@
                                                 </div>
 
                                                 <div class="nameContainer">
-                                                    <h4 class="clubName">
+                                                    <h4>
                                                         <%= dataDoiBong[i].tenDoiBong %>
                                                     </h4>
                                                     <div class="stadiumName">
@@ -1706,7 +1742,27 @@
                 </div>
             </div>
             </div>
-
+            <script>
+                const searchCLBInput = document.getElementById('search-input-CLB');
+                const clbList = document.getElementById('CLB');
+                searchCLBInput.addEventListener("keyup", () => {
+                    const searchclbTerm = searchCLBInput.value.toLowerCase();
+                    console.log(searchclbTerm);
+                    const r = clbList.querySelectorAll('li');
+                    console.log(r);
+                    const k = clbList.querySelectorAll('h4');
+                    console.log(k);
+                    for (let i = 0; i < r.length; i++) {
+                        console.log(k[i].textContent);
+                        const clbName = k[i].textContent.toLowerCase();
+                        if (clbName.includes(searchclbTerm)) {
+                            r[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            r[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+            </script>
         </section>
         <!--Tab cầu thủ-->
         <section id="cauthu" tabindex="0" class="tab-content" style="display: none;">
@@ -1717,7 +1773,7 @@
                         <h1 class="pageTitle">Cầu thủ</h1>
                         <div class="searchDataContainer" data-placeholder="Search for a Player">
                             <div class="searchInputContainer" role="search"> <label for="search-input"
-                                    class="visuallyHidden">Search for a Player</label> <input id="search-input"
+                                    class="visuallyHidden">Search for a Player</label> <input id="search-input-cauthu"
                                     type="text" value="" placeholder="Search for a Player"
                                     class="searchTextContainer searchInput"> <button
                                     class="search-input__button js-empty-input-btn"> <svg class="search-input__icon">
@@ -1731,6 +1787,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="right" data-script="pl_social-share" data-widget="social-page-share"
                             data-render="pagehover" data-body="Premier League - Players">
                             <div class="socialShareHover">
@@ -1911,7 +1969,7 @@
                                     class="filter-button__icon filter-button__icon--hover icn reset-p"></i> <span
                                     class="filter-button__text">Reset Filters</span> </div>
                         </section>
-                        <div class="table playerIndex">
+                        <div class="table playerIndex" id="hienthiplayer">
                             <summary class="visuallyHidden">This table lists the player index</summary>
                             <table>
                                 <thead>
@@ -1953,237 +2011,262 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
                 <div class="loader" data-scroll-loader="" style="min-height:10px;"></div>
             </div>
+            <script>
+                // Lấy tham chiếu đến ô tìm kiếm và bảng dữ liệu cầu thủ
+                const searchInput = document.getElementById('search-input-cauthu');
+                const playerTable = document.getElementById('hienthiplayer');
+
+                // Lắng nghe sự kiện người dùng nhập dữ liệu
+                searchInput.addEventListener("keyup", () => {
+                    const searchTerm = searchInput.value.toLowerCase(); // Chuyển đổi giá trị tìm kiếm thành chữ thường để tìm kiếm không phân biệt hoa thường
+                    // Lặp qua các hàng trong bảng dữ liệu cầu thủ
+
+                    const rows = playerTable.getElementsByTagName('tr');
+
+                    for (let i = 1; i < rows.length; i++) {
+                        const playerName = rows[i].querySelector('td:first-child').textContent.toLowerCase(); // Lấy tên cầu thủ từ cột đầu tiên
+                        const tendoi = rows[i].querySelector('td:last-child').textContent.toLowerCase();
+                        // Kiểm tra nếu tên cầu thủ chứa từ khóa tìm kiếm
+                        if (playerName.includes(searchTerm) || tendoi.includes(searchTerm)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+            </script>
         </section>
 
-    <!--Footer chính-->
-    <footer class="mainFooter">
-        <!--Nội dung Footer-->
-        <div class="footerContent">
-            <div class="wrapper">
-                <!--GVDQG-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Giải vô địch quốc gia</h3>
-                    <ul class="list--premier-league" role="menu">
-                        <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
-                                <span class=" link">Trang chủ</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
-                                <span class=" link">Trận đấu</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
-                                <span class=" link">Kết quả</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
-                                <span class=" link">Bảng xếp hang</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
-                                <span class=" link">Câu lạc bộ</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
-                                <span class=" link">Cầu thủ</span>
-                            </a>
-                        </li>
-                    </ul>
+        <!--Footer chính-->
+        <footer class="mainFooter">
+            <!--Nội dung Footer-->
+            <div class="footerContent">
+                <div class="wrapper">
+                    <!--GVDQG-->
+                    <div class="footerCol ">
+                        <h3 class="subHeader">Giải vô địch quốc gia</h3>
+                        <ul class="list--premier-league" role="menu">
+                            <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
+                                    <span class=" link">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
+                                    <span class=" link">Trận đấu</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
+                                    <span class=" link">Kết quả</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
+                                    <span class=" link">Bảng xếp hang</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
+                                    <span class=" link">Câu lạc bộ</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
+                                    <span class=" link">Cầu thủ</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--More-->
+                    <div class="footerCol ">
+                        <h3 class="subHeader">More</h3>
+                        <ul class="list--more" role="menu">
+                            <li> <a href="//www.premierleague.com/referees" target="_self" role="menuitem">
+                                    <span class=" link">Trọng tài</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/managers" target="_self" role="menuitem">
+                                    <span class=" link">Huấn luyện viên</span>
+                                </a>
+                            </li>
+                            <li> <a href="//www.premierleague.com/contact" target="_self" role="menuitem">
+                                    <span class=" link">Liên hệ</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Thông tin nhóm-->
+                    <div class="footerCol ">
+                        <h3 class="subHeader">Thông tin nhóm</h3>
+                        <ul class="list--social" role="menu">
+                            <li> <a href="https://www.facebook.com/hai2k3/" target="_blank" role="menuitem">
+                                    <span class=" link">Hoàng Hải Anh - 21521819</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                            <li> <a href="https://www.facebook.com/builetrongduc031103" target="_blank" role="menuitem">
+                                    <span class=" link">Bùi Lê Tọng Đức - 21520725</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                            <li> <a href="https://www.facebook.com/thinguyen.27072003" target="_blank" role="menuitem">
+                                    <span class=" link">Nguyễn Chí Thi - 21522614</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                            <li> <a href="https://www.facebook.com/khanhlong150403" target="_blank" role="menuitem">
+                                    <span class=" link">Trương Khánh Long - 21521750</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                            <li> <a href="https://www.facebook.com/notthin123" target="_blank" role="menuitem">
+                                    <span class=" link">Nguyễn Tiến Thịnh - 21521472</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Giáo viên hướng dẫn-->
+                    <div class="footerCol ">
+                        <h3 class="subHeader">Giáo viên hướng dẫn</h3>
+                        <ul class="list--more" role="menu">
+                            <li>
+                                <a href="https://courses.uit.edu.vn/user/profile.php?id=534" target="_self"
+                                    role="menuitem">
+                                    <span class=" link">Đỗ Thị Thanh Tuyền</span>
+                                    <span class="icn external-sm-pink"><span class="visuallyHidden">External
+                                            Link</span></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!--More-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">More</h3>
-                    <ul class="list--more" role="menu">
-                        <li> <a href="//www.premierleague.com/referees" target="_self" role="menuitem">
-                                <span class=" link">Trọng tài</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/managers" target="_self" role="menuitem">
-                                <span class=" link">Huấn luyện viên</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/contact" target="_self" role="menuitem">
-                                <span class=" link">Liên hệ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Thông tin nhóm-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Thông tin nhóm</h3>
-                    <ul class="list--social" role="menu">
-                        <li> <a href="https://www.facebook.com/hai2k3/" target="_blank" role="menuitem">
-                                <span class=" link">Hoàng Hải Anh - 21521819</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/builetrongduc031103" target="_blank" role="menuitem">
-                                <span class=" link">Bùi Lê Tọng Đức - 21520725</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/thinguyen.27072003" target="_blank" role="menuitem">
-                                <span class=" link">Nguyễn Chí Thi - 21522614</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/khanhlong150403" target="_blank" role="menuitem">
-                                <span class=" link">Trương Khánh Long - 21521750</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/notthin123" target="_blank" role="menuitem">
-                                <span class=" link">Nguyễn Tiến Thịnh - 21521472</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Giáo viên hướng dẫn-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Giáo viên hướng dẫn</h3>
-                    <ul class="list--more" role="menu">
+            </div>
+            <!--Footer Corporate-->
+            <div class="footerCorporate" data-script="pl_footer" data-widget="footer-corporate">
+                <div class="wrapper col-12">
+                    <ul role="menu">
+                        <li><strong>Giải vô địch quốc gia 2023</strong></li>
                         <li>
-                            <a href="https://courses.uit.edu.vn/user/profile.php?id=534" target="_self" role="menuitem">
-                                <span class=" link">Đỗ Thị Thanh Tuyền</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
+                            <a onclick="scrollToTop()" class="backToTopContainer" role="menuitem"
+                                style="cursor: pointer;">Về đầu trang</a>
+                            <script>
+                                function scrollToTop() {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }
+                            </script>
                         </li>
                     </ul>
+                    <div class="official"><a href="//www.premierleague.com" class="icn pl-logo-corporate"></a></div>
+                    <style>
+                        .footerCorporate #ot-sdk-btn.ot-sdk-show-settings {
+                            padding: 0;
+                            border: 0;
+                            background: none;
+                            color: #000;
+                            font-size: 11px;
+                        }
+
+                        .footerCorporate #ot-sdk-btn.ot-sdk-show-settings:hover {
+                            background: none;
+                            color: #000;
+                            text-decoration: underline;
+                        }
+                    </style>
                 </div>
             </div>
-        </div>
-        <!--Footer Corporate-->
-        <div class="footerCorporate" data-script="pl_footer" data-widget="footer-corporate">
-            <div class="wrapper col-12">
-                <ul role="menu">
-                    <li><strong>Giải vô địch quốc gia 2023</strong></li>
-                    <li>
-                        <a onclick="scrollToTop()" class="backToTopContainer" role="menuitem"
-                            style="cursor: pointer;">Về đầu trang</a>
-                        <script>
-                            function scrollToTop() {
-                                window.scrollTo({
-                                    top: 0,
-                                    behavior: "smooth"
-                                });
-                            }
-                        </script>
-                    </li>
-                </ul>
-                <div class="official"><a href="//www.premierleague.com" class="icn pl-logo-corporate"></a></div>
-                <style>
-                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings {
-                        padding: 0;
-                        border: 0;
-                        background: none;
-                        color: #000;
-                        font-size: 11px;
-                    }
+        </footer>
+        <script src="./scripts/vendors.min.js"></script>
+        <script src="./scripts/main.min.js"></script>
+        <script src="./widgets/common.min.js"></script>
+        <script type="text/javascript">
+            (function () {
+                var adfScr = document.createElement("script");
+                adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
+                adfScr.onload = function () {
+                    adf.container(998269, 'Master Tag');
+                };
+                document.head.appendChild(adfScr);
+            })();
+        </script>
+        <!--Taskbar Script-->
+        <script>
+            var search = document.querySelector(".searchBtn");
 
-                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings:hover {
-                        background: none;
-                        color: #000;
-                        text-decoration: underline;
-                    }
-                </style>
-            </div>
-        </div>
+            search.addEventListener("click", function () {
+                if (document.querySelector(".searchBar").classList.contains("open")) {
+                    document.querySelector(".searchBar").classList.remove("open");
+                    document.querySelector()
+                } else {
+                    document.querySelector(".searchBar").classList.add("open");
+                }
+                if (search.classList.contains("active")) {
+                    search.classList.remove("active");
+                } else {
+                    search.classList.add("active");
+                }
+            });
 
-    </footer>
-    <script src="./scripts/vendors.min.js"></script>
-    <script src="./scripts/main.min.js"></script>
-    <script src="./widgets/common.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            var adfScr = document.createElement("script");
-            adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
-            adfScr.onload = function () {
-                adf.container(998269, 'Master Tag');
-            };
-            document.head.appendChild(adfScr);
-        })();
-    </script>
-    <!--Taskbar Script-->
-    <script>
-        var search = document.querySelector(".searchBtn");
+            const logo = document.querySelector('.logo-resizable');
 
-        search.addEventListener("click", function () {
-            if (document.querySelector(".searchBar").classList.contains("open")) {
-                document.querySelector(".searchBar").classList.remove("open");
-                document.querySelector()
-            } else {
-                document.querySelector(".searchBar").classList.add("open");
-            }
-            if (search.classList.contains("active")) {
-                search.classList.remove("active");
-            } else {
-                search.classList.add("active");
-            }
-        });
+            window.addEventListener('scroll', function () {
+                var limit = 100;
 
-        const logo = document.querySelector('.logo-resizable');
+                // Lấy giá trị cuộn chuột hiện tại
+                var scrollValue = window.scrollY;
 
-        window.addEventListener('scroll', function () {
-            var limit = 100;
+                // Tính toán kích thước mới của logo
+                var newSize = Math.max(150 - scrollValue, limit);
 
-            // Lấy giá trị cuộn chuột hiện tại
-            var scrollValue = window.scrollY;
+                // Cập nhật kích thước của logo
+                logo.style.height = newSize + 'px';
 
-            // Tính toán kích thước mới của logo
-            var newSize = Math.max(150 - scrollValue, limit);
+                var fixedPosition = 60;
 
-            // Cập nhật kích thước của logo
-            logo.style.height = newSize + 'px';
+                if (scrollValue >= fixedPosition) {
+                    // Thanh navbar cố định ở đầu trang
+                    document.getElementById('navbar').style.position = 'fixed';
+                    document.getElementById('navbar').style.top = '0';
+                } else {
+                    // Thanh navbar theo dòng chảy bình thường
+                    document.getElementById('navbar').style.position = 'static';
+                    document.getElementById('navbar').style.top = 'auto';
+                }
+            });
+            // Lắng nghe sự kiện khi tab được click
+            const tabLinks = document.querySelectorAll('nav ul li a');
 
-            var fixedPosition = 60;
+            tabLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
 
-            if (scrollValue >= fixedPosition) {
-                // Thanh navbar cố định ở đầu trang
-                document.getElementById('navbar').style.position = 'fixed';
-                document.getElementById('navbar').style.top = '0';
-            } else {
-                // Thanh navbar theo dòng chảy bình thường
-                document.getElementById('navbar').style.position = 'static';
-                document.getElementById('navbar').style.top = 'auto';
-            }
-        });
+                    // Loại bỏ lớp active từ tất cả các tab
+                    tabLinks.forEach((tab) => {
+                        tab.classList.remove('active');
+                    });
 
-        // Lắng nghe sự kiện khi tab được click
-        const tabLinks = document.querySelectorAll('nav ul li a');
+                    // Ẩn tất cả các nội dung tab
+                    const tabContents = document.querySelectorAll('.tab-content');
+                    tabContents.forEach((tabContent) => {
+                        tabContent.style.display = 'none';
+                    });
 
-        tabLinks.forEach((link) => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
+                    // Lấy tab được click
+                    const selectedTab = e.target.getAttribute('data-tab');
 
-                // Loại bỏ lớp active từ tất cả các tab
-                tabLinks.forEach((tab) => {
-                    tab.classList.remove('active');
+                    // Hiển thị nội dung của tab được click và thêm lớp active cho tab
+                    const selectedTabContent = document.getElementById(selectedTab);
+                    selectedTabContent.style.display = 'block';
+                    link.classList.add('active');
                 });
-
-                // Ẩn tất cả các nội dung tab
-                const tabContents = document.querySelectorAll('.tab-content');
-                tabContents.forEach((tabContent) => {
-                    tabContent.style.display = 'none';
-                });
-
-                // Lấy tab được click
-                const selectedTab = e.target.getAttribute('data-tab');
-
-                // Hiển thị nội dung của tab được click và thêm lớp active cho tab
-                const selectedTabContent = document.getElementById(selectedTab);
-                selectedTabContent.style.display = 'block';
-                link.classList.add('active');
             });
 
             let Login = JSON.parse('<%- Login %>');
@@ -2209,13 +2292,13 @@
                     link.classList.add('active');
                 })
             } 
-    });
+      });
         
     </script>
 
-    <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
-        data-page-section="Premier League"></div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+        <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
+            data-page-section="Premier League"></div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>
