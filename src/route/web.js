@@ -18,8 +18,8 @@ let initWebRoutes = (app) => {
     router.post('/post-teaminf', homeController.postTeam);
     router.get('/admin', homeController.getAdmin);
     router.post('/postDienBien', homeController.postDienBien);
-    router.post('/postLapLich', homeController.postLapLich);
     router.get('/logout', homeController.logout);
+    router.post('/postLapLich', homeController.postLapLich);
     return app.use("/", router);
 }
 

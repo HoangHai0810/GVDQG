@@ -1177,26 +1177,40 @@
                                                     class="fixture preMatch" data-matchid="75275" tabindex="0"> <span
                                                         class="overview"> <span class="teams"> <span class="team"> <span
                                                                     class="teamName"> <span class="shortname">
-                                                                        <%=dataTranDau[j].tenDoiBong1%>
-                                                                    </span> </span> <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t43.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t43.png, https://resources.premierleague.com/premierleague/badges/25/t43@x2.png 2x">
-                                                                </span> </span> <time datetime="22:00">
-                                                                <%=dataLichThiDau[j].gio%>
-                                                            </time> <span class="team"> <span
-                                                                    class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t8.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t8.png, https://resources.premierleague.com/premierleague/badges/25/t8@x2.png 2x">
-                                                                </span> <span class="teamName"> <span class="shortname">
-                                                                        <%=dataLichThiDau[j].tenDoiBong2%>
-                                                                    </span> <span class="abbr">CHE</span> </span>
+                                                                        <%=dataLichThiDau[j].tenDoiBong1%>
+                                                                    </span> <span class="abbr">MCI</span> </span>
+                                                                <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                    (dataDoiBong[u].tenDoiBong==dataLichThiDau[j].tenDoiBong1)
+                                                                    {%>
+                                                                    <span class="badge badge-image-container"
+                                                                        data-widget="club-badge-image" data-size="25">
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                    </span>
+                                                                    <% } } %>
                                                             </span>
-                                                        </span> <span class="stadiumName"> <span
+                                                            <time datetime="22:00">
+                                                                <%=dataLichThiDau[j].gio%>
+                                                            </time>
+                                                            <span class="team">
+                                                                <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                    (dataDoiBong[u].tenDoiBong==dataLichThiDau[j].tenDoiBong2)
+                                                                    { %>
+                                                                    <span class="badge badge-image-container"
+                                                                        data-widget="club-badge-image" data-size="25">
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                    </span>
+                                                                    <% } } %>
+                                                                        <span class="teamName"> <span class="shortname">
+                                                                                <%=dataLichThiDau[j].tenDoiBong2%>
+                                                                            </span> <span class="abbr">CHE</span>
+                                                                        </span>
+                                                            </span>
+                                                        </span> <span class="stadiumName"
+                                                            style="white-space:nowrap; padding-left: 70px;"> <span
                                                                 class="icn stadium-b"></span>
                                                             <%=dataLichThiDau[j].sanNha%>
                                                         </span> <span class="fixtureBroadcast broadcastDataContainer"
@@ -2262,19 +2276,22 @@
                     tabLinks.forEach((tab) => {
                         tab.classList.remove('active');
                     });
+
                     // Ẩn tất cả các nội dung tab
                     const tabContents = document.querySelectorAll('.tab-content');
                     tabContents.forEach((tabContent) => {
                         tabContent.style.display = 'none';
                     });
 
-                    const selectedTab = e.target.getAtrribute('data-tab');
-                    // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
+                    // Lấy tab được click
+                    const selectedTab = e.target.getAttribute('data-tab');
+
+                    // Hiển thị nội dung của tab được click và thêm lớp active cho tab
                     const selectedTabContent = document.getElementById(selectedTab);
                     selectedTabContent.style.display = 'block';
                     link.classList.add('active');
                 });
-            })
+            });
 
             let Login = JSON.parse('<%- Login %>');
 
@@ -2298,7 +2315,6 @@
                     link.classList.add('active');
                 })
             }
-
         </script>
 
         <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""

@@ -424,9 +424,11 @@ module.exports = {
     getAllLichThiDau: getAllLichThiDau,
     getAllKetQua: getAllKetQua,
     getAllTranDau: getAllTranDau,
-    getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     getLogin: getLogin,
     getAllCode: getAllCode,
     logoutCRUD: logoutCRUD,
+    createDienBien: createDienBien,
+    getAllThamSo: getAllThamSo,
+    createLichThiDau: createLichThiDau
 }
