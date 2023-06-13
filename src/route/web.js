@@ -5,7 +5,7 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
-    router.get('/info', homeController.getInfoPage); 
+    router.get('/info', homeController.getInfoPage);
     router.get('/crud', homeController.getCRUDPage);
     router.post('/post-crud', homeController.postCRUD);
     router.get('/get-CRUD', homeController.displayGetCRUD);
@@ -17,7 +17,8 @@ let initWebRoutes = (app) => {
     router.get('/banquanly', homeController.getBanQuanLy);
     router.post('/post-teaminf', homeController.postTeam);
     router.get('/admin', homeController.getAdmin);
-    router.post('/postDienBien', homeController.postDienBien)
+    router.post('/postDienBien', homeController.postDienBien);
+    router.post('/postLapLich', homeController.postLapLich);
     return app.use("/", router);
 }
 
