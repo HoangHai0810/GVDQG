@@ -23,7 +23,9 @@ module.exports = {
         }
       },
       ngayGio: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        timezone: '+07:00',
+        timezoneOffset: '+07:00'
       },
       vong: {
         type: Sequelize.INTEGER

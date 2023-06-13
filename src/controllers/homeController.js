@@ -3,6 +3,7 @@ import express, { application } from 'express'
 import db from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
 import { json } from "body-parser";
+import { DateTime } from "mssql";
 
 let getHomePage = async (req, res) => {
     try {
@@ -166,7 +167,7 @@ let getBanQuanLy = async (req, res) => {
             dataLichThiDau: dataLichThiDau,
             pharsedataLichThiDau: JSON.stringify(dataLichThiDau)
         });
-    } catch (e) {
+    } catch(e) {
         console.log(e);
     }
 }

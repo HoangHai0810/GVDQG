@@ -24,7 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         tenDoiBong1: DataTypes.STRING,
         tenDoiBong2: DataTypes.STRING,
-        ngayGio: DataTypes.DATE,
+        ngayGio: {
+            type: DataTypes.DATE,
+            timezone: '+07:00',
+            timezoneOffset: '+07:00'
+        },
         vong: DataTypes.INTEGER
     }, {
         sequelize,

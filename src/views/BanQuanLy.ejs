@@ -2565,7 +2565,7 @@
                 teamNameBox.addEventListener('keyup', () => {
                     if (event.key !== 'Enter') {
                         errorTeamName.innerHTML = '';
-                        teamNameBox.ClassList.remove('error-border');
+                        teamNameBox.classList.remove('error-border');
                     }
                 })
 
@@ -2601,9 +2601,9 @@
                         </span>
                     </div>
                     <form id="form-laplich" action="/postLaplich" method="post">
-                        <div class="table playerIndex" id="tableLapLich">
+                        <div class="table playerIndex" >
                             <summary class="visuallyHidden">This table lists the player index</summary>
-                            <table>
+                            <table id="tableLapLich">
                                 <thead>
                                     <tr>
                                         <th scope="col" style="text-align: center;
@@ -2627,29 +2627,29 @@
                                                 <td class="hide-s" style="text-align: center;
                                             vertical-align: middle;" id="tenDoi1">
                                                     <%= dataDoiBong[i].tenDoiBong%>
-                                                        <input type="hidden" name="teamName1"
+                                                        <input type="hidden" id="input-teamName1" name="teamName1"
                                                             value="<%= dataDoiBong[i].tenDoiBong%>">
                                                 </td>
                                                 <td class="hide-s" style="text-align: center;
                                             vertical-align: middle;" id="tenDoi2">
                                                     <%= dataDoiBong[j].tenDoiBong%>
-                                                        <input type="hidden" name="teamName2"
+                                                        <input type="hidden" id="input-teamName2" name="teamName2"
                                                             value="<%= dataDoiBong[j].tenDoiBong%>">
                                                 </td>
                                                 <td class="hide-s" style="text-align: center;
                                             vertical-align: middle;" id="san">
                                                     <%= dataDoiBong[i].sanNha%>
-                                                        <input type="hidden" name="san"
+                                                        <input type="hidden" id="input-san" name="san"
                                                             value="<%= dataDoiBong[i].sanNha%>">
                                                 </td>
                                                 <td class="hide-s" style="text-align: center;
                                             vertical-align: middle;" id="vong">
                                                     Lượt đi
-                                                    <input type="hidden" name="vong" value="Lượt đi">
+                                                    <input type="hidden" id="input-vong" name="vong" value="Lượt đi">
                                                 </td>
                                                 <td class="hide-s" style="text-align: center;
                                             vertical-align: middle;" id='ngayDienRa'>
-                                                    <input type="datetime-local" id="ngay" name="ngay">
+                                                    <input type="datetime-local" id="input-ngay" name="ngay" value="">
                                                 </td>
                                             </tr>
                                             <% } } <!--Luot ve-->
@@ -2661,34 +2661,41 @@
                                                     <td class="hide-s" style="text-align: center;
                                                     vertical-align: middle;" id="tenDoi1">
                                                         <%= dataDoiBong[i].tenDoiBong%>
-                                                            <input type="hidden" name="teamName1"
+                                                            <input type="hidden" id="input-teamName1" name="teamName1"
                                                                 value="<%= dataDoiBong[i].tenDoiBong%>">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
                                                     vertical-align: middle;" id="tenDoi2">
                                                         <%= dataDoiBong[j].tenDoiBong%>
-                                                            <input type="hidden" name="teamName2"
+                                                            <input type="hidden" id="input-teamName2" name="teamName2"
                                                                 value="<%= dataDoiBong[j].tenDoiBong%>">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
                                                     vertical-align: middle;" id="san">
                                                         <%= dataDoiBong[i].sanNha%>
-                                                            <input type="hidden" name="san"
+                                                            <input type="hidden" id="input-san" name="san"
                                                                 value="<%= dataDoiBong[i].sanNha%>">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
                                                     vertical-align: middle;" id="vong"> 
                                                         Lượt về
-                                                        <input type="hidden" name="vong" value="Lượt về">
+                                                        <input type="hidden" id="input-vong" name="vong" value="Lượt về">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
                                                     vertical-align: middle;" id='ngayDienRa'>
-                                                        <input type="datetime-local" id="ngay" name="ngay" value="">
+                                                    <input type="datetime-local" id="input-ngay" name="ngay" value="">
                                                     </td>
                                                 </tr>
                                                 <% } } %>
                                 </tbody>
                             </table>
+
+                            <div id="errorNgayThiDau" style="margin: 30px;"></div>
+
+                            <div id="errorNgayTheoVong" style="margin: 30px;"></div>
+
+                            <div id="errorTrungNgay" style="margin: 30px;"></div>
+
                             <div class="submit-btn" style="margin-top: 30px;">
                                 <button type="submit" class="btn btn-primary" id="submitLich">Gửi</button>
                             </div>
@@ -2700,8 +2707,170 @@
             </div>
 
             <script>
+                var table = document.getElementById('tableLapLich');
+                console.log(table);
+                var tbody = table.getElementsByTagName('tbody')[0];
+                console.log(tbody);
+                var rows = tbody.getElementsByTagName('tr');
+                console.log(rows.length);
 
+                var lichThiDau = JSON.parse('<%- pharsedataLichThiDau %>');
+                const inputNgay = document.getElementById('input-ngay');
+                console.log(inputNgay.value);
+                for(let i = 0; i < rows.length; i++){
+                    var row = rows[i];
+                    const Ngay = row.getElementsByTagName('input')[4];
+                    const Team1 = row.getElementsByTagName('input')[0];
+                    const Team2 = row.getElementsByTagName('input')[1];
+                    for(let m=0; m<lichThiDau.length;m++){
+                                                
+                        if (lichThiDau[m].tenDoiBong1 === Team1.value && lichThiDau[m].tenDoiBong2 === Team2.value){
+                            Ngay.value = lichThiDau[m].ngayGioThiDau;                   
+                        }
+                    }
+                    console.log(Ngay.value);
+                }
                 
+                function handleSubmitLich(event) {
+                    event.preventDefault();
+                    
+
+                    //Kiểm tra ngày của lượt về phải lớn hơn ngày của lượt đi
+                    
+                    var table = document.getElementById('tableLapLich');
+                    console.log(table);
+                    var tbody = table.getElementsByTagName('tbody')[0];
+                    console.log(tbody);
+                    var rows = tbody.getElementsByTagName('tr');
+                    console.log(rows.length);
+
+                    const errorNgayThiDau = document.getElementById('errorNgayThiDau');
+                    const errorNgayTheoVong = document.getElementById('errorNgayTheoVong');
+                    const errorTrungNgay = document.getElementById('errorTrungNgay');
+                    
+
+                    //Kiểm tra ngày thi đấu không được để null
+                    var checkNullNgayThiDau = true;
+                    for(let i = 0; i < rows.length; i++){
+                        var row = rows[i];  
+                        var ngay = row.getElementsByTagName('input')[4];
+                        //const ngay = document.getElementById('input-ngay');
+                        if(ngay.value === ''){
+                            checkNullNgayThiDau = false;
+                            break;
+                        }
+                    }
+                    
+                    //Kiem tra ngay thi dau cua luot di phai lon hon luot ve
+                    var checkNgayTheoVong = true;
+                    for(let i = 0; i < rows.length; i++){
+                        var row1 = rows[i];
+                        const tenDoi11 = row1.getElementsByTagName('input')[0];
+                        const tenDoi12 = row1.getElementsByTagName('input')[1];
+                        const vong1 = row1.getElementsByTagName('input')[3];
+                        const ngay1 = row1.getElementsByTagName('input')[4];
+
+                        for(let j = 0; j < rows.length; j++){
+                            if(i != j) {
+                                var row2 = rows[j];
+                                const tenDoi21 = row2.getElementsByTagName('input')[0];
+                                const tenDoi22 = row2.getElementsByTagName('input')[1];
+                                const vong2 = row2.getElementsByTagName('input')[3];
+                                const ngay2 = row2.getElementsByTagName('input')[4];
+                                if(tenDoi11.value === tenDoi22.value && tenDoi12.value === tenDoi21.value){
+                                    if(vong1.value === 'Lượt đi'){
+                                        if (ngay2.value <= ngay1.value) {
+                                            checkNgayTheoVong = false;
+                                            ngay1.classList.add('error-border');
+                                            ngay2.classList.add('error-border');
+                                        }
+                                        else {
+                                            checkNgayTheoVong = true;
+                                            ngay1.classList.remove('error-border');
+                                            ngay2.classList.remove('error-border');
+                                        }
+                                    }
+                                    if (vong1.value === 'Lượt về'){
+                                        if(ngay2.value >= ngay1.value) {
+                                            checkNgayTheoVong = false;
+                                            ngay1.classList.add('error-border');
+                                            ngay2.classList.add('error-border');
+                                        }
+                                        else {
+                                            checkNgayTheoVong = true;
+                                            ngay1.classList.remove('error-border');
+                                            ngay2.classList.remove('error-border');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //Kiểm tra các ngày thi đấu của 1 đội nào đó không được trùng nhau
+                    var checkTrungNgay = true;
+                    var checkTrungNgayDoi1 = true;
+                    var checkTrungNgayDoi2 = true;
+                    for (let i = 0; i<rows.length; i++){
+                        var row1 = rows[i];
+                        const tenDoi11 = row1.getElementsByTagName('input')[0];
+                        const tenDoi12 = row1.getElementsByTagName('input')[1];
+                        const ngay1 = row1.getElementsByTagName('input')[4];
+                        for(let j = 0; j<rows.length; j++){
+                            if(i != j){
+                                var row2 = rows[j];
+                                const tenDoi21 = row2.getElementsByTagName('input')[0];
+                                const tenDoi22 = row2.getElementsByTagName('input')[1];
+                                const ngay2 = row2.getElementsByTagName('input')[4];
+                                if((tenDoi11.value === tenDoi22.value || tenDoi11.value === tenDoi21.value) 
+                                || (tenDoi12.value === tenDoi21.value || tenDoi12.value === tenDoi22.value)){
+                                    if(ngay1.value === ngay2.value){
+                                        checkTrungNgay = false;
+                                        // ngay1.classList.add('error-border');
+                                        // ngay2.classList.add('error-border');
+                                    }
+                                    else{
+                                        checkTrungNgay = true;
+                                        // ngay1.classList.remove('error-border');
+                                        // ngay2.classList.remove('error-border');
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+
+
+                    if (checkNgayTheoVong && checkNullNgayThiDau && checkTrungNgay) {
+                        document.getElementById('form-laplich').submit();
+                    }else {
+                        if(!checkNullNgayThiDau){
+                            errorNgayThiDau.innerHTML = 'Ngày giờ không được để NULL.';
+                            errorNgayThiDau.style.color = '#e53535';
+                        }
+                        else{
+                            errorNgayThiDau.innerHTML = '';
+                        }
+                        if(!checkNgayTheoVong){
+                            errorNgayTheoVong.innerHTML = 'Ngày của lượt về phải lớn hơn ngày của lượt đi, và ngược lại.';
+                            errorNgayTheoVong.style.color = '#e53535';
+                        }
+                        else{
+                            errorNgayTheoVong.innerHTML = '';
+                        }
+                        if(!checkTrungNgay){
+                            errorTrungNgay.innerHTML = 'Các ngày thi đấu của một đội nào đó không được trùng nhau';
+                            errorTrungNgay.style.color = '#e53535';
+                        }
+                        else{
+                            errorTrungNgay.innerHTML = '';
+                        }
+                    }
+                }
+
+                const formLapLich = document.getElementById('form-laplich');
+                formLapLich.addEventListener('submit', handleSubmitLich);
             </script>
         </section>
 
