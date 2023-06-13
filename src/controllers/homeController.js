@@ -252,6 +252,7 @@ let getBanQuanLy = async(req, res) =>
                     dataDoiBong: dataDoiBong,
                     dataThamSo: dataThamSo,
                     dataCauThu: dataCauThu,
+                    parseCauThu: JSON.stringify(dataCauThu),
                     parseDataDoiBong: JSON.stringify(dataDoiBong),
                     parseDataThamSo: JSON.stringify(dataThamSo),
                     dataLichThiDauTruoc: dataLichThiDauTruoc,
@@ -371,6 +372,8 @@ let getAdmin = async(req, res) =>
     } else
     {
         res.redirect('/');
+    }
+}
 
 module.exports = {
     getHomePage: getHomePage,
@@ -387,7 +390,7 @@ module.exports = {
     postTeam: postTeam,
     getAdmin: getAdmin,
     postDienBien: postDienBien,
-    logout: logout
+    logout: logout,
     postLapLich: postLapLich
 
 }

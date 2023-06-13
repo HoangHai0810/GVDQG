@@ -1653,14 +1653,19 @@
                                 }
                             </style>
                             <div class="thongtin-trandau" style="z-index: 9999; background-color:#fff">
-                                <!-- Nội dung của bảng -->
-                            </div>
+                              </div>                              
                             </li>
                             <% } %>
                                 </ul>
                                 <script
                                     src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
                                 <script>
+                                    const dienBienForm = document.querySelectorAll('[id="dienBienForm"]');
+                                    const tableData = document.querySelectorAll('[id="dienbiendata"]');
+                                    const maLichData = document.querySelectorAll('[id="maLichdata"]');
+                                    const doiKhachData = document.querySelectorAll('[id="doiKhachdata"]')
+                                    const doiNhaData = document.querySelectorAll('[id="doiNhadata"]');
+                                    var lichThiDau = JSON.parse('<%- pharsedataLichThiDau %>')
                                     let handsontables = [];
                                     const thongtin_trandau = document.querySelectorAll('.thongtin-trandau');
                                     let tendoi1 = document.querySelectorAll('[id="tenDoi1"]');
@@ -1676,6 +1681,8 @@
                                                 width: 340
                                             }, {
                                                 title: 'Cầu thủ',
+                                                type: 'dropdown',
+                                                source: [],
                                                 data: 1,
                                                 width: 454
                                             }, {
@@ -1699,7 +1706,34 @@
                                                 data: [
                                                     ['', '', '', '', '']
                                                 ],
-
+                                                afterChange: function (changes, source) {
+                                                    if (source === 'edit') {
+                                                      changes.forEach(function (change) {
+                                                        const row = change[0];
+                                                        const col = change[1];
+                                                        const oldValue = change[2];
+                                                        const newValue = change[3];
+                                                
+                                                        if (col === 0) { // Nếu cột thay đổi là cột đội bóng
+                                                          // Lấy dữ liệu từ cột đội bóng đã thay đổi
+                                                          const selectedTeam = hot.getDataAtCell(row, col);
+                                                          {
+                                                            // Cập nhật source của cột cầu thủ dựa trên đội bóng đã chọn
+                                                            const players = getPlayerList(selectedTeam); // getPlayerList là hàm để lấy danh sách cầu thủ từ đội bóng đã chọn
+                                                            hot.updateSettings({
+                                                                cells: function (row, col, prop) {
+                                                                if (col === 1) { // Cập nhật source chỉ cho cột cầu thủ
+                                                                    return {
+                                                                    source: players
+                                                                    };
+                                                                }
+                                                                }
+                                                            });
+                                                          }
+                                                        }
+                                                      });
+                                                    }
+                                                },
                                                 columns: thongTinTranDau,
                                                 rowHeaders: true,
                                                 stretchH: 'all',
@@ -1708,24 +1742,37 @@
                                                 manualRowResize: true,
                                                 manualColumnResize: true,
                                             });
+
                                             handsontables.push(hot);
                                         }
 
+                                        function getPlayerList(tenDoiBong) 
+                                        {
+                                            let players = [];
+                                            let cauthudoibong = JSON.parse(unescape('<%- parseCauThu %>'));
+                                            console.log(cauthudoibong);
+                                            for (let i=0; i<cauthudoibong.length;i++)
+                                            {
+                                                if (cauthudoibong[i].tenDoiBong == tenDoiBong)
+                                                {
+                                                    players.push(cauthudoibong[i].tenCauThu);
+                                                }
+                                            }
+                                            console.log(players);
+                                            return players;
+                                        }
 
                                         function addPlayerRow() {
                                             hot.alter('insert_row', hot.countRows());
                                         }
                                         initializeTable();
+
+                                        
                                     });
                                     //Lấy tham chiếu đến form và bảng dữ liệu
 
 
-                                    const dienBienForm = document.querySelectorAll('[id="dienBienForm"]');
-                                    const tableData = document.querySelectorAll('[id="dienbiendata"]');
-                                    const maLichData = document.querySelectorAll('[id="maLichdata"]');
-                                    const doiKhachData = document.querySelectorAll('[id="doiKhachdata"]')
-                                    const doiNhaData = document.querySelectorAll('[id="doiNhadata"]');
-                                    var lichThiDau = JSON.parse('<%- pharsedataLichThiDau %>')
+                                    
                                     // Gán sự kiện submit cho form
                                     console.log(lichThiDau[1]);
                                     for (let m = 0; m < dienBienForm.length; m++) {

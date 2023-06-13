@@ -1037,11 +1037,12 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tableBodyContainer isPL">
-                                        <% for (let i=0;i < dataCauThu.length; i++) { 
-                                            if (dataCauThu[i].tenDoiBong === doiBong) { %>
+                                        <% let dem = 0;
+                                        for (let i=0;i < dataCauThu.length; i++) { 
+                                            if (dataCauThu[i].tenDoiBong === doiBong) { dem = dem + 1;%>
                                             <tr>
                                                 <td class="hide-s">
-                                                    <%= i + 1 %>
+                                                    <%= dem %>
                                                 </td>
                                                 <td class="hide-s">
                                                     <%= dataCauThu[i].tenCauThu %>
