@@ -7,6 +7,12 @@ import { DateTime } from "mssql";
 
 let getHomePage = async (req, res) => {
     try {
+        let login = await CRUDSevice.getLogin({
+            raw: true,
+        })
+        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+            raw: true,
+        })
         let dataCauThu = await CRUDSevice.getAllCauThu({
             raw: true,
         })
@@ -19,7 +25,7 @@ let getHomePage = async (req, res) => {
         let dataDoiBong = await CRUDSevice.getALLDoiBong({
             raw: true,
         });
-        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+        let dataLichChuaThiDau = await CRUDSevice.getAllLichChuaThiDau({
             raw: true,
         });
         let dataKetQua = await CRUDSevice.getAllKetQua({
@@ -31,13 +37,16 @@ let getHomePage = async (req, res) => {
         console.log(dataDoiBong);
         return res.render('homepage.ejs', {
             data: JSON.stringify(data),
+            dataF: data,
             dataTongKet: dataTongKet,
             dataCauThu: dataCauThu,
             dataDoiBong: dataDoiBong,
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
+            dataLichThiDau: dataLichThiDau,
+            dataLichChuaThiDau: dataLichChuaThiDau,
             dataKetQua: dataKetQua,
             dataTranDau: dataTranDau,
+            login: login,
+            Login: JSON.stringify(login)
         });
     } catch (e) {
         console.log(e);
@@ -103,72 +112,161 @@ let delCRUD = async (req, res) => {
     }
 }
 
-let loginCRUD = (req, res) => {
-    return res.send('Login')
+let logout = async (req, res) => {
+    await CRUDSevice.logoutCRUD();
+    res.redirect('/')
+}
+
+let loginCRUD = async (req, res) => {
+    let mes = await CRUDSevice.createNewLogin(req.body);
+    console.log(mes);
+    let login = await CRUDSevice.getLogin({ raw: true });
+    if (login[0].roleId === 'guest') {
+        res.redirect('/');
+    }
+    if (login[0].roleId == 'manager') {
+        res.redirect('/manager');
+    }
+    if (login[0].roleId == 'banquanly') {
+        res.redirect('/banquanly');
+
+    }
+    if (login[0].roleId == 'admin') {
+        res.redirect('/admin');
+    }
 }
 
 let getManager = async (req, res) => {
-    try {
-        let data = await CRUDSevice.getAllUser({
-            raw: true,
-        });
-        return res.render('Manager.ejs', {
-            data: JSON.stringify(data)
-        });
-    } catch (e) {
-        console.log(e);
+    let login = await CRUDSevice.getLogin({
+        raw: true
+    })
+    if (login.length > 0) {
+        if (login[0].roleId === 'manager') {
+            try {
+                let allcode = await CRUDSevice.getAllCode(login[0].userId);
+                let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+                    raw: true,
+                })
+                let dataCauThu = await CRUDSevice.getAllCauThu({
+                    raw: true,
+                })
+                let dataTongKet = await CRUDSevice.getAllTongKet({
+                    raw: true,
+                });
+                let data = await CRUDSevice.getAllUser({
+                    raw: true,
+                });
+                let dataDoiBong = await CRUDSevice.getALLDoiBong({
+                    raw: true,
+                });
+                let dataLichChuaThiDau = await CRUDSevice.getAllLichChuaThiDau({
+                    raw: true,
+                });
+                let dataKetQua = await CRUDSevice.getAllKetQua({
+                    raw: true,
+                });
+                let dataTranDau = await CRUDSevice.getAllTranDau({
+                    raw: true,
+                });
+                return res.render('Manager.ejs', {
+                    data: JSON.stringify(data),
+                    dataF: data,
+                    dataTongKet: dataTongKet,
+                    dataCauThu: dataCauThu,
+                    dataDoiBong: dataDoiBong,
+                    dataLichThiDau: dataLichThiDau,
+                    dataLichChuaThiDau: dataLichChuaThiDau,
+                    dataKetQua: dataKetQua,
+                    dataTranDau: dataTranDau,
+                    doiBong: allcode.tenDoiBong,
+                    login: login,
+                    Login: JSON.stringify(login)
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        else {
+            if (login[0].roleId === 'banquanly')
+                res.redirect('/banquanly');
+            if (login[0].roleId === 'guest')
+                res.redirect('/');
+            if (login[0].roleId === 'admin')
+                res.redirect('/admin');
+        }
+    }
+    else {
+        res.redirect('/');
     }
 }
 
 let getBanQuanLy = async (req, res) => {
-    try {
-        let data = await CRUDSevice.getAllUser({
-            raw: true,
-        });
-        let dataDoiBong = await CRUDSevice.getALLDoiBong({
-            raw: true,
-        })
-        let dataThamSo = await CRUDSevice.getAllThamSo({
-            raw: true,
-        })
-        let dataCauThu = await CRUDSevice.getAllCauThu({
-            raw: true,
-        })
-        let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
-            raw: true,
-        });
-        let dataLichThiDauSau = await CRUDSevice.getAllLichThiDauSau({
-            raw: true,
-        });
-        let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
-            raw: true,
-        })
-        let dataKetQua = await CRUDSevice.getAllKetQua({
-            raw: true,
-        });
-        let dataTranDau = await CRUDSevice.getAllTranDau({
-            raw: true,
-        });
-        let dataTongKet = await CRUDSevice.getAllTongKet({
-            raw: true,
-        });
-        return res.render('BanQuanLy.ejs', {
-            data: JSON.stringify(data),
-            dataDoiBong: dataDoiBong,
-            dataThamSo: dataThamSo,
-            dataCauThu: dataCauThu,
-            parseDataDoiBong: JSON.stringify(dataDoiBong),
-            parseDataThamSo: JSON.stringify(dataThamSo),
-            dataLichThiDauTruoc: dataLichThiDauTruoc,
-            dataLichThiDauSau: dataLichThiDauSau,
-            dataKetQua: dataKetQua,
-            dataTranDau: dataTranDau,
-            dataTongKet: dataTongKet,
-            dataLichThiDau: dataLichThiDau,
-            pharsedataLichThiDau: JSON.stringify(dataLichThiDau)
-        });
-    } catch(e) {
-        console.log(e);
+    let login = await CRUDSevice.getLogin({
+        raw: true
+    });
+    if (login.length > 0) {
+        if (login[0].roleId === 'banquanly') {
+            try {
+                let data = await CRUDSevice.getAllUser({
+                    raw: true,
+                });
+                let dataDoiBong = await CRUDSevice.getALLDoiBong({
+                    raw: true,
+                })
+                let dataThamSo = await CRUDSevice.getAllThamSo({
+                    raw: true,
+                })
+                let dataCauThu = await CRUDSevice.getAllCauThu({
+                    raw: true,
+                })
+                let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
+                    raw: true,
+                });
+                let dataLichChuaThiDau = await CRUDSevice.getAllLichChuaThiDau({
+                    raw: true,
+                });
+                let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+                    raw: true,
+                })
+                let dataKetQua = await CRUDSevice.getAllKetQua({
+                    raw: true,
+                });
+                let dataTranDau = await CRUDSevice.getAllTranDau({
+                    raw: true,
+                });
+                let dataTongKet = await CRUDSevice.getAllTongKet({
+                    raw: true,
+                });
+                return res.render('BanQuanLy.ejs', {
+                    data: JSON.stringify(data),
+                    dataF: data,
+                    dataDoiBong: dataDoiBong,
+                    dataThamSo: dataThamSo,
+                    dataCauThu: dataCauThu,
+                    parseDataDoiBong: JSON.stringify(dataDoiBong),
+                    parseDataThamSo: JSON.stringify(dataThamSo),
+                    dataLichThiDauTruoc: dataLichThiDauTruoc,
+                    dataLichChuaThiDau: dataLichChuaThiDau,
+                    dataKetQua: dataKetQua,
+                    dataTranDau: dataTranDau,
+                    dataTongKet: dataTongKet,
+                    dataLichThiDau: dataLichThiDau,
+                    pharsedataLichThiDau: JSON.stringify(dataLichThiDau),
+                    login: login,
+                    Login: JSON.stringify(login)
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        if (login[0].roleId === 'manager')
+            res.redirect('/manager');
+        if (login[0].roleId === 'guest')
+            res.redirect('/');
+        if (login[0].roleId === 'admin')
+            res.redirect('/admin');
+    } else {
+        res.redirect('/');
     }
 }
 
@@ -181,11 +279,25 @@ let postTeam = async (req, res) => {
 
 let postLapLich = async (req, res) => {
     console.log(req.body);
-    let mes = await CRUDSevice.createLichThiDau(req.body);
+    let lich = await CRUDSevice.getAllLichThiDau();
+    console.log(req.body.teamName1.length);
+    for (let i = 0; i < req.body.teamName1.length; i++) {
+        let checkDB = false;
+        for (let k = 0; k < lich.length; k++) {
+            if (req.body.teamName1[i] === lich[k].tenDoiBong1 && req.body.teamName2[i] === lich[k].tenDoiBong2) {
+                checkDB = true;
+                let mes1 = await CRUDSevice.updateLichThiDau(req.body, i);
+            }
+        }
+        if (!checkDB) {
+            let mes2 = await CRUDSevice.createLichThiDau(req.body);
+            console.log(lich.length);
+        }
+    }
     res.redirect('/banquanly');
 }
-let postDienBien = async (req,res) => {
-    let data = req.body;  
+let postDienBien = async (req, res) => {
+    let data = req.body;
     console.log(data);
     data.dienBien = JSON.parse(data.dienBien);
     let mes1 = await CRUDSevice.createDienBien(data);
@@ -194,15 +306,72 @@ let postDienBien = async (req,res) => {
 }
 
 let getAdmin = async (req, res) => {
-    try {
-        let data = await CRUDSevice.getAllUser({
-            raw: true,
-        });
-        return res.render('Admin.ejs', {
-            data: JSON.stringify(data)
-        });
-    } catch (e) {
-        console.log(e);
+    let login = await CRUDSevice.getLogin({
+        raw: true
+    });
+    if (login.length > 0) {
+        if (login[0].roleId === 'admin') {
+            try {
+                let data = await CRUDSevice.getAllUser({
+                    raw: true,
+                });
+                let dataDoiBong = await CRUDSevice.getALLDoiBong({
+                    raw: true,
+                })
+                let dataThamSo = await CRUDSevice.getAllThamSo({
+                    raw: true,
+                })
+                let dataCauThu = await CRUDSevice.getAllCauThu({
+                    raw: true,
+                })
+                let dataLichThiDauTruoc = await CRUDSevice.getAllLichThiDauTruoc({
+                    raw: true,
+                });
+                let dataLichChuaThiDau = await CRUDSevice.getAllLichChuaThiDau({
+                    raw: true,
+                });
+                let dataLichThiDau = await CRUDSevice.getAllLichThiDau({
+                    raw: true,
+                })
+                let dataKetQua = await CRUDSevice.getAllKetQua({
+                    raw: true,
+                });
+                let dataTranDau = await CRUDSevice.getAllTranDau({
+                    raw: true,
+                });
+                let dataTongKet = await CRUDSevice.getAllTongKet({
+                    raw: true,
+                });
+                return res.render('Admin.ejs', {
+                    data: JSON.stringify(data),
+                    dataF: data,
+                    dataDoiBong: dataDoiBong,
+                    dataThamSo: dataThamSo,
+                    dataCauThu: dataCauThu,
+                    parseDataDoiBong: JSON.stringify(dataDoiBong),
+                    parseDataThamSo: JSON.stringify(dataThamSo),
+                    dataLichThiDauTruoc: dataLichThiDauTruoc,
+                    dataLichChuaThiDau: dataLichChuaThiDau,
+                    dataKetQua: dataKetQua,
+                    dataTranDau: dataTranDau,
+                    dataTongKet: dataTongKet,
+                    dataLichThiDau: dataLichThiDau,
+                    pharsedataLichThiDau: JSON.stringify(dataLichThiDau),
+                    login: login,
+
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        if (login[0].roleId === 'manager')
+            res.redirect('/manager');
+        if (login[0].roleId === 'guest')
+            res.redirect('/');
+        if (login[0].roleId === 'banquanly')
+            res.redirect('/banquanly');
+    } else {
+        res.redirect('/');
     }
 }
 
@@ -222,5 +391,6 @@ module.exports = {
     postTeam: postTeam,
     getAdmin: getAdmin,
     postDienBien: postDienBien,
-    postLapLich: postLapLich
+    postLapLich: postLapLich,
+    logout: logout,
 }

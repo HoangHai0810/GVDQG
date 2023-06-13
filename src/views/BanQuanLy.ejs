@@ -259,13 +259,17 @@
                                 <div alt="" class="icn search-w"></div>
                             </div>
                         </div>
-                        <a href="#" class="navLink navOption navOption--no-border fantasySignIn" role="button"
-                            tabindex="0">
-                        </a>
-                        <a href="#!" class="navLink navOption navOption--no-border fantasySignOut" role="button"
-                            tabindex="0">
-                            <span class="fantasyUsername"></span>
-                        </a>
+                        <% let name='' ; for (let v=0;v<dataF.length;v++) { if (dataF[v].id==login[0].userId) {
+                            name=dataF[v].lastName; } }%>
+                            <span style="right: 120px; position: absolute;">
+                                <%= name %>
+                            </span>
+                            <a href="/logout" hidden="true"
+                                class="navLink navOption navOption--no-border fantasySignOut" role="button"
+                                tabindex="0">
+                                <span class="fantasyUsername"><i
+                                        class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                            </a>
                     </section>
                 </div>
                 <nav class="subNav" role="menubar">
@@ -703,460 +707,6 @@
                 </div>
             </div>
         </section>
-        <!--Tab đăng nhập-->
-        <section class="ism tab-content" id="dangnhap" tabindex="0">
-            <header class="pageHero">
-                <div class="wrapper col-12">
-                    <h1 class="pageTitle">Tài khoản của bạn</h1>
-                </div>
-            </header>
-            <div class="ism-container">
-                <div class="wrapper">
-                    <div id="ismr-content">
-                        <form class="ism-form__login-box">
-                            <div class="wrapper">
-                                <div class="col-6">
-                                    <h1>Đăng nhập</h1>
-                                    <div class="ism-form__group">
-                                        <label for="ism-email">Tên đăng nhập</label>
-                                        <div class="ism-input-holder">
-                                            <input type="text" name="login" id="ism-email" placeholder="Tên đăng nhập">
-                                            <div id="error-userName"></div>
-                                        </div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <label for="ism-password">Mật khẩu</label>
-                                        <div class="ism-input-holder">
-                                            <input type="password" name="password" id="ism-password"
-                                                placeholder="Password" data-password-element="input">
-                                            <button type="button" class="btn ism-show-password" id="ismjs-show-password"
-                                                onclick="togglePasswordVisibility()">Hiện</button>
-                                            <script>
-                                                //Ẩn hiện mật khẩu
-                                                function togglePasswordVisibility() {
-                                                    var passwordInput = document.getElementById("ism-password");
-                                                    var toggleButton = document.getElementById("ismjs-show-password");
-                                                    if (passwordInput.type === "password") {
-                                                        passwordInput.type = "text";
-                                                        toggleButton.textContent = "Ẩn";
-                                                    } else {
-                                                        passwordInput.type = "password";
-                                                        toggleButton.textContent = "Hiện";
-                                                    }
-                                                }
-                                            </script>
-                                        </div>
-                                        <div id="error-Password"></div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <a href="/accounts/password-reset/"
-                                            class="ism-arrow-link ism-arrow-link__login">Quên mật khẩu?</a>
-                                        <button type="button" class="btn btn-primary" onclick="checkLogin()">
-                                            Đăng nhập
-                                        </button>
-                                    </div>
-                                    <script>
-                                        var ismEmail = document.getElementById('ism-email');
-                                        var ismPassword = document.getElementById('ism-password');
-                                        var errorPassword = document.getElementById('error-Password');
-                                        var errorUserName = document.getElementById('error-userName');
-                                        ismEmail.addEventListener('keyup', () => {
-                                            errorUserName.innerHTML = '';
-                                            ismEmail.classList.remove('error-border');
-
-                                            if (event.key === 'Enter') {
-                                                checkLogin();
-                                            }
-
-                                        });
-                                        ismPassword.addEventListener('keyup', () => {
-                                            errorPassword.innerHTML = '';
-                                            ismPassword.classList.remove('error-border');
-
-                                            if (event.key === 'Enter') {
-                                                checkLogin();
-                                            }
-                                        });
-
-                                        function checkLogin() {
-                                            var data = JSON.parse(unescape('<%- data %>'));
-                                            console.log(data);
-                                            var checkUserName = false;
-                                            var ismEmailValue = ismEmail.value;
-                                            for (let i = 0; i < data.length; i++) {
-                                                if (ismEmailValue === data[i].userName) {
-                                                    checkUserName = true;
-                                                }
-                                            }
-                                            if (checkUserName) {
-                                                var checkPassword = false;
-                                                var idUser = 0;
-                                                var ismPasswordValue = ismPassword.value;
-                                                for (let i = 0; i < data.length; i++) {
-                                                    if (ismPasswordValue === data[i].password) {
-                                                        checkPassword = true;
-                                                        idUser = i;
-                                                    }
-                                                }
-                                                if (checkPassword) {
-
-                                                    // Lấy danh sách các phần tử khớp với truy vấn CSS
-                                                    var elements = document.querySelectorAll('.fantasySignInLabel');
-                                                    // Lặp qua từng phần tử và thay đổi nội dung
-                                                    for (var j = 0; j < elements.length; j++) {
-                                                        elements[j].innerHTML = data[idUser].lastName;
-                                                    }
-                                                    // Loại bỏ lớp active từ tất cả các tab
-                                                    tabLinks.forEach((tab) => {
-                                                        tab.classList.remove('active');
-                                                    });
-                                                    // Ẩn tất cả các nội dung tab
-                                                    const tabContents = document.querySelectorAll('.tab-content');
-                                                    tabContents.forEach((tabContent) => {
-                                                        tabContent.style.display = 'none';
-                                                    });
-
-                                                    // Hiển thị nội dung của tab trang chủ và thêm lớp active cho tab
-                                                    const selectedTabContent = document.getElementById('trangchu');
-                                                    selectedTabContent.style.display = 'block';
-                                                    link.classList.add('active');
-                                                } else {
-                                                    errorPassword.innerHTML = 'Mật khẩu sai!';
-                                                    errorPassword.style.color = '#e53535';
-                                                    ismPassword.classList.add('error-border');
-                                                }
-                                            } else {
-                                                errorUserName.innerHTML = 'Tên đăng nhập không tồn tại!';
-                                                errorUserName.style.color = '#e53535';
-                                                ismEmail.classList.add('error-border');
-                                            }
-                                        }
-                                    </script>
-                                </div>
-
-                                <div class="col-6">
-                                    <h1 class="ism-hide--mobile">Đăng ký</h1>
-                                    <div class="ism-well ism-well__reg-spacer">
-                                        <h2>Chưa có tài khoản?</h2>
-                                        <p>Trường hợp chưa có tài khoản, bạn có thể bị bỏ lỡ:</p>
-                                        <ul>
-                                            <li>Các trận cầu hấp dẫn</li>
-                                            <li>Các dịch vụ cho người hâm mộ</li>
-                                            <li>Thông tin về giải đấu</li>
-                                            <li>Thông tin về câu lạc bộ yêu thích và thông báo mới</li>
-                                        </ul>
-                                        <nav>
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="btn-highlight btn ism-button--full"
-                                                        data-tab="dangky">Đăng ký ngay</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Tab đăng kí-->
-        <section id="dangky" class="ism tab-content">
-            <header class="pageHero">
-                <div class="wrapper col-12">
-                    <h1 class="pageTitle">Tài khoản của bạn</h1>
-                </div>
-            </header>
-            <div class="ism-container">
-                <div class="wrapper">
-                    <div id="ismr-content2">
-                        <form class="ism-form__login-box" method="post" action="/post-crud">
-                            <input type="hidden" name="csrfmiddlewaretoken"
-                                value="y8sewwykk97bI1cdkF2r5sT3kpIPooO1NkH9walxgjR7bsUstS8HMUSYHrnaGqYx">
-                            <div class="wrapper">
-                                <div class="col-12">
-                                    <h1>Đăng ký</h1>
-                                    <div class="ism-form---group">
-                                        <div class="ism-form__group">
-                                            <label for="ism-ho">Họ</label>
-                                            <div class="ism-input-holder">
-                                                <input type="text" name="firstName" id="ism-ho"
-                                                    placeholder="Họ của bạn">
-                                            </div>
-                                        </div>
-                                        <div class="ism-form__group">
-                                            <label for="ism-ten">Tên</label>
-                                            <div class="ism-input-holder">
-                                                <input type="text" name="lastName" id="ism-ten"
-                                                    placeholder="Tên của bạn">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <label for="ism-email">Tên đăng nhập</label>
-                                        <div class="ism-input-holder">
-                                            <input type="text" name="userName" id="ism-userName"
-                                                placeholder="Tên đăng nhập">
-                                            <div id="userNameInfo">Tên đăng nhập dưới 6 kí tự</div>
-                                        </div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <label for="ism-password">Mật khẩu mới</label>
-                                        <div class="ism-input-holder">
-                                            <input type="password" name="password" id="ism-password2"
-                                                placeholder="Mật khẩu" data-password-element="input">
-                                            <button type="button" class="btn ism-show-password"
-                                                id="ismjs-show-password2"
-                                                onclick="togglePasswordVisibility2()">Hiện</button>
-                                            <script>
-                                                //Ẩn hiện mật khẩu
-                                                function togglePasswordVisibility2() {
-                                                    var passwordInput = document.getElementById("ism-password2");
-                                                    var toggleButton = document.getElementById("ismjs-show-password2");
-                                                    if (passwordInput.type === "password") {
-                                                        passwordInput.type = "text";
-                                                        toggleButton.textContent = "Ẩn";
-                                                    } else {
-                                                        passwordInput.type = "password";
-                                                        toggleButton.textContent = "Hiện";
-                                                    }
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <h5>Mật khẩu phải thỏa mãn các điều kiện sau:</h5>
-                                        <ul class="ism-PassList">
-                                            <li class="PassList__StyledPassItem">
-                                                <h5 class="PassList__Label col-6">Có ít nhất 8 kí tự</h5>
-                                                <div class="PassList__box" id="box1">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                                            </li>
-                                            <li class="PassList__StyledPassItem">
-                                                <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự đặc biệt</h5>
-                                                <div class="PassList__box" id="box2">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                                            </li>
-                                            <li class="PassList__StyledPassItem">
-                                                <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự in hoa</h5>
-                                                <div class="PassList__box" id="box3">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                                            </li>
-                                            <li class="PassList__StyledPassItem">
-                                                <h5 class="PassList__Label col-6">Có ít nhất 1 kí tự số</h5>
-                                                <div class="PassList__box" id="box4">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="ism-form__group">
-                                        <button type="button" class="btn btn-primary" id="signUpBtn">
-                                            Đăng ký
-                                        </button>
-                                    </div>
-                                    <script>
-                                        function checkPassword1(password) {
-                                            // Kiểm tra độ dài tối thiểu 8 kí tự
-                                            if (password.length < 8) {
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-
-                                        function checkPassword2(password) {
-                                            // Kiểm tra kí tự đặc biệt
-                                            var specialChars = /[!@#$%^&*(),.?":{}|<>`~;']/;
-                                            if (!specialChars.test(password)) {
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-
-                                        function checkPassword3(password) {
-                                            // Kiểm tra kí tự in hoa
-                                            var uppercaseChars = /[A-Z]/;
-                                            if (!uppercaseChars.test(password)) {
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-
-                                        function checkPassword4(password) {
-                                            var numberChars = /[0-9]/;
-                                            if (!numberChars.test(password)) {
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-                                        var data = JSON.parse(unescape('<%- data %>'));
-                                        var userNameCheck = false;
-                                        var checkUserNameInput = document.getElementById("ism-userName");
-                                        checkUserNameInput.addEventListener('input', () => {
-                                            var userNameInput = document.getElementById("ism-userName").value;
-                                            var userNameInfo = document.getElementById('userNameInfo');
-                                            if (checkPassword2(userNameInput)) {
-                                                userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
-                                                userNameInfo.style.color = '#e53535';
-                                                userNameCheck = false;
-                                            } else {
-                                                if (userNameInput.length < 6) {
-                                                    userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
-                                                    userNameInfo.style.color = '#e53535';
-                                                    userNameCheck = false;
-                                                } else {
-                                                    userNameCheck = true;
-                                                    userNameInfo.style.color = '#08e104';
-
-                                                    for (let i = 0; i < data.length; i++) {
-                                                        if (data[i].userName === userNameInput) {
-                                                            userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
-                                                            userNameInfo.style.color = '#e53535';
-                                                            userNameCheck = false;
-                                                            break;
-                                                        }
-                                                    }
-                                                    if (userNameCheck)
-                                                        userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
-                                                    userNameInfo.style.color = '#08e104';
-                                                }
-                                            }
-                                            if (userNameCheck) {
-                                                checkUserNameInput.classList.remove('error-border');
-                                            }
-                                            var signUpBtn = document.getElementById('signUpBtn');
-                                            if (!userNameCheck) {
-                                                signUpBtn.onclick = scrollUserName;
-                                            } else {
-                                                signUpBtn.onclick = scrollPasswordName;
-                                            }
-                                        });
-
-                                        var checkPasswordInput = document.getElementById("ism-password2");
-                                        checkPasswordInput.addEventListener('input', () => {
-                                            var passwordInput = document.getElementById("ism-password2").value;
-                                            var isValidPassword1 = checkPassword1(passwordInput);
-                                            var Box1 = document.getElementById('box1');
-                                            if (isValidPassword1) {
-                                                Box1.style.backgroundColor = '#08e104';
-                                                Box1.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                            } else {
-                                                Box1.style.backgroundColor = '#e53535';
-                                                Box1.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                            }
-
-                                            var isValidPassword2 = checkPassword2(passwordInput);
-                                            var Box2 = document.getElementById('box2');
-                                            if (isValidPassword2) {
-                                                Box2.style.backgroundColor = '#08e104';
-                                                Box2.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                            } else {
-                                                Box2.style.backgroundColor = '#e53535';
-                                                Box2.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                            }
-
-                                            var isValidPassword3 = checkPassword3(passwordInput);
-                                            var Box3 = document.getElementById('box3');
-                                            if (isValidPassword3) {
-                                                Box3.style.backgroundColor = '#08e104';
-                                                Box3.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                            } else {
-                                                Box3.style.backgroundColor = '#e53535';
-                                                Box3.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                            }
-
-                                            var isValidPassword4 = checkPassword4(passwordInput);
-                                            var Box4 = document.getElementById('box4');
-                                            if (isValidPassword4) {
-                                                Box4.style.backgroundColor = '#08e104';
-                                                Box4.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                            } else {
-                                                Box4.style.backgroundColor = '#e53535';
-                                                Box4.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                            }
-
-                                            if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4) {
-                                                checkPasswordInput.classList.remove('error-border');
-                                            }
-
-                                            var signUpBtn = document.getElementById('signUpBtn');
-                                            if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4 && userNameCheck) {
-                                                signUpBtn.type = 'submit';
-                                                signUpBtn.onclick = replaceTab;
-                                            } else {
-                                                signUpBtn.type = 'button';
-                                                if (!userNameCheck) {
-                                                    signUpBtn.onclick = scrollUserName;
-                                                } else {
-                                                    signUpBtn.onclick = scrollPasswordName;
-                                                }
-                                            }
-                                        });
-                                        var passwordInput = document.getElementById("ism-password2").value;
-                                        var signUpBtn = document.getElementById('signUpBtn');
-                                        if (checkPassword1(passwordInput) && checkPassword2(passwordInput) && checkPassword3(passwordInput) && checkPassword4(passwordInput) && userNameCheck) {
-                                            signUpBtn.type = 'submit';
-                                            signUpBtn.onclick = replaceTab;
-                                        } else {
-                                            signUpBtn.type = 'button';
-                                            if (!userNameCheck) {
-                                                signUpBtn.onclick = scrollUserName;
-                                            } else {
-                                                signUpBtn.onclick = scrollPasswordName;
-                                            }
-                                        }
-
-                                        function scrollPasswordName() {
-                                            checkPasswordInput.scrollIntoView({
-                                                behavior: 'smooth',
-                                                block: 'center'
-                                            });
-                                            checkPasswordInput.classList.add('error-border');
-                                        }
-
-                                        function scrollUserName() {
-                                            checkUserNameInput.scrollIntoView({
-                                                behavior: 'smooth',
-                                                block: 'center'
-                                            });
-                                            checkUserNameInput.classList.add('error-border');
-                                        }
-
-                                        function replaceTab() {
-                                            Swal.fire(
-                                                'Thành công',
-                                                'Bạn đã đăng kí thành công tài khoản',
-                                                'success'
-                                            ).then((result) => {
-                                                // Loại bỏ lớp active từ tất cả các tab
-                                                tabLinks.forEach((tab) => {
-                                                    tab.classList.remove('active');
-                                                });
-                                                // Ẩn tất cả các nội dung tab
-                                                const tabContents = document.querySelectorAll('.tab-content');
-                                                tabContents.forEach((tabContent) => {
-                                                    tabContent.style.display = 'none';
-                                                });
-                                                // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-                                                const selectedTabContent = document.getElementById('dangnhap');
-                                                selectedTabContent.style.display = 'block';
-                                                link.classList.add('active');
-                                            })
-                                        }
-                                    </script>
-                                    <input type="hidden" name="app" value="pl-web">
-                                    <input type="hidden" name="redirect_uri" value="https://www.premierleague.com/">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!--Tab trận đấu-->
         <section id="trandau" tabindex="0" class="tab-content" style="display: none;">
             <header class="pageHero tabbedHero ">
@@ -1352,11 +902,11 @@
                     data-tab-aware-default="true">
 
                     <div class="col-12">
-                        <% for (let i=0; i< dataLichThiDauTruoc.length; i++) { %>
+                        <% for (let i=0; i< dataLichChuaThiDau.length; i++) { %>
                             <section class="fixtures"><time class="date long" datetime="Saturday 20 May 2023"><strong>
-                                        <%= dataLichThiDauTruoc[i].ngay %>
+                                        <%= dataLichChuaThiDau[i].ngay %>
                                     </strong></time><time class="date short"><strong>
-                                        <%//= dataLichThiDauTruoc[1].ngay%>
+                                        <%= dataLichChuaThiDau[i].ngay%>
                                     </strong></time>
                                 <div data-competition-matches-list="Saturday 20 May 2023"
                                     class="fixtures__matches-list">
@@ -1365,38 +915,48 @@
                                                 class="competitionLabel1">Premier League</span> </div>
                                     </div>
                                     <ul class="matchList" data-comp-id="1">
-                                        <% for (let j=0;j<dataKetQua.length; j++) { if
-                                            (dataKetQua[j].ngay==dataLichThiDauTruoc[i].ngay) { %>
+                                        <% for (let j=0;j<dataLichChuaThiDau.length; j++) { if
+                                            (dataLichChuaThiDau[j].ngay==dataLichChuaThiDau[i].ngay) { %>
                                             <li class="matchFixtureContainer">
                                                 <div data-template-rendered=""
                                                     data-href="//www.premierleague.com/match/75278"
                                                     class="fixture postMatch" data-matchid="75278" tabindex="0"> <span
                                                         class="overview"> <span class="teams"> <span class="team"> <span
                                                                     class="teamName"> <span class="shortname">
-                                                                        <%= dataKetQua[j].tenDoiBong1 %>
+                                                                        <%= dataLichChuaThiDau[j].tenDoiBong1 %>
                                                                     </span> <span class="abbr">TOT</span> </span> <span
                                                                     class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%= anh[i + 1]%>@x2.png 2x">
+                                                                    data-widget="club-badge-image" data-size="25">
+                                                                    <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                        (dataDoiBong[u].tenDoiBong==dataLichChuaThiDau[j].tenDoiBong1)
+                                                                        {%>
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                        <% }} %>
                                                                 </span> </span> <span class="score ">
-                                                                <%= dataKetQua[j].soBanThangDoi1 %><span>-</span>
-                                                                    <%= dataKetQua[j].soBanThangDoi2 %>
+                                                                <%= dataLichChuaThiDau[j].soBanThangDoi1 %>
+                                                                    <span>-</span>
+                                                                    <%= dataLichChuaThiDau[j].soBanThangDoi2 %>
                                                             </span> <span class="team"> <span
                                                                     class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>.png, https://resources.premierleague.com/premierleague/badges/25/t9<%= anh[i + 2]%>@x2.png 2x">
+                                                                    data-widget="club-badge-image" data-size="25">
+                                                                    <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                        (dataDoiBong[u].tenDoiBong==dataLichThiDau[j].tenDoiBong2)
+                                                                        {%>
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                        <% }}%>
                                                                 </span> <span class="teamName"> <span class="shortname">
-                                                                        <%= dataKetQua[j].tenDoiBong2 %>
+                                                                        <%= dataLichChuaThiDau[j].tenDoiBong2 %>
                                                                     </span> <span class="abbr">BRE</span> </span>
                                                             </span>
                                                         </span>
-                                                        <% let sanNha='' ; for (let k=0;k<dataDoiBong.length;k++) { if
-                                                            (dataDoiBong[k].tenDoiBong==dataKetQua[j].tenDoiBong1) {
-                                                            sanNha=dataDoiBong[j].sanNha; }}%>
+                                                        <% let sanNha='' ; for (let k=0;k<dataLichChuaThiDau.length;k++)
+                                                            { if
+                                                            (dataDoiBong[k].tenDoiBong==dataLichChuaThiDau[j].tenDoiBong1)
+                                                            { sanNha=dataDoiBong[j].sanNha; }}%>
                                                             <span class="stadiumName"> <span
                                                                     class="icn stadium-b"></span>
                                                                 <%=sanNha %>
@@ -2059,7 +1619,7 @@
                                             <input hidden="true" value="" id="doiKhachdata" name="doiKhach">
                                             <input hidden="true" value="" id='doiNhadata' name="doiNha">
                                             <li class="matchFixtureContainer"
-                                                style="border: 1px solid #0005; margin-bottom:90px; z-index: 0;">
+                                                style="border: 1px solid #0005; margin-bottom:90px; z-index: 0; ">
                                                 <div class="fixture postMatch" tabindex="0">
                                                     <span class="overview">
                                                         <span class="teams">
@@ -2071,18 +1631,28 @@
                                                                     <span class="abbr">
                                                                         <%= dataLichThiDau[i].tenDoiBong2 %>
                                                                     </span> </span>
-                                                                <span class="badge badge-image-container"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i]%>@x2.png 2x">
+                                                                <span class="badge badge-image-container">
+                                                                    <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                        (dataDoiBong[u].tenDoiBong==dataLichThiDau[i].tenDoiBong1)
+                                                                        {%>
+
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                        <% }} %>
                                                                 </span> </span> <time datetime="">
                                                                 <%=dataLichThiDau[i].gio%>
                                                             </time> <span class="team"> <span
                                                                     class="badge badge-image-container"
-                                                                    data-widget="club-badge-image" data-size="25"> <img
-                                                                        class="badge-image badge-image--25 js-badge-image"
-                                                                        src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>.png"
-                                                                        srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[i+1]%>@x2.png 2x">
+                                                                    data-widget="club-badge-image" data-size="25">
+                                                                    <% for (let u=0;u< dataDoiBong.length;u++) { if
+                                                                        (dataDoiBong[u].tenDoiBong==dataLichThiDau[i].tenDoiBong2)
+                                                                        {%>
+
+                                                                        <img class="badge-image badge-image--25 js-badge-image"
+                                                                            src="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png"
+                                                                            srcset="https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>.png, https://resources.premierleague.com/premierleague/badges/25/t<%=anh[u]%>@x2.png 2x">
+                                                                        <% }} %>
                                                                 </span> <span class="teamName"> <span class="shortname"
                                                                         id="tenDoi2">
                                                                         <%= dataLichThiDau[i].tenDoiBong2 %>
@@ -2091,16 +1661,6 @@
                                                                         <%= dataLichThiDau[i].tenDoiBong2 %>
                                                                     </span> </span>
                                                             </span>
-                                                        </span> <span class="stadiumName" style="white-space:normal">
-                                                            <span class="icn stadium-b"></span>
-                                                            <%=dataLichThiDau[i].sanNha%>
-                                                        </span>
-                                                        <span>
-                                                            <%= dataLichThiDau[i].ngay%>
-                                                        </span>
-                                                        <button type"submit" class="icn arrow-right"
-                                                            style="position: absolute; border: none; width:50px; height:20px; background-size: 169px !important; background: url(../photos/i/sprites/arrows-sprite.png) -137px -44px no-repeat;"></button>
-                                                    </span>
                                         </form>
 
                             </div>
@@ -2132,26 +1692,31 @@
                                         function initializeTable() {
                                             let options = [tendoi1[index].innerHTML, tendoi2[index].innerHTML];
                                             var thongTinTranDau = [{
-                                                title: 'Cầu thủ',
-                                                data: 0
-                                            }, {
                                                 title: 'Đội',
                                                 type: 'dropdown',
                                                 source: options,
-                                                data: 1
+                                                data: 0,
+                                                width: 340
+                                            }, {
+                                                title: 'Cầu thủ',
+                                                data: 1,
+                                                width: 454
                                             }, {
                                                 title: 'Loại bàn thắng',
                                                 data: 2,
                                                 type: 'dropdown',
                                                 source: ['Không', 'Trực tiếp', 'Đá phạt', 'Phản lưới nhà'],
+                                                width: 227
                                             }, {
                                                 title: 'Loại thẻ',
                                                 data: 3,
                                                 type: 'dropdown',
-                                                source: ['Không', 'Thẻ vàng', 'Thẻ đỏ']
+                                                source: ['Không', 'Thẻ vàng', 'Thẻ đỏ'],
+                                                width: 170
                                             }, {
                                                 title: 'Thời điểm',
-                                                data: 4
+                                                data: 4,
+                                                width: 113
                                             },];
                                             const hot = new Handsontable(tttd, {
                                                 data: [
@@ -2593,7 +2158,7 @@
                         style="display: flex; margin-bottom: 30px; justify-content: space-around;">
                         <span>
                             <label for="team1" style="margin-right: 10px;">Tên đội 1:</label>
-                            <input type="text" id="team1" >
+                            <input type="text" id="team1">
                         </span>
                         <span>
                             <label for="team2" style="margin-right: 10px;">Tên đội 2:</label>
@@ -2618,7 +2183,7 @@
                                     vertical-align: middle;">Ngày giờ</th>
                                     </tr>
                                 </thead>
-                                <tbody class="dataContainer indexSection">
+                                <tbody class="dataContainer indexSection" id="lichTable">
                                     <% <!--Luot đi-->
                                         for (let i=0;i < dataDoiBong.length; i++ ) { for (let j=i + 1; j <
                                             dataDoiBong.length; j++) { %>
@@ -2677,7 +2242,7 @@
                                                                 value="<%= dataDoiBong[i].sanNha%>">
                                                     </td>
                                                     <td class="hide-s" style="text-align: center;
-                                                    vertical-align: middle;" id="vong"> 
+                                                    vertical-align: middle;" id="vong">
                                                         Lượt về
                                                         <input type="hidden" id="input-vong" name="vong" value="Lượt về">
                                                     </td>
@@ -2707,6 +2272,42 @@
             </div>
 
             <script>
+                const searchT1Input = document.getElementById('team1');
+                const searchT2Input = document.getElementById('team2');
+                const lichTable = document.getElementById('lichTable');
+                // Lắng nghe sự kiện người dùng nhập dữ liệu
+                searchT1Input.addEventListener("keyup", () => {
+                    const searchT1Term = searchT1Input.value.toLowerCase();
+                    const searchT2Term = searchT2Input.value.toLowerCase();
+                    const rows = lichTable.querySelectorAll('tr');
+                    console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        const teamName1 = rows[i].querySelector('td:first-child').textContent.toLowerCase();
+                        const teamName2 = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        if (teamName1.includes(searchT1Term) && teamName2.includes(searchT2Term)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+                searchT2Input.addEventListener("keyup", () => {
+                    const searchT1Term = searchT1Input.value.toLowerCase();
+                    const searchT2Term = searchT2Input.value.toLowerCase();
+                    const rows = lichTable.querySelectorAll('tr');
+                    console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        const teamName1 = rows[i].querySelector('td:first-child').textContent.toLowerCase();
+                        const teamName2 = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        if (teamName1.includes(searchT1Term) && teamName2.includes(searchT2Term)) {
+                            rows[i].style.display = ''; // Hiển thị hàng nếu khớp
+                        } else {
+                            rows[i].style.display = 'none'; // Ẩn hàng nếu không khớp
+                        }
+                    }
+                });
+
+
                 var table = document.getElementById('tableLapLich');
                 console.log(table);
                 var tbody = table.getElementsByTagName('tbody')[0];
@@ -3090,27 +2691,8 @@
                     document.getElementById('navbar').style.top = 'auto';
                 }
             });
-            // Lắng nghe sự kiện khi tab được click
+
             const tabLinks = document.querySelectorAll('nav ul li a');
-
-            //Lắng nghe sự kiện khi nút đăng nhập được click
-            const signinLink = document.querySelector('.fantasySignIn');
-
-            signinLink.addEventListener('click', (e) => {
-                // Loại bỏ lớp active từ tất cả các tab
-                tabLinks.forEach((tab) => {
-                    tab.classList.remove('active');
-                });
-                // Ẩn tất cả các nội dung tab
-                const tabContents = document.querySelectorAll('.tab-content');
-                tabContents.forEach((tabContent) => {
-                    tabContent.style.display = 'none';
-                });
-                // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
-                const selectedTabContent = document.getElementById('dangnhap');
-                selectedTabContent.style.display = 'block';
-                link.classList.add('active');
-            })
 
             tabLinks.forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -3135,6 +2717,29 @@
                     selectedTabContent.style.display = 'block';
                     link.classList.add('active');
                 });
+
+                let Login = JSON.parse('<%- Login %>');
+
+                if (Login.length == 0) {
+                    //Lắng nghe sự kiện khi nút đăng nhập được click
+                    const signinLink = document.querySelector('.fantasySignIn');
+
+                    signinLink.addEventListener('click', (e) => {
+                        // Loại bỏ lớp active từ tất cả các tab
+                        tabLinks.forEach((tab) => {
+                            tab.classList.remove('active');
+                        });
+                        // Ẩn tất cả các nội dung tab
+                        const tabContents = document.querySelectorAll('.tab-content');
+                        tabContents.forEach((tabContent) => {
+                            tabContent.style.display = 'none';
+                        });
+                        // Hiển thị nội dung của tab đăng nhập và thêm lớp active cho tab
+                        const selectedTabContent = document.getElementById('dangnhap');
+                        selectedTabContent.style.display = 'block';
+                        link.classList.add('active');
+                    })
+                }
             });
         </script>
 
